@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { BirdSpot, PaperBits, Sparkles } from "./Accents";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -32,28 +33,29 @@ export default function EmailCapture() {
     }
   }
 
+  const input =
+    "h-14 w-full rounded-full border border-ink/10 bg-white px-7 text-[16px] shadow-[0_1px_2px_rgba(15,58,71,0.05)] placeholder:text-ink-soft/60 focus:border-brand-teal";
+
   return (
-    <section className="bg-mint-wash">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:py-20">
-        <div className="overflow-hidden rounded-[2.5rem] bg-cream shadow-card lg:grid lg:grid-cols-2 lg:items-center">
-          <div className="p-8 sm:p-12 lg:p-14">
-            <p className="flex items-center gap-3 text-[13px] font-bold tracking-[0.18em] text-brand-teal">
-              <span aria-hidden="true" className="h-0.5 w-8 rounded-full bg-sun" />
-              A little help, weekly
+    <section className="bg-mint-wash px-3 py-16 sm:px-6 lg:py-24">
+      <div className="mx-auto max-w-[87rem] overflow-hidden rounded-[3rem] bg-cream">
+        <div className="grid items-center gap-10 p-8 sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,32rem)] lg:gap-16 lg:p-[4.5rem]">
+          <div className="reveal text-center">
+            <p className="text-[15px] font-extrabold uppercase tracking-[0.14em] text-ink">
+              One good idea a week
             </p>
-            <h2 className="font-display mt-4 text-4xl sm:text-5xl">
-              For the parent still up at 11pm,{" "}
-              <span className="italic text-brand-teal">looking things up.</span>
+            <h2 className="font-display display-hero mx-auto mt-6 max-w-[34rem] text-[2.8rem] text-brand-teal sm:text-6xl lg:text-[4.5rem]">
+              Still up <span className="italic">at 11pm?</span>
             </h2>
-            <p className="mt-4 max-w-md text-ink-soft">
+            <p className="mx-auto mt-7 max-w-[34rem] text-[17px] leading-relaxed text-ink-soft">
               Picky eating. Car-seat standoffs. The word &ldquo;no&rdquo; on
-              repeat. Once a week, our BCBAs send one practical, judgment-free
-              strategy you can try before breakfast. No spam, and unsubscribing
-              takes one click.
+              repeat. You&rsquo;re doing your best, and autism is challenging —
+              so once a week our BCBAs send one practical, judgment-free
+              strategy you can try before breakfast.
             </p>
 
             {status === "success" ? (
-              <div className="mt-6 rounded-2xl bg-white p-5 shadow-card" role="status" aria-live="polite">
+              <div className="mx-auto mt-8 max-w-md rounded-3xl bg-white p-6 shadow-card" role="status" aria-live="polite">
                 <p className="font-display text-xl">You&rsquo;re on the list.</p>
                 <p className="mt-1 text-[15px] text-ink-soft">
                   First tip lands soon. Until then — you&rsquo;re doing better
@@ -61,14 +63,14 @@ export default function EmailCapture() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="mt-6 max-w-md">
+              <form onSubmit={handleSubmit} className="mx-auto mt-9 max-w-md">
                 {/* Honeypot — hidden from people, tempting to bots */}
                 <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
                   <label htmlFor="news-website">Website</label>
                   <input id="news-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
                 </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="sm:col-span-1">
+                <div className="grid gap-4">
+                  <div>
                     <label htmlFor="news-name" className="sr-only">
                       First name
                     </label>
@@ -78,11 +80,11 @@ export default function EmailCapture() {
                       type="text"
                       required
                       autoComplete="given-name"
-                      placeholder="First name"
-                      className="w-full rounded-full border border-line bg-white px-5 py-3 text-[15px] placeholder:text-ink-soft/60 focus:border-brand-teal"
+                      placeholder="First name*"
+                      className={input}
                     />
                   </div>
-                  <div className="sm:col-span-1">
+                  <div>
                     <label htmlFor="news-email" className="sr-only">
                       Email
                     </label>
@@ -92,40 +94,44 @@ export default function EmailCapture() {
                       type="email"
                       required
                       autoComplete="email"
-                      placeholder="Email"
-                      className="w-full rounded-full border border-line bg-white px-5 py-3 text-[15px] placeholder:text-ink-soft/60 focus:border-brand-teal"
+                      placeholder="Email*"
+                      className={input}
                     />
                   </div>
                 </div>
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="mt-3 w-full rounded-full bg-ink px-6 py-3.5 text-[15px] font-bold text-white transition-colors hover:bg-brand-teal-deep disabled:opacity-60"
+                  className="btn-pill mt-6 inline-flex h-[62px] w-full items-center justify-center gap-3 rounded-full bg-ink px-8 text-[17px] font-extrabold text-white transition-colors hover:bg-brand-teal-deep disabled:opacity-60"
                 >
-                  {status === "submitting" ? "Signing you up…" : "Send me one good idea a week"}
+                  {status === "submitting" ? "Signing you up…" : "Sign me up"}
+                  <svg aria-hidden="true" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 3l5 5-5 5" />
+                  </svg>
                 </button>
                 {status === "error" && (
                   <p className="mt-2 text-sm font-semibold text-[#B23A2B]" role="alert">
                     That didn&rsquo;t send — please try again.
                   </p>
                 )}
-                <p className="mt-2 text-[13px] text-ink-soft">
-                  Tips only, never your inbox&rsquo;s new problem.
+                <p className="mt-3 text-[13px] text-ink-soft">
+                  Tips only, never your inbox&rsquo;s new problem. Unsubscribing
+                  takes one click.
                 </p>
               </form>
             )}
           </div>
 
-          {/* Original decorative panel: sunrise + hummingbird motif on butter wash */}
-          <div aria-hidden="true" className="relative hidden min-h-[26rem] items-center justify-center bg-sun-wash lg:flex">
-            <svg viewBox="0 0 320 260" className="w-72" fill="none">
-              <circle cx="160" cy="150" r="72" fill="var(--color-sun)" opacity="0.9" />
-              <path d="M40 196 h240" stroke="var(--color-brand-teal)" strokeWidth="5" strokeLinecap="round" />
-              <path d="M64 216 h96 M200 216 h56" stroke="var(--color-brand-teal)" strokeWidth="5" strokeLinecap="round" opacity="0.45" />
-              <path d="M118 84 C132 66 154 60 172 66 C160 74 152 84 148 96" stroke="var(--color-brand-teal)" strokeWidth="5" strokeLinecap="round" />
-              <path d="M96 108 C110 96 126 94 138 100" stroke="var(--color-brand-teal)" strokeWidth="5" strokeLinecap="round" opacity="0.5" />
-              <path d="M228 64 l10 -16 M244 78 l16 -8 M248 100 l18 0" stroke="var(--color-sun)" strokeWidth="6" strokeLinecap="round" />
-            </svg>
+          {/* Original decorative panel: hummingbird courier on butter wash */}
+          <div aria-hidden="true" className="relative hidden min-h-[30rem] items-center justify-center overflow-hidden rounded-[2.5rem] bg-sun-wash lg:flex">
+            <PaperBits className="absolute left-6 top-8 w-32" />
+            <PaperBits className="absolute bottom-10 right-8 w-24 rotate-45" />
+            <Sparkles className="absolute right-12 top-14 w-20" />
+            <div className="relative flex flex-col items-center">
+              <span className="block h-44 w-44 rounded-full bg-sun/70" />
+              <BirdSpot className="absolute -top-16 left-1/2 w-44 -translate-x-1/3" />
+              <span className="mt-8 block h-1.5 w-52 rounded-full bg-brand-teal/50" />
+            </div>
           </div>
         </div>
       </div>

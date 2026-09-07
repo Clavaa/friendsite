@@ -53,13 +53,15 @@ export default function GetADiagnosisPage() {
         />
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-16 pt-12 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-14 lg:pb-24 lg:pt-20">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-[13px] font-bold text-brand-teal shadow-chip">
+            <p className="sticker inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[13px] font-extrabold text-brand-teal shadow-chip">
               <span aria-hidden="true" className="h-2 w-2 rounded-full bg-meadow" />
               For families who don&rsquo;t have a diagnosis yet
             </p>
-            <h1 className="font-display mt-5 text-4xl sm:text-5xl lg:text-[3.4rem]">
-              Think your child might have autism? We&rsquo;ll help you find
-              out.
+            <h1 className="font-display display-xl mt-6 text-4xl sm:text-6xl lg:text-[4.25rem]">
+              Think your child might have autism?{" "}
+              <span className="italic text-brand-teal">
+                We&rsquo;ll help you find out.
+              </span>
             </h1>
             <p className="mt-4 max-w-lg text-lg text-ink-soft">
               We help Kansas and Colorado families book a diagnostic

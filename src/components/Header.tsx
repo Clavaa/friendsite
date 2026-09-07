@@ -93,11 +93,11 @@ export default function Header() {
   }, [locationsOpen]);
 
   const navLinkClass =
-    "whitespace-nowrap rounded-lg px-2.5 py-2 text-[15px] font-semibold text-ink-soft transition-colors hover:bg-sun-wash hover:text-ink xl:px-3";
+    "whitespace-nowrap rounded-lg px-2.5 py-2 text-[16px] font-bold text-ink transition-colors hover:bg-sun-wash xl:px-3.5";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/70 bg-cream/95 backdrop-blur">
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
+    <header className="sticky top-0 z-40 bg-white shadow-[0_1px_0_rgba(15,58,71,0.06)]">
+      <div className="mx-auto flex h-[76px] max-w-[87rem] items-center justify-between gap-3 px-4 sm:px-6 lg:h-[96px]">
         <Link
           href="/"
           className="flex shrink-0 items-center"
@@ -207,9 +207,12 @@ export default function Header() {
           </a>
           <Link
             href="/getting-started"
-            className="hidden whitespace-nowrap rounded-full bg-brand-teal px-5 py-2 text-[15px] font-bold text-white transition-colors hover:bg-brand-teal-deep sm:inline-block"
+            className="btn-pill hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-brand-teal px-6 text-[15px] font-extrabold text-white transition-colors hover:bg-brand-teal-deep sm:inline-flex"
           >
             Get started
+            <svg aria-hidden="true" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 3l5 5-5 5" />
+            </svg>
           </Link>
           <button
             type="button"
@@ -243,7 +246,7 @@ export default function Header() {
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="max-h-[calc(100dvh-68px)] overflow-y-auto border-t border-line bg-cream px-4 pb-6 pt-2 lg:hidden"
+          className="max-h-[calc(100dvh-68px)] overflow-y-auto border-t border-line bg-white px-4 pb-6 pt-2 lg:hidden"
         >
           {[...primaryNav, ...secondaryNav].map((item) => (
             <Link

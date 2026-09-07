@@ -92,7 +92,7 @@ export default async function StatePage({
               <span aria-hidden="true"> / </span>
               <span aria-current="page">{content.name}</span>
             </nav>
-            <h1 className="font-display mt-4 text-4xl sm:text-5xl">
+            <h1 className="font-display display-xl mt-5 text-4xl sm:text-6xl lg:text-[4.25rem]">
               {content.heroHeadline}
             </h1>
             <p className="mt-4 max-w-xl text-lg text-ink-soft">{content.heroSub}</p>

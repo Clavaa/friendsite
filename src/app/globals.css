@@ -45,8 +45,9 @@ body {
   background-color: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 17px;
-  line-height: 1.65;
+  /* 18/1.6 — matches the reference rhythm class (18/28.8) */
+  font-size: 18px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -81,6 +82,111 @@ body {
     #f5a930 76%,
     #e85d4a 100%
   );
+}
+
+/* Giant display headlines — tighter leading the bigger they get. */
+.display-hero {
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+.display-xl {
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+}
+
+/* Letter-spaced micro-eyebrow (the small label over headlines). */
+.eyebrow {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: none;
+}
+
+/* ——— Hover physics ——— */
+
+/* Card lift: rises 6px and gains a deeper layered shadow. */
+.lift {
+  transition: transform 0.3s cubic-bezier(0.2, 0.6, 0.2, 1), box-shadow 0.3s ease;
+}
+.lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 2px 4px rgba(15, 58, 71, 0.05), 0 22px 48px rgba(15, 58, 71, 0.16);
+}
+
+/* Animated link underline: grows left → right on hover. */
+.link-grow {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+  padding-bottom: 2px;
+}
+.link-grow:hover,
+a:hover > .link-grow {
+  background-size: 100% 2px;
+}
+
+/* Pill buttons nudge their chevron on hover. */
+.btn-pill svg {
+  transition: transform 0.25s ease;
+}
+.btn-pill:hover svg {
+  transform: translateX(3px);
+}
+
+/* ——— Scroll reveal (CSS-only, progressive enhancement) ——— */
+/* Transform-only so content can never be stranded invisible — the block
+   simply eases up into place as it enters the viewport. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 42%;
+    }
+  }
+}
+@keyframes reveal-up {
+  from {
+    transform: translateY(30px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* ——— Edge fade for horizontal scrollers ——— */
+.edge-fade {
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 32px,
+    #000 calc(100% - 32px),
+    transparent 100%
+  );
+}
+
+/* Hide scrollbars on decorative carousels (keyboard + arrows still work). */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Sticker chips: tiny playful rotation, straightens on hover. */
+.sticker {
+  transform: rotate(-1.5deg);
+  transition: transform 0.25s ease;
+}
+.sticker-r {
+  transform: rotate(1.5deg);
+  transition: transform 0.25s ease;
+}
+.sticker:hover,
+.sticker-r:hover {
+  transform: rotate(0deg);
 }
 
 /* Accessible focus that fits the palette */

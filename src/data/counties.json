@@ -1,0 +1,3336 @@
+{
+  "kansas": [
+    {
+      "name": "Johnson",
+      "full": "Johnson County",
+      "slug": "johnson",
+      "fips": "20091",
+      "pop": 632276,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 0
+      },
+      "neighbors": [
+        "wyandotte",
+        "douglas",
+        "leavenworth",
+        "miami",
+        "franklin"
+      ]
+    },
+    {
+      "name": "Sedgwick",
+      "full": "Sedgwick County",
+      "slug": "sedgwick",
+      "fips": "20173",
+      "pop": 536081,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 0
+      },
+      "neighbors": [
+        "butler",
+        "reno",
+        "cowley",
+        "harvey",
+        "sumner",
+        "kingman"
+      ]
+    },
+    {
+      "name": "Shawnee",
+      "full": "Shawnee County",
+      "slug": "shawnee",
+      "fips": "20177",
+      "pop": 177942,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 0
+      },
+      "neighbors": [
+        "douglas",
+        "pottawatomie",
+        "jefferson",
+        "osage",
+        "jackson",
+        "wabaunsee"
+      ]
+    },
+    {
+      "name": "Wyandotte",
+      "full": "Wyandotte County",
+      "slug": "wyandotte",
+      "fips": "20209",
+      "pop": 169418,
+      "nearestCity": {
+        "slug": "kansas-city",
+        "name": "Kansas City",
+        "hops": 0
+      },
+      "neighbors": [
+        "johnson",
+        "leavenworth",
+        "douglas",
+        "miami",
+        "franklin"
+      ]
+    },
+    {
+      "name": "Douglas",
+      "full": "Douglas County",
+      "slug": "douglas",
+      "fips": "20045",
+      "pop": 121989,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 1
+      },
+      "neighbors": [
+        "johnson",
+        "shawnee",
+        "leavenworth",
+        "miami",
+        "franklin",
+        "jefferson",
+        "osage"
+      ]
+    },
+    {
+      "name": "Leavenworth",
+      "full": "Leavenworth County",
+      "slug": "leavenworth",
+      "fips": "20103",
+      "pop": 84670,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 1
+      },
+      "neighbors": [
+        "johnson",
+        "wyandotte",
+        "douglas",
+        "jefferson",
+        "atchison"
+      ]
+    },
+    {
+      "name": "Riley",
+      "full": "Riley County",
+      "slug": "riley",
+      "fips": "20161",
+      "pop": 72557,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 2
+      },
+      "neighbors": [
+        "geary",
+        "pottawatomie",
+        "marshall",
+        "clay",
+        "wabaunsee",
+        "washington"
+      ]
+    },
+    {
+      "name": "Butler",
+      "full": "Butler County",
+      "slug": "butler",
+      "fips": "20015",
+      "pop": 69158,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 1
+      },
+      "neighbors": [
+        "sedgwick",
+        "cowley",
+        "harvey",
+        "sumner",
+        "marion",
+        "greenwood",
+        "chase",
+        "elk"
+      ]
+    },
+    {
+      "name": "Reno",
+      "full": "Reno County",
+      "slug": "reno",
+      "fips": "20155",
+      "pop": 61417,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 1
+      },
+      "neighbors": [
+        "sedgwick",
+        "harvey",
+        "mcpherson",
+        "rice",
+        "pratt",
+        "kingman",
+        "stafford"
+      ]
+    },
+    {
+      "name": "Saline",
+      "full": "Saline County",
+      "slug": "saline",
+      "fips": "20169",
+      "pop": 53459,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 3
+      },
+      "neighbors": [
+        "mcpherson",
+        "dickinson",
+        "marion",
+        "ellsworth",
+        "ottawa",
+        "lincoln"
+      ]
+    },
+    {
+      "name": "Crawford",
+      "full": "Crawford County",
+      "slug": "crawford",
+      "fips": "20037",
+      "pop": 38904,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 4
+      },
+      "neighbors": [
+        "labette",
+        "cherokee",
+        "neosho",
+        "bourbon",
+        "montgomery"
+      ]
+    },
+    {
+      "name": "Finney",
+      "full": "Finney County",
+      "slug": "finney",
+      "fips": "20055",
+      "pop": 38354,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 5
+      },
+      "neighbors": [
+        "grant",
+        "gray",
+        "scott",
+        "kearny",
+        "haskell",
+        "ness",
+        "hodgeman",
+        "lane"
+      ]
+    },
+    {
+      "name": "Miami",
+      "full": "Miami County",
+      "slug": "miami",
+      "fips": "20121",
+      "pop": 35737,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 1
+      },
+      "neighbors": [
+        "johnson",
+        "douglas",
+        "franklin",
+        "linn",
+        "anderson"
+      ]
+    },
+    {
+      "name": "Geary",
+      "full": "Geary County",
+      "slug": "geary",
+      "fips": "20061",
+      "pop": 35459,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 2
+      },
+      "neighbors": [
+        "riley",
+        "dickinson",
+        "clay",
+        "wabaunsee",
+        "morris"
+      ]
+    },
+    {
+      "name": "Cowley",
+      "full": "Cowley County",
+      "slug": "cowley",
+      "fips": "20035",
+      "pop": 34186,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 1
+      },
+      "neighbors": [
+        "sedgwick",
+        "butler",
+        "sumner",
+        "chautauqua",
+        "elk"
+      ]
+    },
+    {
+      "name": "Ford",
+      "full": "Ford County",
+      "slug": "ford",
+      "fips": "20057",
+      "pop": 34072,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 4
+      },
+      "neighbors": [
+        "gray",
+        "meade",
+        "edwards",
+        "kiowa",
+        "clark",
+        "hodgeman"
+      ]
+    },
+    {
+      "name": "Harvey",
+      "full": "Harvey County",
+      "slug": "harvey",
+      "fips": "20079",
+      "pop": 33642,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 1
+      },
+      "neighbors": [
+        "sedgwick",
+        "butler",
+        "reno",
+        "mcpherson",
+        "marion"
+      ]
+    },
+    {
+      "name": "Lyon",
+      "full": "Lyon County",
+      "slug": "lyon",
+      "fips": "20111",
+      "pop": 32520,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 2
+      },
+      "neighbors": [
+        "osage",
+        "coffey",
+        "wabaunsee",
+        "greenwood",
+        "morris",
+        "chase"
+      ]
+    },
+    {
+      "name": "Montgomery",
+      "full": "Montgomery County",
+      "slug": "montgomery",
+      "fips": "20125",
+      "pop": 30459,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 3
+      },
+      "neighbors": [
+        "labette",
+        "neosho",
+        "wilson",
+        "chautauqua",
+        "elk"
+      ]
+    },
+    {
+      "name": "McPherson",
+      "full": "McPherson County",
+      "slug": "mcpherson",
+      "fips": "20113",
+      "pop": 30334,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 2
+      },
+      "neighbors": [
+        "reno",
+        "saline",
+        "harvey",
+        "dickinson",
+        "marion",
+        "rice",
+        "ellsworth"
+      ]
+    },
+    {
+      "name": "Ellis",
+      "full": "Ellis County",
+      "slug": "ellis",
+      "fips": "20051",
+      "pop": 29007,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 5
+      },
+      "neighbors": [
+        "russell",
+        "rooks",
+        "osborne",
+        "rush",
+        "trego",
+        "ness"
+      ]
+    },
+    {
+      "name": "Pottawatomie",
+      "full": "Pottawatomie County",
+      "slug": "pottawatomie",
+      "fips": "20149",
+      "pop": 26876,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 1
+      },
+      "neighbors": [
+        "shawnee",
+        "riley",
+        "jackson",
+        "nemaha",
+        "marshall",
+        "wabaunsee"
+      ]
+    },
+    {
+      "name": "Franklin",
+      "full": "Franklin County",
+      "slug": "franklin",
+      "fips": "20059",
+      "pop": 26273,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 1
+      },
+      "neighbors": [
+        "johnson",
+        "douglas",
+        "miami",
+        "osage",
+        "linn",
+        "coffey",
+        "anderson"
+      ]
+    },
+    {
+      "name": "Barton",
+      "full": "Barton County",
+      "slug": "barton",
+      "fips": "20009",
+      "pop": 24835,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 3
+      },
+      "neighbors": [
+        "rice",
+        "russell",
+        "ellsworth",
+        "pawnee",
+        "stafford",
+        "rush"
+      ]
+    },
+    {
+      "name": "Sumner",
+      "full": "Sumner County",
+      "slug": "sumner",
+      "fips": "20191",
+      "pop": 22336,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 1
+      },
+      "neighbors": [
+        "sedgwick",
+        "butler",
+        "cowley",
+        "kingman",
+        "harper"
+      ]
+    },
+    {
+      "name": "Seward",
+      "full": "Seward County",
+      "slug": "seward",
+      "fips": "20175",
+      "pop": 21276,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 6
+      },
+      "neighbors": [
+        "stevens",
+        "meade",
+        "haskell",
+        "finney",
+        "ford"
+      ]
+    },
+    {
+      "name": "Labette",
+      "full": "Labette County",
+      "slug": "labette",
+      "fips": "20099",
+      "pop": 19692,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 4
+      },
+      "neighbors": [
+        "crawford",
+        "montgomery",
+        "cherokee",
+        "neosho",
+        "bourbon"
+      ]
+    },
+    {
+      "name": "Cherokee",
+      "full": "Cherokee County",
+      "slug": "cherokee",
+      "fips": "20021",
+      "pop": 19133,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 5
+      },
+      "neighbors": [
+        "crawford",
+        "labette",
+        "montgomery",
+        "neosho",
+        "bourbon"
+      ]
+    },
+    {
+      "name": "Dickinson",
+      "full": "Dickinson County",
+      "slug": "dickinson",
+      "fips": "20041",
+      "pop": 18621,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 3
+      },
+      "neighbors": [
+        "saline",
+        "geary",
+        "mcpherson",
+        "marion",
+        "clay",
+        "ottawa",
+        "morris"
+      ]
+    },
+    {
+      "name": "Jefferson",
+      "full": "Jefferson County",
+      "slug": "jefferson",
+      "fips": "20087",
+      "pop": 18332,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 1
+      },
+      "neighbors": [
+        "shawnee",
+        "douglas",
+        "leavenworth",
+        "atchison",
+        "jackson"
+      ]
+    },
+    {
+      "name": "Atchison",
+      "full": "Atchison County",
+      "slug": "atchison",
+      "fips": "20005",
+      "pop": 16249,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 2
+      },
+      "neighbors": [
+        "leavenworth",
+        "jefferson",
+        "jackson",
+        "brown",
+        "doniphan"
+      ]
+    },
+    {
+      "name": "Osage",
+      "full": "Osage County",
+      "slug": "osage",
+      "fips": "20139",
+      "pop": 15737,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 1
+      },
+      "neighbors": [
+        "shawnee",
+        "douglas",
+        "lyon",
+        "franklin",
+        "coffey",
+        "wabaunsee"
+      ]
+    },
+    {
+      "name": "Neosho",
+      "full": "Neosho County",
+      "slug": "neosho",
+      "fips": "20133",
+      "pop": 15552,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 4
+      },
+      "neighbors": [
+        "crawford",
+        "montgomery",
+        "labette",
+        "bourbon",
+        "allen",
+        "wilson",
+        "woodson"
+      ]
+    },
+    {
+      "name": "Bourbon",
+      "full": "Bourbon County",
+      "slug": "bourbon",
+      "fips": "20011",
+      "pop": 14424,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 3
+      },
+      "neighbors": [
+        "crawford",
+        "neosho",
+        "allen",
+        "linn",
+        "anderson"
+      ]
+    },
+    {
+      "name": "Jackson",
+      "full": "Jackson County",
+      "slug": "jackson",
+      "fips": "20085",
+      "pop": 13525,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 1
+      },
+      "neighbors": [
+        "shawnee",
+        "pottawatomie",
+        "jefferson",
+        "atchison",
+        "nemaha",
+        "brown"
+      ]
+    },
+    {
+      "name": "Allen",
+      "full": "Allen County",
+      "slug": "allen",
+      "fips": "20001",
+      "pop": 12425,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 3
+      },
+      "neighbors": [
+        "neosho",
+        "bourbon",
+        "linn",
+        "wilson",
+        "coffey",
+        "anderson",
+        "woodson"
+      ]
+    },
+    {
+      "name": "Marion",
+      "full": "Marion County",
+      "slug": "marion",
+      "fips": "20115",
+      "pop": 11670,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 2
+      },
+      "neighbors": [
+        "butler",
+        "saline",
+        "harvey",
+        "mcpherson",
+        "dickinson",
+        "morris",
+        "chase"
+      ]
+    },
+    {
+      "name": "Nemaha",
+      "full": "Nemaha County",
+      "slug": "nemaha",
+      "fips": "20131",
+      "pop": 10062,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 2
+      },
+      "neighbors": [
+        "pottawatomie",
+        "jackson",
+        "marshall",
+        "brown",
+        "shawnee"
+      ]
+    },
+    {
+      "name": "Marshall",
+      "full": "Marshall County",
+      "slug": "marshall",
+      "fips": "20117",
+      "pop": 9950,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 2
+      },
+      "neighbors": [
+        "riley",
+        "pottawatomie",
+        "nemaha",
+        "washington",
+        "shawnee"
+      ]
+    },
+    {
+      "name": "Linn",
+      "full": "Linn County",
+      "slug": "linn",
+      "fips": "20107",
+      "pop": 9841,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 2
+      },
+      "neighbors": [
+        "miami",
+        "franklin",
+        "bourbon",
+        "allen",
+        "anderson"
+      ]
+    },
+    {
+      "name": "Rice",
+      "full": "Rice County",
+      "slug": "rice",
+      "fips": "20159",
+      "pop": 9284,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 2
+      },
+      "neighbors": [
+        "reno",
+        "mcpherson",
+        "barton",
+        "ellsworth",
+        "stafford"
+      ]
+    },
+    {
+      "name": "Brown",
+      "full": "Brown County",
+      "slug": "brown",
+      "fips": "20013",
+      "pop": 9142,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 2
+      },
+      "neighbors": [
+        "atchison",
+        "jackson",
+        "nemaha",
+        "doniphan",
+        "shawnee"
+      ]
+    },
+    {
+      "name": "Pratt",
+      "full": "Pratt County",
+      "slug": "pratt",
+      "fips": "20151",
+      "pop": 9137,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 2
+      },
+      "neighbors": [
+        "reno",
+        "kingman",
+        "barber",
+        "stafford",
+        "edwards",
+        "kiowa"
+      ]
+    },
+    {
+      "name": "Cloud",
+      "full": "Cloud County",
+      "slug": "cloud",
+      "fips": "20029",
+      "pop": 8723,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 4
+      },
+      "neighbors": [
+        "clay",
+        "ottawa",
+        "mitchell",
+        "washington",
+        "republic",
+        "jewell"
+      ]
+    },
+    {
+      "name": "Wilson",
+      "full": "Wilson County",
+      "slug": "wilson",
+      "fips": "20205",
+      "pop": 8398,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 3
+      },
+      "neighbors": [
+        "montgomery",
+        "neosho",
+        "allen",
+        "greenwood",
+        "woodson",
+        "elk"
+      ]
+    },
+    {
+      "name": "Coffey",
+      "full": "Coffey County",
+      "slug": "coffey",
+      "fips": "20031",
+      "pop": 8301,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 2
+      },
+      "neighbors": [
+        "lyon",
+        "franklin",
+        "osage",
+        "allen",
+        "anderson",
+        "greenwood",
+        "woodson"
+      ]
+    },
+    {
+      "name": "Clay",
+      "full": "Clay County",
+      "slug": "clay",
+      "fips": "20027",
+      "pop": 7969,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 3
+      },
+      "neighbors": [
+        "riley",
+        "geary",
+        "dickinson",
+        "cloud",
+        "ottawa",
+        "washington"
+      ]
+    },
+    {
+      "name": "Anderson",
+      "full": "Anderson County",
+      "slug": "anderson",
+      "fips": "20003",
+      "pop": 7908,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 2
+      },
+      "neighbors": [
+        "miami",
+        "franklin",
+        "bourbon",
+        "allen",
+        "linn",
+        "coffey",
+        "woodson"
+      ]
+    },
+    {
+      "name": "Thomas",
+      "full": "Thomas County",
+      "slug": "thomas",
+      "fips": "20193",
+      "pop": 7802,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 6
+      },
+      "neighbors": [
+        "sherman",
+        "decatur",
+        "logan",
+        "gove",
+        "rawlins",
+        "sheridan"
+      ]
+    },
+    {
+      "name": "Doniphan",
+      "full": "Doniphan County",
+      "slug": "doniphan",
+      "fips": "20043",
+      "pop": 7575,
+      "nearestCity": {
+        "slug": "overland-park",
+        "name": "Overland Park",
+        "hops": 3
+      },
+      "neighbors": [
+        "atchison",
+        "brown",
+        "leavenworth",
+        "jefferson",
+        "jackson"
+      ]
+    },
+    {
+      "name": "Wabaunsee",
+      "full": "Wabaunsee County",
+      "slug": "wabaunsee",
+      "fips": "20197",
+      "pop": 7112,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 1
+      },
+      "neighbors": [
+        "shawnee",
+        "riley",
+        "geary",
+        "lyon",
+        "pottawatomie",
+        "osage",
+        "morris"
+      ]
+    },
+    {
+      "name": "Grant",
+      "full": "Grant County",
+      "slug": "grant",
+      "fips": "20067",
+      "pop": 7097,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 6
+      },
+      "neighbors": [
+        "finney",
+        "stevens",
+        "kearny",
+        "haskell",
+        "hamilton",
+        "stanton"
+      ]
+    },
+    {
+      "name": "Kingman",
+      "full": "Kingman County",
+      "slug": "kingman",
+      "fips": "20095",
+      "pop": 6946,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 1
+      },
+      "neighbors": [
+        "sedgwick",
+        "reno",
+        "sumner",
+        "pratt",
+        "harper",
+        "barber"
+      ]
+    },
+    {
+      "name": "Russell",
+      "full": "Russell County",
+      "slug": "russell",
+      "fips": "20167",
+      "pop": 6620,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 4
+      },
+      "neighbors": [
+        "ellis",
+        "barton",
+        "ellsworth",
+        "osborne",
+        "lincoln",
+        "rush"
+      ]
+    },
+    {
+      "name": "Ellsworth",
+      "full": "Ellsworth County",
+      "slug": "ellsworth",
+      "fips": "20053",
+      "pop": 6316,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 3
+      },
+      "neighbors": [
+        "saline",
+        "mcpherson",
+        "barton",
+        "rice",
+        "russell",
+        "lincoln"
+      ]
+    },
+    {
+      "name": "Pawnee",
+      "full": "Pawnee County",
+      "slug": "pawnee",
+      "fips": "20145",
+      "pop": 6012,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 3
+      },
+      "neighbors": [
+        "barton",
+        "stafford",
+        "rush",
+        "edwards",
+        "ness",
+        "hodgeman"
+      ]
+    },
+    {
+      "name": "Greenwood",
+      "full": "Greenwood County",
+      "slug": "greenwood",
+      "fips": "20073",
+      "pop": 5871,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 2
+      },
+      "neighbors": [
+        "butler",
+        "lyon",
+        "wilson",
+        "coffey",
+        "woodson",
+        "chase",
+        "elk"
+      ]
+    },
+    {
+      "name": "Ottawa",
+      "full": "Ottawa County",
+      "slug": "ottawa",
+      "fips": "20143",
+      "pop": 5853,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 4
+      },
+      "neighbors": [
+        "saline",
+        "dickinson",
+        "cloud",
+        "clay",
+        "mitchell",
+        "lincoln"
+      ]
+    },
+    {
+      "name": "Mitchell",
+      "full": "Mitchell County",
+      "slug": "mitchell",
+      "fips": "20123",
+      "pop": 5803,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 5
+      },
+      "neighbors": [
+        "cloud",
+        "ottawa",
+        "osborne",
+        "lincoln",
+        "jewell"
+      ]
+    },
+    {
+      "name": "Sherman",
+      "full": "Sherman County",
+      "slug": "sherman",
+      "fips": "20181",
+      "pop": 5796,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 7
+      },
+      "neighbors": [
+        "thomas",
+        "logan",
+        "cheyenne",
+        "rawlins",
+        "wallace"
+      ]
+    },
+    {
+      "name": "Gray",
+      "full": "Gray County",
+      "slug": "gray",
+      "fips": "20069",
+      "pop": 5730,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 5
+      },
+      "neighbors": [
+        "finney",
+        "ford",
+        "meade",
+        "haskell",
+        "hodgeman"
+      ]
+    },
+    {
+      "name": "Washington",
+      "full": "Washington County",
+      "slug": "washington",
+      "fips": "20201",
+      "pop": 5572,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 3
+      },
+      "neighbors": [
+        "riley",
+        "marshall",
+        "cloud",
+        "clay",
+        "republic"
+      ]
+    },
+    {
+      "name": "Harper",
+      "full": "Harper County",
+      "slug": "harper",
+      "fips": "20077",
+      "pop": 5413,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 2
+      },
+      "neighbors": [
+        "sumner",
+        "kingman",
+        "barber",
+        "sedgwick",
+        "butler"
+      ]
+    },
+    {
+      "name": "Norton",
+      "full": "Norton County",
+      "slug": "norton",
+      "fips": "20137",
+      "pop": 5335,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 7
+      },
+      "neighbors": [
+        "phillips",
+        "decatur",
+        "sheridan",
+        "graham",
+        "thomas"
+      ]
+    },
+    {
+      "name": "Morris",
+      "full": "Morris County",
+      "slug": "morris",
+      "fips": "20127",
+      "pop": 5279,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 2
+      },
+      "neighbors": [
+        "geary",
+        "lyon",
+        "dickinson",
+        "marion",
+        "wabaunsee",
+        "chase"
+      ]
+    },
+    {
+      "name": "Stevens",
+      "full": "Stevens County",
+      "slug": "stevens",
+      "fips": "20189",
+      "pop": 5035,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 7
+      },
+      "neighbors": [
+        "seward",
+        "grant",
+        "haskell",
+        "morton",
+        "stanton"
+      ]
+    },
+    {
+      "name": "Scott",
+      "full": "Scott County",
+      "slug": "scott",
+      "fips": "20171",
+      "pop": 4914,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 6
+      },
+      "neighbors": [
+        "finney",
+        "kearny",
+        "logan",
+        "gove",
+        "wichita-county",
+        "lane"
+      ]
+    },
+    {
+      "name": "Rooks",
+      "full": "Rooks County",
+      "slug": "rooks",
+      "fips": "20163",
+      "pop": 4748,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 6
+      },
+      "neighbors": [
+        "ellis",
+        "phillips",
+        "smith",
+        "osborne",
+        "trego",
+        "graham"
+      ]
+    },
+    {
+      "name": "Phillips",
+      "full": "Phillips County",
+      "slug": "phillips",
+      "fips": "20147",
+      "pop": 4733,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 7
+      },
+      "neighbors": [
+        "norton",
+        "rooks",
+        "smith",
+        "graham",
+        "ellis"
+      ]
+    },
+    {
+      "name": "Republic",
+      "full": "Republic County",
+      "slug": "republic",
+      "fips": "20157",
+      "pop": 4613,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 4
+      },
+      "neighbors": [
+        "cloud",
+        "washington",
+        "jewell",
+        "riley",
+        "marshall"
+      ]
+    },
+    {
+      "name": "Barber",
+      "full": "Barber County",
+      "slug": "barber",
+      "fips": "20007",
+      "pop": 4070,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 2
+      },
+      "neighbors": [
+        "pratt",
+        "kingman",
+        "harper",
+        "kiowa",
+        "comanche"
+      ]
+    },
+    {
+      "name": "Stafford",
+      "full": "Stafford County",
+      "slug": "stafford",
+      "fips": "20185",
+      "pop": 3901,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 2
+      },
+      "neighbors": [
+        "reno",
+        "barton",
+        "rice",
+        "pratt",
+        "pawnee",
+        "edwards"
+      ]
+    },
+    {
+      "name": "Meade",
+      "full": "Meade County",
+      "slug": "meade",
+      "fips": "20119",
+      "pop": 3892,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 5
+      },
+      "neighbors": [
+        "ford",
+        "seward",
+        "gray",
+        "haskell",
+        "clark"
+      ]
+    },
+    {
+      "name": "Kearny",
+      "full": "Kearny County",
+      "slug": "kearny",
+      "fips": "20093",
+      "pop": 3808,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 6
+      },
+      "neighbors": [
+        "finney",
+        "grant",
+        "scott",
+        "haskell",
+        "hamilton",
+        "wichita-county",
+        "stanton"
+      ]
+    },
+    {
+      "name": "Haskell",
+      "full": "Haskell County",
+      "slug": "haskell",
+      "fips": "20081",
+      "pop": 3591,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 6
+      },
+      "neighbors": [
+        "finney",
+        "seward",
+        "grant",
+        "gray",
+        "stevens",
+        "meade",
+        "kearny"
+      ]
+    },
+    {
+      "name": "Smith",
+      "full": "Smith County",
+      "slug": "smith",
+      "fips": "20183",
+      "pop": 3541,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 6
+      },
+      "neighbors": [
+        "rooks",
+        "phillips",
+        "osborne",
+        "jewell",
+        "ellis"
+      ]
+    },
+    {
+      "name": "Osborne",
+      "full": "Osborne County",
+      "slug": "osborne",
+      "fips": "20141",
+      "pop": 3353,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 5
+      },
+      "neighbors": [
+        "ellis",
+        "russell",
+        "mitchell",
+        "rooks",
+        "smith",
+        "lincoln",
+        "jewell"
+      ]
+    },
+    {
+      "name": "Chautauqua",
+      "full": "Chautauqua County",
+      "slug": "chautauqua",
+      "fips": "20019",
+      "pop": 3339,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 2
+      },
+      "neighbors": [
+        "cowley",
+        "montgomery",
+        "elk",
+        "sedgwick",
+        "butler"
+      ]
+    },
+    {
+      "name": "Woodson",
+      "full": "Woodson County",
+      "slug": "woodson",
+      "fips": "20207",
+      "pop": 3111,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 3
+      },
+      "neighbors": [
+        "neosho",
+        "allen",
+        "wilson",
+        "coffey",
+        "anderson",
+        "greenwood"
+      ]
+    },
+    {
+      "name": "Lincoln",
+      "full": "Lincoln County",
+      "slug": "lincoln",
+      "fips": "20105",
+      "pop": 2928,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 4
+      },
+      "neighbors": [
+        "saline",
+        "russell",
+        "ellsworth",
+        "ottawa",
+        "mitchell",
+        "osborne"
+      ]
+    },
+    {
+      "name": "Jewell",
+      "full": "Jewell County",
+      "slug": "jewell",
+      "fips": "20089",
+      "pop": 2899,
+      "nearestCity": {
+        "slug": "topeka",
+        "name": "Topeka",
+        "hops": 5
+      },
+      "neighbors": [
+        "cloud",
+        "mitchell",
+        "republic",
+        "smith",
+        "osborne"
+      ]
+    },
+    {
+      "name": "Rush",
+      "full": "Rush County",
+      "slug": "rush",
+      "fips": "20165",
+      "pop": 2810,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 4
+      },
+      "neighbors": [
+        "ellis",
+        "barton",
+        "russell",
+        "pawnee",
+        "ness"
+      ]
+    },
+    {
+      "name": "Trego",
+      "full": "Trego County",
+      "slug": "trego",
+      "fips": "20195",
+      "pop": 2774,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 5
+      },
+      "neighbors": [
+        "ellis",
+        "rooks",
+        "gove",
+        "ness",
+        "graham"
+      ]
+    },
+    {
+      "name": "Edwards",
+      "full": "Edwards County",
+      "slug": "edwards",
+      "fips": "20047",
+      "pop": 2731,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 3
+      },
+      "neighbors": [
+        "ford",
+        "pratt",
+        "pawnee",
+        "stafford",
+        "kiowa",
+        "hodgeman"
+      ]
+    },
+    {
+      "name": "Decatur",
+      "full": "Decatur County",
+      "slug": "decatur",
+      "fips": "20039",
+      "pop": 2716,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 7
+      },
+      "neighbors": [
+        "thomas",
+        "norton",
+        "rawlins",
+        "sheridan",
+        "sherman"
+      ]
+    },
+    {
+      "name": "Logan",
+      "full": "Logan County",
+      "slug": "logan",
+      "fips": "20109",
+      "pop": 2694,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 6
+      },
+      "neighbors": [
+        "thomas",
+        "sherman",
+        "scott",
+        "gove",
+        "wichita-county",
+        "wallace"
+      ]
+    },
+    {
+      "name": "Gove",
+      "full": "Gove County",
+      "slug": "gove",
+      "fips": "20063",
+      "pop": 2658,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 5
+      },
+      "neighbors": [
+        "thomas",
+        "scott",
+        "trego",
+        "logan",
+        "ness",
+        "sheridan",
+        "graham",
+        "lane"
+      ]
+    },
+    {
+      "name": "Cheyenne",
+      "full": "Cheyenne County",
+      "slug": "cheyenne",
+      "fips": "20023",
+      "pop": 2646,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 8
+      },
+      "neighbors": [
+        "sherman",
+        "rawlins",
+        "thomas",
+        "decatur",
+        "logan"
+      ]
+    },
+    {
+      "name": "Ness",
+      "full": "Ness County",
+      "slug": "ness",
+      "fips": "20135",
+      "pop": 2617,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 4
+      },
+      "neighbors": [
+        "finney",
+        "ellis",
+        "pawnee",
+        "rush",
+        "trego",
+        "gove",
+        "hodgeman",
+        "lane"
+      ]
+    },
+    {
+      "name": "Chase",
+      "full": "Chase County",
+      "slug": "chase",
+      "fips": "20017",
+      "pop": 2507,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 2
+      },
+      "neighbors": [
+        "butler",
+        "lyon",
+        "marion",
+        "greenwood",
+        "morris"
+      ]
+    },
+    {
+      "name": "Hamilton",
+      "full": "Hamilton County",
+      "slug": "hamilton",
+      "fips": "20075",
+      "pop": 2488,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 7
+      },
+      "neighbors": [
+        "grant",
+        "kearny",
+        "wichita-county",
+        "stanton",
+        "greeley"
+      ]
+    },
+    {
+      "name": "Morton",
+      "full": "Morton County",
+      "slug": "morton",
+      "fips": "20129",
+      "pop": 2485,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 8
+      },
+      "neighbors": [
+        "stevens",
+        "stanton",
+        "seward",
+        "grant",
+        "kearny"
+      ]
+    },
+    {
+      "name": "Elk",
+      "full": "Elk County",
+      "slug": "elk",
+      "fips": "20049",
+      "pop": 2436,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 2
+      },
+      "neighbors": [
+        "butler",
+        "cowley",
+        "montgomery",
+        "wilson",
+        "greenwood",
+        "chautauqua"
+      ]
+    },
+    {
+      "name": "Kiowa",
+      "full": "Kiowa County",
+      "slug": "kiowa",
+      "fips": "20097",
+      "pop": 2436,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 3
+      },
+      "neighbors": [
+        "ford",
+        "pratt",
+        "barber",
+        "edwards",
+        "clark",
+        "comanche"
+      ]
+    },
+    {
+      "name": "Rawlins",
+      "full": "Rawlins County",
+      "slug": "rawlins",
+      "fips": "20153",
+      "pop": 2432,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 7
+      },
+      "neighbors": [
+        "thomas",
+        "sherman",
+        "decatur",
+        "cheyenne",
+        "norton"
+      ]
+    },
+    {
+      "name": "Sheridan",
+      "full": "Sheridan County",
+      "slug": "sheridan",
+      "fips": "20179",
+      "pop": 2397,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 6
+      },
+      "neighbors": [
+        "thomas",
+        "norton",
+        "decatur",
+        "gove",
+        "graham"
+      ]
+    },
+    {
+      "name": "Graham",
+      "full": "Graham County",
+      "slug": "graham",
+      "fips": "20065",
+      "pop": 2370,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 6
+      },
+      "neighbors": [
+        "norton",
+        "rooks",
+        "phillips",
+        "trego",
+        "gove",
+        "sheridan"
+      ]
+    },
+    {
+      "name": "Wichita",
+      "full": "Wichita County",
+      "slug": "wichita-county",
+      "fips": "20203",
+      "pop": 2072,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 7
+      },
+      "neighbors": [
+        "scott",
+        "kearny",
+        "logan",
+        "hamilton",
+        "wallace",
+        "greeley"
+      ]
+    },
+    {
+      "name": "Stanton",
+      "full": "Stanton County",
+      "slug": "stanton",
+      "fips": "20187",
+      "pop": 2071,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 7
+      },
+      "neighbors": [
+        "grant",
+        "stevens",
+        "kearny",
+        "hamilton",
+        "morton"
+      ]
+    },
+    {
+      "name": "Clark",
+      "full": "Clark County",
+      "slug": "clark",
+      "fips": "20025",
+      "pop": 1873,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 4
+      },
+      "neighbors": [
+        "ford",
+        "meade",
+        "kiowa",
+        "comanche",
+        "seward"
+      ]
+    },
+    {
+      "name": "Comanche",
+      "full": "Comanche County",
+      "slug": "comanche",
+      "fips": "20033",
+      "pop": 1694,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 3
+      },
+      "neighbors": [
+        "barber",
+        "kiowa",
+        "clark",
+        "ford",
+        "pratt"
+      ]
+    },
+    {
+      "name": "Hodgeman",
+      "full": "Hodgeman County",
+      "slug": "hodgeman",
+      "fips": "20083",
+      "pop": 1673,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 4
+      },
+      "neighbors": [
+        "finney",
+        "ford",
+        "pawnee",
+        "gray",
+        "edwards",
+        "ness"
+      ]
+    },
+    {
+      "name": "Lane",
+      "full": "Lane County",
+      "slug": "lane",
+      "fips": "20101",
+      "pop": 1482,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 5
+      },
+      "neighbors": [
+        "finney",
+        "scott",
+        "gove",
+        "ness",
+        "ellis"
+      ]
+    },
+    {
+      "name": "Wallace",
+      "full": "Wallace County",
+      "slug": "wallace",
+      "fips": "20199",
+      "pop": 1472,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 7
+      },
+      "neighbors": [
+        "sherman",
+        "logan",
+        "wichita-county",
+        "greeley",
+        "thomas"
+      ]
+    },
+    {
+      "name": "Greeley",
+      "full": "Greeley County",
+      "slug": "greeley",
+      "fips": "20071",
+      "pop": 1152,
+      "nearestCity": {
+        "slug": "wichita",
+        "name": "Wichita",
+        "hops": 8
+      },
+      "neighbors": [
+        "hamilton",
+        "wichita-county",
+        "wallace",
+        "grant",
+        "sherman"
+      ]
+    }
+  ],
+  "colorado": [
+    {
+      "name": "El Paso",
+      "full": "El Paso County",
+      "slug": "el-paso",
+      "fips": "08041",
+      "pop": 752772,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 0
+      },
+      "neighbors": [
+        "douglas",
+        "pueblo",
+        "fremont",
+        "elbert",
+        "teller",
+        "lincoln"
+      ]
+    },
+    {
+      "name": "Denver",
+      "full": "Denver County",
+      "slug": "denver-county",
+      "fips": "08031",
+      "pop": 729019,
+      "nearestCity": {
+        "slug": "denver",
+        "name": "Denver",
+        "hops": 0
+      },
+      "neighbors": [
+        "arapahoe",
+        "jefferson",
+        "adams",
+        "douglas",
+        "weld"
+      ]
+    },
+    {
+      "name": "Arapahoe",
+      "full": "Arapahoe County",
+      "slug": "arapahoe",
+      "fips": "08005",
+      "pop": 666918,
+      "nearestCity": {
+        "slug": "aurora",
+        "name": "Aurora",
+        "hops": 0
+      },
+      "neighbors": [
+        "denver-county",
+        "jefferson",
+        "adams",
+        "douglas",
+        "elbert",
+        "lincoln",
+        "washington"
+      ]
+    },
+    {
+      "name": "Jefferson",
+      "full": "Jefferson County",
+      "slug": "jefferson",
+      "fips": "08059",
+      "pop": 578533,
+      "nearestCity": {
+        "slug": "lakewood",
+        "name": "Lakewood",
+        "hops": 0
+      },
+      "neighbors": [
+        "denver-county",
+        "arapahoe",
+        "adams",
+        "douglas",
+        "boulder",
+        "broomfield",
+        "teller",
+        "park"
+      ]
+    },
+    {
+      "name": "Adams",
+      "full": "Adams County",
+      "slug": "adams",
+      "fips": "08001",
+      "pop": 542973,
+      "nearestCity": {
+        "slug": "denver",
+        "name": "Denver",
+        "hops": 1
+      },
+      "neighbors": [
+        "denver-county",
+        "arapahoe",
+        "jefferson",
+        "weld",
+        "broomfield",
+        "morgan",
+        "washington"
+      ]
+    },
+    {
+      "name": "Douglas",
+      "full": "Douglas County",
+      "slug": "douglas",
+      "fips": "08035",
+      "pop": 393995,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 1
+      },
+      "neighbors": [
+        "el-paso",
+        "arapahoe",
+        "jefferson",
+        "elbert",
+        "teller"
+      ]
+    },
+    {
+      "name": "Larimer",
+      "full": "Larimer County",
+      "slug": "larimer",
+      "fips": "08069",
+      "pop": 374574,
+      "nearestCity": {
+        "slug": "fort-collins",
+        "name": "Fort Collins",
+        "hops": 0
+      },
+      "neighbors": [
+        "weld",
+        "boulder",
+        "grand",
+        "jackson",
+        "jefferson"
+      ]
+    },
+    {
+      "name": "Weld",
+      "full": "Weld County",
+      "slug": "weld",
+      "fips": "08123",
+      "pop": 369745,
+      "nearestCity": {
+        "slug": "fort-collins",
+        "name": "Fort Collins",
+        "hops": 1
+      },
+      "neighbors": [
+        "adams",
+        "larimer",
+        "boulder",
+        "broomfield",
+        "morgan",
+        "logan"
+      ]
+    },
+    {
+      "name": "Boulder",
+      "full": "Boulder County",
+      "slug": "boulder",
+      "fips": "08013",
+      "pop": 330262,
+      "nearestCity": {
+        "slug": "fort-collins",
+        "name": "Fort Collins",
+        "hops": 1
+      },
+      "neighbors": [
+        "jefferson",
+        "larimer",
+        "weld",
+        "broomfield",
+        "grand",
+        "gilpin"
+      ]
+    },
+    {
+      "name": "Pueblo",
+      "full": "Pueblo County",
+      "slug": "pueblo",
+      "fips": "08101",
+      "pop": 169866,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 1
+      },
+      "neighbors": [
+        "el-paso",
+        "fremont",
+        "otero",
+        "las-animas",
+        "huerfano",
+        "crowley",
+        "lincoln",
+        "custer"
+      ]
+    },
+    {
+      "name": "Mesa",
+      "full": "Mesa County",
+      "slug": "mesa",
+      "fips": "08077",
+      "pop": 161260,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 4
+      },
+      "neighbors": [
+        "garfield",
+        "montrose",
+        "delta",
+        "gunnison",
+        "pitkin"
+      ]
+    },
+    {
+      "name": "Broomfield",
+      "full": "Broomfield County",
+      "slug": "broomfield",
+      "fips": "08014",
+      "pop": 78323,
+      "nearestCity": {
+        "slug": "lakewood",
+        "name": "Lakewood",
+        "hops": 1
+      },
+      "neighbors": [
+        "jefferson",
+        "adams",
+        "weld",
+        "boulder",
+        "denver-county"
+      ]
+    },
+    {
+      "name": "Garfield",
+      "full": "Garfield County",
+      "slug": "garfield",
+      "fips": "08045",
+      "pop": 63167,
+      "nearestCity": {
+        "slug": "fort-collins",
+        "name": "Fort Collins",
+        "hops": 3
+      },
+      "neighbors": [
+        "mesa",
+        "eagle",
+        "routt",
+        "pitkin",
+        "rio-blanco"
+      ]
+    },
+    {
+      "name": "La Plata",
+      "full": "La Plata County",
+      "slug": "la-plata",
+      "fips": "08067",
+      "pop": 56823,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 4
+      },
+      "neighbors": [
+        "montezuma",
+        "archuleta",
+        "dolores",
+        "san-juan",
+        "hinsdale"
+      ]
+    },
+    {
+      "name": "Eagle",
+      "full": "Eagle County",
+      "slug": "eagle",
+      "fips": "08037",
+      "pop": 54330,
+      "nearestCity": {
+        "slug": "fort-collins",
+        "name": "Fort Collins",
+        "hops": 2
+      },
+      "neighbors": [
+        "garfield",
+        "summit",
+        "routt",
+        "pitkin",
+        "grand",
+        "lake"
+      ]
+    },
+    {
+      "name": "Fremont",
+      "full": "Fremont County",
+      "slug": "fremont",
+      "fips": "08043",
+      "pop": 50093,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 1
+      },
+      "neighbors": [
+        "el-paso",
+        "pueblo",
+        "teller",
+        "chaffee",
+        "park",
+        "saguache",
+        "custer"
+      ]
+    },
+    {
+      "name": "Montrose",
+      "full": "Montrose County",
+      "slug": "montrose",
+      "fips": "08085",
+      "pop": 44806,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 4
+      },
+      "neighbors": [
+        "mesa",
+        "delta",
+        "gunnison",
+        "san-miguel",
+        "ouray"
+      ]
+    },
+    {
+      "name": "Delta",
+      "full": "Delta County",
+      "slug": "delta",
+      "fips": "08029",
+      "pop": 32215,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 4
+      },
+      "neighbors": [
+        "mesa",
+        "montrose",
+        "gunnison",
+        "garfield",
+        "chaffee"
+      ]
+    },
+    {
+      "name": "Summit",
+      "full": "Summit County",
+      "slug": "summit",
+      "fips": "08117",
+      "pop": 30882,
+      "nearestCity": {
+        "slug": "fort-collins",
+        "name": "Fort Collins",
+        "hops": 2
+      },
+      "neighbors": [
+        "eagle",
+        "park",
+        "grand",
+        "clear-creek",
+        "lake"
+      ]
+    },
+    {
+      "name": "Morgan",
+      "full": "Morgan County",
+      "slug": "morgan",
+      "fips": "08087",
+      "pop": 30300,
+      "nearestCity": {
+        "slug": "denver",
+        "name": "Denver",
+        "hops": 2
+      },
+      "neighbors": [
+        "adams",
+        "weld",
+        "logan",
+        "washington",
+        "denver-county"
+      ]
+    },
+    {
+      "name": "Elbert",
+      "full": "Elbert County",
+      "slug": "elbert",
+      "fips": "08039",
+      "pop": 29382,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 1
+      },
+      "neighbors": [
+        "el-paso",
+        "arapahoe",
+        "douglas",
+        "lincoln",
+        "denver-county"
+      ]
+    },
+    {
+      "name": "Montezuma",
+      "full": "Montezuma County",
+      "slug": "montezuma",
+      "fips": "08083",
+      "pop": 26841,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 5
+      },
+      "neighbors": [
+        "la-plata",
+        "dolores",
+        "san-juan",
+        "archuleta",
+        "san-miguel"
+      ]
+    },
+    {
+      "name": "Routt",
+      "full": "Routt County",
+      "slug": "routt",
+      "fips": "08107",
+      "pop": 25243,
+      "nearestCity": {
+        "slug": "fort-collins",
+        "name": "Fort Collins",
+        "hops": 2
+      },
+      "neighbors": [
+        "garfield",
+        "eagle",
+        "grand",
+        "moffat",
+        "rio-blanco",
+        "jackson"
+      ]
+    },
+    {
+      "name": "Teller",
+      "full": "Teller County",
+      "slug": "teller",
+      "fips": "08119",
+      "pop": 24862,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 1
+      },
+      "neighbors": [
+        "el-paso",
+        "jefferson",
+        "douglas",
+        "fremont",
+        "park"
+      ]
+    },
+    {
+      "name": "Chaffee",
+      "full": "Chaffee County",
+      "slug": "chaffee",
+      "fips": "08015",
+      "pop": 20780,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 2
+      },
+      "neighbors": [
+        "fremont",
+        "park",
+        "gunnison",
+        "pitkin",
+        "lake",
+        "saguache"
+      ]
+    },
+    {
+      "name": "Logan",
+      "full": "Logan County",
+      "slug": "logan",
+      "fips": "08075",
+      "pop": 20755,
+      "nearestCity": {
+        "slug": "aurora",
+        "name": "Aurora",
+        "hops": 2
+      },
+      "neighbors": [
+        "weld",
+        "morgan",
+        "yuma",
+        "washington",
+        "phillips",
+        "sedgwick"
+      ]
+    },
+    {
+      "name": "Park",
+      "full": "Park County",
+      "slug": "park",
+      "fips": "08093",
+      "pop": 18316,
+      "nearestCity": {
+        "slug": "lakewood",
+        "name": "Lakewood",
+        "hops": 1
+      },
+      "neighbors": [
+        "jefferson",
+        "fremont",
+        "summit",
+        "teller",
+        "chaffee",
+        "clear-creek",
+        "lake"
+      ]
+    },
+    {
+      "name": "Otero",
+      "full": "Otero County",
+      "slug": "otero",
+      "fips": "08089",
+      "pop": 17991,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 2
+      },
+      "neighbors": [
+        "pueblo",
+        "las-animas",
+        "bent",
+        "crowley",
+        "kiowa"
+      ]
+    },
+    {
+      "name": "Gunnison",
+      "full": "Gunnison County",
+      "slug": "gunnison",
+      "fips": "08051",
+      "pop": 17310,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 3
+      },
+      "neighbors": [
+        "mesa",
+        "montrose",
+        "delta",
+        "chaffee",
+        "pitkin",
+        "saguache",
+        "ouray",
+        "hinsdale"
+      ]
+    },
+    {
+      "name": "Alamosa",
+      "full": "Alamosa County",
+      "slug": "alamosa",
+      "fips": "08003",
+      "pop": 16689,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 3
+      },
+      "neighbors": [
+        "rio-grande",
+        "conejos",
+        "huerfano",
+        "saguache",
+        "costilla"
+      ]
+    },
+    {
+      "name": "Pitkin",
+      "full": "Pitkin County",
+      "slug": "pitkin",
+      "fips": "08097",
+      "pop": 16643,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 3
+      },
+      "neighbors": [
+        "mesa",
+        "garfield",
+        "eagle",
+        "chaffee",
+        "gunnison",
+        "lake"
+      ]
+    },
+    {
+      "name": "Grand",
+      "full": "Grand County",
+      "slug": "grand",
+      "fips": "08049",
+      "pop": 16154,
+      "nearestCity": {
+        "slug": "fort-collins",
+        "name": "Fort Collins",
+        "hops": 1
+      },
+      "neighbors": [
+        "larimer",
+        "boulder",
+        "eagle",
+        "summit",
+        "routt",
+        "clear-creek",
+        "gilpin",
+        "jackson"
+      ]
+    },
+    {
+      "name": "Las Animas",
+      "full": "Las Animas County",
+      "slug": "las-animas",
+      "fips": "08071",
+      "pop": 14518,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 2
+      },
+      "neighbors": [
+        "pueblo",
+        "otero",
+        "huerfano",
+        "bent",
+        "costilla",
+        "baca"
+      ]
+    },
+    {
+      "name": "Archuleta",
+      "full": "Archuleta County",
+      "slug": "archuleta",
+      "fips": "08007",
+      "pop": 14112,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 4
+      },
+      "neighbors": [
+        "la-plata",
+        "rio-grande",
+        "conejos",
+        "mineral",
+        "hinsdale"
+      ]
+    },
+    {
+      "name": "Moffat",
+      "full": "Moffat County",
+      "slug": "moffat",
+      "fips": "08081",
+      "pop": 13142,
+      "nearestCity": {
+        "slug": "fort-collins",
+        "name": "Fort Collins",
+        "hops": 3
+      },
+      "neighbors": [
+        "routt",
+        "rio-blanco",
+        "garfield",
+        "eagle",
+        "grand"
+      ]
+    },
+    {
+      "name": "Prowers",
+      "full": "Prowers County",
+      "slug": "prowers",
+      "fips": "08099",
+      "pop": 11957,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 3
+      },
+      "neighbors": [
+        "bent",
+        "baca",
+        "kiowa",
+        "otero",
+        "las-animas"
+      ]
+    },
+    {
+      "name": "Rio Grande",
+      "full": "Rio Grande County",
+      "slug": "rio-grande",
+      "fips": "08105",
+      "pop": 11132,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 3
+      },
+      "neighbors": [
+        "alamosa",
+        "archuleta",
+        "conejos",
+        "saguache",
+        "mineral"
+      ]
+    },
+    {
+      "name": "Yuma",
+      "full": "Yuma County",
+      "slug": "yuma",
+      "fips": "08125",
+      "pop": 10048,
+      "nearestCity": {
+        "slug": "aurora",
+        "name": "Aurora",
+        "hops": 2
+      },
+      "neighbors": [
+        "logan",
+        "kit-carson",
+        "washington",
+        "phillips",
+        "arapahoe"
+      ]
+    },
+    {
+      "name": "Clear Creek",
+      "full": "Clear Creek County",
+      "slug": "clear-creek",
+      "fips": "08019",
+      "pop": 9076,
+      "nearestCity": {
+        "slug": "lakewood",
+        "name": "Lakewood",
+        "hops": 1
+      },
+      "neighbors": [
+        "jefferson",
+        "summit",
+        "park",
+        "grand",
+        "gilpin"
+      ]
+    },
+    {
+      "name": "San Miguel",
+      "full": "San Miguel County",
+      "slug": "san-miguel",
+      "fips": "08113",
+      "pop": 7819,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 5
+      },
+      "neighbors": [
+        "montrose",
+        "ouray",
+        "dolores",
+        "san-juan",
+        "mesa"
+      ]
+    },
+    {
+      "name": "Conejos",
+      "full": "Conejos County",
+      "slug": "conejos",
+      "fips": "08021",
+      "pop": 7549,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 4
+      },
+      "neighbors": [
+        "alamosa",
+        "archuleta",
+        "rio-grande",
+        "costilla",
+        "la-plata"
+      ]
+    },
+    {
+      "name": "Lake",
+      "full": "Lake County",
+      "slug": "lake",
+      "fips": "08065",
+      "pop": 7369,
+      "nearestCity": {
+        "slug": "lakewood",
+        "name": "Lakewood",
+        "hops": 2
+      },
+      "neighbors": [
+        "eagle",
+        "summit",
+        "chaffee",
+        "park",
+        "pitkin"
+      ]
+    },
+    {
+      "name": "Kit Carson",
+      "full": "Kit Carson County",
+      "slug": "kit-carson",
+      "fips": "08063",
+      "pop": 7080,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 2
+      },
+      "neighbors": [
+        "yuma",
+        "lincoln",
+        "washington",
+        "cheyenne",
+        "el-paso"
+      ]
+    },
+    {
+      "name": "Huerfano",
+      "full": "Huerfano County",
+      "slug": "huerfano",
+      "fips": "08055",
+      "pop": 6988,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 2
+      },
+      "neighbors": [
+        "pueblo",
+        "alamosa",
+        "las-animas",
+        "saguache",
+        "custer",
+        "costilla"
+      ]
+    },
+    {
+      "name": "Saguache",
+      "full": "Saguache County",
+      "slug": "saguache",
+      "fips": "08109",
+      "pop": 6670,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 2
+      },
+      "neighbors": [
+        "fremont",
+        "chaffee",
+        "gunnison",
+        "alamosa",
+        "rio-grande",
+        "huerfano",
+        "custer",
+        "mineral"
+      ]
+    },
+    {
+      "name": "Rio Blanco",
+      "full": "Rio Blanco County",
+      "slug": "rio-blanco",
+      "fips": "08103",
+      "pop": 6607,
+      "nearestCity": {
+        "slug": "fort-collins",
+        "name": "Fort Collins",
+        "hops": 3
+      },
+      "neighbors": [
+        "garfield",
+        "routt",
+        "moffat",
+        "mesa",
+        "eagle"
+      ]
+    },
+    {
+      "name": "Gilpin",
+      "full": "Gilpin County",
+      "slug": "gilpin",
+      "fips": "08047",
+      "pop": 5963,
+      "nearestCity": {
+        "slug": "lakewood",
+        "name": "Lakewood",
+        "hops": 1
+      },
+      "neighbors": [
+        "jefferson",
+        "boulder",
+        "grand",
+        "clear-creek",
+        "denver-county"
+      ]
+    },
+    {
+      "name": "Bent",
+      "full": "Bent County",
+      "slug": "bent",
+      "fips": "08011",
+      "pop": 5779,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 3
+      },
+      "neighbors": [
+        "otero",
+        "las-animas",
+        "prowers",
+        "baca",
+        "kiowa"
+      ]
+    },
+    {
+      "name": "Crowley",
+      "full": "Crowley County",
+      "slug": "crowley",
+      "fips": "08025",
+      "pop": 5600,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 2
+      },
+      "neighbors": [
+        "pueblo",
+        "otero",
+        "lincoln",
+        "kiowa",
+        "el-paso"
+      ]
+    },
+    {
+      "name": "Lincoln",
+      "full": "Lincoln County",
+      "slug": "lincoln",
+      "fips": "08073",
+      "pop": 5598,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 1
+      },
+      "neighbors": [
+        "el-paso",
+        "arapahoe",
+        "pueblo",
+        "elbert",
+        "kit-carson",
+        "crowley",
+        "washington",
+        "cheyenne"
+      ]
+    },
+    {
+      "name": "Custer",
+      "full": "Custer County",
+      "slug": "custer",
+      "fips": "08027",
+      "pop": 5553,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 2
+      },
+      "neighbors": [
+        "pueblo",
+        "fremont",
+        "huerfano",
+        "saguache",
+        "el-paso"
+      ]
+    },
+    {
+      "name": "Ouray",
+      "full": "Ouray County",
+      "slug": "ouray",
+      "fips": "08091",
+      "pop": 5197,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 4
+      },
+      "neighbors": [
+        "montrose",
+        "gunnison",
+        "san-miguel",
+        "san-juan",
+        "hinsdale"
+      ]
+    },
+    {
+      "name": "Washington",
+      "full": "Washington County",
+      "slug": "washington",
+      "fips": "08121",
+      "pop": 4771,
+      "nearestCity": {
+        "slug": "aurora",
+        "name": "Aurora",
+        "hops": 1
+      },
+      "neighbors": [
+        "arapahoe",
+        "adams",
+        "morgan",
+        "logan",
+        "yuma",
+        "kit-carson",
+        "lincoln"
+      ]
+    },
+    {
+      "name": "Phillips",
+      "full": "Phillips County",
+      "slug": "phillips",
+      "fips": "08095",
+      "pop": 4488,
+      "nearestCity": {
+        "slug": "aurora",
+        "name": "Aurora",
+        "hops": 3
+      },
+      "neighbors": [
+        "logan",
+        "yuma",
+        "sedgwick",
+        "weld",
+        "morgan"
+      ]
+    },
+    {
+      "name": "Costilla",
+      "full": "Costilla County",
+      "slug": "costilla",
+      "fips": "08023",
+      "pop": 3686,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 3
+      },
+      "neighbors": [
+        "alamosa",
+        "las-animas",
+        "conejos",
+        "huerfano",
+        "pueblo"
+      ]
+    },
+    {
+      "name": "Baca",
+      "full": "Baca County",
+      "slug": "baca",
+      "fips": "08009",
+      "pop": 3367,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 3
+      },
+      "neighbors": [
+        "las-animas",
+        "prowers",
+        "bent",
+        "pueblo",
+        "otero"
+      ]
+    },
+    {
+      "name": "Dolores",
+      "full": "Dolores County",
+      "slug": "dolores",
+      "fips": "08033",
+      "pop": 2467,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 5
+      },
+      "neighbors": [
+        "la-plata",
+        "montezuma",
+        "san-miguel",
+        "san-juan",
+        "montrose"
+      ]
+    },
+    {
+      "name": "Sedgwick",
+      "full": "Sedgwick County",
+      "slug": "sedgwick",
+      "fips": "08115",
+      "pop": 2257,
+      "nearestCity": {
+        "slug": "aurora",
+        "name": "Aurora",
+        "hops": 3
+      },
+      "neighbors": [
+        "logan",
+        "phillips",
+        "weld",
+        "morgan",
+        "yuma"
+      ]
+    },
+    {
+      "name": "Cheyenne",
+      "full": "Cheyenne County",
+      "slug": "cheyenne",
+      "fips": "08017",
+      "pop": 1712,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 2
+      },
+      "neighbors": [
+        "kit-carson",
+        "lincoln",
+        "kiowa",
+        "el-paso",
+        "arapahoe"
+      ]
+    },
+    {
+      "name": "Kiowa",
+      "full": "Kiowa County",
+      "slug": "kiowa",
+      "fips": "08061",
+      "pop": 1392,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 2
+      },
+      "neighbors": [
+        "otero",
+        "prowers",
+        "bent",
+        "crowley",
+        "lincoln",
+        "cheyenne"
+      ]
+    },
+    {
+      "name": "Jackson",
+      "full": "Jackson County",
+      "slug": "jackson",
+      "fips": "08057",
+      "pop": 1273,
+      "nearestCity": {
+        "slug": "fort-collins",
+        "name": "Fort Collins",
+        "hops": 1
+      },
+      "neighbors": [
+        "larimer",
+        "routt",
+        "grand",
+        "weld",
+        "boulder"
+      ]
+    },
+    {
+      "name": "Mineral",
+      "full": "Mineral County",
+      "slug": "mineral",
+      "fips": "08079",
+      "pop": 933,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 3
+      },
+      "neighbors": [
+        "archuleta",
+        "rio-grande",
+        "saguache",
+        "hinsdale",
+        "la-plata"
+      ]
+    },
+    {
+      "name": "San Juan",
+      "full": "San Juan County",
+      "slug": "san-juan",
+      "fips": "08111",
+      "pop": 821,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 4
+      },
+      "neighbors": [
+        "la-plata",
+        "montezuma",
+        "san-miguel",
+        "ouray",
+        "dolores",
+        "hinsdale"
+      ]
+    },
+    {
+      "name": "Hinsdale",
+      "full": "Hinsdale County",
+      "slug": "hinsdale",
+      "fips": "08053",
+      "pop": 747,
+      "nearestCity": {
+        "slug": "colorado-springs",
+        "name": "Colorado Springs",
+        "hops": 3
+      },
+      "neighbors": [
+        "la-plata",
+        "gunnison",
+        "archuleta",
+        "saguache",
+        "ouray",
+        "mineral",
+        "san-juan"
+      ]
+    }
+  ]
+}

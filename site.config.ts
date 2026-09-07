@@ -1,0 +1,105 @@
+/**
+ * Central site configuration.
+ * Everything a launch team needs to swap lives here — brand, contact,
+ * cities, stats, reviews. Items marked TODO are placeholders and MUST be
+ * replaced with real, verifiable facts before launch. Nothing on the site
+ * should claim more than what is configured here.
+ */
+
+export const siteConfig = {
+  brandName: "Sunbird ABA Therapy",
+  brandShort: "Sunbird ABA",
+
+  /** Brand tagline — rendered in the hero with the second sentence in italic teal. */
+  tagline: "Progress you can see. Support you can feel.",
+  taglineLead: "Progress you can see.",
+  taglineFeel: "Support you can feel.",
+  /** Small eyebrow line above the hero headline. */
+  eyebrow: "Helping every child soar",
+  /** One-line service descriptor used in the footer and meta copy. */
+  descriptor: "BCBA-led ABA therapy for Kansas and Colorado families",
+
+  phone: "(303) 483-6922",
+  phoneHref: "tel:+13034836922",
+
+  // ============================================================================
+  // TODO — LOUD: CONFIRM the friend actually owns sunbirdaba.com
+  // (registered 7/30/2026 via NameCheap — verify it's HIS registration, not a
+  // squatter's). Fallback sunbird-aba.com is available if it isn't.
+  // ============================================================================
+  domain: "https://sunbirdaba.com",
+
+  // TODO: confirm the real intake inbox once the domain + mailbox are live.
+  email: "hello@sunbirdaba.com",
+  leadNotificationEmail: "intake@sunbirdaba.com",
+
+  /**
+   * Trust checklist shown in the hero. Keep these three claims accurate:
+   * they are the only claims the hero is allowed to make.
+   */
+  trustChecklist: [
+    "Family-centered",
+    "Individualized care",
+    "In-home support",
+  ],
+
+  /**
+   * Stat band figures. TODO: replace every value with a real, verifiable
+   * number before launch — the UI renders these as-is and labels nothing
+   * it cannot back up. Leave `value` empty ("") to hide a stat entirely.
+   */
+  stats: [
+    { value: "", label: "families served", todo: "TODO: real families-served count" },
+    { value: "", label: "board-certified BCBAs", todo: "TODO: real BCBA headcount" },
+    { value: "", label: "average days to start", todo: "TODO: real median intake-to-start days" },
+    { value: "2", label: "states, one local team", todo: "" },
+  ],
+
+  /**
+   * Google reviews. TODO: replace with real, consented, named + dated
+   * Google reviews before launch. The section renders a clearly-labeled
+   * placeholder state until at least one review has `quote` filled in.
+   */
+  reviews: [
+    { quote: "", author: "", city: "", date: "", todo: "TODO: real consented Google review" },
+    { quote: "", author: "", city: "", date: "", todo: "TODO: real consented Google review" },
+    { quote: "", author: "", city: "", date: "", todo: "TODO: real consented Google review" },
+  ],
+  // TODO: real Google Business Profile review link for each location.
+  googleReviewUrl: "",
+
+  states: {
+    kansas: {
+      name: "Kansas",
+      abbr: "KS",
+      slug: "kansas",
+      cities: [
+        { name: "Wichita", slug: "wichita" },
+        { name: "Overland Park", slug: "overland-park" },
+        { name: "Kansas City", slug: "kansas-city", displaySuffix: "KS" },
+        { name: "Olathe", slug: "olathe" },
+        { name: "Topeka", slug: "topeka" },
+      ],
+    },
+    colorado: {
+      name: "Colorado",
+      abbr: "CO",
+      slug: "colorado",
+      cities: [
+        { name: "Denver", slug: "denver" },
+        { name: "Colorado Springs", slug: "colorado-springs" },
+        { name: "Aurora", slug: "aurora" },
+        { name: "Fort Collins", slug: "fort-collins" },
+        { name: "Lakewood", slug: "lakewood" },
+      ],
+    },
+  },
+} as const;
+
+export type StateSlug = keyof typeof siteConfig.states;
+
+export const stateSlugs = Object.keys(siteConfig.states) as StateSlug[];
+
+export function isStateSlug(s: string): s is StateSlug {
+  return s in siteConfig.states;
+}

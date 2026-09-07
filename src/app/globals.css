@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+/*
+ * Sunbird ABA Therapy — warm, sunlit, family-forward.
+ * Palette: Petrol ink headlines, warm Cream base, deep Teal brand/CTA
+ * (always white text on teal), Sun butter-yellow + Mint washes for the
+ * soft corner-blob accents, Meadow green for success states, and a thin
+ * rainbow gradient strip as the signature detail (used sparingly).
+ * Fraunces 600 display serif — sentence case ONLY. Nunito Sans body 17/1.65.
+ *
+ * Contrast (WCAG AA, verified): white on teal 5.7:1 · teal on cream 5.3:1 ·
+ * teal on sun-wash 5.0:1 · teal on mint-wash 4.7:1 · sun on ink 7.7:1.
+ */
+
+@theme {
+  /* Core palette (do not add hues) */
+  --color-ink: #0f3a47;
+  --color-cream: #faf7f0;
+  --color-brand-teal: #0c7470;
+  --color-brand-teal-deep: #095855;
+  /* Butter-yellow accent: stat numbers + review stars on dark, eyebrow dash */
+  --color-sun: #f2c94c;
+  --color-sun-wash: #fbf2d9;
+  --color-mint-wash: #dcefe9;
+  --color-meadow: #3e9c76;
+  --color-meadow-deep: #2c7156;
+  /* light tint of Meadow, same hue family — for success chips */
+  --color-meadow-wash: #e6f3ed;
+  --color-ink-soft: #3f5f6b;
+  --color-line: #e3dfd3;
+
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(15, 58, 71, 0.06), 0 8px 24px rgba(15, 58, 71, 0.08);
+  --shadow-card-lg: 0 2px 4px rgba(15, 58, 71, 0.06), 0 16px 48px rgba(15, 58, 71, 0.14);
+  --shadow-chip: 0 2px 8px rgba(15, 58, 71, 0.14);
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display serif: Fraunces, soft axis high, sentence case only — enforced
+   here by never pairing it with uppercase transforms anywhere in the app. */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 100;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.prose-measure {
+  max-width: 42rem;
+}
+
+/* Signature detail: thin rainbow gradient strip (teal → meadow → sun →
+   apricot → coral). Used in 3 places only: top of the hero intake card,
+   the About page's closing band, and the footer's top edge. Keep it rare
+   so it stays special. */
+.rainbow-strip {
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    #0c7470 0%,
+    #3e9c76 28%,
+    #f2c94c 55%,
+    #f5a930 76%,
+    #e85d4a 100%
+  );
+}
+
+/* Accessible focus that fits the palette */
+:focus-visible {
+  outline: 3px solid var(--color-brand-teal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--color-sun-wash);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

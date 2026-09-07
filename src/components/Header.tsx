@@ -93,11 +93,11 @@ export default function Header() {
   }, [locationsOpen]);
 
   const navLinkClass =
-    "whitespace-nowrap rounded-lg px-2.5 py-2 text-[15px] font-semibold text-ink-soft transition-colors hover:bg-cream hover:text-ink xl:px-3";
+    "whitespace-nowrap rounded-lg px-2.5 py-2 text-[15px] font-semibold text-ink-soft transition-colors hover:bg-sun-wash hover:text-ink xl:px-3";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
-      <div className="mx-auto flex h-[68px] max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-line/70 bg-cream/95 backdrop-blur">
+      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
         <Link
           href="/"
           className="flex shrink-0 items-center"
@@ -122,7 +122,7 @@ export default function Header() {
               aria-expanded={locationsOpen}
               aria-haspopup="true"
               className={`${navLinkClass} flex items-center gap-1 ${
-                locationsOpen ? "bg-cream text-ink" : ""
+                locationsOpen ? "bg-sun-wash text-ink" : ""
               }`}
             >
               Locations
@@ -159,7 +159,7 @@ export default function Header() {
                           <li key={city.slug}>
                             <Link
                               href={`${href}/${city.slug}`}
-                              className="block rounded-lg px-2 py-1 text-[15px] font-semibold text-ink-soft hover:bg-cream hover:text-ink"
+                              className="block rounded-lg px-2 py-1 text-[15px] font-semibold text-ink-soft hover:bg-sun-wash hover:text-ink"
                             >
                               {city.name}
                               {"displaySuffix" in city && city.displaySuffix
@@ -243,14 +243,14 @@ export default function Header() {
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="max-h-[calc(100dvh-68px)] overflow-y-auto border-t border-line bg-white px-4 pb-6 pt-2 lg:hidden"
+          className="max-h-[calc(100dvh-68px)] overflow-y-auto border-t border-line bg-cream px-4 pb-6 pt-2 lg:hidden"
         >
           {[...primaryNav, ...secondaryNav].map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="block rounded-lg px-3 py-3 text-base font-semibold text-ink hover:bg-cream"
+              className="block rounded-lg px-3 py-3 text-base font-semibold text-ink hover:bg-sun-wash"
             >
               {item.label}
             </Link>
@@ -265,7 +265,7 @@ export default function Header() {
                 <Link
                   href={href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2 text-base font-bold text-ink hover:bg-cream"
+                  className="block rounded-lg px-3 py-2 text-base font-bold text-ink hover:bg-sun-wash"
                 >
                   {state.name}
                 </Link>
@@ -274,7 +274,7 @@ export default function Header() {
                     key={city.slug}
                     href={`${href}/${city.slug}`}
                     onClick={() => setOpen(false)}
-                    className="block rounded-lg px-3 py-1.5 text-[15px] font-semibold text-ink-soft hover:bg-cream"
+                    className="block rounded-lg px-3 py-1.5 text-[15px] font-semibold text-ink-soft hover:bg-sun-wash"
                   >
                     {city.name}
                   </Link>

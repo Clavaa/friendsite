@@ -24,7 +24,7 @@ import { siteConfig } from "../../../../site.config";
 const MAX_FIELD_LENGTH = 200;
 
 /** Fixed vocabularies for the diagnosis-help funnel — anything else is dropped. */
-const ALLOWED_TYPES = new Set(["diagnosis-help"]);
+const ALLOWED_TYPES = new Set(["diagnosis-help", "newsletter"]);
 const ALLOWED_STATES = new Set(["kansas", "colorado"]);
 const ALLOWED_INSURANCE = new Set(["private-insurance", "medicaid", "not-sure"]);
 const ALLOWED_CONCERNS = new Set([
@@ -40,6 +40,8 @@ interface LeadPayload {
   parentName: string;
   phone: string;
   zip: string;
+  /** Newsletter-only field — contact email, no clinical detail attached. */
+  email: string;
   childAge: string;
   sourcePage: string;
   /** Optional funnel tag, e.g. "diagnosis-help". */
@@ -85,6 +87,7 @@ export async function POST(request: Request) {
     parentName: clean(body.parentName),
     phone: clean(body.phone),
     zip: clean(body.zip),
+    email: clean(body.email),
     childAge: clean(body.childAge),
     sourcePage: clean(body.sourcePage) || "unknown",
     type: cleanEnum(body.type, ALLOWED_TYPES),
@@ -93,9 +96,20 @@ export async function POST(request: Request) {
     concerns: cleanEnumList(body.concerns, ALLOWED_CONCERNS),
   };
 
-  // Location: the classic intake form sends a zip; the diagnosis-help
-  // funnel sends a state chip instead. Either satisfies the requirement.
-  if (!lead.parentName || !lead.phone || !lead.childAge || (!lead.zip && !lead.state)) {
+  // Newsletter signups are contact-only: a name and an email, nothing else.
+  const isNewsletter = lead.type === "newsletter";
+  if (isNewsletter) {
+    if (!lead.parentName || !lead.email || !lead.email.includes("@")) {
+      return NextResponse.json(
+        { ok: false, error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+  } else if (
+    // Location: the classic intake form sends a zip; the diagnosis-help
+    // funnel sends a state chip instead. Either satisfies the requirement.
+    !lead.parentName || !lead.phone || !lead.childAge || (!lead.zip && !lead.state)
+  ) {
     return NextResponse.json(
       { ok: false, error: "Missing required fields" },
       { status: 400 }
@@ -112,14 +126,20 @@ export async function POST(request: Request) {
   }
 
   const isDiagnosisHelp = lead.type === "diagnosis-help";
+  const kind = isNewsletter
+    ? "New email tips signup"
+    : isDiagnosisHelp
+      ? "New diagnosis-help lead"
+      : "New intake lead";
   const text = [
-    isDiagnosisHelp ? "New diagnosis-help lead" : "New intake lead",
+    kind,
     "",
     `Parent name: ${lead.parentName}`,
-    `Phone: ${lead.phone}`,
+    lead.phone ? `Phone: ${lead.phone}` : "",
+    lead.email ? `Email: ${lead.email}` : "",
     lead.zip ? `Zip: ${lead.zip}` : "",
     lead.state ? `State: ${lead.state}` : "",
-    `Child's age range: ${lead.childAge}`,
+    lead.childAge ? `Child's age range: ${lead.childAge}` : "",
     lead.insurance ? `Coverage: ${lead.insurance}` : "",
     lead.concerns.length ? `Noticed: ${lead.concerns.join(", ")}` : "",
     lead.type ? `Lead type: ${lead.type}` : "",
@@ -147,7 +167,7 @@ export async function POST(request: Request) {
           email: siteConfig.email,
           name: `${siteConfig.brandName} website`,
         },
-        subject: `${isDiagnosisHelp ? "New diagnosis-help lead" : "New intake lead"} — ${lead.zip || lead.state} (${lead.sourcePage})`,
+        subject: `${kind} — ${lead.zip || lead.state || lead.email} (${lead.sourcePage})`,
         content: [{ type: "text/plain", value: text }],
       }),
     });

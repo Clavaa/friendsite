@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Nunito_Sans } from "next/font/google";
 import Header from "../components/Header";
+import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
 import { siteConfig } from "../../site.config";
@@ -84,6 +85,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <JsonLd data={organizationJsonLd} />
+        <TopBar />
         <Header />
         <main id="main">{children}</main>
         <Footer />

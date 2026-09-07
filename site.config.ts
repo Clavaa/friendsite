@@ -56,6 +56,36 @@ export const siteConfig = {
   ],
 
   /**
+   * Public rating pills for the utility top bar. TODO: fill `score` with the
+   * real, current figure from each platform before launch — the bar renders
+   * nothing for a pill whose score is empty, and the whole rating cluster
+   * hides until at least one real score exists. Never type a hoped-for number.
+   */
+  ratings: [
+    { source: "Google", score: "", by: "parents", todo: "TODO: real Google rating" },
+    { source: "Indeed", score: "", by: "team members", todo: "TODO: real Indeed rating" },
+  ],
+
+  /**
+   * Coverage wall. `medicaid` names each state's Medicaid program (public
+   * fact, safe to show). `payers` lists in-network commercial plans and MUST
+   * stay empty until credentialing is confirmed per payer — the wall renders
+   * clearly-labeled pending slots until then, never a fabricated logo row.
+   */
+  coverage: {
+    kansas: {
+      medicaid: "KanCare (Kansas Medicaid)",
+      payers: [] as readonly string[],
+      pendingSlots: 4,
+    },
+    colorado: {
+      medicaid: "Health First Colorado (Medicaid)",
+      payers: [] as readonly string[],
+      pendingSlots: 4,
+    },
+  },
+
+  /**
    * Google reviews. TODO: replace with real, consented, named + dated
    * Google reviews before launch. The section renders a clearly-labeled
    * placeholder state until at least one review has `quote` filled in.

@@ -3,11 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import EmailCapture from "../components/EmailCapture";
 import InsuranceWall from "../components/InsuranceWall";
+import LeadForm from "../components/LeadForm";
 import Reviews from "../components/Reviews";
 import StickyCallBar from "../components/StickyCallBar";
 import { siteConfig } from "../../site.config";
 
 export const metadata: Metadata = {
+  title: `ABA therapy for children in Kansas & Colorado | ${siteConfig.brandName}`,
+  description:
+    "BCBA-led ABA therapy for children with autism in Kansas and Colorado — in-home, center-based, school and telehealth. Free insurance check, fast answers. Talk to an intake advocate today.",
   alternates: { canonical: "/" },
 };
 
@@ -170,33 +174,53 @@ const homeFaqs = [
 export default function HomePage() {
   return (
     <>
-      {/* ————— 1 · Hero: giant rounded card on cream ————— */}
+      {/* ————— 1 · Hero: giant rounded card on cream, split copy + intake form ————— */}
       <section className="bg-cream px-3 pt-3 sm:px-5">
         <div className="relative mx-auto max-w-[88rem] overflow-hidden rounded-[2.5rem] bg-mint-wash sm:rounded-[3rem]">
-          <div className="mx-auto max-w-3xl px-5 pt-14 text-center sm:px-8 sm:pt-20">
-            <p className="flex items-center justify-center gap-3 text-[13px] font-bold tracking-[0.18em] text-brand-teal">
-              <span aria-hidden="true" className="hidden h-0.5 w-8 rounded-full bg-sun sm:block" />
-              BCBA-led ABA therapy for Kansas &amp; Colorado families
-              <span aria-hidden="true" className="hidden h-0.5 w-8 rounded-full bg-sun sm:block" />
-            </p>
-            <h1 className="font-display mt-6 text-[2.75rem] leading-[1.05] sm:text-6xl lg:text-[4.75rem]">
-              {siteConfig.taglineLead}
-              <span className="block italic text-brand-teal">
-                {siteConfig.taglineFeel}
-              </span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-lg text-ink-soft">
-              Compassionate, evidence-based ABA therapy for your child — and an
-              intake team that answers the phone, does the insurance legwork,
-              and never leaves you guessing what happens next.
-            </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link href="/getting-started" className={solidPill}>
-                Let&rsquo;s get started <Chevron />
-              </Link>
-              <Link href="/questions" className={outlinePill}>
-                What is ABA? <Chevron />
-              </Link>
+          <div className="mx-auto grid max-w-6xl gap-8 px-5 pt-10 sm:px-8 sm:pt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-center lg:gap-14 lg:pt-16">
+            {/* Left: eyebrow · H1 · tagline · trust · phone */}
+            <div className="text-center lg:text-left">
+              <p className="flex items-center justify-center gap-3 text-[13px] font-bold tracking-[0.18em] text-brand-teal lg:justify-start">
+                <span aria-hidden="true" className="hidden h-0.5 w-8 rounded-full bg-sun sm:block" />
+                {siteConfig.eyebrow}
+                <span aria-hidden="true" className="hidden h-0.5 w-8 rounded-full bg-sun sm:block lg:hidden" />
+              </p>
+              <h1 className="font-display mt-5 text-[2.6rem] leading-[1.05] sm:text-5xl lg:text-[3.6rem]">
+                ABA therapy for children
+                <span className="block italic text-brand-teal">
+                  in Kansas &amp; Colorado
+                </span>
+              </h1>
+              {/* Brand tagline — kept prominent, right under the headline */}
+              <p className="font-display mt-4 text-xl text-ink sm:text-2xl">
+                {siteConfig.tagline}
+              </p>
+              {/* Hidden on phones so the form stays within the first scroll;
+                  the sticky call bar + top bar already carry the phone there. */}
+              <p className="mx-auto mt-4 hidden max-w-xl text-[16px] leading-relaxed text-ink-soft sm:block sm:text-lg lg:mx-0">
+                Compassionate, BCBA-led therapy for your child — and an intake
+                team that answers the phone, does the insurance legwork, and
+                never leaves you guessing what happens next.
+              </p>
+              <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 lg:justify-start">
+                {siteConfig.trustChecklist.map((item) => (
+                  <li key={item} className="inline-flex items-center gap-2 text-[14px] font-bold">
+                    <CheckDot /> {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 hidden text-[15px] text-ink-soft sm:block">
+                Prefer to talk?{" "}
+                <a href={siteConfig.phoneHref} className="font-bold text-brand-teal underline decoration-2 underline-offset-4">
+                  Call {siteConfig.phone}
+                </a>{" "}
+                — a person answers.
+              </p>
+            </div>
+
+            {/* Right: intake form card (rainbow strip + HIPAA microcopy live in LeadForm) */}
+            <div className="mx-auto w-full max-w-[26rem] lg:mx-0 lg:max-w-none">
+              <LeadForm sourcePage="home-hero" />
             </div>
           </div>
 

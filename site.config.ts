@@ -19,8 +19,8 @@ export const siteConfig = {
   /** One-line service descriptor used in the footer and meta copy. */
   descriptor: "BCBA-led ABA therapy for Kansas and Colorado families",
 
-  phone: "(303) 483-6922",
-  phoneHref: "tel:+13034836922",
+  phone: "(303) 483-7833",
+  phoneHref: "tel:+13034837833",
 
   // ============================================================================
   // TODO — LOUD: CONFIRM the friend actually owns sunbirdaba.com
@@ -30,8 +30,8 @@ export const siteConfig = {
   domain: "https://sunbirdaba.com",
 
   // TODO: confirm the real intake inbox once the domain + mailbox are live.
-  email: "hello@sunbirdaba.com",
-  leadNotificationEmail: "intake@sunbirdaba.com",
+  email: "info@sunbirdaba.com", // SendGrid-verified sender,
+  leadNotificationEmail: "info@sunbirdaba.com",
 
   /**
    * Trust checklist shown in the hero. Keep these three claims accurate:

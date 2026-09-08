@@ -13,6 +13,7 @@ import {
 import Carousel from "../components/Carousel";
 import EmailCapture from "../components/EmailCapture";
 import InsuranceWall from "../components/InsuranceWall";
+import LeadForm from "../components/LeadForm";
 import PhotoTour from "../components/PhotoTour";
 import Reviews from "../components/Reviews";
 import StickyCallBar from "../components/StickyCallBar";
@@ -32,8 +33,6 @@ const outlinePill =
   "btn-pill inline-flex h-12 items-center justify-center gap-2.5 rounded-full border-2 border-ink/70 px-7 text-[15px] font-extrabold text-ink transition-colors hover:border-ink hover:bg-ink hover:text-white";
 const bigSolidPill =
   "btn-pill inline-flex h-[62px] items-center justify-center gap-3 rounded-full bg-brand-teal px-12 text-[19px] font-extrabold text-white transition-colors hover:bg-brand-teal-deep";
-const bigOutlinePill =
-  "btn-pill inline-flex h-[62px] items-center justify-center gap-3 rounded-full border-2 border-ink/70 px-12 text-[19px] font-extrabold text-ink transition-colors hover:border-ink hover:bg-ink hover:text-white";
 const eyebrowClass =
   "text-[14px] font-extrabold uppercase tracking-[0.18em] text-ink";
 const eyebrowTeal =
@@ -43,6 +42,14 @@ function Chevron({ size = 14 }: { size?: number }) {
   return (
     <svg aria-hidden="true" width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
       <path d="M6 3l5 5-5 5" />
+    </svg>
+  );
+}
+
+function PhoneIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.21 2.2z" />
     </svg>
   );
 }
@@ -238,50 +245,65 @@ export default function HomePage() {
   const { kansas, colorado } = siteConfig.states;
   return (
     <>
-      {/* ————— 1 · Hero: centered type on a full-width rounded panel,
-                 original rising-sun + hummingbird cresting the bottom edge ————— */}
+      {/* ————— 1 · Hero: copy stack + quick-call pill on the left, intake
+                 card on the right, original rising-sun + hummingbird
+                 cresting the panel bottom edge below the copy ————— */}
       <section className="bg-cream px-3 sm:px-6">
         <div className="relative mx-auto max-w-[87rem] overflow-hidden rounded-3xl bg-mint-wash">
-          <div className="relative z-10 mx-auto max-w-[62rem] px-5 pt-14 text-center sm:px-8 sm:pt-20">
-            <p className={eyebrowClass}>{siteConfig.eyebrow}</p>
-            <h1 className="font-display display-hero mt-8 text-[2.9rem] sm:text-7xl lg:text-[5.5rem]">
-              ABA therapy for children{" "}
-              <span className="italic text-brand-teal">
-                in Kansas &amp; Colorado
-              </span>
-            </h1>
-            <p className="font-display mt-7 text-xl text-ink sm:text-[1.55rem]">
-              {siteConfig.taglineLead}{" "}
-              <span className="italic text-brand-teal">{siteConfig.taglineFeel}</span>
-            </p>
-            <p className="mx-auto mt-6 max-w-[42rem] text-[17px] leading-relaxed text-ink-soft sm:text-lg">
-              Compassionate, BCBA-led therapy for your child — and an intake
-              team that answers the phone, does the insurance legwork, and
-              never leaves you guessing what happens next.
-            </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link href="/getting-started" className={bigSolidPill}>
-                Let&rsquo;s get started <Chevron size={16} />
-              </Link>
-              <Link href="/services/in-home-aba" className={bigOutlinePill}>
-                What is ABA? <Chevron size={16} />
-              </Link>
+          <div className="relative z-10 grid gap-10 px-5 pt-12 sm:px-10 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,29.5rem)] lg:gap-14 lg:px-14 lg:pt-[4.5rem] xl:grid-cols-[minmax(0,1fr)_minmax(0,31rem)] xl:gap-20">
+            {/* Left: the full copy stack, still huge, now left-set */}
+            <div className="flex flex-col text-center lg:text-left">
+              <p className={eyebrowClass}>{siteConfig.eyebrow}</p>
+              <h1 className="font-display display-hero mt-6 text-[2.6rem] sm:text-6xl lg:mt-7 lg:text-[4.1rem] xl:text-[4.75rem]">
+                ABA therapy for children{" "}
+                <span className="italic text-brand-teal">
+                  in Kansas &amp; Colorado
+                </span>
+              </h1>
+              <p className="font-display mt-6 text-xl text-ink sm:text-[1.45rem]">
+                {siteConfig.taglineLead}{" "}
+                <span className="italic text-brand-teal">{siteConfig.taglineFeel}</span>
+              </p>
+              <p className="mx-auto mt-5 max-w-[36rem] text-[17px] leading-relaxed text-ink-soft lg:mx-0">
+                Compassionate, BCBA-led therapy for your child — and an intake
+                team that answers the phone, does the insurance legwork, and
+                never leaves you guessing what happens next.
+              </p>
+              {/* Quick call to action — one tap on mobile */}
+              <div className="mt-8 flex flex-col items-center gap-3 lg:items-start">
+                <a href={siteConfig.phoneHref} className={bigSolidPill}>
+                  <PhoneIcon /> Call {siteConfig.phone}
+                </a>
+                <p className="text-[15px] text-ink-soft">
+                  A person answers — no phone tree.
+                </p>
+              </div>
+              {/* Trust checkmarks */}
+              <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:justify-start">
+                {siteConfig.trustChecklist.map((item) => (
+                  <li key={item} className="flex items-center gap-2.5 text-[15px] font-bold">
+                    <CheckDot /> {item}
+                  </li>
+                ))}
+              </ul>
+              {/* Rising sun + hummingbird cresting the panel bottom (desktop) */}
+              <div className="pointer-events-none relative mt-4 hidden min-h-[11rem] flex-1 items-end justify-center lg:flex">
+                <RisingSun className="-mb-12 w-[34rem] max-w-full" />
+              </div>
             </div>
-            <p className="mt-7 text-[15px] text-ink-soft">
-              Prefer to talk?{" "}
-              <a href={siteConfig.phoneHref} className="link-grow font-bold text-brand-teal">
-                Call {siteConfig.phone}
-              </a>{" "}
-              — a person answers.
-            </p>
+            {/* Right: the intake card */}
+            <div className="relative pb-10 lg:pb-14 lg:pt-2">
+              <Sparkles className="pointer-events-none absolute -top-11 right-1 hidden w-20 opacity-90 lg:block" />
+              <LeadForm sourcePage="home" />
+            </div>
           </div>
-          {/* Original rising-sun + hummingbird art cresting the panel bottom */}
-          <div className="pointer-events-none relative mt-4 flex justify-center sm:mt-0">
-            <RisingSun className="-mb-2 w-[26rem] max-w-[92%] sm:w-[46rem]" />
+          {/* Mobile / tablet: the sun crests the panel bottom under the card */}
+          <div className="pointer-events-none relative mt-2 flex justify-center lg:hidden">
+            <RisingSun className="-mb-2 w-[19rem] max-w-[80%] sm:w-[26rem]" />
           </div>
           {/* corner sparkles */}
-          <Sparkles className="absolute left-[7%] top-[30%] hidden w-24 opacity-80 lg:block" />
-          <FeatherSpot className="absolute right-[6%] top-[26%] hidden w-20 rotate-12 opacity-70 lg:block" />
+          <FeatherSpot className="pointer-events-none absolute bottom-[7rem] left-[3%] hidden w-16 -rotate-6 opacity-60 xl:block" />
+          <Sparkles className="pointer-events-none absolute bottom-12 right-[5%] hidden w-16 opacity-70 lg:block" />
         </div>
       </section>
 

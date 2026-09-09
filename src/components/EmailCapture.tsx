@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { track } from "../lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -27,6 +28,8 @@ export default function EmailCapture() {
         body: JSON.stringify({ ...data, type: "question", sourcePage: "home-question" }),
       });
       if (!res.ok) throw new Error(`Question submit failed: ${res.status}`);
+      // Event name + coarse form label only — never field values (PHI).
+      track("generate_lead", { form: "ask-team" });
       setStatus("success");
       form.reset();
     } catch {

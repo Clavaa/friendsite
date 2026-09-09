@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "../lib/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -35,6 +36,8 @@ export default function LeadForm({
         body: JSON.stringify({ ...data, sourcePage }),
       });
       if (!res.ok) throw new Error(`Lead submit failed: ${res.status}`);
+      // Event name + coarse form label only — never field values (PHI).
+      track("generate_lead", { form: `intake-${sourcePage}` });
       setStatus("success");
       form.reset();
     } catch {

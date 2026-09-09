@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Fraunces, Nunito_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import Header from "../components/Header";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
 import JsonLd from "../components/JsonLd";
+import GoogleAnalytics from "../components/GoogleAnalytics";
 import { siteConfig } from "../../site.config";
 import "./globals.css";
 
@@ -53,6 +55,20 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  // Search-engine ownership verification — each tag renders only when its
+  // env var is set (Vercel project env), so dev/preview builds stay clean.
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GSC_VERIFICATION
+      ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
+      : {}),
+    ...(process.env.NEXT_PUBLIC_BING_VERIFICATION
+      ? {
+          other: {
+            "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION,
+          },
+        }
+      : {}),
+  },
 };
 
 const organizationJsonLd = {
@@ -89,6 +105,8 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <Analytics />
+        <GoogleAnalytics />
       </body>
     </html>
   );

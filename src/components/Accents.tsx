@@ -1,8 +1,11 @@
+import Image from "next/image";
+
 /**
- * Sunbird's original decorative accent set — every mark drawn from scratch
- * in the brand language (sun-gold rays, teal line-work, the hummingbird,
- * feather squiggles, hand-drawn underlines, star/dot sparkles).
- * All are aria-hidden decoration; nothing here is traced from anywhere.
+ * Sunbird's decorative accent set (sun-gold rays, teal line-work, feather
+ * squiggles, hand-drawn underlines, star/dot sparkles) — all aria-hidden
+ * decoration. The bird spots now use the client's REAL sunbird mark
+ * (public/brand/sunbird-mark.png) so every bird on the site is the brand
+ * bird; the old drawn hummingbird was retired with the placeholder logo.
  */
 
 /** Rising sun with stitched-texture rays — the hero's horizon guest. */
@@ -31,76 +34,30 @@ export function RisingSun({ className = "" }: { className?: string }) {
           <stop offset="1" stopColor="#f5a930" stopOpacity="0.9" />
         </radialGradient>
       </defs>
-      {/* hummingbird skimming toward the sun (scaled cousin of the logo mark) */}
-      <g transform="translate(30 14) scale(0.78)">
-        <path
-          d="M18 100 C28 78 36 55 58 44 C73 37 89 39 96 48"
-          stroke="var(--color-brand-teal)"
-          strokeWidth="9"
-          strokeLinecap="round"
-        />
-        <path
-          d="M38 100 C52 90 64 76 69 60"
-          stroke="var(--color-brand-teal)"
-          strokeWidth="9"
-          strokeLinecap="round"
-        />
-        <path
-          d="M96 48 C106 45.5 113 49 117 56"
-          stroke="var(--color-brand-teal)"
-          strokeWidth="7"
-          strokeLinecap="round"
-        />
-        <circle cx="84" cy="50" r="5.5" fill="var(--color-brand-teal)" />
-        <path
-          d="M56 46 C44 29 29 21 13 24 C23 34 28 46 33 61"
-          stroke="var(--color-sun)"
-          strokeWidth="9"
-          strokeLinecap="round"
-        />
-      </g>
+      {/* the real sunbird mark, skimming toward the sun */}
+      <image
+        href="/brand/sunbird-mark.png"
+        x="42"
+        y="4"
+        width="122"
+        height="98"
+        preserveAspectRatio="xMidYMid meet"
+      />
     </svg>
   );
 }
 
-/** Small line-drawn hummingbird spot illustration (larger cousin of the logo). */
-export function BirdSpot({
-  className = "",
-  stroke = "var(--color-brand-teal)",
-}: {
-  className?: string;
-  stroke?: string;
-}) {
+/** Brand bird spot — the real Sunbird mark as a decorative accent. */
+export function BirdSpot({ className = "" }: { className?: string }) {
   return (
-    <svg aria-hidden="true" viewBox="0 0 120 110" fill="none" className={className}>
-      <path
-        d="M18 100 C28 78 36 55 58 44 C73 37 89 39 96 48"
-        stroke={stroke}
-        strokeWidth="6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M38 100 C52 90 64 76 69 60"
-        stroke={stroke}
-        strokeWidth="6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M96 48 C106 45.5 113 49 117 56"
-        stroke={stroke}
-        strokeWidth="5"
-        strokeLinecap="round"
-      />
-      <circle cx="84" cy="50" r="4" fill={stroke} />
-      <path
-        d="M56 46 C44 29 29 21 13 24 C23 34 28 46 33 61"
-        stroke="var(--color-sun)"
-        strokeWidth="6"
-        strokeLinecap="round"
-      />
-      {/* wing-beat ticks */}
-      <path d="M76 20l6-10 M92 26l9-7" stroke="var(--color-sun)" strokeWidth="5" strokeLinecap="round" />
-    </svg>
+    <Image
+      src="/brand/sunbird-mark.png"
+      alt=""
+      aria-hidden="true"
+      width={512}
+      height={411}
+      className={className}
+    />
   );
 }
 

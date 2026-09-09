@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
-import { BirdSpot, PaperBits, Sparkles } from "./Accents";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -136,16 +136,15 @@ export default function EmailCapture() {
             )}
           </div>
 
-          {/* Original decorative panel: hummingbird courier on butter wash */}
-          <div aria-hidden="true" className="relative hidden min-h-[30rem] items-center justify-center overflow-hidden rounded-[2.5rem] bg-sun-wash lg:flex">
-            <PaperBits className="absolute left-6 top-8 w-32" />
-            <PaperBits className="absolute bottom-10 right-8 w-24 rotate-45" />
-            <Sparkles className="absolute right-12 top-14 w-20" />
-            <div className="relative flex flex-col items-center">
-              <span className="block h-44 w-44 rounded-full bg-sun/70" />
-              <BirdSpot className="absolute -top-16 left-1/2 w-44 -translate-x-1/3" />
-              <span className="mt-8 block h-1.5 w-52 rounded-full bg-brand-teal/50" />
-            </div>
+          {/* Sunbird's plush mascot keeps the late-night asker company */}
+          <div className="relative hidden min-h-[30rem] overflow-hidden rounded-[2.5rem] lg:block">
+            <Image
+              src="/brand/plush-single.jpg"
+              alt="Sunbird's plush mascot — a smiling teal bird with the Sunbird logo on its belly"
+              fill
+              sizes="32rem"
+              className="object-cover"
+            />
           </div>
         </div>
       </div>

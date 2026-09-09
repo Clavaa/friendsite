@@ -8,16 +8,23 @@
  * rainbow gradient strip as the signature detail (used sparingly).
  * Fraunces 600 display serif — sentence case ONLY. Nunito Sans body 17/1.65.
  *
- * Contrast (WCAG AA, verified): white on teal 5.7:1 · teal on cream 5.3:1 ·
+ * Contrast (WCAG AA, verified): white on teal 5.6:1 · teal on cream 5.2:1 ·
  * teal on sun-wash 5.0:1 · teal on mint-wash 4.7:1 · sun on ink 7.7:1.
+ *
+ * Brand teals are sampled from the real Sunbird logo (public/brand/):
+ * "Sun" petrol #18718a (our brand-teal — the AA-safe one, used for CTAs),
+ * "bird" aqua #00aaa7 (brand-aqua — accent only, never white text on it),
+ * "ABA THERAPY" navy #0b3b48 (≈ our ink).
  */
 
 @theme {
   /* Core palette (do not add hues) */
   --color-ink: #0f3a47;
   --color-cream: #faf7f0;
-  --color-brand-teal: #0c7470;
-  --color-brand-teal-deep: #095855;
+  --color-brand-teal: #18718a;
+  --color-brand-teal-deep: #115163;
+  /* The logo's bright "bird" aqua — decorative accents only (fails AA with white text) */
+  --color-brand-aqua: #00aaa7;
   /* Butter-yellow accent: stat numbers + review stars on dark, eyebrow dash */
   --color-sun: #f2c94c;
   --color-sun-wash: #fbf2d9;

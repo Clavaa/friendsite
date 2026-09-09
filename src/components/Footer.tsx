@@ -1,12 +1,13 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BirdSpot, Sparkles, SunSpot } from "./Accents";
 import { siteConfig } from "../../site.config";
 
 /**
- * Mega footer on the mint wash: hummingbird spot illustration beside the
- * link columns + teal contact card, the brand tagline block, then the
- * giant Sunbird logotype treatment and the small print. Rainbow strip
- * keeps its place on the top edge.
+ * Mega footer on the mint wash: brand-bird spot beside the link columns +
+ * teal contact card, the brand tagline block, then the real Sunbird
+ * lockup and the small print. Rainbow strip keeps its place on the top
+ * edge.
  */
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -63,7 +64,7 @@ export default function Footer() {
       <div className="rainbow-strip" aria-hidden="true" />
       <div className="mx-auto max-w-[87rem] px-4 pt-16 sm:px-6">
         <div className="grid gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)]">
-          {/* Hummingbird spot + sticker chip */}
+          {/* Brand bird spot + sticker chip */}
           <div className="relative hidden lg:block" aria-hidden="true">
             <div className="relative mt-4 w-fit">
               <span className="absolute -left-10 top-6 block h-36 w-36 rounded-full bg-sun/50" />
@@ -161,16 +162,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Giant logotype treatment */}
-        <p
-          aria-hidden="true"
-          className="font-display mt-12 select-none whitespace-nowrap text-center text-[clamp(4rem,15.5vw,14rem)] leading-none tracking-tight text-brand-teal"
-        >
-          Sunbird
-          <span className="ml-[0.15em] inline-block -translate-y-[0.55em] rounded-[0.35em] border-[0.05em] border-brand-teal px-[0.28em] py-[0.05em] align-baseline text-[0.24em] font-bold tracking-normal">
-            ABA
-          </span>
-        </p>
+        {/* The real Sunbird lockup, big and proud */}
+        <div className="mt-14 flex justify-center">
+          <Image
+            src="/brand/sunbird-lockup@2x.png"
+            alt={siteConfig.brandName}
+            width={1280}
+            height={423}
+            className="h-auto w-full max-w-[27rem] sm:max-w-[34rem]"
+          />
+        </div>
 
         <div className="mt-6 flex flex-col gap-3 border-t border-ink/10 py-6 text-sm text-ink-soft sm:flex-row sm:items-center sm:justify-between">
           <p>

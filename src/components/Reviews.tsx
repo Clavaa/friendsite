@@ -1,3 +1,6 @@
+// Re-enable when real consented reviews exist in site.config.ts
+// (currently unrendered — the practice is new and has no reviews yet;
+// restore the `<Reviews />` render in src/app/page.tsx section 8).
 import Carousel from "./Carousel";
 import { siteConfig } from "../../site.config";
 

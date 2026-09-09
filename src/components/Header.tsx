@@ -105,7 +105,7 @@ export default function Header() {
           className="flex shrink-0 items-center"
           aria-label={`${siteConfig.brandName} — home`}
         >
-          {/* Sunbird lockup: line-drawn hummingbird with rainbow wing + wordmark */}
+          {/* Real Sunbird lockup: line-drawn sunbird mark + wordmark (public/brand/) */}
           <Logo />
         </Link>
 

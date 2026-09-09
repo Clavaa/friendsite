@@ -1,16 +1,19 @@
+import Image from "next/image";
 import Link from "next/link";
 import StickyCallBar from "../components/StickyCallBar";
 import { siteConfig } from "../../site.config";
 
 /**
  * Converting 404: apologize briefly, then hand the visitor the three paths
- * they most likely wanted — with the phone number front and center.
+ * they most likely wanted — with the phone number front and center, and
+ * the plush Sunbird mascot keeping the dead end friendly.
  */
 export default function NotFound() {
   return (
     <>
       <section className="bg-cream">
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)] lg:items-center lg:py-28">
+        <div>
           <p className="text-sm font-bold tracking-wide text-brand-teal">
             Page not found
           </p>
@@ -52,6 +55,18 @@ export default function NotFound() {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* The mascot, gently pointing you back */}
+        <div className="relative mx-auto hidden aspect-[2/3] w-full max-w-[18rem] overflow-hidden rounded-3xl lg:block">
+          <Image
+            src="/brand/plush-side.jpg"
+            alt="Sunbird's plush mascot, seen from the side"
+            fill
+            sizes="18rem"
+            className="object-cover"
+          />
+        </div>
         </div>
       </section>
       <StickyCallBar callLabel="Call the Wichita team" />

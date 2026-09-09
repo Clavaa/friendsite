@@ -15,7 +15,6 @@ import EmailCapture from "../components/EmailCapture";
 import InsuranceWall from "../components/InsuranceWall";
 import LeadForm from "../components/LeadForm";
 import PhotoTour from "../components/PhotoTour";
-import Reviews from "../components/Reviews";
 import StickyCallBar from "../components/StickyCallBar";
 import { siteConfig } from "../../site.config";
 
@@ -241,7 +240,7 @@ export default function HomePage() {
   return (
     <>
       {/* ————— 1 · Hero: copy stack + quick-call pill on the left, intake
-                 card on the right, original rising-sun + hummingbird
+                 card on the right, rising sun + the brand sunbird
                  cresting the panel bottom edge below the copy ————— */}
       <section className="bg-cream px-3 sm:px-6">
         <div className="relative mx-auto max-w-[87rem] overflow-hidden rounded-3xl bg-mint-wash">
@@ -559,8 +558,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ————— 8 · Named reviews (config-gated) ————— */}
-      <Reviews />
+      {/* ————— 8 · Reviews: removed while the practice is new and has no
+                 real reviews yet. The component + its site.config gating are
+                 intact — restore with `import Reviews from
+                 "../components/Reviews"` and `<Reviews />` here.
+                 Re-enable when real consented reviews exist in site.config.ts */}
 
       {/* ————— 9 · Numbered get-started accordion + photo ————— */}
       <section className="bg-cream">
@@ -717,9 +719,14 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="reveal">
-              <div className="lift relative grid aspect-[10/7] place-items-center overflow-hidden rounded-3xl bg-sun-wash">
-                <SunSpot className="w-40" />
-                <Sparkles className="absolute right-6 top-6 w-16" />
+              <div className="lift relative aspect-[10/7] overflow-hidden rounded-3xl">
+                <Image
+                  src="/brand/plush-trio.jpg"
+                  alt="Three of Sunbird's plush mascot birds sitting in a row"
+                  fill
+                  sizes="(min-width: 640px) 28rem, 100vw"
+                  className="object-cover"
+                />
               </div>
               <h3 className="font-display mt-7 text-[1.9rem] leading-tight">
                 Understand how ABA works

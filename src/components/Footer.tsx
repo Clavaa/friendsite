@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BirdSpot, Sparkles, SunSpot } from "./Accents";
+import { Sparkles, SunSpot } from "./Accents";
 import { siteConfig } from "../../site.config";
 
 /**
- * Mega footer on the mint wash: brand-bird spot beside the link columns +
- * teal contact card, the brand tagline block, then the real Sunbird
- * lockup and the small print. Rainbow strip keeps its place on the top
- * edge.
+ * Mega footer on the mint wash: plush-mascot photo beside the link
+ * columns + teal contact card, the brand tagline block, then the real
+ * Sunbird lockup and the small print. Rainbow strip keeps its place on
+ * the top edge. (The logo mark itself appears only in the lockup — never
+ * as decoration.)
  */
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -64,11 +65,16 @@ export default function Footer() {
       <div className="rainbow-strip" aria-hidden="true" />
       <div className="mx-auto max-w-[87rem] px-4 pt-16 sm:px-6">
         <div className="grid gap-x-10 gap-y-12 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)]">
-          {/* Brand bird spot + sticker chip */}
+          {/* Plush mascot spot + sticker chip */}
           <div className="relative hidden lg:block" aria-hidden="true">
             <div className="relative mt-4 w-fit">
-              <span className="absolute -left-10 top-6 block h-36 w-36 rounded-full bg-sun/50" />
-              <BirdSpot className="relative w-48" />
+              <Image
+                src="/brand/plush-single.jpg"
+                alt=""
+                width={384}
+                height={384}
+                className="relative h-48 w-48 rounded-full object-cover shadow-card"
+              />
               <Sparkles className="absolute -right-10 -top-8 w-16" />
             </div>
             <span className="sticker mt-8 inline-block rounded-full bg-cream px-4 py-2 text-[13px] font-extrabold shadow-chip">

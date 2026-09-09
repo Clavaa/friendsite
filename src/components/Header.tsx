@@ -33,16 +33,8 @@ const secondaryNav = [
 ];
 
 const locationGroups = [
-  {
-    state: siteConfig.states.kansas,
-    href: "/kansas",
-    blurb: "City teams + statewide in-home",
-  },
-  {
-    state: siteConfig.states.colorado,
-    href: "/colorado",
-    blurb: "City teams + statewide in-home",
-  },
+  { state: siteConfig.states.kansas, href: "/kansas" },
+  { state: siteConfig.states.colorado, href: "/colorado" },
 ] as const;
 
 function PhoneIcon() {
@@ -147,7 +139,7 @@ export default function Header() {
             {locationsOpen && (
               <div className="absolute left-1/2 top-full z-50 mt-2 w-[30rem] -translate-x-1/2 rounded-3xl border border-line bg-white p-6 shadow-card-lg">
                 <div className="grid grid-cols-2 gap-6">
-                  {locationGroups.map(({ state, href, blurb }) => (
+                  {locationGroups.map(({ state, href }) => (
                     <div key={href}>
                       <Link
                         href={href}
@@ -155,7 +147,6 @@ export default function Header() {
                       >
                         {state.name}
                       </Link>
-                      <p className="mt-0.5 text-[13px] text-ink-soft">{blurb}</p>
                       <ul className="mt-3 space-y-1">
                         {state.cities.map((city) => (
                           <li key={city.slug}>

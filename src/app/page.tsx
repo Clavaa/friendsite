@@ -2,13 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ArcLabel,
-  BirdSpot,
   FeatherSpot,
   HandUnderline,
   RisingSun,
   Sparkles,
-  SunSpot,
 } from "../components/Accents";
 import Carousel from "../components/Carousel";
 import EmailCapture from "../components/EmailCapture";
@@ -99,84 +96,83 @@ const serviceCards: {
   },
 ];
 
-const pairedCards = [
+/* Struggle → answer rows. Same substance as the old paired cards, but a
+   deliberately different structure: editorial two-column rows with a
+   teal-edge answer panel — no arc text, no nested cards. */
+const struggles = [
   {
-    tint: "bg-sun-wash",
-    innerTint: "bg-sun/35",
-    doing: "Deciphering the coverage maze.",
-    doingBody:
+    struggle: "Deciphering the coverage maze.",
+    struggleBody:
       "Prior authorizations, denial letters, plan documents written by lawyers for lawyers — and somehow it's your homework.",
-    help: "We do the insurance legwork.",
-    helpBody:
+    answer: "We do the insurance legwork.",
+    answerBody:
       "Send a photo of your card and we come back with a plain-English answer — what's covered, what you'd owe, and what happens next. Usually within a business day, always free.",
-    art: "sun" as const,
   },
   {
-    tint: "bg-mint-wash",
-    innerTint: "bg-brand-teal/15",
-    doing: "Assembling a care team from scratch.",
-    doingBody:
+    struggle: "Assembling a care team from scratch.",
+    struggleBody:
       "Evaluations, therapists, waitlists, second opinions. Nobody hands you a map — you're drawing it yourself at the kitchen table.",
-    help: "We already know the road.",
-    helpBody:
+    answer: "We already know the road.",
+    answerBody:
       "Your intake advocate walks you through diagnosis, funding, and scheduling in order, and your BCBA builds the plan with you — so the next step is always named and never on you alone.",
-    art: "bird" as const,
   },
   {
-    tint: "bg-sun-wash",
-    innerTint: "bg-sun/35",
-    doing: "Managing the everyday hard parts.",
-    doingBody:
+    struggle: "Managing the everyday hard parts.",
+    struggleBody:
       "Mornings, mealtimes, haircuts, grocery runs. The moments nobody sees are often the ones that take the most out of you.",
-    help: "We coach the moments that matter.",
-    helpBody:
+    answer: "We coach the moments that matter.",
+    answerBody:
       "Parent coaching is built into every plan — practical strategies for your real routines, practiced live with your BCBA, at home or over video after bedtime.",
-    art: "feather" as const,
   },
   {
-    tint: "bg-mint-wash",
-    innerTint: "bg-brand-teal/15",
-    doing: "Holding it together for everyone.",
-    doingBody:
+    struggle: "Holding it together for everyone.",
+    struggleBody:
       "Siblings, work, marriage, your own sleep. Caring for the caregiver rarely makes it onto anyone's treatment plan.",
-    help: "You get a team, too.",
-    helpBody:
+    answer: "You get a team, too.",
+    answerBody:
       "A phone that a person answers, check-ins that ask how you are, and honest guidance when something isn't working. Progress you can see — support you can feel.",
-    art: "sparkles" as const,
   },
 ];
 
-const pairedArt = {
-  sun: SunSpot,
-  bird: BirdSpot,
-  feather: FeatherSpot,
-  sparkles: Sparkles,
-};
-
-const steps = [
+/* The journey timeline — first call through visible progress. Durations
+   only where honest (the 15-minute call and the ~1-business-day benefit
+   check are the only timelines we can promise; everything else stays
+   unclocked on purpose). */
+const journey = [
   {
     n: "01",
     label: "Say hello",
-    title: "A 15-minute call, your questions first.",
+    duration: "A 15-minute call",
+    title: "Your questions first.",
     body: "You talk with an intake advocate — a person, not a phone tree. Tell us about your child, ask anything, and hang up knowing exactly what happens next.",
   },
   {
     n: "02",
-    label: "Coverage check",
-    title: "We verify your benefits, free.",
-    body: "One photo of your insurance card. We come back with a plain-English summary of what your plan covers and what it would cost you — usually within a business day.",
+    label: "Free benefit check",
+    duration: "Usually within a business day",
+    title: "We verify your coverage.",
+    body: "One photo of your insurance card. We come back with a plain-English summary of what your plan covers and what it would cost you — always free.",
   },
   {
     n: "03",
-    label: "Assessment & plan",
-    title: "Your BCBA meets your child.",
+    label: "Meet your BCBA",
+    duration: "Scheduled around your family",
+    title: "Assessment, then a plan built with you.",
     body: "A board-certified behavior analyst spends real time with your child and writes the treatment plan with you, not for you. We handle the authorization paperwork.",
   },
   {
     n: "04",
-    label: "First session & beyond",
-    title: "Sessions start — and keep getting better.",
-    body: "Therapy begins at home, at daycare, or by video. Progress is measured at every session, your BCBA adjusts the plan as your child grows, and you always know the score.",
+    label: "First session",
+    duration: "At home or at daycare",
+    title: "Therapy starts where life happens.",
+    body: "Sessions begin in your home, at your child's daycare, or by video — woven around naps, school, siblings and work, with parent coaching from day one.",
+  },
+  {
+    n: "05",
+    label: "Progress you can see",
+    duration: "Reviewed with you, every step",
+    title: "Growing toward graduation.",
+    body: "Progress is measured at every session and reviewed with you in plain English. Your BCBA adjusts the plan as your child grows — and the goal is always the day they don't need us anymore.",
   },
 ];
 
@@ -268,9 +264,6 @@ export default function HomePage() {
                 <a href={siteConfig.phoneHref} className={bigSolidPill}>
                   <PhoneIcon /> Call {siteConfig.phone}
                 </a>
-                <p className="text-[15px] text-ink-soft">
-                  A person answers — no phone tree.
-                </p>
               </div>
               {/* Modality chips — must always match reality (see site.config.ts) */}
               <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:justify-start">
@@ -489,19 +482,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ————— 7 · Parent-pain paired cards, stocking-stacked ————— */}
+      {/* ————— 7 · Parent-pain rows: editorial struggle → answer ledger.
+                 Deliberately plain structure — bold Fraunces struggle line
+                 on the left, teal-edged answer panel on the right, hairline
+                 dividers between rows. No decorative art in this section. ————— */}
       <section className="bg-cream">
-        <div className="mx-auto grid max-w-[87rem] gap-12 px-4 py-[6.25rem] sm:px-6 lg:grid-cols-[minmax(0,29rem)_minmax(0,1fr)] lg:gap-20">
-          <div className="lg:sticky lg:top-32 lg:self-start">
-            <h2 className="font-display text-4xl leading-[1.3] sm:text-[3rem]">
-              We help the parents who hold it all together.
-            </h2>
-            <p className="mt-7 text-[17px] leading-relaxed text-ink-soft">
-              There are a million and a half things on your plate. Our job is
-              to take as many of them off it as we possibly can — so you can
-              breathe again.
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+        <div className="mx-auto max-w-[87rem] px-4 py-[6.25rem] sm:px-6">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+            <div className="max-w-2xl">
+              <h2 className="font-display display-xl text-4xl sm:text-[3.4rem]">
+                We help the parents who hold it all together.
+              </h2>
+              <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-ink-soft">
+                There are a million and a half things on your plate. Our job
+                is to take as many of them off it as we possibly can — so you
+                can breathe again.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:pb-1">
               <Link href="/getting-started" className={solidPill}>
                 Parent support <Chevron />
               </Link>
@@ -511,49 +509,39 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div>
-            {pairedCards.map((card, i) => {
-              const Art = pairedArt[card.art];
-              return (
-                <div
-                  key={card.doing}
-                  className={`reveal relative rounded-[3rem] p-7 sm:p-10 lg:p-12 ${card.tint} ${
-                    i > 0 ? "-mt-10" : ""
-                  }`}
-                  style={{ zIndex: i + 1 }}
-                >
-                  <div className="flex items-start gap-5">
-                    {/* curved "What you're doing" label */}
-                    <ArcLabel
-                      id={`arc-${i}`}
-                      text="WHAT YOU'RE DOING"
-                      className="mt-1 hidden w-24 shrink-0 text-ink-soft sm:block"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[12px] font-extrabold uppercase tracking-[0.18em] text-ink-soft sm:hidden">
-                        What you&rsquo;re doing
-                      </p>
-                      <h3 className="font-display mt-2 text-2xl sm:mt-0 sm:text-[1.8rem]">
-                        {card.doing}
-                      </h3>
-                      <p className="mt-3 max-w-lg text-[16px] leading-relaxed text-ink-soft">
-                        {card.doingBody}
-                      </p>
-                    </div>
-                    <Art className="mt-1 hidden w-24 shrink-0 sm:block lg:w-28" />
-                  </div>
-                  <div className={`mt-8 rounded-3xl p-7 sm:ml-[7.25rem] sm:mr-16 sm:p-8 ${card.innerTint}`}>
-                    <p className="text-[12px] font-extrabold uppercase tracking-[0.18em] text-brand-teal">
-                      How we help
-                    </p>
-                    <h4 className="font-display mt-3 text-[1.4rem]">{card.help}</h4>
-                    <p className="mt-3 text-[16px] leading-relaxed text-ink-soft">
-                      {card.helpBody}
+          <div className="mt-16 border-t-2 border-ink/10">
+            {struggles.map((row, i) => (
+              <div
+                key={row.struggle}
+                className="reveal grid gap-7 border-b-2 border-ink/10 py-11 lg:grid-cols-2 lg:gap-20 lg:py-14"
+              >
+                <div className="flex gap-6">
+                  <p
+                    aria-hidden="true"
+                    className="font-display pt-1 text-lg leading-none text-ink-soft/60"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <div>
+                    <h3 className="font-display max-w-md text-[1.85rem] leading-[1.12] sm:text-[2.15rem]">
+                      {row.struggle}
+                    </h3>
+                    <p className="mt-4 max-w-md text-[16px] leading-relaxed text-ink-soft">
+                      {row.struggleBody}
                     </p>
                   </div>
                 </div>
-              );
-            })}
+                <div className="self-center rounded-r-3xl border-l-4 border-brand-teal bg-white p-7 shadow-card sm:p-9 lg:ml-auto lg:w-full lg:max-w-xl">
+                  <p className="text-[12px] font-extrabold uppercase tracking-[0.18em] text-brand-teal">
+                    Our answer
+                  </p>
+                  <h4 className="font-display mt-3 text-[1.4rem]">{row.answer}</h4>
+                  <p className="mt-3 text-[16px] leading-relaxed text-ink-soft">
+                    {row.answerBody}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -564,60 +552,70 @@ export default function HomePage() {
                  "../components/Reviews"` and `<Reviews />` here.
                  Re-enable when real consented reviews exist in site.config.ts */}
 
-      {/* ————— 9 · Numbered get-started accordion + photo ————— */}
+      {/* ————— 9 · Your child's journey with Sunbird: five-stage timeline,
+                 horizontal on desktop, vertical rail on mobile. Replaces
+                 the old get-started accordion (same content, richer form). ————— */}
       <section className="bg-cream">
         <div className="mx-auto max-w-[87rem] px-3 py-10 sm:px-6">
-          <div className="grid gap-3 lg:grid-cols-2">
-            <div className="rounded-3xl bg-mint-wash p-8 sm:p-12 lg:p-[4.5rem]">
-              <h2 className="font-display display-xl text-4xl sm:text-5xl lg:text-[3.4rem]">
-                Get started with ABA therapy
+          <div className="rounded-3xl bg-mint-wash px-6 py-14 sm:px-10 sm:py-16 lg:px-16 lg:py-20">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className={eyebrowTeal}>From first call to first wins</p>
+              <h2 className="font-display display-xl mt-6 text-4xl sm:text-5xl lg:text-[3.4rem]">
+                Your child&rsquo;s journey with Sunbird
               </h2>
-              <div className="mt-12">
-                {steps.map((s, i) => (
-                  <details
-                    key={s.n}
-                    className="group border-t-2 border-brand-teal/20 open:border-sun last:border-b-0"
-                    open={i === 0}
-                  >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 [&::-webkit-details-marker]:hidden">
-                      <span className="flex items-baseline gap-3">
-                        <span className="font-display text-lg text-brand-teal">
-                          {s.n}
-                        </span>
-                        <span className="text-[13px] font-extrabold uppercase tracking-[0.16em] text-brand-teal">
-                          {s.label}
-                        </span>
-                      </span>
-                      <svg aria-hidden="true" width="15" height="15" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" className="shrink-0 text-ink transition-transform duration-300 group-open:rotate-180">
-                        <path d="M2.5 5l4.5 4.5L11.5 5" />
-                      </svg>
-                    </summary>
-                    <div className="pb-7">
-                      <h3 className="font-display text-[1.45rem]">{s.title}</h3>
-                      <p className="mt-3 max-w-md text-[16px] leading-relaxed text-ink-soft">
-                        {s.body}
-                      </p>
-                    </div>
-                  </details>
-                ))}
-              </div>
-              <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <Link href="/getting-started" className={solidPill}>
-                  Get help today <Chevron />
-                </Link>
-                <a href={siteConfig.phoneHref} className={outlinePill}>
-                  Call {siteConfig.phone}
-                </a>
-              </div>
+              <p className="mt-6 text-[17px] leading-relaxed text-ink-soft">
+                Five stages, one team walking them with you — and you&rsquo;ll
+                always know which one you&rsquo;re on.
+              </p>
             </div>
-            <div className="relative min-h-[22rem] overflow-hidden rounded-3xl lg:min-h-0">
-              <Image
-                src="/images/playground-bubbles.jpg"
-                alt="A woman blowing bubbles with a laughing young boy on a sunny playground while he reaches to pop one"
-                fill
-                sizes="(min-width: 1024px) 44rem, 100vw"
-                className="object-cover"
-              />
+
+            <ol className="mt-14 space-y-12 lg:grid lg:grid-cols-5 lg:gap-8 lg:space-y-0">
+              {journey.map((s, i) => (
+                <li key={s.n} className="reveal relative pl-[4.5rem] lg:pl-0">
+                  {/* stage disc */}
+                  <span
+                    aria-hidden="true"
+                    className="font-display absolute left-0 top-0 z-10 grid h-12 w-12 place-items-center rounded-full bg-sun text-[17px] text-ink shadow-chip lg:relative lg:mb-7"
+                  >
+                    {s.n}
+                  </span>
+                  {/* connector to the next stage: vertical on mobile,
+                      horizontal dashed flight-line on desktop */}
+                  {i < journey.length - 1 && (
+                    <>
+                      <span
+                        aria-hidden="true"
+                        className="absolute -bottom-[3.25rem] left-[23px] top-[3.4rem] w-0 border-l-2 border-dashed border-brand-teal/40 lg:hidden"
+                      />
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -right-8 left-[3.6rem] top-6 hidden h-0 border-t-2 border-dashed border-brand-teal/40 lg:block"
+                      />
+                    </>
+                  )}
+                  <p className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-brand-teal">
+                    {s.label}
+                  </p>
+                  <h3 className="font-display mt-2.5 text-[1.35rem] leading-snug">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 inline-block rounded-full bg-cream px-3.5 py-1.5 text-[12.5px] font-bold text-brand-teal-deep shadow-chip">
+                    {s.duration}
+                  </p>
+                  <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
+                    {s.body}
+                  </p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-14 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link href="/getting-started" className={solidPill}>
+                Start stage one today <Chevron />
+              </Link>
+              <a href={siteConfig.phoneHref} className={outlinePill}>
+                Call {siteConfig.phone}
+              </a>
             </div>
           </div>
         </div>
@@ -765,7 +763,14 @@ export default function HomePage() {
             </h2>
             <div className="sticker mt-12 rounded-3xl bg-sun-wash p-8">
               <div className="flex items-start gap-5">
-                <BirdSpot className="mt-1.5 w-14 shrink-0" />
+                <Image
+                  src="/brand/plush-single.jpg"
+                  alt=""
+                  aria-hidden="true"
+                  width={112}
+                  height={112}
+                  className="mt-1.5 h-14 w-14 shrink-0 rounded-full object-cover"
+                />
                 <div>
                   <h3 className="font-display text-[1.35rem] leading-snug">
                     Got a different question?

@@ -100,6 +100,21 @@ export const siteConfig = {
   // TODO: real Google Business Profile review link for each location.
   googleReviewUrl: "",
 
+  /**
+   * Student-analyst (BCBA-track) program eligibility. The careers page
+   * renders these numbers directly — edit here, never in the page copy.
+   */
+  studentAnalystProgram: {
+    /** Minimum unrestricted supervised fieldwork hours already completed. */
+    unrestrictedHours: 680,
+    /** Minimum restricted supervised fieldwork hours already completed. */
+    restrictedHours: 280,
+    /** How close to BCBA exam eligibility, in months (approximate). */
+    monthsToExamEligibility: 6,
+    /** Role tag used in the application path / email subject. */
+    roleTag: "student-analyst",
+  },
+
   states: {
     kansas: {
       name: "Kansas",

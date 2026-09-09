@@ -1,14 +1,14 @@
-import Image from "next/image";
-
 /**
  * Sunbird's decorative accent set (sun-gold rays, teal line-work, feather
  * squiggles, hand-drawn underlines, star/dot sparkles) — all aria-hidden
- * decoration. The bird spots now use the client's REAL sunbird mark
- * (public/brand/sunbird-mark.png) so every bird on the site is the brand
- * bird; the old drawn hummingbird was retired with the placeholder logo.
+ * decoration. Client rule (Sept 2026): the LOGO MARK is never used as
+ * decoration — it appears only as the logo (header, footer lockup,
+ * favicon). Decorative spots are geometric accents or plush-mascot
+ * photos instead.
  */
 
-/** Rising sun with stitched-texture rays — the hero's horizon guest. */
+/** Rising sun with stitched-texture rays — the hero's horizon guest.
+ *  Pure geometry on purpose: the brand mark is NOT pasted in here. */
 export function RisingSun({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -34,30 +34,7 @@ export function RisingSun({ className = "" }: { className?: string }) {
           <stop offset="1" stopColor="#f5a930" stopOpacity="0.9" />
         </radialGradient>
       </defs>
-      {/* the real sunbird mark, skimming toward the sun */}
-      <image
-        href="/brand/sunbird-mark.png"
-        x="42"
-        y="4"
-        width="122"
-        height="98"
-        preserveAspectRatio="xMidYMid meet"
-      />
     </svg>
-  );
-}
-
-/** Brand bird spot — the real Sunbird mark as a decorative accent. */
-export function BirdSpot({ className = "" }: { className?: string }) {
-  return (
-    <Image
-      src="/brand/sunbird-mark.png"
-      alt=""
-      aria-hidden="true"
-      width={512}
-      height={411}
-      className={className}
-    />
   );
 }
 
@@ -143,34 +120,6 @@ export function HandUnderline({
         strokeWidth="7"
         strokeLinecap="round"
       />
-    </svg>
-  );
-}
-
-/** Curved label text arcing along a quarter-circle (for paired cards). */
-export function ArcLabel({
-  text,
-  id,
-  className = "",
-}: {
-  text: string;
-  id: string;
-  className?: string;
-}) {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 110 110" fill="none" className={className}>
-      <defs>
-        <path id={id} d="M8 108 A 100 100 0 0 1 108 8" />
-      </defs>
-      <text
-        fill="currentColor"
-        fontSize="11"
-        fontWeight="800"
-        letterSpacing="1.6"
-        fontFamily="var(--font-sans)"
-      >
-        <textPath href={`#${id}`}>{text}</textPath>
-      </text>
     </svg>
   );
 }

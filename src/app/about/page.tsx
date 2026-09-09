@@ -10,45 +10,25 @@ export const metadata: Metadata = {
 };
 
 /**
- * Founders & team — REAL people, client-confirmed (Sept 2026):
- * Chavi Gluck, BCBA — "a BCBA with years of clinical and operations
- * experience" (client's words). Ruth Gluck, MSEd, BCBA, LBA — co-founder.
- * Ely Gluck (spelled "Ely", not "Eli") — co-founder. Do NOT add further
- * credentials, past employers, years, or headcounts without verifying
- * them with the Glucks first. Initials avatars only — no photos.
+ * Founder — REAL person, client-confirmed (Sept 2026):
+ * Ruth Gluck, MSEd, BCBA, LBA — "a BCBA with years of clinical and
+ * operations experience" (client's words). She is the ONLY named person
+ * on the site by client request; keep everyone else under "family-run"
+ * framing. Do NOT add further credentials, past employers, years, or
+ * headcounts without verifying them with the client first.
+ * Initials avatar only — no photo.
  */
-const founders = [
-  {
-    name: "Chavi Gluck",
-    credentials: "BCBA",
-    role: "Co-founder",
-    initials: "CG",
-    bio: [
-      "Chavi is a BCBA with years of clinical and operations experience, and she co-founded Sunbird on a simple belief: therapy works best when the whole family is part of it. A good plan isn’t the one that looks right on paper — it’s the one that fits your child, your home, and your everyday life.",
-      "That’s why she cares so much about the small things. A phone that gets answered. Goals explained in plain English. A team that treats your family the way she’d want her own treated.",
-    ],
-  },
-  {
-    name: "Ruth Gluck",
-    credentials: "MSEd, BCBA, LBA",
-    role: "Co-founder",
-    initials: "RG",
-    bio: [
-      "Ruth brings the educator’s eye to Sunbird’s clinical work. As a licensed behavior analyst with a master’s in education, she thinks about the whole child — how skills learned in a session show up at the dinner table, at daycare, and everywhere in between.",
-      "Her standard for the team is the family standard: if it wouldn’t be good enough for a Gluck kid, it isn’t good enough for yours.",
-    ],
-  },
-  {
-    name: "Ely Gluck",
-    credentials: "",
-    role: "Co-founder",
-    initials: "EG",
-    bio: [
-      "For Ely, the hardest part of autism care should never be getting it. He co-founded Sunbird to make the path simpler for parents: one call, one team, and a plan built around what your family actually needs — including care that comes to your home.",
-      "He also believes families deserve proof, not promises. Real goals, honest tracking, and updates you don’t have to chase. If therapy is working, you’ll know. If something needs to change, you’ll know that too.",
-    ],
-  },
-] as const;
+const founder = {
+  name: "Ruth Gluck",
+  credentials: "MSEd, BCBA, LBA",
+  role: "Founder",
+  initials: "RG",
+  bio: [
+    "Ruth is a BCBA with years of clinical and operations experience, and she founded Sunbird on a simple belief: therapy works best when the whole family is part of it. A good plan isn’t the one that looks right on paper — it’s the one that fits your child, your home, and your everyday life.",
+    "She brings the educator’s eye to that work, too. As a licensed behavior analyst with a master’s in education, she thinks about the whole child — how skills learned in a session show up at the dinner table, at daycare, and everywhere in between.",
+    "That’s why she cares so much about the small things. A phone that gets answered. Goals explained in plain English. A team that treats your family the way she’d want her own treated — because her standard for Sunbird is the family standard: if it wouldn’t be good enough for her own kids, it isn’t good enough for yours.",
+  ],
+} as const;
 
 const values = [
   {
@@ -118,63 +98,62 @@ export default function AboutPage() {
         </div>
       </header>
 
-      {/* ————— Founders ————— */}
+      {/* ————— Founder ————— */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
           <div className="max-w-2xl">
             <h2 className="font-display text-3xl sm:text-4xl">
-              Meet the founders
+              Meet the founder
             </h2>
             <p className="mt-3 text-ink-soft">
               Sunbird is founder-run. When you call, you&rsquo;re reaching a
-              company small enough that the people who started it still know
+              company small enough that the person who started it still knows
               every family by name.
             </p>
           </div>
 
           {/*
-            Client-confirmed names, credentials, and role lines only (see
-            note above the founders array). Verify with the Glucks before
+            Client-confirmed name, credentials, and role line only (see
+            note above the founder object). Verify with the client before
             adding anything more specific.
           */}
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {founders.map((f) => (
-              <article
-                key={f.name}
-                className="flex flex-col rounded-3xl bg-cream p-8 shadow-card"
+          <article className="mt-10 grid gap-8 rounded-3xl bg-cream p-8 shadow-card sm:p-10 lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] lg:gap-12 lg:p-14">
+            <div className="flex flex-row items-center gap-5 lg:flex-col lg:items-start lg:gap-6">
+              <span
+                aria-hidden="true"
+                className="font-display grid h-24 w-24 shrink-0 place-items-center rounded-full bg-mint-wash text-3xl text-brand-teal-deep lg:h-32 lg:w-32 lg:text-4xl"
               >
-                <div className="flex items-center gap-5">
-                  <span
-                    aria-hidden="true"
-                    className="font-display grid h-20 w-20 shrink-0 place-items-center rounded-full bg-mint-wash text-2xl text-brand-teal-deep"
-                  >
-                    {f.initials}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-2xl">
-                      {f.name}
-                      {f.credentials ? (
-                        <span className="text-[1.05rem] text-ink-soft">
-                          , {f.credentials}
-                        </span>
-                      ) : null}
-                    </h3>
-                    <p className="mt-1 text-[14px] font-bold tracking-wide text-brand-teal">
-                      {f.role}
-                    </p>
-                  </div>
-                </div>
-                {f.bio.map((para) => (
-                  <p
-                    key={para.slice(0, 24)}
-                    className="mt-5 text-[15.5px] leading-relaxed text-ink-soft"
-                  >
-                    {para}
-                  </p>
-                ))}
-              </article>
-            ))}
-          </div>
+                {founder.initials}
+              </span>
+              <div>
+                <h3 className="font-display text-2xl lg:text-[1.8rem]">
+                  {founder.name}
+                </h3>
+                <p className="mt-1 text-[15px] font-bold text-ink-soft">
+                  {founder.credentials}
+                </p>
+                <p className="mt-1.5 text-[14px] font-bold tracking-wide text-brand-teal">
+                  {founder.role}
+                </p>
+              </div>
+            </div>
+            <div>
+              {founder.bio.map((para, i) => (
+                <p
+                  key={para.slice(0, 24)}
+                  className={`text-[16.5px] leading-relaxed text-ink-soft ${i > 0 ? "mt-5" : ""}`}
+                >
+                  {para}
+                </p>
+              ))}
+              <p className="font-display mt-8 text-[1.35rem] leading-snug text-brand-teal">
+                Family-run, and it shows —{" "}
+                <span className="italic">
+                  in every plan, every call, every session.
+                </span>
+              </p>
+            </div>
+          </article>
         </div>
       </section>
 

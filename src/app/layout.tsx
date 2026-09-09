@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import Header from "../components/Header";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
+import ScrollBird from "../components/ScrollBird";
 import JsonLd from "../components/JsonLd";
 import GoogleAnalytics from "../components/GoogleAnalytics";
 import { siteConfig } from "../../site.config";
@@ -105,6 +106,7 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <ScrollBird />
         <Analytics />
         <GoogleAnalytics />
       </body>

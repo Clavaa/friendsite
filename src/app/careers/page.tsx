@@ -12,6 +12,22 @@ export const metadata: Metadata = {
 };
 
 const applyHref = `mailto:${siteConfig.email}?subject=Careers%20—%20Sunbird%20ABA`;
+/** Same application path, tagged with the role so intake can sort it. */
+const applyHrefFor = (roleTag: string) => `${applyHref}%20—%20${roleTag}`;
+
+/**
+ * Student-analyst (BCBA-track) eligibility — the numbers live in
+ * site.config.ts (studentAnalystProgram) so they stay editable in one
+ * place. Wording here is ours; keep it free of pay/benefit claims beyond
+ * "paid", which the client confirmed.
+ */
+const sap = siteConfig.studentAnalystProgram;
+const studentChecklist = [
+  `${sap.unrestrictedHours}+ unrestricted fieldwork hours already completed`,
+  `${sap.restrictedHours}+ restricted fieldwork hours already completed`,
+  `Within about ${sap.monthsToExamEligibility} months of BCBA exam eligibility`,
+  "Strong recent performance and supervisor evaluations",
+];
 
 /**
  * Value props are honest culture claims only — no pay, benefit, PTO, or
@@ -21,7 +37,7 @@ const applyHref = `mailto:${siteConfig.email}?subject=Careers%20—%20Sunbird%20
 const valueProps = [
   {
     title: "Family-run, for real",
-    body: "The founders' names are on the door and their standard is simple: care good enough for their own kids, and a team treated the way we ask them to treat families.",
+    body: "The founder's name is on the door and her standard is simple: care good enough for her own kids, and a team treated the way we ask them to treat families.",
   },
   {
     title: "Caseloads you can serve well",
@@ -204,6 +220,64 @@ export default function CareersPage() {
         </div>
       </section>
 
+      {/* ————— Student-analyst (BCBA-track) program ————— */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[87rem] px-4 pb-16 sm:px-6 lg:pb-20">
+          <div className="grid gap-10 rounded-3xl bg-mint-wash p-7 sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:gap-16 lg:p-16">
+            <div>
+              <span className="w-fit rounded-full bg-white px-3.5 py-1.5 text-[12px] font-extrabold uppercase tracking-[0.1em] text-brand-teal shadow-chip">
+                Student analysts
+              </span>
+              <h2 className="font-display display-xl mt-6 max-w-xl text-3xl sm:text-4xl lg:text-[3rem]">
+                On track to become a BCBA?{" "}
+                <span className="italic text-brand-teal">
+                  Finish the climb with us.
+                </span>
+              </h2>
+              <p className="mt-6 max-w-xl text-[16.5px] leading-relaxed text-ink-soft">
+                If you&rsquo;re deep into your supervised fieldwork and can see
+                the exam from here, our student-analyst role lets you earn the
+                rest of your hours doing the real job — paid, on real cases,
+                with structured BCBA supervision — so the day you certify,
+                you&rsquo;re not starting a career, you&rsquo;re continuing
+                one.
+              </p>
+              <a
+                href={applyHrefFor(sap.roleTag)}
+                className="btn-pill mt-8 inline-flex h-12 w-fit items-center gap-2.5 rounded-full bg-brand-teal px-7 text-[15px] font-extrabold text-white transition-colors hover:bg-brand-teal-deep"
+              >
+                Apply as a student analyst
+                <svg aria-hidden="true" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M6 3l5 5-5 5" />
+                </svg>
+              </a>
+            </div>
+            <div className="self-center rounded-r-3xl border-l-4 border-brand-teal bg-white p-7 shadow-card sm:p-9">
+              <h3 className="font-display text-[1.35rem]">
+                Is this you right now?
+              </h3>
+              <ul className="mt-5 space-y-3.5">
+                {studentChecklist.map((item) => (
+                  <li key={item} className="flex gap-3 text-[15px] font-semibold leading-snug">
+                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-meadow text-white">
+                      <svg aria-hidden="true" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M2.5 7.5l3 3 6-7" />
+                      </svg>
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-[13.5px] leading-relaxed text-ink-soft">
+                Close on some but not all of these? Reach out anyway and tell
+                us where you are — timing works out more often than you&rsquo;d
+                think.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ————— Closing apply CTA ————— */}
       <section className="bg-cream">
         <div className="mx-auto max-w-[87rem] px-3 pb-16 sm:px-6 lg:pb-20">
@@ -228,7 +302,7 @@ export default function CareersPage() {
               href={applyHref}
               className="btn-pill mt-9 inline-flex h-[58px] items-center justify-center gap-2.5 rounded-full bg-white px-10 text-[16px] font-extrabold text-brand-teal-deep transition-colors hover:bg-cream"
             >
-              Email the founders
+              Email the founder
               <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 3l5 5-5 5" />
               </svg>

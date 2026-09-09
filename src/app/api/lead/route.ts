@@ -6,11 +6,13 @@ import { siteConfig } from "../../../../site.config";
  *
  * Deliberately PHI-light (cross-site rule: SendGrid signs no BAA):
  * we accept only contact basics — parent name, phone, zip OR state,
- * child's age range, and the page the lead came from. No diagnosis, no
- * clinical detail, no free-text field that could carry either. The
- * optional diagnosis-help fields (type, state, insurance, concerns) are
- * fixed enumerated choices validated against allowlists below — never
- * free text.
+ * child's age range, and the page the lead came from. No diagnosis and no
+ * clinical detail is requested anywhere. The optional diagnosis-help
+ * fields (type, state, insurance, concerns) are fixed enumerated choices
+ * validated against allowlists below — never free text. The one free-text
+ * field is the "Ask our clinical team" question box (type: "question"),
+ * which is user-initiated, length-capped, and whose UI explicitly asks
+ * senders to leave out medical details.
  *
  * Honeypot: the form renders a visually-hidden "website" field. Bots fill
  * it; people can't see it. A filled honeypot returns 200 (so the bot
@@ -22,9 +24,10 @@ import { siteConfig } from "../../../../site.config";
  */
 
 const MAX_FIELD_LENGTH = 200;
+const MAX_QUESTION_LENGTH = 1000;
 
 /** Fixed vocabularies for the diagnosis-help funnel — anything else is dropped. */
-const ALLOWED_TYPES = new Set(["diagnosis-help", "newsletter"]);
+const ALLOWED_TYPES = new Set(["diagnosis-help", "newsletter", "question"]);
 const ALLOWED_STATES = new Set(["kansas", "colorado"]);
 const ALLOWED_INSURANCE = new Set(["private-insurance", "medicaid", "not-sure"]);
 const ALLOWED_CONCERNS = new Set([
@@ -40,8 +43,10 @@ interface LeadPayload {
   parentName: string;
   phone: string;
   zip: string;
-  /** Newsletter-only field — contact email, no clinical detail attached. */
+  /** Email-based flows (question box) — contact email only. */
   email: string;
+  /** "Ask our clinical team" box — user-initiated free text, length-capped. */
+  question: string;
   childAge: string;
   sourcePage: string;
   /** Optional funnel tag, e.g. "diagnosis-help". */
@@ -88,6 +93,10 @@ export async function POST(request: Request) {
     phone: clean(body.phone),
     zip: clean(body.zip),
     email: clean(body.email),
+    question:
+      typeof body.question === "string"
+        ? body.question.trim().slice(0, MAX_QUESTION_LENGTH)
+        : "",
     childAge: clean(body.childAge),
     sourcePage: clean(body.sourcePage) || "unknown",
     type: cleanEnum(body.type, ALLOWED_TYPES),
@@ -96,10 +105,17 @@ export async function POST(request: Request) {
     concerns: cleanEnumList(body.concerns, ALLOWED_CONCERNS),
   };
 
-  // Newsletter signups are contact-only: a name and an email, nothing else.
+  // Email-based flows: a name and an email (plus the question itself for
+  // the "Ask our clinical team" box), nothing else required.
   const isNewsletter = lead.type === "newsletter";
-  if (isNewsletter) {
-    if (!lead.parentName || !lead.email || !lead.email.includes("@")) {
+  const isQuestion = lead.type === "question";
+  if (isNewsletter || isQuestion) {
+    if (
+      !lead.parentName ||
+      !lead.email ||
+      !lead.email.includes("@") ||
+      (isQuestion && !lead.question)
+    ) {
       return NextResponse.json(
         { ok: false, error: "Missing required fields" },
         { status: 400 }
@@ -128,15 +144,18 @@ export async function POST(request: Request) {
   const isDiagnosisHelp = lead.type === "diagnosis-help";
   const kind = isNewsletter
     ? "New email tips signup"
-    : isDiagnosisHelp
-      ? "New diagnosis-help lead"
-      : "New intake lead";
+    : isQuestion
+      ? "New question for the clinical team"
+      : isDiagnosisHelp
+        ? "New diagnosis-help lead"
+        : "New intake lead";
   const text = [
     kind,
     "",
     `Parent name: ${lead.parentName}`,
     lead.phone ? `Phone: ${lead.phone}` : "",
     lead.email ? `Email: ${lead.email}` : "",
+    lead.question ? `Question:\n${lead.question}\n` : "",
     lead.zip ? `Zip: ${lead.zip}` : "",
     lead.state ? `State: ${lead.state}` : "",
     lead.childAge ? `Child's age range: ${lead.childAge}` : "",

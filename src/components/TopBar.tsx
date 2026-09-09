@@ -39,7 +39,7 @@ export default function TopBar() {
           href="/get-a-diagnosis"
           className="group inline-flex items-center gap-1.5 whitespace-nowrap text-[14px] font-bold underline decoration-white/70 decoration-2 underline-offset-[5px] transition-colors hover:decoration-sun"
         >
-          Does my child have autism?
+          Not sure if it&rsquo;s autism? Start here
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5">
             <path d="M6 3l5 5-5 5" />
           </svg>
@@ -51,7 +51,7 @@ export default function TopBar() {
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
             <path d="M3.7 1.3a1 1 0 0 1 1.1.3l1.7 2.1a1 1 0 0 1 0 1.3L5.4 6.2a9.6 9.6 0 0 0 4.4 4.4l1.2-1.1a1 1 0 0 1 1.3 0l2.1 1.7a1 1 0 0 1 .2 1.4l-1 1.4a2 2 0 0 1-2.2.7C7.6 13.5 2.5 8.4 1.3 4.6a2 2 0 0 1 .7-2.2l1.7-1Z" />
           </svg>
-          Call us any time — <span className="underline underline-offset-2">{siteConfig.phone}</span>
+          {siteConfig.phone}
         </a>
       </div>
 
@@ -79,7 +79,7 @@ export default function TopBar() {
           <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
             <path d="M3.7 1.3a1 1 0 0 1 1.1.3l1.7 2.1a1 1 0 0 1 0 1.3L5.4 6.2a9.6 9.6 0 0 0 4.4 4.4l1.2-1.1a1 1 0 0 1 1.3 0l2.1 1.7a1 1 0 0 1 .2 1.4l-1 1.4a2 2 0 0 1-2.2.7C7.6 13.5 2.5 8.4 1.3 4.6a2 2 0 0 1 .7-2.2l1.7-1Z" />
           </svg>
-          Tap to call — {siteConfig.phone}
+          {siteConfig.phone}
         </a>
       </div>
     </div>

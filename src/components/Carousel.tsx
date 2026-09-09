@@ -62,7 +62,8 @@ export default function Carousel({
       >
         {children}
       </div>
-      <div className="mt-8 flex items-center justify-center gap-3">
+      {/* Arrows hide entirely when everything already fits (no overflow). */}
+      <div className={`mt-8 items-center justify-center gap-3 ${atStart && atEnd ? "hidden" : "flex"}`}>
         <button
           type="button"
           onClick={() => scroll(-1)}

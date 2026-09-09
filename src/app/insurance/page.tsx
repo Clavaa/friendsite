@@ -1,24 +1,52 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import CtaBand from "../../components/CtaBand";
+import Faq, { faqJsonLd } from "../../components/Faq";
+import JsonLd from "../../components/JsonLd";
 import LeadForm from "../../components/LeadForm";
 import StickyCallBar from "../../components/StickyCallBar";
 import { siteConfig } from "../../../site.config";
-import { stateContent } from "../../data/states";
+
+/**
+ * CLIENT RULE (Sept 2026): coverage stays deliberately vague here — no
+ * program specifics, no mandate history, no waiver detail, no payer names
+ * until credentialing is confirmed. Everything routes to the free benefit
+ * check; page weight lives in process + reassurance content.
+ */
 
 export const metadata: Metadata = {
-  title: "Insurance & Medicaid for ABA in Kansas & Colorado",
+  title: "Insurance for ABA therapy — free benefit check",
   description:
-    "How ABA therapy gets paid for in Kansas and Colorado: KanCare, Health First Colorado, state autism insurance mandates, and a free benefits check for your exact plan.",
+    "Coverage for ABA therapy varies by plan — so we check yours for free. One photo of your insurance card, one business day, one plain-English answer for Kansas and Colorado families.",
   alternates: { canonical: "/insurance" },
 };
 
-export default function InsurancePage() {
-  const kansas = stateContent.kansas;
-  const colorado = stateContent.colorado;
+const benefitFaqs = [
+  {
+    q: "Does insurance cover ABA therapy?",
+    a: "Coverage varies by plan, so we won't guess at yours — but most families pay little or nothing once benefits are confirmed, whether their child has Medicaid or private insurance. The free benefit check gives you your plan's real answer, usually within a business day.",
+  },
+  {
+    q: "Is the benefit check really free?",
+    a: "Yes — free whether or not you ever work with us, with no obligation attached. We built it because the first question every family has is “what would this cost us?”, and you deserve that answer before making any decisions.",
+  },
+  {
+    q: "What do you need from me to run it?",
+    a: "A photo of the front and back of your child's insurance card, and a way to reach you. That's the whole ask. Our intake team does the rest directly with your plan.",
+  },
+  {
+    q: "What if my plan denies coverage or sends a confusing letter?",
+    a: "Bring it to us. Denials are often reversible, and confusing letters are our intake team's daily reading material. We'll tell you honestly what the letter means and what we'd do next.",
+  },
+  {
+    q: "Do you take my specific insurance plan?",
+    a: "We publish named in-network plans here as each payer's credentialing is confirmed — never before. In the meantime, the benefit check answers the question that actually matters: what your plan would cover for your child, and what you'd owe.",
+  },
+];
 
+export default function InsurancePage() {
   return (
     <>
+      <JsonLd data={faqJsonLd(benefitFaqs)} />
       <header className="bg-cream">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-14 pt-12 sm:px-6 lg:grid-cols-2 lg:items-center lg:pb-16 lg:pt-16">
           <div>
@@ -26,17 +54,17 @@ export default function InsurancePage() {
               Insurance shouldn&rsquo;t be the hard part.
             </h1>
             <p className="prose-measure mt-4 text-lg text-ink-soft">
-              Both of our states require most health plans to cover ABA, and
-              both state Medicaid programs cover it too. Whatever card is in
-              your wallet, the fastest path to a real answer is our free
-              benefits check — one photo, one business day, one plain-English
-              answer.
+              Coverage varies by plan — and no website can tell you what yours
+              will do. So we do something better than guessing: a free benefit
+              check. Most families pay little or nothing once benefits are
+              confirmed, and we tell you exactly where you stand before
+              anything starts.
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "Free benefits verification for every family",
+                "Free benefit check for every family",
                 "Medicaid and private plans, both states",
-                "Prior authorization handled by our team",
+                "Approval paperwork handled by our team",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-3">
                   <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-meadow-wash text-meadow-deep">
@@ -50,106 +78,69 @@ export default function InsurancePage() {
             </ul>
           </div>
           <LeadForm
-            heading="Verify my coverage — free"
+            heading="Run my free benefit check"
             subheading="Tell us who to call back. We'll confirm your ABA benefits with your plan, usually within a business day."
             sourcePage="insurance"
           />
         </div>
       </header>
 
-      {/* ————— Medicaid, both states ————— */}
+      {/* ————— How the benefit check works ————— */}
       <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <h2 className="font-display max-w-2xl text-3xl sm:text-4xl">
-            Medicaid covers ABA in both of our states
-          </h2>
-          <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            {[kansas, colorado].map((st) => (
-              <div key={st.slug} className={`rounded-3xl p-6 sm:p-8 ${st.slug === "kansas" ? "bg-sun-wash" : "bg-mint-wash"}`}>
-                <p className="text-sm font-bold tracking-wide text-brand-teal">
-                  {st.name}
-                </p>
-                <h3 className="font-display mt-1 text-2xl">
-                  {st.medicaidProgramName}
-                </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-                  {st.medicaidIntro[0]}
-                </p>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {st.medicaidPlans.map((plan) => (
-                    <li key={plan} className="rounded-full bg-white px-3.5 py-1.5 text-[14px] font-semibold shadow-chip">
-                      {plan}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={`/${st.slug}`}
-                  className="mt-5 inline-block text-[15px] font-bold text-brand-teal hover:underline"
-                >
-                  Full {st.name} coverage guide →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ————— Private insurance / mandates ————— */}
-      <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <div className="prose-measure">
             <h2 className="font-display text-3xl sm:text-4xl">
-              Private insurance: the law is on your side
+              How the free benefit check works
             </h2>
             <p className="mt-4 text-ink-soft">
-              Kansas has required autism coverage in state-regulated plans
-              since 2014. Colorado has required it since 2009 — and removed
-              every age and dollar cap in 2017. If your plan came from the
-              marketplace or a smaller employer, ABA coverage is very likely
-              built in.
-            </p>
-            <p className="mt-4 text-ink-soft">
-              Large employers often run self-funded plans with their own rules
-              — many still cover ABA generously. The plan documents decide, and
-              reading them for families is our intake team&rsquo;s daily work.
+              This is the step that replaces weeks of hold music and plan
+              documents written by lawyers for lawyers. Here&rsquo;s exactly
+              what happens.
             </p>
           </div>
-
-          {/* Commercial payer list — config-gated, never fabricated */}
-          <div className="mt-8 rounded-3xl border-2 border-dashed border-line bg-white/70 p-6 sm:p-8 lg:max-w-3xl">
-            <h3 className="font-display text-xl">Plans we work with</h3>
-            {/* TODO (required before launch): publish the real credentialed
-                payer list per state — e.g. specific commercial networks the
-                practice is actually in-network with. Never publish a payer
-                name before credentialing is confirmed. */}
-            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
-              The named list of in-network commercial plans for Kansas and
-              Colorado is published here once credentialing is confirmed for
-              each payer. Until then, one honest promise: send us your card and
-              we&rsquo;ll tell you exactly where you stand — free, within about
-              a business day.
-            </p>
-            <p className="mt-3 rounded-xl bg-cream px-3 py-2 text-[13px] font-semibold text-ink-soft">
-              Production note: awaiting confirmed payer list — see TODO in this
-              template.
-            </p>
-          </div>
+          <ol className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "You send one photo",
+                body: "The front and back of your child's insurance card — Medicaid or private, either works. That's everything we need from you.",
+              },
+              {
+                title: "We call your plan",
+                body: "Our intake team verifies your ABA benefits directly with your plan: whether ABA is covered, what approvals are needed, and what your share would be.",
+              },
+              {
+                title: "You get a plain-English answer",
+                body: "Usually within a business day, a real person calls you back and tells you exactly where you stand — no jargon, no guessing, and no obligation.",
+              },
+            ].map((step, i) => (
+              <li key={step.title} className="flex gap-4 rounded-3xl bg-cream p-6">
+                <span className="font-display grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-teal text-lg text-white">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 className="font-display text-lg leading-snug">{step.title}</h3>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-ink-soft">
+                    {step.body}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
       {/* ————— What families pay ————— */}
-      <section className="bg-white">
+      <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <div className="prose-measure">
             <h2 className="font-display text-3xl sm:text-4xl">
               What will it actually cost us?
             </h2>
             <p className="mt-4 text-ink-soft">
-              Your share depends on your plan&rsquo;s deductible, copays, and
-              out-of-pocket maximum — not on ABA specifically. Medicaid
-              families typically pay nothing. Many privately-insured families
-              reach their out-of-pocket maximum early in the year and pay
-              nothing after that.
+              The honest answer: it depends on your plan — which is exactly
+              why the benefit check comes first. What we can say from
+              experience is that most families pay little or nothing for ABA
+              once their benefits are confirmed.
             </p>
             <p className="mt-4 text-ink-soft">
               Before your child starts, you get a written, plain-English
@@ -169,15 +160,32 @@ export default function InsurancePage() {
               — we read those letters every day.
             </p>
           </div>
+
+          {/* Commercial payer list — config-gated, never fabricated */}
+          <div className="mt-10 rounded-3xl border-2 border-dashed border-line bg-white/70 p-6 sm:p-8 lg:max-w-3xl">
+            <h3 className="font-display text-xl">Plans we work with</h3>
+            {/* TODO (required before launch): publish the real credentialed
+                payer list per state once credentialing is confirmed. Never
+                publish a payer name before credentialing is confirmed. */}
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              The named list of in-network plans for Kansas and Colorado is
+              published here once credentialing is confirmed for each payer.
+              Until then, one honest promise: send us your card and
+              we&rsquo;ll tell you exactly where you stand — free, within
+              about a business day.
+            </p>
+          </div>
         </div>
       </section>
 
+      <Faq items={benefitFaqs} heading="Coverage questions, answered plainly" />
+
       <CtaBand
         heading="One photo of your insurance card."
-        body="That's all the benefits check needs. We come back with a clear answer about coverage and cost — free, whether or not you ever work with us."
-        primaryLabel="Verify my coverage"
+        body="That's all the benefit check needs. We come back with a clear answer about coverage and cost — free, whether or not you ever work with us."
+        primaryLabel="Run my free benefit check"
       />
-      <StickyCallBar callLabel="Call the Wichita team" />
+      <StickyCallBar callLabel="Call the team" />
     </>
   );
 }

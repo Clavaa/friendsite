@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const diagnosisFaqs: FaqItem[] = [
   {
     q: "Does insurance pay for an autism evaluation?",
-    a: "Usually, yes. Most health plans in Kansas and Colorado cover a diagnostic evaluation the same way they cover other doctor visits, so your normal copay or deductible may apply. KanCare and Health First Colorado cover evaluations for children too. Before you book anything, we check your exact plan for free and tell you what it would cost — often nothing.",
+    a: "Usually, yes. Most health plans in Kansas and Colorado — Medicaid and private — cover a diagnostic evaluation the same way they cover other doctor visits, so your normal copay or deductible may apply. Before you book anything, we check your exact plan for free and tell you what it would cost — often nothing.",
   },
   {
     q: "How long is the wait for an evaluation in Kansas or Colorado?",

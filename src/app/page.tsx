@@ -22,7 +22,7 @@ import { siteConfig } from "../../site.config";
 export const metadata: Metadata = {
   title: `ABA therapy for children in Kansas & Colorado | ${siteConfig.brandName}`,
   description:
-    "BCBA-led ABA therapy for children with autism in Kansas and Colorado — in-home, center-based, school and telehealth. Free insurance check, fast answers. Talk to an intake advocate today.",
+    "BCBA-led ABA therapy for children with autism in Kansas and Colorado — in-home, daycare-based and telehealth, from a family-run practice. Free benefit check, fast answers. Talk to an intake advocate today.",
   alternates: { canonical: "/" },
 };
 
@@ -66,42 +66,37 @@ function CheckDot({ className = "" }: { className?: string }) {
 
 /* ————— Data for the section stacks (homepage copy lives here) ————— */
 
-const serviceCards = [
+const serviceCards: {
+  href: string;
+  title: string;
+  blurb: string;
+  img: { src: string; alt: string };
+  comingSoon?: boolean;
+}[] = [
   {
-    href: "/services/early-intervention",
-    title: "Early intervention (1–5)",
-    blurb: "Play-based therapy for the littlest learners — first words, first friends, first wins.",
-    img: { src: "/images/playground-bubbles.jpg", alt: "A woman blowing bubbles with a laughing young boy on a sunny playground" },
+    href: "/services/in-home-aba",
+    title: "In-home ABA",
+    blurb: "Therapy where real life happens — mealtimes, mornings, siblings and all.",
+    img: { src: "/images/magnetic-tiles-living-room.jpg", alt: "A woman and a toddler building with colorful magnetic tiles on a rug" },
   },
   {
-    href: "/services/school-based-aba",
-    title: "School-based support",
-    blurb: "Your child's plan travels to the classroom, and we speak fluent IEP at the table.",
+    href: "/services/daycare-based",
+    title: "Daycare-based support",
+    blurb: "Your child's plan travels to daycare — one set of strategies across their whole day.",
     img: { src: "/images/picture-cards-classroom.jpg", alt: "A woman showing picture cards to a young child at a classroom table" },
   },
   {
-    href: "/services/telehealth",
-    title: "Telehealth & parent coaching",
-    blurb: "Expert BCBA guidance over video — for far-flung towns and full calendars.",
+    href: "/services/parent-training",
+    title: "Parent training",
+    blurb: "Practical coaching for the moments nobody else sees — in person or by video.",
     img: { src: "/images/family-puzzle-kitchen.jpg", alt: "Two women and a young boy working on a colorful shape puzzle at a kitchen table" },
   },
   {
     href: "/services/center-based-aba",
-    title: "Center-based ABA",
+    title: "In-center ABA",
     blurb: "Structured spaces, peers to practice with, and a gentle on-ramp to school.",
     img: { src: "/images/blocks-play-living-room.jpg", alt: "A woman and a young girl stacking colorful wooden blocks together" },
-  },
-  {
-    href: "/questions",
-    title: "Parent question library",
-    blurb: "Straight answers to the questions families actually ask — no sales pitch attached.",
-    img: { src: "/images/fruit-snack-kitchen.jpg", alt: "A parent and child sharing a fruit snack together in a bright kitchen" },
-  },
-  {
-    href: "/insurance",
-    title: "Insurance navigation",
-    blurb: "Send a photo of your card; we come back with a plain-English answer, free.",
-    img: { src: "/images/magnetic-tiles-living-room.jpg", alt: "A woman and a toddler building with colorful magnetic tiles on a rug" },
+    comingSoon: true,
   },
 ];
 
@@ -182,7 +177,7 @@ const steps = [
     n: "04",
     label: "First session & beyond",
     title: "Sessions start — and keep getting better.",
-    body: "Therapy begins at home, in a center, or both. Progress is measured at every session, your BCBA adjusts the plan as your child grows, and you always know the score.",
+    body: "Therapy begins at home, at daycare, or by video. Progress is measured at every session, your BCBA adjusts the plan as your child grows, and you always know the score.",
   },
 ];
 
@@ -216,12 +211,16 @@ const tourPhotos = [
 
 const homeFaqs = [
   {
-    q: "Who is ABA therapy for?",
-    a: "ABA is for children with an autism diagnosis — most start between ages 2 and 6, though we support older children too. If you don't have a diagnosis yet, we'll help you get one first.",
+    q: "Is ABA therapy for my child?",
+    a: "ABA is designed for children with an autism diagnosis — most start between ages 2 and 6, though we support older children too. If you're not sure yet, that's exactly what the first call is for: tell us what you're seeing and we'll help you figure out the right next step, diagnosis or not.",
+  },
+  {
+    q: "When can I receive ABA therapy?",
+    a: "Sooner than you might fear. The first call takes 15 minutes, and the free benefit check usually comes back within a business day — that's the step that unlocks everything else. From there the pace depends mostly on your plan's approval, so we won't promise a date we can't keep — but we chase every step daily and give you an honest start window on the very first call.",
   },
   {
     q: "Does insurance cover ABA in Kansas and Colorado?",
-    a: "In most cases, yes. Both states require state-regulated health plans to cover ABA, and both Medicaid programs — KanCare and Health First Colorado — cover it too. We verify your exact plan free before anything starts.",
+    a: "Coverage varies by plan, so we check yours instead of guessing. Most families pay little or nothing once benefits are confirmed — send us a photo of your insurance card and we'll run a free benefit check and tell you exactly where you stand, usually within a business day.",
   },
   {
     q: "Do we need a diagnosis before starting?",
@@ -229,15 +228,11 @@ const homeFaqs = [
   },
   {
     q: "Where do sessions happen?",
-    a: "Wherever they'll work best for your child: your home, one of our centers, at school through district partnerships, or over secure video. Many families mix settings, and your BCBA helps you choose.",
-  },
-  {
-    q: "How many hours a week will my child need?",
-    a: "It depends on your child — plans commonly range from 10 to 30+ hours weekly. Your BCBA recommends a number based on the assessment and your family's reality, and you decide together.",
+    a: "Wherever they'll work best for your child: your home, your child's daycare, or over secure video — with our in-center program coming soon. Many families mix settings, and your BCBA helps you choose.",
   },
   {
     q: "What if our schedule is already packed?",
-    a: "That's normal, not a barrier. Sessions are scheduled around naps, school, siblings and work — and telehealth parent coaching can happen after bedtime. We fit the plan to your life.",
+    a: "That's normal, not a barrier. Sessions are scheduled around naps, school, siblings and work — and parent coaching can happen at home or by video after bedtime. We fit the plan to your life.",
   },
 ];
 
@@ -278,11 +273,24 @@ export default function HomePage() {
                   A person answers — no phone tree.
                 </p>
               </div>
-              {/* Trust checkmarks */}
+              {/* Modality chips — must always match reality (see site.config.ts) */}
               <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:justify-start">
                 {siteConfig.trustChecklist.map((item) => (
-                  <li key={item} className="flex items-center gap-2.5 text-[15px] font-bold">
-                    <CheckDot /> {item}
+                  <li key={item.label} className="flex items-center gap-2.5 text-[15px] font-bold">
+                    {item.soon ? (
+                      <span
+                        aria-hidden="true"
+                        className="grid h-5 w-5 shrink-0 place-items-center rounded-full border-2 border-sun bg-sun/25"
+                      />
+                    ) : (
+                      <CheckDot />
+                    )}
+                    {item.label}
+                    {item.soon && (
+                      <span className="-ml-1 text-[13px] font-semibold italic text-ink-soft">
+                        coming soon
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -316,26 +324,35 @@ export default function HomePage() {
           <div className="grid gap-3 lg:grid-cols-2">
             <div className="reveal flex flex-col justify-center rounded-3xl bg-sun-wash p-8 sm:p-14 lg:p-[5.5rem]">
               <h2 className="font-display display-xl text-4xl sm:text-5xl lg:text-[3.75rem]">
-                You&rsquo;re showing up for your child every single day.
+                Nobody knows your child like you do.
               </h2>
               <div className="mt-8 space-y-4 text-[17px] leading-relaxed text-ink-soft">
                 <p>
-                  <strong className="text-ink">An autism diagnosis is heavy.</strong>{" "}
-                  Not &ldquo;busy week&rdquo; heavy — up-at-2am-reading-about-therapies
-                  heavy. Waitlist-after-waitlist heavy. Explaining-it-to-grandma,
-                  bracing-for-the-grocery-store, worrying-about-kindergarten heavy.
+                  Not the specialists, not the search results, not the
+                  well-meaning advice coming from every direction.{" "}
+                  <strong className="text-ink">
+                    You&rsquo;re the one who knows
+                  </strong>{" "}
+                  what a good day looks like, which small things are actually
+                  big things, and exactly how brave your kid really is.
                 </p>
                 <p>
-                  And the weight doesn&rsquo;t land only on your child.{" "}
-                  <strong className="text-ink">It lands on you</strong> — on your
-                  sleep, your work, your other kids, and on the question you may
-                  not say out loud:
+                  So that&rsquo;s where Sunbird starts.{" "}
+                  <strong className="text-ink">
+                    We&rsquo;re a family-run practice
+                  </strong>{" "}
+                  — started by a family, still run by one — and we build every
+                  plan the way we&rsquo;d want one built for our own kids: with
+                  you at the table, never in the waiting room.
                 </p>
-                <p className="font-bold text-ink">Who&rsquo;s helping me?</p>
+                <p className="font-bold text-ink">
+                  You bring the expertise on your child. We bring everything
+                  else.
+                </p>
               </div>
               <p className="font-display mt-10 text-[1.75rem] leading-[1.2] text-brand-teal sm:text-[2.1rem]">
-                You&rsquo;ve been carrying this alone.{" "}
-                <span className="italic">From here, we carry it with you.</span>
+                One family to another:{" "}
+                <span className="italic">we&rsquo;ve got you.</span>
               </p>
             </div>
             <div className="relative min-h-[22rem] overflow-hidden rounded-3xl lg:min-h-0">
@@ -367,11 +384,12 @@ export default function HomePage() {
             </span>
             <span className="block italic">And for everyone who loves them.</span>
           </h2>
-          <p className="mx-auto mt-9 max-w-[40rem] text-[17px] leading-relaxed text-ink-soft sm:text-lg">
+          <p className="mx-auto mt-9 max-w-[42rem] text-[17px] leading-relaxed text-ink-soft sm:text-lg">
             Your child needs ABA therapy —{" "}
             <strong className="text-ink">but what does your family need?</strong>{" "}
-            Sunbird wraps support around the whole household, not just the hour
-            of therapy.
+            We&rsquo;re a family-run practice, and we treat your family like
+            family: support wrapped around the whole household, not just the
+            hour of therapy.
           </p>
         </div>
       </section>
@@ -409,7 +427,7 @@ export default function HomePage() {
                   Learn all about ABA <Chevron />
                 </Link>
                 <p className="mt-6 flex items-center gap-2.5 text-[14px] font-bold">
-                  <CheckDot /> At home, in-center, at school, or by video
+                  <CheckDot /> At home, at daycare, or by video — in-center coming soon
                 </p>
               </div>
             </div>
@@ -433,16 +451,21 @@ export default function HomePage() {
               <Link
                 key={c.href + c.title}
                 href={c.href}
-                className="group w-[250px] shrink-0 snap-start"
+                className="group w-[250px] shrink-0 snap-start lg:w-[300px]"
               >
-                <div className="relative h-[196px] overflow-hidden rounded-[20px]">
+                <div className="relative h-[196px] overflow-hidden rounded-[20px] lg:h-[228px]">
                   <Image
                     src={c.img.src}
                     alt={c.img.alt}
                     fill
-                    sizes="250px"
+                    sizes="(min-width: 1024px) 300px, 250px"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
+                  {c.comingSoon && (
+                    <span className="absolute left-3 top-3 rounded-full bg-white px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.08em] text-brand-teal shadow-chip">
+                      Coming soon
+                    </span>
+                  )}
                 </div>
                 <h3 className="font-display mt-8 flex items-start justify-between gap-2 text-[1.6rem] leading-[1.05]">
                   {c.title}
@@ -619,11 +642,11 @@ export default function HomePage() {
                 </li>
                 <li className="flex gap-3">
                   <span aria-hidden="true" className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-brand-teal" />
-                  <span><strong className="text-ink">In a center</strong> — peers to practice with and routines deliberately shaped like school.</span>
+                  <span><strong className="text-ink">At daycare &amp; by video</strong> — one consistent plan across your child&rsquo;s whole day, plus BCBA coaching after bedtime.</span>
                 </li>
                 <li className="flex gap-3">
-                  <span aria-hidden="true" className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-brand-teal" />
-                  <span><strong className="text-ink">At school &amp; by video</strong> — one consistent plan across your child&rsquo;s whole day, plus BCBA coaching after bedtime.</span>
+                  <span aria-hidden="true" className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-sun" />
+                  <span><strong className="text-ink">In a center</strong> <em>(coming soon)</em> — peers to practice with and routines deliberately shaped like school.</span>
                 </li>
               </ul>
               <Link href="/services" className={`${solidPill} mt-12`}>
@@ -755,26 +778,25 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="space-y-5">
+          {/* Numbered open Q&A cards — deliberately NOT the plus/minus
+              accordion look: everything readable at a glance, teal left
+              edge, two-up on desktop. */}
+          <div className="grid content-start gap-5 sm:grid-cols-2">
             {homeFaqs.map((f, i) => (
-              <details
+              <div
                 key={f.q}
-                className="group reveal rounded-3xl bg-white px-8 shadow-card transition-shadow open:shadow-card-lg sm:px-10"
-                open={i === 0}
+                className="reveal rounded-r-3xl border-l-4 border-brand-teal bg-white p-7 shadow-card sm:p-8"
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-8 [&::-webkit-details-marker]:hidden">
-                  <span className="font-display text-xl leading-snug sm:text-[1.45rem]">
-                    {f.q}
-                  </span>
-                  <svg aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="shrink-0 text-ink">
-                    <path d="M11 3v16" className="transition-opacity group-open:opacity-0" />
-                    <path d="M3 11h16" />
-                  </svg>
-                </summary>
-                <p className="-mt-2 pb-8 text-[16px] leading-relaxed text-ink-soft">
+                <p className="font-display text-lg text-brand-teal/70">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="font-display mt-2 text-xl leading-snug sm:text-[1.35rem]">
+                  {f.q}
+                </h3>
+                <p className="mt-3 text-[15.5px] leading-relaxed text-ink-soft">
                   {f.a}
                 </p>
-              </details>
+              </div>
             ))}
           </div>
         </div>

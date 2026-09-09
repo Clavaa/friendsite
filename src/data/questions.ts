@@ -90,8 +90,7 @@ export const questionPages: QuestionPage[] = [
           "Ask the diagnosing provider for a prescription or referral for ABA therapy — insurance will want it",
           "Call your insurance (or let us do it free) to confirm ABA benefits",
           "Pick an ABA provider and start intake — assessments and approvals take a few weeks, so starting now means starting therapy sooner",
-          "If your child is under 3: connect with early intervention. If 3+: request a school evaluation in writing for an IEP",
-          "In Kansas or Colorado, ask about Medicaid waivers — some have waitlists worth joining early",
+          "If your child is under 3: connect with your state's early intervention program. If 3+: request a school evaluation in writing for an IEP",
         ],
       },
       {
@@ -160,22 +159,22 @@ export const questionPages: QuestionPage[] = [
     h1: "Will my insurance actually pay for ABA therapy?",
     metaTitle: "Does insurance pay for ABA therapy in Kansas & Colorado?",
     metaDescription:
-      "How ABA gets paid for in Kansas and Colorado: state mandates, Medicaid (KanCare and Health First Colorado), what prior authorization means, and how to verify benefits free.",
+      "How ABA gets paid for in Kansas and Colorado: why coverage varies by plan, what most families actually end up paying, and how to get your plan's real answer free.",
     intro:
-      "For most Kansas and Colorado families, yes — insurance pays for most or all of ABA therapy. Both states have laws requiring coverage, and both state Medicaid programs cover it too. Here's how it actually works.",
+      "Here's the honest answer: coverage varies by plan, so nobody can tell you from a website — but most Kansas and Colorado families end up paying little or nothing for ABA once their benefits are confirmed. Here's how to get your plan's real answer without weeks of hold music.",
     sections: [
       {
-        heading: "Both states require coverage",
+        heading: "Why we won't guess at your coverage",
         paragraphs: [
-          "Kansas passed its autism insurance law in 2014; Colorado passed its own in 2009 and later removed all age and dollar caps. If your health plan is regulated by the state — most plans bought by small employers or on the marketplace are — it must cover ABA for a child diagnosed with autism.",
-          "Large employers often run “self-funded” plans that set their own rules. Many still cover ABA. The plan documents tell the truth, and we read them for families every day.",
+          "Every plan writes its own rules — Medicaid or private, big employer or marketplace. Two families on the same street can have completely different benefits. Any provider who promises coverage before checking your specific plan is guessing, and guessing is how families get surprise bills.",
+          "So we don't guess. We check. The plan documents tell the truth, and reading them for families is our intake team's daily work.",
         ],
       },
       {
-        heading: "Medicaid covers ABA in both states",
+        heading: "Medicaid and private plans both welcome",
         paragraphs: [
-          "KanCare (Kansas Medicaid) has covered ABA since 2017, through the Sunflower, UnitedHealthcare Community Plan, and Healthy Blue health plans. Health First Colorado covers ABA for members 20 and under through its Pediatric Behavioral Therapies benefit.",
-          "Both programs require prior authorization — approval before therapy starts. That's paperwork we prepare and submit for you.",
+          "We work with families on Medicaid and families with private insurance across both states, and the process is the same either way: we confirm your child's benefits first, then handle whatever approvals your plan requires before therapy starts.",
+          "That approval paperwork is ours to prepare, submit, and chase — not yours.",
         ],
       },
       {
@@ -228,13 +227,14 @@ export const questionPages: QuestionPage[] = [
         list: [
           "Choose home when daily-living skills, young age, or logistics lead",
           "Choose center when social goals, school readiness, or focus lead",
-          "Choose both when the goals list says both — insurance covers either setting the same way",
+          "Choose both when the goals list says both — the mix can change as your child grows",
         ],
       },
       {
         heading: "How we'll help you decide",
         paragraphs: [
           "Your BCBA will recommend a setting based on your child's assessment and your goals — and will tell you the why, not just the what. You make the final call, and you can change it as your child changes.",
+          "One honest note about Sunbird specifically: our in-center program is coming soon, while in-home, daycare-based, and telehealth services are running today. Many center-bound skills start beautifully at home — and we'll tell you the moment a center opens near you.",
         ],
       },
     ],

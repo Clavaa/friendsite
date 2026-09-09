@@ -6,10 +6,11 @@ import { BirdSpot, PaperBits, Sparkles } from "./Accents";
 type Status = "idle" | "submitting" | "success" | "error";
 
 /**
- * Personality email-capture block near the foot of the page — practical
- * weekly BCBA tips, pitched at the parent who is still awake at 11pm
- * looking things up. Posts to /api/lead as a contact-only newsletter
- * signup (name + email, nothing clinical).
+ * "Ask our clinical team" block near the foot of the page — a question
+ * box, not a newsletter (there is no newsletter). Pitched at the parent
+ * who is still awake at 11pm looking things up. Posts to /api/lead with
+ * type: "question" (name + email + the question; the microcopy asks
+ * senders to leave medical details out).
  */
 export default function EmailCapture() {
   const [status, setStatus] = useState<Status>("idle");
@@ -23,9 +24,9 @@ export default function EmailCapture() {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, type: "newsletter", sourcePage: "home-newsletter" }),
+        body: JSON.stringify({ ...data, type: "question", sourcePage: "home-question" }),
       });
-      if (!res.ok) throw new Error(`Signup failed: ${res.status}`);
+      if (!res.ok) throw new Error(`Question submit failed: ${res.status}`);
       setStatus("success");
       form.reset();
     } catch {
@@ -42,40 +43,39 @@ export default function EmailCapture() {
         <div className="grid items-center gap-10 p-8 sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,32rem)] lg:gap-16 lg:p-[4.5rem]">
           <div className="reveal text-center">
             <p className="text-[15px] font-extrabold uppercase tracking-[0.14em] text-ink">
-              One good idea a week
+              Ask our clinical team
             </p>
             <h2 className="font-display display-hero mx-auto mt-6 max-w-[34rem] text-[2.8rem] text-brand-teal sm:text-6xl lg:text-[4.5rem]">
               Still up <span className="italic">at 11pm?</span>
             </h2>
             <p className="mx-auto mt-7 max-w-[34rem] text-[17px] leading-relaxed text-ink-soft">
-              Picky eating. Car-seat standoffs. The word &ldquo;no&rdquo; on
-              repeat. You&rsquo;re doing your best, and autism is challenging —
-              so once a week our BCBAs send one practical, judgment-free
-              strategy you can try before breakfast.
+              Whatever question is keeping you scrolling — about ABA, about
+              getting started, about your specific worry — send it to our
+              clinical team. A real person reads and answers every one.
             </p>
 
             {status === "success" ? (
               <div className="mx-auto mt-8 max-w-md rounded-3xl bg-white p-6 shadow-card" role="status" aria-live="polite">
-                <p className="font-display text-xl">You&rsquo;re on the list.</p>
+                <p className="font-display text-xl">Got it — your question is with us.</p>
                 <p className="mt-1 text-[15px] text-ink-soft">
-                  First tip lands soon. Until then — you&rsquo;re doing better
-                  than you think.
+                  A real person will read it and email you back. Until then —
+                  you&rsquo;re doing better than you think.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="mx-auto mt-9 max-w-md">
                 {/* Honeypot — hidden from people, tempting to bots */}
                 <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
-                  <label htmlFor="news-website">Website</label>
-                  <input id="news-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                  <label htmlFor="ask-website">Website</label>
+                  <input id="ask-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
                 </div>
                 <div className="grid gap-4">
                   <div>
-                    <label htmlFor="news-name" className="sr-only">
+                    <label htmlFor="ask-name" className="sr-only">
                       First name
                     </label>
                     <input
-                      id="news-name"
+                      id="ask-name"
                       name="parentName"
                       type="text"
                       required
@@ -85,11 +85,11 @@ export default function EmailCapture() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="news-email" className="sr-only">
+                    <label htmlFor="ask-email" className="sr-only">
                       Email
                     </label>
                     <input
-                      id="news-email"
+                      id="ask-email"
                       name="email"
                       type="email"
                       required
@@ -98,13 +98,27 @@ export default function EmailCapture() {
                       className={input}
                     />
                   </div>
+                  <div>
+                    <label htmlFor="ask-question" className="sr-only">
+                      Your question
+                    </label>
+                    <textarea
+                      id="ask-question"
+                      name="question"
+                      required
+                      rows={4}
+                      maxLength={1000}
+                      placeholder="Your question* — no need to include medical details"
+                      className="w-full rounded-3xl border border-ink/10 bg-white px-7 py-5 text-[16px] shadow-[0_1px_2px_rgba(15,58,71,0.05)] placeholder:text-ink-soft/60 focus:border-brand-teal"
+                    />
+                  </div>
                 </div>
                 <button
                   type="submit"
                   disabled={status === "submitting"}
                   className="btn-pill mt-6 inline-flex h-[62px] w-full items-center justify-center gap-3 rounded-full bg-ink px-8 text-[17px] font-extrabold text-white transition-colors hover:bg-brand-teal-deep disabled:opacity-60"
                 >
-                  {status === "submitting" ? "Signing you up…" : "Sign me up"}
+                  {status === "submitting" ? "Sending your question…" : "Ask the team"}
                   <svg aria-hidden="true" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M6 3l5 5-5 5" />
                   </svg>
@@ -115,8 +129,8 @@ export default function EmailCapture() {
                   </p>
                 )}
                 <p className="mt-3 text-[13px] text-ink-soft">
-                  Tips only, never your inbox&rsquo;s new problem. Unsubscribing
-                  takes one click.
+                  A real person reads and answers every question — no
+                  autoresponders, no mailing list, no sales pitch attached.
                 </p>
               </form>
             )}

@@ -1,3 +1,4 @@
+// TODO: replace with client-supplied logo file when received.
 /**
  * Sunbird ABA Therapy logo.
  *

@@ -5,7 +5,7 @@ import JsonLd from "../../../components/JsonLd";
 import LeadForm from "../../../components/LeadForm";
 import StickyCallBar from "../../../components/StickyCallBar";
 import { siteConfig, type StateSlug } from "../../../../site.config";
-import { stateContent, type FaqItem } from "../../../data/states";
+import { type FaqItem } from "../../../data/states";
 import {
   formatPop,
   getCounty,
@@ -20,24 +20,28 @@ import { breadcrumbJsonLd } from "../../../lib/seo";
  * and neighbor-county links so no county page is a dead end.
  */
 
-/** Condensed, real state Medicaid facts — a card, not a state-page copy. */
-const medicaidFacts: Record<StateSlug, { heading: string; facts: string[] }> = {
+/**
+ * Condensed coverage card — deliberately vague per the client's rule:
+ * no program specifics, no waiver detail. Everything routes to the free
+ * benefit check.
+ */
+const coverageCard: Record<StateSlug, { heading: string; facts: string[] }> = {
   kansas: {
-    heading: "KanCare covers ABA — here's the short version",
+    heading: "Paying for ABA — the short version",
     facts: [
-      "ABA has been a covered KanCare benefit for children with an autism diagnosis since 2017.",
-      "Coverage runs through your KanCare plan — Sunflower Health Plan, UnitedHealthcare Community Plan, or Healthy Blue.",
-      "Every plan requires prior authorization before therapy starts. We prepare and submit it for you.",
-      "Kansas has also had an autism insurance law since 2014, so most state-regulated private plans cover ABA too.",
+      "Coverage varies by plan, so we check yours instead of guessing — the benefit check is free.",
+      "Most Kansas families pay little or nothing once benefits are confirmed, Medicaid or private.",
+      "Send one photo of your insurance card; we verify your ABA benefits directly with your plan.",
+      "You get a plain-English answer — what's covered, what you'd owe, what happens next — usually within a business day.",
     ],
   },
   colorado: {
-    heading: "Health First Colorado covers ABA — here's the short version",
+    heading: "Paying for ABA — the short version",
     facts: [
-      "ABA is covered for members age 20 and under through the Pediatric Behavioral Therapies (PBT) benefit.",
-      "Approvals are individualized — no fixed hour cap — and each authorization runs up to six months.",
-      "Every request needs a prior authorization (PAR). We complete the assessment, gather the referral, and submit it.",
-      "Colorado's autism insurance law dates to 2009, and since 2017 it has no age or dollar caps for state-regulated plans.",
+      "Coverage varies by plan, so we check yours instead of guessing — the benefit check is free.",
+      "Most Colorado families pay little or nothing once benefits are confirmed, Medicaid or private.",
+      "Send one photo of your insurance card; we verify your ABA benefits directly with your plan.",
+      "You get a plain-English answer — what's covered, what you'd owe, what happens next — usually within a business day.",
     ],
   },
 };
@@ -61,17 +65,10 @@ function countyFaqs(county: CountyEntry, stateSlug: StateSlug): FaqItem[] {
   const city = county.nearestCity;
   const faqs: FaqItem[] = [];
 
-  if (stateSlug === "kansas") {
-    faqs.push({
-      q: `Does KanCare cover ABA therapy in ${county.full}?`,
-      a: `Yes. KanCare has covered ABA for children with an autism diagnosis since 2017, and the benefit works the same in every Kansas county, including ${county.full}. Coverage runs through your child's KanCare plan — Sunflower, UnitedHealthcare Community Plan, or Healthy Blue — and we handle the prior authorization for you.`,
-    });
-  } else {
-    faqs.push({
-      q: `Does Health First Colorado cover ABA therapy in ${county.full}?`,
-      a: `Yes. Health First Colorado covers ABA for members age 20 and under through the Pediatric Behavioral Therapies benefit, and it works the same in every Colorado county, including ${county.full}. Approvals are individualized rather than capped, and we prepare and submit the full prior authorization request for you.`,
-    });
-  }
+  faqs.push({
+    q: `Does insurance cover ABA therapy in ${county.full}?`,
+    a: `Coverage depends on your plan, not your county — and rather than guess at yours, we check it for free. Most ${stateName} families pay little or nothing once benefits are confirmed, Medicaid or private. Send us a photo of your insurance card and we'll tell you exactly where you stand, usually within a business day.`,
+  });
 
   faqs.push({
     q: `Do you offer in-home ABA in ${county.full}?`,
@@ -114,8 +111,7 @@ export default function CountyView({
   county: CountyEntry;
 }) {
   const stateCfg = siteConfig.states[stateSlug];
-  const content = stateContent[stateSlug];
-  const facts = medicaidFacts[stateSlug];
+  const facts = coverageCard[stateSlug];
   const faqs = countyFaqs(county, stateSlug);
   const city = county.nearestCity;
   const neighbors = county.neighbors
@@ -238,8 +234,13 @@ export default function CountyView({
                 </Link>
               </li>
               <li>
-                <Link href="/services/early-intervention" className="text-brand-teal hover:underline">
-                  Early intervention (ages 1–5) →
+                <Link href="/services/daycare-based" className="text-brand-teal hover:underline">
+                  Daycare-based support →
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/parent-training" className="text-brand-teal hover:underline">
+                  Parent training →
                 </Link>
               </li>
             </ul>
@@ -260,10 +261,10 @@ export default function CountyView({
               ))}
             </ul>
             <p className="mt-4 text-[15px] text-ink-soft">
-              The full picture — prior authorization steps, the state mandate,
-              waiver programs — lives on our{" "}
+              How the benefit check works — and everything else about getting
+              started — lives on our{" "}
               <Link href={`/${stateSlug}`} className="font-bold text-brand-teal hover:underline">
-                {stateCfg.name} coverage guide
+                {stateCfg.name} guide
               </Link>
               .
             </p>
@@ -311,9 +312,8 @@ export default function CountyView({
             </h2>
             <p className="mt-4 text-white/75">
               Tell us where you are and what you&rsquo;re seeing. An intake
-              advocate calls back — usually the same business day — with your{" "}
-              {content.medicaidProgramName.split(" (")[0]} or private-insurance
-              answer and an honest start timeline for your part of{" "}
+              advocate calls back — usually the same business day — with your
+              coverage answer and an honest start timeline for your part of{" "}
               {stateCfg.name}.
             </p>
           </div>

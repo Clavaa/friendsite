@@ -6,7 +6,6 @@ import PhotoPlaceholder from "../../../components/PhotoPlaceholder";
 import ProofChip from "../../../components/ProofChip";
 import StickyCallBar from "../../../components/StickyCallBar";
 import { siteConfig, type StateSlug } from "../../../../site.config";
-import { stateContent } from "../../../data/states";
 import { services } from "../../../data/services";
 import { countiesByState } from "../../../data/counties";
 import { breadcrumbJsonLd } from "../../../lib/seo";
@@ -25,7 +24,6 @@ export default function CityView({
   city: CityEntry;
 }) {
   const stateCfg = siteConfig.states[stateSlug];
-  const content = stateContent[stateSlug];
   const cityLabel = `${city.name}, ${stateCfg.abbr}`;
 
   // Counties whose nearest served city is this one — internal links that
@@ -79,8 +77,8 @@ export default function CityView({
             </h1>
             <p className="mt-4 max-w-lg text-lg text-ink-soft">
               One-on-one, BCBA-led therapy for children with autism in the{" "}
-              {city.name} area — at your home, in our centers, and over
-              secure video. Insurance handled for you, in plain English.
+              {city.name} area — at your home, at daycare, and over secure
+              video. Insurance handled for you, in plain English.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -166,7 +164,14 @@ export default function CityView({
                   href={`/services/${s.slug}`}
                   className={`group flex h-full flex-col rounded-3xl p-6 transition-all hover:-translate-y-0.5 hover:shadow-card-lg ${s.tintClass}`}
                 >
-                  <h3 className="font-display text-xl">{s.cardTitle}</h3>
+                  <h3 className="font-display flex flex-wrap items-center gap-2 text-xl">
+                    {s.cardTitle}
+                    {s.comingSoon && (
+                      <span className="rounded-full bg-white px-2.5 py-0.5 text-[11px] font-sans font-extrabold uppercase tracking-[0.08em] text-brand-teal shadow-chip">
+                        Coming soon
+                      </span>
+                    )}
+                  </h3>
                   <p className="mt-2 flex-1 text-[15px] leading-relaxed text-ink-soft">
                     {s.cardBlurb}
                   </p>
@@ -191,26 +196,23 @@ export default function CityView({
             <h2 className="font-display mt-2 text-3xl sm:text-4xl">
               Coverage works the same across {stateCfg.name}
             </h2>
-            <p className="mt-4 text-ink-soft">{content.medicaidIntro[0]}</p>
             <p className="mt-4 text-ink-soft">
-              Private insurance is covered by {stateCfg.name}&rsquo;s autism
-              insurance law for most state-regulated plans, and we verify every
-              family&rsquo;s exact benefits free before care begins. The full
-              picture — prior authorization, the state mandate, waiver programs
-              — lives on our{" "}
+              Coverage varies by plan — not by city — so we check yours
+              instead of guessing. Most families pay little or nothing once
+              benefits are confirmed, whether their child has Medicaid or
+              private insurance, and we run a free benefit check that tells
+              you exactly where you stand.
+            </p>
+            <p className="mt-4 text-ink-soft">
+              Send one photo of your insurance card and a real person calls
+              you back with a plain-English answer, usually within a business
+              day. How the whole process works lives on our{" "}
               <Link href={`/${stateSlug}`} className="font-bold text-brand-teal hover:underline">
-                {stateCfg.name} coverage guide
+                {stateCfg.name} guide
               </Link>
               .
             </p>
           </div>
-          <ul className="mt-6 flex flex-wrap gap-2.5">
-            {content.medicaidPlans.map((plan) => (
-              <li key={plan} className="rounded-full bg-cream px-4 py-2 text-[15px] font-semibold">
-                {plan}
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 

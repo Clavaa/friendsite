@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.brandName}`,
   },
   description:
-    "BCBA-led ABA therapy for children with autism across Kansas and Colorado — in-home, center-based, school and telehealth. Most major insurance accepted. Talk to an intake advocate today.",
+    "BCBA-led ABA therapy for children with autism across Kansas and Colorado — in-home, daycare-based and telehealth, from a family-run practice. Free benefit check. Talk to an intake advocate today.",
   openGraph: {
     siteName: siteConfig.brandName,
     type: "website",

@@ -34,13 +34,15 @@ export const siteConfig = {
   leadNotificationEmail: "info@sunbirdaba.com",
 
   /**
-   * Trust checklist shown in the hero. Keep these three claims accurate:
-   * they are the only claims the hero is allowed to make.
+   * Modality chip strip shown in the hero. Must always match the services
+   * we actually offer — these are the only claims the hero is allowed to
+   * make. `soon: true` renders a "coming soon" treatment instead of a check.
    */
   trustChecklist: [
-    "Family-centered",
-    "Individualized care",
-    "In-home support",
+    { label: "In-home ABA", soon: false },
+    { label: "Daycare-based", soon: false },
+    { label: "Telehealth", soon: false },
+    { label: "In-center", soon: true },
   ],
 
   /**

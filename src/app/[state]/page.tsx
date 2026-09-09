@@ -120,61 +120,70 @@ export default async function StatePage({
               />
             </div>
             <ProofChip className="absolute -bottom-4 left-4">
-              {state === "kansas"
-                ? "KanCare families welcome"
-                : "Health First Colorado families welcome"}
+              {content.name} families welcome
             </ProofChip>
           </div>
         </div>
       </section>
 
-      {/* ————— Medicaid pathway ————— */}
+      {/* ————— Coverage, kept honest and simple ————— */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <div className="prose-measure">
             <p className="text-sm font-bold tracking-wide text-brand-teal">
-              Medicaid in {content.name}
+              Paying for therapy in {content.name}
             </p>
             <h2 className="font-display mt-2 text-3xl sm:text-4xl">
-              ABA through {content.medicaidProgramName}
+              {content.coverageHeading}
             </h2>
-            {content.medicaidIntro.map((p) => (
+            {content.coverageBody.map((p) => (
               <p key={p.slice(0, 40)} className="mt-4 text-ink-soft">
                 {p}
               </p>
             ))}
           </div>
-          <div className="mt-8 rounded-3xl bg-sun-wash p-6 sm:p-8 lg:max-w-3xl">
-            <h3 className="font-display text-xl">
-              {state === "kansas" ? "The three KanCare plans" : "One program, one pathway"}
-            </h3>
-            <ul className="mt-4 flex flex-wrap gap-2.5">
-              {content.medicaidPlans.map((plan) => (
-                <li
-                  key={plan}
-                  className="rounded-full bg-white px-4 py-2 text-[15px] font-semibold shadow-chip"
-                >
-                  {plan}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-[15px] text-ink-soft">{content.medicaidPlansNote}</p>
-          </div>
         </div>
       </section>
 
-      {/* ————— Prior auth as simple steps ————— */}
+      {/* ————— The free benefit check, step by step ————— */}
       <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <div className="prose-measure">
             <h2 className="font-display text-3xl sm:text-4xl">
-              {content.priorAuthHeading}
+              {content.benefitCheckHeading}
             </h2>
-            <p className="mt-4 text-ink-soft">{content.priorAuthIntro}</p>
+            <p className="mt-4 text-ink-soft">{content.benefitCheckIntro}</p>
+          </div>
+          <ol className="mt-8 grid gap-4 md:grid-cols-3">
+            {content.benefitCheckSteps.map((step, i) => (
+              <li key={step.title} className="flex gap-4 rounded-3xl bg-white p-6 shadow-card">
+                <span className="font-display grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-teal text-lg text-white">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 className="font-display text-lg leading-snug">{step.title}</h3>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-ink-soft">
+                    {step.body}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ————— Getting started, step by step ————— */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <div className="prose-measure">
+            <h2 className="font-display text-3xl sm:text-4xl">
+              {content.startHeading}
+            </h2>
+            <p className="mt-4 text-ink-soft">{content.startIntro}</p>
           </div>
           <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:max-w-4xl">
-            {content.priorAuthSteps.map((step, i) => (
-              <li key={step.title} className="flex gap-4 rounded-3xl bg-white p-6 shadow-card">
+            {content.startSteps.map((step, i) => (
+              <li key={step.title} className="flex gap-4 rounded-3xl bg-cream p-6">
                 <span className="font-display grid h-10 w-10 shrink-0 place-items-center rounded-full bg-ink text-lg text-white">
                   {i + 1}
                 </span>
@@ -190,14 +199,14 @@ export default async function StatePage({
         </div>
       </section>
 
-      {/* ————— Mandate + hours, two-up ————— */}
-      <section className="bg-white">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2">
-          <div>
+      {/* ————— Promise + expectations, two-up ————— */}
+      <section className="bg-cream">
+        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-10">
+          <div className="rounded-3xl bg-sun-wash p-6 sm:p-8">
             <h2 className="font-display text-2xl sm:text-3xl">
-              {content.mandateHeading}
+              {content.promiseHeading}
             </h2>
-            {content.mandateBody.map((p) => (
+            {content.promiseBody.map((p) => (
               <p key={p.slice(0, 40)} className="mt-4 text-[15px] leading-relaxed text-ink-soft">
                 {p}
               </p>
@@ -205,39 +214,12 @@ export default async function StatePage({
           </div>
           <div className="rounded-3xl bg-mint-wash p-6 sm:p-8">
             <h2 className="font-display text-2xl sm:text-3xl">
-              {content.hoursHeading}
+              {content.expectHeading}
             </h2>
-            {content.hoursBody.map((p) => (
+            {content.expectBody.map((p) => (
               <p key={p.slice(0, 40)} className="mt-4 text-[15px] leading-relaxed text-ink-soft">
                 {p}
               </p>
-            ))}
-            <p className="mt-4 text-[14px] font-semibold">
-              {content.licensureNote}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ————— Waivers ————— */}
-      <section className="bg-cream">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <div className="prose-measure">
-            <h2 className="font-display text-3xl sm:text-4xl">
-              {content.waiversHeading}
-            </h2>
-            <p className="mt-3 text-ink-soft">
-              Waivers are extra Medicaid programs that can fund supports beyond
-              therapy. They&rsquo;re worth knowing about even if you never need
-              them — and worth joining early if a waitlist exists.
-            </p>
-          </div>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {content.waivers.map((w) => (
-              <div key={w.name} className="rounded-3xl bg-white p-6 shadow-card">
-                <h3 className="font-display text-lg leading-snug">{w.name}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{w.body}</p>
-              </div>
             ))}
           </div>
         </div>
@@ -251,10 +233,9 @@ export default async function StatePage({
               Skip the phone tree. Start with a person.
             </h2>
             <p className="mt-4 text-white/75">
-              Whether your child has {content.medicaidProgramName} or private
-              insurance, the next step is the same 15-minute conversation. We
-              verify your exact benefits free and tell you your honest start
-              timeline in {content.name}.
+              Whatever card is in your wallet, the next step is the same
+              15-minute conversation. We verify your exact benefits free and
+              tell you your honest start timeline in {content.name}.
             </p>
             <p className="mt-4 font-bold">
               <a href={siteConfig.phoneHref} className="text-sun hover:underline">

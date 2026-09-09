@@ -18,7 +18,7 @@ export default function Footer() {
       links: [
         { href: "/getting-started", label: "How intake works" },
         { href: "/get-a-diagnosis", label: "Does my child have autism?" },
-        { href: "/insurance", label: "Insurance & Medicaid" },
+        { href: "/insurance", label: "Free benefit check" },
         { href: "/questions", label: "Parent questions" },
       ],
     },
@@ -35,10 +35,10 @@ export default function Footer() {
       heading: "Services",
       links: [
         { href: "/services/in-home-aba", label: "In-home ABA" },
-        { href: "/services/center-based-aba", label: "Center-based ABA" },
-        { href: "/services/school-based-aba", label: "School-based support" },
-        { href: "/services/early-intervention", label: "Early intervention" },
+        { href: "/services/daycare-based", label: "Daycare-based support" },
+        { href: "/services/parent-training", label: "Parent training" },
         { href: "/services/telehealth", label: "Telehealth" },
+        { href: "/services/center-based-aba", label: "In-center ABA (soon)" },
       ],
     },
     {
@@ -75,7 +75,7 @@ export default function Footer() {
             </span>
           </div>
 
-          <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-6">
+          <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-7">
             {columns.map((col) => (
               <nav key={col.heading} aria-label={col.heading}>
                 <p className="font-display text-[1.2rem]">{col.heading}</p>
@@ -91,12 +91,13 @@ export default function Footer() {
               </nav>
             ))}
 
-            {/* Contact card */}
-            <div className="rounded-3xl bg-brand-teal p-7 text-white sm:col-span-2 lg:col-span-1">
+            {/* Contact card — spans two columns so the phone and email
+                never squeeze or overflow the teal panel. */}
+            <div className="rounded-3xl bg-brand-teal p-7 text-white sm:col-span-2 lg:col-span-2">
               <p className="font-display text-[1.2rem]">Talk to us</p>
               <a
                 href={siteConfig.phoneHref}
-                className="mt-4 flex items-center gap-2.5 whitespace-nowrap text-[15px] font-bold hover:underline"
+                className="mt-4 flex items-center gap-2.5 text-[15px] font-bold hover:underline"
               >
                 <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="currentColor" className="shrink-0">
                   <path d="M3.7 1.3a1 1 0 0 1 1.1.3l1.7 2.1a1 1 0 0 1 0 1.3L5.4 6.2a9.6 9.6 0 0 0 4.4 4.4l1.2-1.1a1 1 0 0 1 1.3 0l2.1 1.7a1 1 0 0 1 .2 1.4l-1 1.4a2 2 0 0 1-2.2.7C7.6 13.5 2.5 8.4 1.3 4.6a2 2 0 0 1 .7-2.2l1.7-1Z" />
@@ -105,13 +106,13 @@ export default function Footer() {
               </a>
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="mt-2.5 flex items-center gap-2.5 text-[12.5px] text-white/85 hover:text-white"
+                className="mt-2.5 flex items-center gap-2.5 text-[13px] text-white/85 hover:text-white"
               >
                 <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" className="shrink-0">
                   <rect x="1.5" y="3" width="13" height="10" rx="1.5" />
                   <path d="M2 4l6 5 6-5" />
                 </svg>
-                {siteConfig.email}
+                <span className="break-all">{siteConfig.email}</span>
               </a>
               <Link
                 href="/getting-started"
@@ -183,8 +184,8 @@ export default function Footer() {
           </div>
         </div>
         <p className="pb-8 text-[13px] leading-relaxed text-ink-soft/80">
-          Insurance and Medicaid details on this site are general information
-          for families, not benefits advice for your specific plan. We verify
+          Coverage information on this site is general information for
+          families, not benefits advice for your specific plan. We verify
           every family&rsquo;s coverage individually before care begins.
         </p>
       </div>

@@ -60,6 +60,11 @@ export default async function ServicePage({
               <span aria-hidden="true"> / </span>
               <Link href="/services" className="hover:text-brand-teal">Services</Link>
             </nav>
+            {s.comingSoon && (
+              <span className="mt-4 inline-block rounded-full bg-white px-4 py-1.5 text-[12px] font-extrabold uppercase tracking-[0.1em] text-brand-teal shadow-chip">
+                Coming soon
+              </span>
+            )}
             <h1 className="font-display mt-4 text-4xl sm:text-5xl">{s.h1}</h1>
             <p className="prose-measure mt-4 text-lg text-ink-soft">{s.intro}</p>
           </div>
@@ -151,7 +156,7 @@ export default async function ServicePage({
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center">
           <div className="text-white">
             <h2 className="font-display text-3xl sm:text-4xl">
-              Wondering if {s.name.toLowerCase()} fits your child?
+              Wondering if {s.nameLower} fits your child?
             </h2>
             <p className="mt-4 text-white/75">
               That&rsquo;s exactly the conversation our intake advocates have

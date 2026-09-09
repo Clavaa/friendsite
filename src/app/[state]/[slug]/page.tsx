@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { siteConfig, isStateSlug, stateSlugs } from "../../../../site.config";
-import { stateContent } from "../../../data/states";
 import { countiesByState, formatPop, getCounty } from "../../../data/counties";
 import CityView from "./CityView";
 import CountyView from "./CountyView";
@@ -46,12 +45,11 @@ export async function generateMetadata({
   const resolved = resolve(await params);
   if (!resolved) return {};
   const { stateSlug, stateCfg } = resolved;
-  const program = stateContent[stateSlug].medicaidProgramName.split(" (")[0];
 
   if (resolved.kind === "city") {
     const { city } = resolved;
     const title = `ABA Therapy in ${city.name}, ${stateCfg.abbr} | ${siteConfig.brandName}`;
-    const description = `BCBA-led ABA therapy for children in ${city.name}, ${stateCfg.abbr} — in-home, center-based, and telehealth. ${program} and most major insurance accepted.`;
+    const description = `BCBA-led ABA therapy for children in ${city.name}, ${stateCfg.abbr} — in-home, daycare-based, and telehealth. Benefits verified free, no phone trees.`;
     return {
       title: { absolute: title },
       description,
@@ -61,7 +59,7 @@ export async function generateMetadata({
 
   const { county } = resolved;
   const title = `ABA Therapy in ${county.full}, ${stateCfg.abbr} | ${siteConfig.brandName}`;
-  const description = `In-home ABA therapy for families across ${county.full}, ${stateCfg.abbr} (pop. ${formatPop(county.pop)}). ${program} accepted, benefits verified free, no phone trees.`;
+  const description = `In-home ABA therapy for families across ${county.full}, ${stateCfg.abbr} (pop. ${formatPop(county.pop)}). Benefits verified free, no phone trees.`;
   return {
     title: { absolute: title },
     description,

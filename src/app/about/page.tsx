@@ -10,27 +10,42 @@ export const metadata: Metadata = {
 };
 
 /**
- * Founders — REAL people. Chavi Gluck and Eli Gluck founded Sunbird.
- * The bios below are founder-narrative BRAND copy (philosophy and why),
- * deliberately free of hard verifiable specifics. Do NOT add credentials,
- * degrees, licenses, past employers, years, or headcounts here without
- * verifying them with the Glucks first.
+ * Founders & team — REAL people, client-confirmed (Sept 2026):
+ * Chavi Gluck, BCBA — "a BCBA with years of clinical and operations
+ * experience" (client's words). Ruth Gluck, MSEd, BCBA, LBA — co-founder.
+ * Ely Gluck (spelled "Ely", not "Eli") — co-founder. Do NOT add further
+ * credentials, past employers, years, or headcounts without verifying
+ * them with the Glucks first. Initials avatars only — no photos.
  */
 const founders = [
   {
     name: "Chavi Gluck",
+    credentials: "BCBA",
+    role: "Co-founder",
     initials: "CG",
     bio: [
-      "Chavi co-founded Sunbird on a simple belief: therapy works best when the whole family is part of it. A good plan isn’t the one that looks right on paper — it’s the one that fits your child, your home, and your everyday life.",
-      "That’s why she cares so much about the small things. A phone that gets answered. Goals explained in plain English. A team that treats your family the way she’d want her own treated. To Chavi, “support you can feel” isn’t a tagline — it’s the standard every Sunbird family should expect.",
+      "Chavi is a BCBA with years of clinical and operations experience, and she co-founded Sunbird on a simple belief: therapy works best when the whole family is part of it. A good plan isn’t the one that looks right on paper — it’s the one that fits your child, your home, and your everyday life.",
+      "That’s why she cares so much about the small things. A phone that gets answered. Goals explained in plain English. A team that treats your family the way she’d want her own treated.",
     ],
   },
   {
-    name: "Eli Gluck",
+    name: "Ruth Gluck",
+    credentials: "MSEd, BCBA, LBA",
+    role: "Co-founder",
+    initials: "RG",
+    bio: [
+      "Ruth brings the educator’s eye to Sunbird’s clinical work. As a licensed behavior analyst with a master’s in education, she thinks about the whole child — how skills learned in a session show up at the dinner table, at daycare, and everywhere in between.",
+      "Her standard for the team is the family standard: if it wouldn’t be good enough for a Gluck kid, it isn’t good enough for yours.",
+    ],
+  },
+  {
+    name: "Ely Gluck",
+    credentials: "",
+    role: "Co-founder",
     initials: "EG",
     bio: [
-      "For Eli, the hardest part of autism care should never be getting it. He co-founded Sunbird to make the path simpler for parents: one call, one team, and a plan built around what your family actually needs — including care that comes to your home.",
-      "He also believes families deserve proof, not promises. That’s where “progress you can see” comes from: real goals, honest tracking, and updates you don’t have to chase. If therapy is working, you’ll know. If something needs to change, you’ll know that too.",
+      "For Ely, the hardest part of autism care should never be getting it. He co-founded Sunbird to make the path simpler for parents: one call, one team, and a plan built around what your family actually needs — including care that comes to your home.",
+      "He also believes families deserve proof, not promises. Real goals, honest tracking, and updates you don’t have to chase. If therapy is working, you’ll know. If something needs to change, you’ll know that too.",
     ],
   },
 ] as const;
@@ -94,9 +109,10 @@ export default function AboutPage() {
             </span>
           </h1>
           <p className="prose-measure mt-5 text-lg text-ink-soft">
-            Sunbird was started by a family, and it runs like one. Our promise
-            is the same one on our front page: progress you can see, and
-            support you can feel — for every family we serve in Kansas and
+            Sunbird was started by a family, and it runs like one. The
+            standard is simple: every plan we write, every call we return,
+            every session we run should be good enough for our own kids —
+            because that&rsquo;s what your kids deserve, in Kansas and in
             Colorado.
           </p>
         </div>
@@ -117,12 +133,11 @@ export default function AboutPage() {
           </div>
 
           {/*
-            Optional additions to collect from Chavi & Eli before publishing
-            anything more specific than the narrative copy below: role split
-            (clinical vs operations), verified credentials, background, and
-            any personal details they WANT public. Verify before adding.
+            Client-confirmed names, credentials, and role lines only (see
+            note above the founders array). Verify with the Glucks before
+            adding anything more specific.
           */}
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {founders.map((f) => (
               <article
                 key={f.name}
@@ -136,9 +151,16 @@ export default function AboutPage() {
                     {f.initials}
                   </span>
                   <div>
-                    <h3 className="font-display text-2xl">{f.name}</h3>
+                    <h3 className="font-display text-2xl">
+                      {f.name}
+                      {f.credentials ? (
+                        <span className="text-[1.05rem] text-ink-soft">
+                          , {f.credentials}
+                        </span>
+                      ) : null}
+                    </h3>
                     <p className="mt-1 text-[14px] font-bold tracking-wide text-brand-teal">
-                      Co-founder
+                      {f.role}
                     </p>
                   </div>
                 </div>

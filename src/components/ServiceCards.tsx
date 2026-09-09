@@ -14,8 +14,9 @@ export default function ServiceCards() {
             Therapy shaped around your child&rsquo;s week
           </h2>
           <p className="mt-3 text-ink-soft">
-            Home, center, school, video — the setting serves the plan, never
-            the other way around. Many families mix more than one.
+            Home, daycare, video — and our centers coming soon. The setting
+            serves the plan, never the other way around, and many families
+            mix more than one.
           </p>
         </div>
         <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -26,13 +27,20 @@ export default function ServiceCards() {
                 className={`group flex h-full flex-col justify-between rounded-3xl p-6 transition-all hover:-translate-y-0.5 hover:shadow-card-lg ${s.tintClass}`}
               >
                 <div>
-                  <h3 className="font-display text-2xl">{s.cardTitle}</h3>
+                  <h3 className="font-display flex flex-wrap items-center gap-2.5 text-2xl">
+                    {s.cardTitle}
+                    {s.comingSoon && (
+                      <span className="font-sans rounded-full bg-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.08em] text-brand-teal shadow-chip">
+                        Coming soon
+                      </span>
+                    )}
+                  </h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
                     {s.cardBlurb}
                   </p>
                 </div>
                 <span className="mt-6 inline-flex items-center gap-2 text-[15px] font-bold text-ink">
-                  Explore {s.name.toLowerCase()}
+                  Explore {s.nameLower}
                   <span
                     aria-hidden="true"
                     className="grid h-8 w-8 place-items-center rounded-full bg-white text-brand-teal shadow-chip transition-transform group-hover:translate-x-1"

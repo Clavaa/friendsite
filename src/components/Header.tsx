@@ -10,7 +10,8 @@ import { siteConfig } from "../../site.config";
  * Header nav, redesigned for breathing room.
  *
  * Rules that keep it from ever squishing again:
- * - Five top-level items max; everything else lives in the footer.
+ * - Six top-level items max (Careers added per the client); everything
+ *   else lives in the footer.
  * - Locations is a single dropdown holding both states + their cities,
  *   so adding a state or city never adds a top-level item.
  * - Every nav label, the phone, and the CTA pill are whitespace-nowrap —
@@ -28,18 +29,19 @@ const primaryNav = [
 const secondaryNav = [
   { href: "/get-a-diagnosis", label: "Get a diagnosis" },
   { href: "/insurance", label: "Insurance" },
+  { href: "/careers", label: "Careers" },
 ];
 
 const locationGroups = [
   {
     state: siteConfig.states.kansas,
     href: "/kansas",
-    blurb: "KanCare + city teams",
+    blurb: "City teams + statewide in-home",
   },
   {
     state: siteConfig.states.colorado,
     href: "/colorado",
-    blurb: "Health First Colorado + city teams",
+    blurb: "City teams + statewide in-home",
   },
 ] as const;
 

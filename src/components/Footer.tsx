@@ -21,6 +21,7 @@ export default function Footer() {
         { href: "/getting-started", label: "How intake works" },
         { href: "/get-a-diagnosis", label: "Does my child have autism?" },
         { href: "/insurance", label: "Free benefit check" },
+        { href: "/resources", label: "Parent guides" },
         { href: "/questions", label: "Parent questions" },
       ],
     },
@@ -30,7 +31,8 @@ export default function Footer() {
         { href: "/about", label: "Who we are" },
         { href: "/services", label: "Our services" },
         { href: "/careers", label: "Careers" },
-        { href: "/questions", label: "FAQ" },
+        { href: "/resources/what-is-aba", label: "What is ABA?" },
+        { href: "/resources/aba-glossary", label: "ABA glossary" },
       ],
     },
     {

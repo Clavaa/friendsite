@@ -27,9 +27,29 @@ const primaryNav = [
 ];
 
 const secondaryNav = [
-  { href: "/get-a-diagnosis", label: "Get a diagnosis" },
   { href: "/insurance", label: "Insurance" },
   { href: "/careers", label: "Careers" },
+];
+
+/** The Resources dropdown: the parent-help library + its sibling funnels.
+ *  Keeps the header at six top-level items (its hard rule) while giving
+ *  the guides a front-door. */
+const resourcesNav = [
+  {
+    href: "/resources",
+    label: "Parent guides",
+    blurb: "Plain-words guides, from “what is ABA” to your first session",
+  },
+  {
+    href: "/questions",
+    label: "Parent questions",
+    blurb: "Straight answers to the questions families call us with",
+  },
+  {
+    href: "/get-a-diagnosis",
+    label: "Get a diagnosis",
+    blurb: "Does my child have autism? Evaluation help, state by state",
+  },
 ];
 
 const locationGroups = [
@@ -58,25 +78,34 @@ function PhoneIcon() {
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
   const locationsRef = useRef<HTMLDivElement>(null);
+  const resourcesRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  // Close both menus on navigation.
+  // Close all menus on navigation.
   useEffect(() => {
     setOpen(false);
     setLocationsOpen(false);
+    setResourcesOpen(false);
   }, [pathname]);
 
-  // Close the Locations dropdown on outside click or Escape.
+  // Close open dropdowns on outside click or Escape.
   useEffect(() => {
-    if (!locationsOpen) return;
+    if (!locationsOpen && !resourcesOpen) return;
     const onPointerDown = (e: PointerEvent) => {
       if (!locationsRef.current?.contains(e.target as Node)) {
         setLocationsOpen(false);
       }
+      if (!resourcesRef.current?.contains(e.target as Node)) {
+        setResourcesOpen(false);
+      }
     };
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLocationsOpen(false);
+      if (e.key === "Escape") {
+        setLocationsOpen(false);
+        setResourcesOpen(false);
+      }
     };
     document.addEventListener("pointerdown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
@@ -84,7 +113,7 @@ export default function Header() {
       document.removeEventListener("pointerdown", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [locationsOpen]);
+  }, [locationsOpen, resourcesOpen]);
 
   const navLinkClass =
     "whitespace-nowrap rounded-lg px-2.5 py-2 text-[16px] font-bold text-ink transition-colors hover:bg-sun-wash xl:px-3.5";
@@ -112,7 +141,10 @@ export default function Header() {
           <div ref={locationsRef} className="relative">
             <button
               type="button"
-              onClick={() => setLocationsOpen(!locationsOpen)}
+              onClick={() => {
+                setLocationsOpen(!locationsOpen);
+                setResourcesOpen(false);
+              }}
               aria-expanded={locationsOpen}
               aria-haspopup="true"
               className={`${navLinkClass} flex items-center gap-1 ${
@@ -171,6 +203,60 @@ export default function Header() {
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+          </div>
+
+          {/* Resources dropdown — parent guides, questions, diagnosis help */}
+          <div ref={resourcesRef} className="relative">
+            <button
+              type="button"
+              onClick={() => {
+                setResourcesOpen(!resourcesOpen);
+                setLocationsOpen(false);
+              }}
+              aria-expanded={resourcesOpen}
+              aria-haspopup="true"
+              className={`${navLinkClass} flex items-center gap-1 ${
+                resourcesOpen ? "bg-sun-wash text-ink" : ""
+              }`}
+            >
+              Resources
+              <svg
+                aria-hidden="true"
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={`transition-transform ${resourcesOpen ? "rotate-180" : ""}`}
+              >
+                <path d="M2.5 4.5L6 8l3.5-3.5" />
+              </svg>
+            </button>
+
+            {resourcesOpen && (
+              <div className="absolute left-1/2 top-full z-50 mt-2 w-[24rem] -translate-x-1/2 rounded-3xl border border-line bg-white p-4 shadow-card-lg">
+                <ul className="space-y-1">
+                  {resourcesNav.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="block rounded-2xl px-4 py-3 hover:bg-sun-wash"
+                      >
+                        <span className="font-display block text-[1.05rem] text-ink">
+                          {item.label}
+                        </span>
+                        <span className="mt-0.5 block text-[13.5px] leading-snug text-ink-soft">
+                          {item.blurb}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
           </div>
@@ -251,6 +337,22 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
+
+          <p className="mt-3 px-3 text-[13px] font-bold tracking-wide text-ink-soft">
+            Resources
+          </p>
+          <div className="mt-1">
+            {resourcesNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3 py-2 text-base font-semibold text-ink hover:bg-sun-wash"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
 
           <p className="mt-3 px-3 text-[13px] font-bold tracking-wide text-ink-soft">
             Locations

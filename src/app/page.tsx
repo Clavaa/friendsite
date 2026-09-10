@@ -14,6 +14,7 @@ import LeadForm from "../components/LeadForm";
 import PhotoTour from "../components/PhotoTour";
 import StickyCallBar from "../components/StickyCallBar";
 import { siteConfig } from "../../site.config";
+import { getGuide } from "../data/guides";
 
 export const metadata: Metadata = {
   title: `ABA therapy for children in Kansas & Colorado | ${siteConfig.brandName}`,
@@ -93,6 +94,57 @@ const serviceCards: {
     blurb: "Structured spaces, peers to practice with, and a gentle on-ramp to school.",
     img: { src: "/images/blocks-play-living-room.jpg", alt: "A woman and a young girl stacking colorful wooden blocks together" },
     comingSoon: true,
+  },
+];
+
+/* "What ABA helps with" tiles — the plain-words education strip. Icons
+   are simple line glyphs in the brand teal; copy names outcomes a parent
+   can recognize, never clinical claims. */
+const abaHelps: { title: string; body: string; icon: React.ReactNode }[] = [
+  {
+    title: "Communication",
+    body: "Words, signs, or pictures — your child learns to ask for what they want, so they don't have to melt down to be heard.",
+    icon: (
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Connection & play",
+    body: "Taking turns, sharing space, joining other kids — the skills that turn parallel play into friendship.",
+    icon: (
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
+  },
+  {
+    title: "Everyday independence",
+    body: "Dressing, mealtimes, tooth-brushing, toilet training — big skills broken into steps small enough to win.",
+    icon: (
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2v4" />
+        <path d="M5 9l2.5 2" />
+        <path d="M19 9l-2.5 2" />
+        <path d="M12 22a7 7 0 0 0 7-7c0-4-3-6-7-9-4 3-7 5-7 9a7 7 0 0 0 7 7z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Calmer hard moments",
+    body: "Fewer meltdowns, easier transitions, and a plan for the moments that used to run the whole day.",
+    icon: (
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2 13a10 10 0 0 1 20 0" />
+        <path d="M5 13a7 7 0 0 1 14 0" />
+        <path d="M8 13a4 4 0 0 1 8 0" />
+        <circle cx="12" cy="17" r="1.6" fill="currentColor" stroke="none" />
+      </svg>
+    ),
   },
 ];
 
@@ -176,6 +228,46 @@ const journey = [
   },
 ];
 
+/* Stage-based triage — meets the parent wherever they are on the road.
+   Each stage routes to its own funnel; the tints alternate the washes. */
+const startStages = [
+  {
+    eyebrow: "Just wondering",
+    title: "I think my child might have autism.",
+    body: "Trust the feeling enough to check it out. We'll walk you through what a real evaluation looks like in your state — and what you can do while you wait for one.",
+    cta: "Get diagnostic help",
+    href: "/get-a-diagnosis",
+    tint: "bg-mint-wash",
+  },
+  {
+    eyebrow: "Just diagnosed",
+    title: "We got the diagnosis. Now what?",
+    body: "Breathe first. Then read our calm, do-able checklist for the first few weeks — what actually helps now, and what's allowed to wait.",
+    cta: "Read the first-steps guide",
+    href: "/resources/first-steps-after-a-diagnosis",
+    tint: "bg-sun-wash",
+  },
+  {
+    eyebrow: "Doing the research",
+    title: "I want to understand ABA first.",
+    body: "Smart. Start with the plain-words guide to what ABA is and what a session really looks like — then decide if it sounds right for your child.",
+    cta: "Learn how ABA works",
+    href: "/resources/what-is-aba",
+    tint: "bg-white shadow-card",
+  },
+];
+
+/* The three guides featured on the homepage shelf — pulled from the
+   guides data so titles/blurbs never drift from the hub. */
+const featuredGuides = (
+  ["paying-for-aba", "preparing-for-your-first-session", "aba-glossary"] as const
+).flatMap((slug) => {
+  const g = getGuide(slug);
+  return g
+    ? [{ title: g.cardTitle, blurb: g.cardBlurb, minutes: g.minutes, href: `/resources/${g.slug}` }]
+    : [];
+});
+
 const tourPhotos = [
   {
     src: "/images/family-puzzle-kitchen.jpg",
@@ -236,10 +328,12 @@ export default function HomePage() {
   return (
     <>
       {/* ————— 1 · Hero: copy stack + quick-call pill on the left, intake
-                 card on the right, rising sun + the brand sunbird
-                 cresting the panel bottom edge below the copy ————— */}
-      <section className="bg-cream px-3 sm:px-6">
-        <div className="relative mx-auto max-w-[87rem] overflow-hidden rounded-3xl bg-mint-wash">
+                 card on the right, rising sun cresting the horizon curve.
+                 Deliberately full-bleed (no giant rounded card wrapper) —
+                 the mint field runs edge to edge and lands on the slim teal
+                 settings ribbon, our own shape language. ————— */}
+      <section className="relative overflow-hidden bg-mint-wash">
+        <div className="relative mx-auto max-w-[87rem]">
           <div className="relative z-10 grid gap-10 px-5 pt-12 sm:px-10 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,29.5rem)] lg:gap-14 lg:px-14 lg:pt-[4.5rem] xl:grid-cols-[minmax(0,1fr)_minmax(0,31rem)] xl:gap-20">
             {/* Left: the full copy stack, still huge, now left-set */}
             <div className="flex flex-col text-center lg:text-left">
@@ -265,28 +359,9 @@ export default function HomePage() {
                   <PhoneIcon /> Call {siteConfig.phone}
                 </a>
               </div>
-              {/* Modality chips — must always match reality (see site.config.ts) */}
-              <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:justify-start">
-                {siteConfig.trustChecklist.map((item) => (
-                  <li key={item.label} className="flex items-center gap-2.5 text-[15px] font-bold">
-                    {item.soon ? (
-                      <span
-                        aria-hidden="true"
-                        className="grid h-5 w-5 shrink-0 place-items-center rounded-full border-2 border-sun bg-sun/25"
-                      />
-                    ) : (
-                      <CheckDot />
-                    )}
-                    {item.label}
-                    {item.soon && (
-                      <span className="-ml-1 text-[13px] font-semibold italic text-ink-soft">
-                        coming soon
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-              {/* Rising sun + hummingbird cresting the panel bottom (desktop) */}
+              {/* Rising sun + hummingbird cresting the horizon (desktop) —
+                  the modality checklist now lives in the teal settings
+                  ribbon directly below the hero. */}
               <div className="pointer-events-none relative mt-4 hidden min-h-[11rem] flex-1 items-end justify-center lg:flex">
                 <RisingSun className="-mb-12 w-[34rem] max-w-full" />
               </div>
@@ -297,13 +372,51 @@ export default function HomePage() {
               <LeadForm sourcePage="home" />
             </div>
           </div>
-          {/* Mobile / tablet: the sun crests the panel bottom under the card */}
+          {/* Mobile / tablet: the sun crests the horizon under the card */}
           <div className="pointer-events-none relative mt-2 flex justify-center lg:hidden">
             <RisingSun className="-mb-2 w-[19rem] max-w-[80%] sm:w-[26rem]" />
           </div>
           {/* corner sparkles */}
           <FeatherSpot className="pointer-events-none absolute bottom-[7rem] left-[3%] hidden w-16 -rotate-6 opacity-60 xl:block" />
           <Sparkles className="pointer-events-none absolute bottom-12 right-[5%] hidden w-16 opacity-70 lg:block" />
+        </div>
+      </section>
+
+      {/* ————— 1b · Settings ribbon: where care happens + the free benefit
+                 check, in one slim teal band. This carries the modality
+                 checklist that used to sit inside the hero. ————— */}
+      <section aria-label="Where sessions happen" className="bg-brand-teal text-white">
+        <div className="mx-auto flex max-w-[87rem] flex-wrap items-center justify-center gap-x-8 gap-y-2.5 px-4 py-4 sm:px-6 lg:justify-between lg:py-3.5">
+          <ul className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5">
+            {siteConfig.trustChecklist.map((item) => (
+              <li key={item.label} className="flex items-center gap-2.5 text-[14.5px] font-bold">
+                {item.soon ? (
+                  <span
+                    aria-hidden="true"
+                    className="grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full border-2 border-sun bg-sun/25"
+                  />
+                ) : (
+                  <span className="grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full bg-sun text-ink">
+                    <svg aria-hidden="true" width="10" height="10" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M2.5 7.5l3 3 6-7" />
+                    </svg>
+                  </span>
+                )}
+                {item.label}
+                {item.soon && (
+                  <span className="-ml-1 text-[12.5px] font-semibold italic text-white/75">
+                    coming soon
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/insurance"
+            className="link-grow text-center text-[14.5px] font-extrabold text-sun lg:text-left"
+          >
+            Free benefit check — usually back within a business day
+          </Link>
         </div>
       </section>
 
@@ -423,6 +536,55 @@ export default function HomePage() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ————— 5b · What ABA helps with: plain-words education strip.
+                 Answers "what even is ABA?" right on the homepage — four
+                 outcome tiles a parent can recognize their child in, with
+                 the full guide one click away. ————— */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-[87rem] px-4 pt-24 sm:px-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className={eyebrowTeal}>What is ABA therapy?</p>
+            <h2 className="font-display display-xl mt-6 text-4xl sm:text-5xl lg:text-[3.4rem]">
+              Play on the outside. A plan underneath.
+            </h2>
+            <p className="mt-6 text-[17px] leading-relaxed text-ink-soft">
+              ABA is one-on-one teaching built around what motivates your
+              child — and progress gets measured at every session. Four
+              places families feel it first:
+            </p>
+          </div>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            {abaHelps.map((tile) => (
+              <div
+                key={tile.title}
+                className="reveal rounded-3xl bg-white p-7 shadow-card"
+              >
+                <span
+                  aria-hidden="true"
+                  className="grid h-12 w-12 place-items-center rounded-2xl bg-mint-wash text-brand-teal"
+                >
+                  {tile.icon}
+                </span>
+                <h3 className="font-display mt-5 text-[1.35rem] leading-snug">
+                  {tile.title}
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
+                  {tile.body}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link href="/resources/what-is-aba" className={solidPill}>
+              Read the plain-words guide <Chevron />
+            </Link>
+            <Link href="/resources/aba-glossary" className={outlinePill}>
+              Decode the jargon <Chevron />
+            </Link>
           </div>
         </div>
       </section>
@@ -690,64 +852,99 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ————— 11 · Next-step triage: 3 cards ————— */}
+      {/* ————— 11 · Wherever you are, start there: stage-based triage.
+                 Meets the parent at their stop on the road — suspicion,
+                 fresh diagnosis, or research mode — and routes each to its
+                 own next step. Text-first cards on purpose (no photo grid). ————— */}
       <section className="bg-cream">
-        <div className="mx-auto max-w-[87rem] px-4 py-[9rem] sm:px-6">
-          <h2 className="font-display display-xl text-center text-4xl sm:text-6xl lg:text-[4.25rem]">
-            What would help you most right now?
-          </h2>
-          <div className="mt-16 grid gap-6 sm:grid-cols-3">
-            <div className="reveal">
-              <div className="lift relative aspect-[10/7] overflow-hidden rounded-3xl">
-                <Image
-                  src="/images/picture-cards-classroom.jpg"
-                  alt="A woman showing picture cards to a young child during a learning activity"
-                  fill
-                  sizes="(min-width: 640px) 28rem, 100vw"
-                  className="object-cover"
-                />
+        <div className="mx-auto max-w-[87rem] px-4 py-[8rem] sm:px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="font-display display-xl text-4xl sm:text-6xl lg:text-[4.25rem]">
+              Wherever you are, start there.
+            </h2>
+            <p className="mx-auto mt-7 max-w-xl text-[17px] leading-relaxed text-ink-soft">
+              Families find us at every stop on this road. Pick the sentence
+              that sounds like your house right now.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-5 lg:grid-cols-3">
+            {startStages.map((stage) => (
+              <Link
+                key={stage.title}
+                href={stage.href}
+                className={`lift reveal group flex h-full flex-col rounded-3xl p-8 sm:p-9 ${stage.tint}`}
+              >
+                <p className="text-[12px] font-extrabold uppercase tracking-[0.18em] text-brand-teal">
+                  {stage.eyebrow}
+                </p>
+                <h3 className="font-display mt-4 text-[1.7rem] leading-[1.15] sm:text-[1.9rem]">
+                  &ldquo;{stage.title}&rdquo;
+                </h3>
+                <p className="mt-4 flex-1 text-[15.5px] leading-relaxed text-ink-soft">
+                  {stage.body}
+                </p>
+                <p className="mt-7 flex items-center gap-2.5 text-[15px] font-extrabold text-brand-teal">
+                  {stage.cta}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    <Chevron />
+                  </span>
+                </p>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-12 text-center text-[16px]">
+            <strong>Or skip the reading.</strong>{" "}
+            <a href={siteConfig.phoneHref} className="link-grow font-bold text-brand-teal">
+              Call {siteConfig.phone}
+            </a>{" "}
+            — a person answers, and 15 minutes covers a lot of road.
+          </p>
+        </div>
+      </section>
+
+      {/* ————— 11b · Parent-guides shelf: the resources hub, one scroll
+                 from the FAQ. Slim on purpose — three guides + the door. ————— */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-[87rem] px-3 pb-24 sm:px-6">
+          <div className="rounded-3xl bg-sun-wash px-6 py-12 sm:px-10 lg:px-14">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-xl">
+                <p className={eyebrowTeal}>Parent guides</p>
+                <h2 className="font-display display-xl mt-5 text-3xl sm:text-[2.6rem]">
+                  Read up while dinner cooks.
+                </h2>
+                <p className="mt-4 text-[16.5px] leading-relaxed text-ink-soft">
+                  Short, plain-words guides — no dates, no jargon, no
+                  homework. Written for parents, not clinicians.
+                </p>
               </div>
-              <h3 className="font-display mt-7 text-[1.9rem] leading-tight">
-                Does my child have autism?
-              </h3>
-              <Link href="/get-a-diagnosis" className={`${outlinePill} mt-5`}>
-                Get diagnostic help <Chevron />
+              <Link href="/resources" className={`${solidPill} shrink-0 self-start lg:self-auto`}>
+                Browse all guides <Chevron />
               </Link>
             </div>
-            <div className="reveal">
-              <div className="lift relative aspect-[10/7] overflow-hidden rounded-3xl">
-                <Image
-                  src="/brand/plush-trio.jpg"
-                  alt="Three of Sunbird's plush mascot birds sitting in a row"
-                  fill
-                  sizes="(min-width: 640px) 28rem, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="font-display mt-7 text-[1.9rem] leading-tight">
-                Understand how ABA works
-              </h3>
-              <Link href="/questions" className={`${outlinePill} mt-5`}>
-                Read parent answers <Chevron />
-              </Link>
-            </div>
-            <div className="reveal">
-              <div className="lift relative aspect-[10/7] overflow-hidden rounded-3xl">
-                <Image
-                  src="/images/blocks-play-living-room.jpg"
-                  alt="A woman and a young girl smiling while stacking wooden blocks on a living room floor"
-                  fill
-                  sizes="(min-width: 640px) 28rem, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="font-display mt-7 text-[1.9rem] leading-tight">
-                Talk to a person now
-              </h3>
-              <a href={siteConfig.phoneHref} className={`${outlinePill} mt-5`}>
-                Call {siteConfig.phone}
-              </a>
-            </div>
+            <ul className="mt-9 grid gap-4 sm:grid-cols-3">
+              {featuredGuides.map((g) => (
+                <li key={g.href}>
+                  <Link
+                    href={g.href}
+                    className="lift group flex h-full flex-col rounded-2xl bg-white p-6 shadow-card"
+                  >
+                    <h3 className="font-display text-[1.25rem] leading-snug group-hover:text-brand-teal">
+                      {g.title}
+                    </h3>
+                    <p className="mt-2.5 flex-1 text-[14.5px] leading-relaxed text-ink-soft">
+                      {g.blurb}
+                    </p>
+                    <p className="mt-4 flex items-center gap-2 text-[13px] font-extrabold text-brand-teal">
+                      {g.minutes}-minute read
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">
+                        <Chevron size={12} />
+                      </span>
+                    </p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

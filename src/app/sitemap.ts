@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig, stateSlugs } from "../../site.config";
+import { guides } from "../data/guides";
 import { questionPages } from "../data/questions";
 import { services } from "../data/services";
 import { countiesByState } from "../data/counties";
@@ -15,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/insurance",
     "/getting-started",
     "/questions",
+    "/resources",
     "/about",
     "/careers",
   ];
@@ -27,8 +29,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const servicePaths = services.map((s) => `/services/${s.slug}`);
   const questionPaths = questionPages.map((q) => `/questions/${q.slug}`);
+  const guidePaths = guides.map((g) => `/resources/${g.slug}`);
 
-  return [...staticPaths, ...statePaths, ...servicePaths, ...questionPaths].map(
+  return [
+    ...staticPaths,
+    ...statePaths,
+    ...servicePaths,
+    ...questionPaths,
+    ...guidePaths,
+  ].map(
     (path) => ({
       url: `${base}${path}`,
       lastModified: now,

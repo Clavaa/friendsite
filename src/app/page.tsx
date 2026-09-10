@@ -96,41 +96,41 @@ const serviceCards: {
   },
 ];
 
-/* Struggle → answer rows. Same substance as the old paired cards, but a
-   deliberately different structure: editorial two-column rows with a
-   teal-edge answer panel — no arc text, no nested cards. */
+/* Struggle → answer rows (copy rewritten 9/2026 per client feedback:
+   plainer, warmer, less wit-forward). Layout unchanged — editorial
+   two-column rows with a teal-edge answer panel. */
 const struggles = [
   {
-    struggle: "Deciphering the coverage maze.",
+    struggle: "Making sense of insurance.",
     struggleBody:
-      "Prior authorizations, denial letters, plan documents written by lawyers for lawyers — and somehow it's your homework.",
-    answer: "We do the insurance legwork.",
+      "Plans, approvals, letters full of words nobody uses in real life. It's a lot to sort out on your own.",
+    answer: "We check your benefits for free.",
     answerBody:
-      "Send a photo of your card and we come back with a plain-English answer — what's covered, what you'd owe, and what happens next. Usually within a business day, always free.",
+      "Send us a photo of your insurance card. We'll tell you what your plan covers and what it may cost, in plain words — usually within a business day, and always free.",
   },
   {
-    struggle: "Assembling a care team from scratch.",
+    struggle: "Knowing what to do next.",
     struggleBody:
-      "Evaluations, therapists, waitlists, second opinions. Nobody hands you a map — you're drawing it yourself at the kitchen table.",
-    answer: "We already know the road.",
+      "Diagnosis, paperwork, scheduling — the steps aren't obvious, and nobody hands you a list.",
+    answer: "We guide you step by step.",
     answerBody:
-      "Your intake advocate walks you through diagnosis, funding, and scheduling in order, and your BCBA builds the plan with you — so the next step is always named and never on you alone.",
+      "Your intake advocate stays with you from the first call to the first session, and your BCBA builds the plan with you. You'll always know what's happening now and what comes next.",
   },
   {
-    struggle: "Managing the everyday hard parts.",
+    struggle: "Getting through the daily routines.",
     struggleBody:
-      "Mornings, mealtimes, haircuts, grocery runs. The moments nobody sees are often the ones that take the most out of you.",
-    answer: "We coach the moments that matter.",
+      "Mornings, meals, bedtime, errands. Some parts of the day are just hard — and you're the one in them.",
+    answer: "We coach you, not just your child.",
     answerBody:
-      "Parent coaching is built into every plan — practical strategies for your real routines, practiced live with your BCBA, at home or over video after bedtime.",
+      "Parent coaching comes with every plan. Your BCBA practices your real routines with you — at home or by video — with simple strategies you can use the same day.",
   },
   {
-    struggle: "Holding it together for everyone.",
+    struggle: "Looking after the whole family.",
     struggleBody:
-      "Siblings, work, marriage, your own sleep. Caring for the caregiver rarely makes it onto anyone's treatment plan.",
-    answer: "You get a team, too.",
+      "Autism care touches everyone — siblings, work, your own rest. Your family deserves support too.",
+    answer: "We're here for all of you.",
     answerBody:
-      "A phone that a person answers, check-ins that ask how you are, and honest guidance when something isn't working. Progress you can see — support you can feel.",
+      "A phone number a person answers, regular check-ins, and honest answers when something isn't working. We support your whole family, not just the therapy hour.",
   },
 ];
 
@@ -431,10 +431,10 @@ export default function HomePage() {
       <section className="bg-cream">
         <div className="mx-auto max-w-[87rem] px-4 pb-12 pt-28 sm:px-6">
           <p className="text-center text-[17px] font-extrabold uppercase tracking-[0.14em] text-ink">
-            All the other ways we help you
+            Our services
           </p>
           <Carousel
-            ariaLabel="More Sunbird services"
+            ariaLabel="Our services"
             step={552}
             className="mt-12"
             trackClassName="-mx-4 px-4 pb-2 sm:-mx-6 sm:px-6"
@@ -491,12 +491,10 @@ export default function HomePage() {
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
             <div className="max-w-2xl">
               <h2 className="font-display display-xl text-4xl sm:text-[3.4rem]">
-                We help the parents who hold it all together.
+                Real support for real life.
               </h2>
               <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-ink-soft">
-                There are a million and a half things on your plate. Our job
-                is to take as many of them off it as we possibly can — so you
-                can breathe again.
+                Here&rsquo;s what that looks like at Sunbird, in plain terms.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:pb-1">

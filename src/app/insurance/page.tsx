@@ -93,9 +93,8 @@ export default function InsurancePage() {
               How the free benefit check works
             </h2>
             <p className="mt-4 text-ink-soft">
-              This is the step that replaces weeks of hold music and plan
-              documents written by lawyers for lawyers. Here&rsquo;s exactly
-              what happens.
+              This one step saves you weeks of phone calls and paperwork.
+              Here&rsquo;s exactly what happens.
             </p>
           </div>
           <ol className="mt-8 grid gap-4 md:grid-cols-3">

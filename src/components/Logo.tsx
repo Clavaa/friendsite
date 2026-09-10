@@ -7,7 +7,8 @@ import { siteConfig } from "../../site.config";
  * rounded "Sunbird" wordmark and letterspaced "ABA THERAPY" subline.
  *
  * Rasterized from the supplied brand PDF; the intrinsic file is 1280×423
- * (aspect ≈ 3.03), rendered here at 44px tall in the header.
+ * (aspect ≈ 3.03), rendered at 50px tall in the header (58px from lg up)
+ * per the client's "make the logo bigger" request.
  *
  * variant="reverse" uses the white-wordmark version (rainbow beak kept)
  * for dark teal surfaces.
@@ -27,10 +28,10 @@ export default function Logo({
     <Image
       src={src}
       alt={siteConfig.brandName}
-      width={133}
-      height={44}
+      width={176}
+      height={58}
       priority
-      className={`h-11 w-auto ${className}`}
+      className={`h-[50px] w-auto lg:h-[58px] ${className}`}
     />
   );
 }

@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import ScrollBird from "../components/ScrollBird";
 import JsonLd from "../components/JsonLd";
 import GoogleAnalytics from "../components/GoogleAnalytics";
+import MetaPixel from "../components/MetaPixel";
 import { siteConfig } from "../../site.config";
 import "./globals.css";
 
@@ -109,6 +110,7 @@ export default function RootLayout({
         <ScrollBird />
         <Analytics />
         <GoogleAnalytics />
+        <MetaPixel />
       </body>
     </html>
   );

@@ -5,11 +5,20 @@ import { siteConfig } from "../../site.config";
  * Dark utility bar above the main nav (global chrome).
  * Left: config-gated rating pills — they render only when site.config.ts
  * carries a real score, so a new practice shows an honest quiet bar, never
- * an invented number. Center: the diagnosis triage question. Right: the
- * phone, always one tap away.
+ * an invented number. Center: the diagnosis triage question + the Ask a
+ * BCBA jump link (both sized to coexist at 1024px — the left descriptor
+ * truncates first). Right: the call pill.
+ *
+ * The call pill shows the TOLL-FREE number when site.config.ts carries one
+ * (client request); the local 303 number stays everywhere else. NOTE for
+ * the ads team: Google's call-conversion number-swap is configured for the
+ * displayed 303 number (see the loud comment in site.config.ts) — a second
+ * call-conversion action is required for the toll-free line shown here.
  */
 export default function TopBar() {
   const ratings = siteConfig.ratings.filter((r) => r.score);
+  const callPhone = siteConfig.tollFreePhone ?? siteConfig.phone;
+  const callHref = siteConfig.tollFreePhoneHref ?? siteConfig.phoneHref;
 
   return (
     <div className="bg-ink text-white">
@@ -30,28 +39,40 @@ export default function TopBar() {
               </span>
             ))
           ) : (
-            <span className="truncate text-[12.5px] font-semibold text-white/60">
+            <span className="hidden truncate text-[12.5px] font-semibold text-white/60 lg:inline">
               BCBA-led ABA therapy across Kansas &amp; Colorado
             </span>
           )}
         </div>
-        <Link
-          href="/get-a-diagnosis"
-          className="group inline-flex items-center gap-1.5 whitespace-nowrap text-[14px] font-bold underline decoration-white/70 decoration-2 underline-offset-[5px] transition-colors hover:decoration-sun"
-        >
-          Not sure if it&rsquo;s autism? Start here
-          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5">
-            <path d="M6 3l5 5-5 5" />
-          </svg>
-        </Link>
+        <div className="flex items-center gap-4 lg:gap-5">
+          <Link
+            href="/get-a-diagnosis"
+            className="group inline-flex items-center gap-1.5 whitespace-nowrap text-[14px] font-bold underline decoration-white/70 decoration-2 underline-offset-[5px] transition-colors hover:decoration-sun"
+          >
+            Not sure if it&rsquo;s autism? Start here
+            <svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5">
+              <path d="M6 3l5 5-5 5" />
+            </svg>
+          </Link>
+          <span aria-hidden="true" className="h-4 w-px bg-white/25" />
+          <Link
+            href="/#ask-a-bcba"
+            className="group inline-flex items-center gap-1.5 whitespace-nowrap text-[14px] font-bold underline decoration-sun/80 decoration-2 underline-offset-[5px] transition-colors hover:decoration-sun"
+          >
+            Ask a BCBA
+            <svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-0.5">
+              <path d="M6 3l5 5-5 5" />
+            </svg>
+          </Link>
+        </div>
         <a
-          href={siteConfig.phoneHref}
+          href={callHref}
           className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-white/10 px-4 py-2 text-[13px] font-bold transition-colors hover:bg-white/20"
         >
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
             <path d="M3.7 1.3a1 1 0 0 1 1.1.3l1.7 2.1a1 1 0 0 1 0 1.3L5.4 6.2a9.6 9.6 0 0 0 4.4 4.4l1.2-1.1a1 1 0 0 1 1.3 0l2.1 1.7a1 1 0 0 1 .2 1.4l-1 1.4a2 2 0 0 1-2.2.7C7.6 13.5 2.5 8.4 1.3 4.6a2 2 0 0 1 .7-2.2l1.7-1Z" />
           </svg>
-          {siteConfig.phone}
+          {callPhone}
         </a>
       </div>
 
@@ -73,13 +94,13 @@ export default function TopBar() {
           </div>
         )}
         <a
-          href={siteConfig.phoneHref}
+          href={callHref}
           className="mx-auto flex max-w-xs items-center justify-center gap-2 rounded-full bg-brand-teal px-4 py-2 text-[14px] font-bold text-white"
         >
           <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
             <path d="M3.7 1.3a1 1 0 0 1 1.1.3l1.7 2.1a1 1 0 0 1 0 1.3L5.4 6.2a9.6 9.6 0 0 0 4.4 4.4l1.2-1.1a1 1 0 0 1 1.3 0l2.1 1.7a1 1 0 0 1 .2 1.4l-1 1.4a2 2 0 0 1-2.2.7C7.6 13.5 2.5 8.4 1.3 4.6a2 2 0 0 1 .7-2.2l1.7-1Z" />
           </svg>
-          {siteConfig.phone}
+          {callPhone}
         </a>
       </div>
     </div>

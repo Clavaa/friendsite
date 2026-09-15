@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import StickyCallBar from "../../components/StickyCallBar";
 import { siteConfig } from "../../../site.config";
@@ -77,24 +78,39 @@ export default function AboutPage() {
           aria-hidden="true"
           className="absolute -bottom-44 -left-44 h-[24rem] w-[24rem] rounded-full bg-mint-wash/70"
         />
-        <div className="relative mx-auto max-w-6xl px-4 pb-14 pt-12 sm:px-6 lg:pb-20 lg:pt-20">
-          <p className="flex items-center gap-3 text-[13px] font-bold tracking-[0.18em] text-brand-teal">
-            <span aria-hidden="true" className="h-0.5 w-8 rounded-full bg-sun" />
-            ABOUT SUNBIRD
-          </p>
-          <h1 className="font-display mt-5 max-w-3xl text-4xl sm:text-5xl lg:text-[3.4rem]">
-            A family company,{" "}
-            <span className="block italic text-brand-teal">
-              built for families like yours.
-            </span>
-          </h1>
-          <p className="prose-measure mt-5 text-lg text-ink-soft">
-            Sunbird was started by a family, and it runs like one. The
-            standard is simple: every plan we write, every call we return,
-            every session we run should be good enough for our own kids —
-            because that&rsquo;s what your kids deserve, in Kansas and in
-            Colorado.
-          </p>
+        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-14 pt-12 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14 lg:pb-20 lg:pt-20">
+          <div>
+            <p className="flex items-center gap-3 text-[13px] font-bold tracking-[0.18em] text-brand-teal">
+              <span aria-hidden="true" className="h-0.5 w-8 rounded-full bg-sun" />
+              ABOUT SUNBIRD
+            </p>
+            <h1 className="font-display mt-5 max-w-3xl text-4xl sm:text-5xl lg:text-[3.4rem]">
+              A family company,{" "}
+              <span className="block italic text-brand-teal">
+                built for families like yours.
+              </span>
+            </h1>
+            <p className="prose-measure mt-5 text-lg text-ink-soft">
+              Sunbird was started by a family, and it runs like one. The
+              standard is simple: every plan we write, every call we return,
+              every session we run should be good enough for our own kids —
+              because that&rsquo;s what your kids deserve, in Kansas and in
+              Colorado.
+            </p>
+          </div>
+          {/* Warm hero photo (client request, 9/2026). Honest, descriptive
+              alt only — this is a stock scene of care in a real home, and
+              must never be captioned or implied to be Ruth or Sunbird staff. */}
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-card lg:aspect-[5/4]">
+            <Image
+              src="/images/family-puzzle-kitchen.jpg"
+              alt="Two women and a young boy working on a colorful shape puzzle together at a sunny kitchen table"
+              fill
+              priority
+              sizes="(min-width: 1024px) 32rem, 100vw"
+              className="object-cover"
+            />
+          </div>
         </div>
       </header>
 

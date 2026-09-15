@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CtaBand from "../../../components/CtaBand";
 import JsonLd from "../../../components/JsonLd";
+import ReviewedBy, { reviewedByJsonLd } from "../../../components/ReviewedBy";
 import StickyCallBar from "../../../components/StickyCallBar";
 import { breadcrumbJsonLd } from "../../../lib/seo";
 import { siteConfig } from "../../../../site.config";
@@ -54,6 +55,7 @@ export default async function GuidePage({
     description: g.metaDescription,
     author: { "@id": `${siteConfig.domain}/#organization` },
     publisher: { "@id": `${siteConfig.domain}/#organization` },
+    reviewedBy: reviewedByJsonLd,
   };
 
   const pathIndex = startHereGuides.findIndex((s) => s.slug === g.slug);
@@ -96,6 +98,7 @@ export default async function GuidePage({
             <h1 className="font-display mt-5 max-w-3xl text-4xl sm:text-5xl">
               {g.h1}
             </h1>
+            <ReviewedBy className="mt-5" />
             <p className="prose-measure mt-5 text-lg leading-relaxed text-ink-soft">
               {g.intro}
             </p>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CtaBand from "../../../components/CtaBand";
 import JsonLd from "../../../components/JsonLd";
+import ReviewedBy, { reviewedByJsonLd } from "../../../components/ReviewedBy";
 import { breadcrumbJsonLd } from "../../../lib/seo";
 import LeadForm from "../../../components/LeadForm";
 import StickyCallBar from "../../../components/StickyCallBar";
@@ -49,6 +50,7 @@ export default async function QuestionPage({
     description: q.metaDescription,
     author: { "@id": `${siteConfig.domain}/#organization` },
     publisher: { "@id": `${siteConfig.domain}/#organization` },
+    reviewedBy: reviewedByJsonLd,
   };
 
   const midpoint = Math.ceil(q.sections.length / 2);
@@ -77,6 +79,7 @@ export default async function QuestionPage({
             <h1 className="font-display mt-4 max-w-3xl text-4xl sm:text-5xl">
               {q.h1}
             </h1>
+            <ReviewedBy className="mt-5" />
             <p className="prose-measure mt-5 text-lg text-ink-soft">{q.intro}</p>
           </div>
         </header>

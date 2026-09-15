@@ -5,15 +5,17 @@ import { siteConfig } from "../../site.config";
  * Coverage strip under the hero — deliberately vague per the client's
  * rule: no program specifics, no legal claims, everything routed to the
  * free benefit check. Named commercial payers appear only once
- * site.config.ts confirms credentialing; until then the row renders
- * honest, clearly-labeled pending slots.
+ * site.config.ts confirms credentialing; until then the row shows ONLY
+ * the three honest welcome pills. (The dashed "pending payer" placeholder
+ * boxes were removed 9/2026 — the client read them as broken empty boxes.
+ * When credentialing lands, just fill coverage.*.payers in site.config.ts
+ * and the named pills appear.)
  */
 export default function InsuranceWall() {
   const payers = [
     ...siteConfig.coverage.kansas.payers,
     ...siteConfig.coverage.colorado.payers,
   ];
-  const pendingSlots = payers.length === 0 ? 3 : 0;
 
   const pill =
     "inline-flex h-[54px] shrink-0 items-center gap-2.5 whitespace-nowrap rounded-full border border-ink/10 bg-white px-7 text-[15px] font-bold shadow-[0_1px_2px_rgba(15,58,71,0.04)]";
@@ -51,13 +53,6 @@ export default function InsuranceWall() {
               <li key={p} className={pill}>
                 {p}
               </li>
-            ))}
-            {Array.from({ length: pendingSlots }).map((_, i) => (
-              <li
-                key={i}
-                aria-hidden="true"
-                className="hidden h-[54px] w-32 shrink-0 rounded-full border-2 border-dashed border-line bg-white/50 lg:block"
-              />
             ))}
           </ul>
         </div>

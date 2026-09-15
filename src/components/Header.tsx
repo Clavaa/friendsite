@@ -50,6 +50,11 @@ const resourcesNav = [
     label: "Get a diagnosis",
     blurb: "Does my child have autism? Evaluation help, state by state",
   },
+  {
+    href: "/#ask-a-bcba",
+    label: "Ask a BCBA",
+    blurb: "Send your question to the clinical team — a real person answers",
+  },
 ];
 
 const locationGroups = [

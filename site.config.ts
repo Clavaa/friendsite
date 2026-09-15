@@ -22,6 +22,54 @@ export const siteConfig = {
   phone: "(303) 483-7833",
   phoneHref: "tel:+13034837833",
 
+  /**
+   * Toll-free line — rendered as THE call pill in the utility top bar
+   * (desktop + mobile), per the client. The local (303) number stays
+   * everywhere else it appears (hero call pill, sticky call bar, CTA
+   * bands, footer, JSON-LD). Set both to null to fall back to the
+   * local number in the top bar.
+   *
+   * ==========================================================================
+   * IMPORTANT — GOOGLE ADS CALL-CONVERSION TRACKING (read before touching
+   * either number): src/components/GoogleAnalytics.tsx configures Google's
+   * website-call conversion with `phone_conversion_number` = the number
+   * DISPLAYED on the page (currently siteConfig.phone, the 303 line). That
+   * existing call-conversion action still covers every placement that shows
+   * the 303 number. The top bar now DISPLAYS this toll-free number instead,
+   * so the ads team MUST create a SECOND call-conversion action for
+   * (888) 248-3433 — until it exists, top-bar calls are NOT tracked by
+   * Google's number-swap. Never silently repoint the existing 303 action.
+   * ==========================================================================
+   */
+  tollFreePhone: "(888) 248-3433" as string | null,
+  tollFreePhoneHref: "tel:+18882483433" as string | null,
+
+  /**
+   * Instagram profile URL. When set, an Instagram icon link renders in the
+   * footer's contact cluster. TODO: client is sending the Instagram link —
+   * paste the full profile URL here (e.g. "https://www.instagram.com/…").
+   */
+  instagramUrl: null as string | null,
+
+  /**
+   * Indeed company/jobs URL. When set, the careers page shows a prominent
+   * "See our openings on Indeed" button alongside the role cards.
+   * TODO: client is sending the Indeed link — paste the full URL here.
+   */
+  indeedUrl: null as string | null,
+
+  /**
+   * Clinical reviewer for every parent guide (/resources/*) and parent
+   * question (/questions/*) article — rendered as the "Clinically reviewed
+   * by …" chip and merged into each article's JSON-LD as `reviewedBy`.
+   * Ruth is the only named person on the site (client rule); keep this in
+   * sync with the About page if her credentials line ever changes.
+   */
+  clinicalReviewer: {
+    name: "Ruth Gluck",
+    jobTitle: "MSEd, BCBA",
+  },
+
   // ============================================================================
   // TODO — LOUD: CONFIRM the friend actually owns sunbirdaba.com
   // (registered 7/30/2026 via NameCheap — verify it's HIS registration, not a
@@ -71,19 +119,18 @@ export const siteConfig = {
   /**
    * Coverage wall. `medicaid` names each state's Medicaid program (public
    * fact, safe to show). `payers` lists in-network commercial plans and MUST
-   * stay empty until credentialing is confirmed per payer — the wall renders
-   * clearly-labeled pending slots until then, never a fabricated logo row.
+   * stay empty until credentialing is confirmed per payer — while empty the
+   * wall renders only the honest welcome pills (no placeholder boxes; the
+   * client read the old dashed "pending" slots as broken empty boxes).
    */
   coverage: {
     kansas: {
       medicaid: "KanCare (Kansas Medicaid)",
       payers: [] as readonly string[],
-      pendingSlots: 4,
     },
     colorado: {
       medicaid: "Health First Colorado (Medicaid)",
       payers: [] as readonly string[],
-      pendingSlots: 4,
     },
   },
 

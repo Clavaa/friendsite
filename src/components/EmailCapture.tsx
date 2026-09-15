@@ -7,11 +7,15 @@ import { track } from "../lib/analytics";
 type Status = "idle" | "submitting" | "success" | "error";
 
 /**
- * "Ask our clinical team" block near the foot of the page — a question
- * box, not a newsletter (there is no newsletter). Pitched at the parent
- * who is still awake at 11pm looking things up. Posts to /api/lead with
- * type: "question" (name + email + the question; the microcopy asks
- * senders to leave medical details out).
+ * "Ask a BCBA" block near the foot of the page — a question box, not a
+ * newsletter (there is no newsletter). Pitched at the parent who is still
+ * awake at 11pm looking things up. Posts to /api/lead with type:
+ * "question" (name + email + the question; the microcopy asks senders to
+ * leave medical details out).
+ *
+ * The section carries id="ask-a-bcba" — the top bar and the header's
+ * Resources dropdown deep-link here as /#ask-a-bcba. Keep the id if this
+ * section ever moves.
  */
 export default function EmailCapture() {
   const [status, setStatus] = useState<Status>("idle");
@@ -41,15 +45,18 @@ export default function EmailCapture() {
     "h-14 w-full rounded-full border border-ink/10 bg-white px-7 text-[16px] shadow-[0_1px_2px_rgba(15,58,71,0.05)] placeholder:text-ink-soft/60 focus:border-brand-teal";
 
   return (
-    <section className="bg-mint-wash px-3 py-16 sm:px-6 lg:py-24">
+    <section
+      id="ask-a-bcba"
+      className="scroll-mt-24 bg-mint-wash px-3 py-16 sm:px-6 lg:py-24 lg:scroll-mt-28"
+    >
       <div className="mx-auto max-w-[87rem] overflow-hidden rounded-[3rem] bg-cream">
         <div className="grid items-center gap-10 p-8 sm:p-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,32rem)] lg:gap-16 lg:p-[4.5rem]">
           <div className="reveal text-center">
             <p className="text-[15px] font-extrabold uppercase tracking-[0.14em] text-ink">
-              Ask our clinical team
+              Still up at 11pm?
             </p>
             <h2 className="font-display display-hero mx-auto mt-6 max-w-[34rem] text-[2.8rem] text-brand-teal sm:text-6xl lg:text-[4.5rem]">
-              Still up <span className="italic">at 11pm?</span>
+              Ask a <span className="italic">BCBA.</span>
             </h2>
             <p className="mx-auto mt-7 max-w-[34rem] text-[17px] leading-relaxed text-ink-soft">
               Whatever question is keeping you scrolling — about ABA, about

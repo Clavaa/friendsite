@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import CountyChips from "../../components/CountyChips";
 import CtaBand from "../../components/CtaBand";
 import Faq, { faqJsonLd } from "../../components/Faq";
 import JsonLd from "../../components/JsonLd";
@@ -281,18 +282,17 @@ export default async function StatePage({
               you live.
             </p>
           </div>
-          <ul className="mt-8 flex flex-wrap gap-2">
-            {countiesByState[state].map((county) => (
-              <li key={county.slug}>
-                <Link
-                  href={`/${state}/${county.slug}`}
-                  className="inline-block rounded-full border border-line bg-cream px-3.5 py-1.5 text-[14px] font-semibold text-ink-soft transition-colors hover:border-brand-teal hover:text-brand-teal"
-                >
-                  {county.full}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {/* Collapsed chip wall (client feedback): ~12 biggest counties
+              visible, the rest behind an accessible expander. All county
+              links stay server-rendered for SEO — see CountyChips. */}
+          <CountyChips
+            state={state}
+            counties={countiesByState[state].map((c) => ({
+              slug: c.slug,
+              full: c.full,
+              pop: c.pop,
+            }))}
+          />
         </div>
       </section>
 

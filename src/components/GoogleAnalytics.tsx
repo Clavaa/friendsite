@@ -75,6 +75,12 @@ export default function GoogleAnalytics() {
   if (GOOGLE_ADS_ID) {
     configs.push(`gtag('config', '${GOOGLE_ADS_ID}');`);
     if (GADS_CALL_LABEL) {
+      // IMPORTANT: phone_conversion_number must be a number DISPLAYED on
+      // the page. This action tracks the local 303 line (hero, sticky bar,
+      // CTA bands, footer). The TOP BAR now displays the toll-free number
+      // (siteConfig.tollFreePhone) — that needs its OWN call-conversion
+      // action + label from the ads team before its calls are tracked.
+      // See the loud comment above tollFreePhone in site.config.ts.
       configs.push(
         `gtag('config', '${GOOGLE_ADS_ID}/${GADS_CALL_LABEL}', { 'phone_conversion_number': '${siteConfig.phone}' });`
       );

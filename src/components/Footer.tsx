@@ -166,6 +166,23 @@ export default function Footer() {
                 <path d="M2 4l6 5 6-5" />
               </svg>
             </a>
+            {/* Instagram — renders only when site.config.ts carries the URL
+                (TODO there: client is sending the link). */}
+            {siteConfig.instagramUrl && (
+              <a
+                href={siteConfig.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="grid h-12 w-12 place-items-center rounded-full border-2 border-brand-teal text-brand-teal transition-colors hover:bg-brand-teal hover:text-white"
+                aria-label={`${siteConfig.brandShort} on Instagram`}
+              >
+                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
+                  <circle cx="12" cy="12" r="4.4" />
+                  <circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+            )}
             <SunSpot className="hidden w-14 sm:block" />
           </div>
         </div>

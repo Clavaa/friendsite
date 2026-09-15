@@ -11,6 +11,16 @@ export const metadata: Metadata = {
   alternates: { canonical: "/careers" },
 };
 
+// ============================================================================
+// TODO — CAREERS HERO PHOTO SWAP: the client is sending a real team photo
+// (people in Sunbird sweatshirts). When the file arrives, drop it into
+// /public/images/ and change ONLY the two lines below (path + honest alt).
+// Nothing else on this page references the hero image.
+// ============================================================================
+const CAREERS_HERO_IMAGE = "/images/playground-bubbles.jpg";
+const CAREERS_HERO_ALT =
+  "A woman blowing bubbles with a laughing young boy on a sunny playground while he reaches to pop one";
+
 const applyHref = `mailto:${siteConfig.email}?subject=Careers%20—%20Sunbird%20ABA`;
 /** Same application path, tagged with the role so intake can sort it. */
 const applyHrefFor = (roleTag: string) => `${applyHref}%20—%20${roleTag}`;
@@ -121,8 +131,8 @@ export default function CareersPage() {
             </div>
             <div className="relative min-h-[18rem] sm:min-h-[24rem] lg:min-h-0">
               <Image
-                src="/images/playground-bubbles.jpg"
-                alt="A woman blowing bubbles with a laughing young boy on a sunny playground while he reaches to pop one"
+                src={CAREERS_HERO_IMAGE}
+                alt={CAREERS_HERO_ALT}
                 fill
                 sizes="(min-width: 1024px) 42rem, 100vw"
                 className="object-cover"
@@ -169,9 +179,26 @@ export default function CareersPage() {
       {/* ————— Role cards ————— */}
       <section id="roles" className="scroll-mt-24 bg-white">
         <div className="mx-auto max-w-[87rem] px-4 py-16 sm:px-6 lg:py-20">
-          <h2 className="font-display max-w-2xl text-3xl sm:text-4xl">
-            The roles we hire for
-          </h2>
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="font-display max-w-2xl text-3xl sm:text-4xl">
+              The roles we hire for
+            </h2>
+            {/* Indeed button — renders only when site.config.ts carries the
+                URL (TODO there: client is sending the Indeed link). */}
+            {siteConfig.indeedUrl && (
+              <a
+                href={siteConfig.indeedUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-pill inline-flex h-[52px] w-fit shrink-0 items-center gap-2.5 rounded-full bg-ink px-8 text-[15px] font-extrabold text-white transition-colors hover:bg-brand-teal-deep"
+              >
+                See our openings on Indeed
+                <svg aria-hidden="true" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 13L13 3M6 3h7v7" />
+                </svg>
+              </a>
+            )}
+          </div>
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
             {roles.map((job, i) => (
               <div

@@ -499,7 +499,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ————— 5 · Core service: full-bleed photo + overlapping wash panel ————— */}
+      {/* ————— 5 · Core service: full-bleed photo + overlapping wash panel.
+                 The child sits on the RIGHT of this photo, so the panel
+                 overlaps the LEFT side on desktop and the mobile crop is
+                 biased right (object-[68%_50%]) — the client flagged that
+                 the old right-side panel + centered crop hid the child.
+                 Keep her fully visible if the photo ever changes. ————— */}
       <section className="bg-cream">
         <div className="mx-auto max-w-[87rem] px-3 pt-10 sm:px-6">
           <div className="relative lg:py-16">
@@ -509,11 +514,12 @@ export default function HomePage() {
                 alt="A woman and a toddler girl building a house out of colorful magnetic tiles together on a living room rug"
                 fill
                 sizes="(min-width: 1024px) 87rem, 100vw"
-                className="object-cover"
+                className="object-cover object-[68%_50%] lg:object-center"
               />
             </div>
-            {/* Overlap panel breaks the photo's top and bottom edge on desktop */}
-            <div className="lg:absolute lg:inset-y-0 lg:right-10 lg:flex lg:w-[41rem] lg:items-center">
+            {/* Overlap panel breaks the photo's top and bottom edge on desktop —
+                anchored LEFT so the child in the photo stays visible */}
+            <div className="lg:absolute lg:inset-y-0 lg:left-10 lg:flex lg:w-[41rem] lg:items-center">
               <div className="reveal w-full rounded-b-3xl bg-mint-wash p-8 sm:p-12 lg:rounded-3xl lg:p-[4.5rem] lg:shadow-card-lg">
                 <p className={eyebrowTeal}>ABA therapy</p>
                 <h3 className="font-display display-xl mt-7 text-4xl sm:text-5xl lg:text-[3.75rem]">

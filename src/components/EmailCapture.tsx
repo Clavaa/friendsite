@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { track } from "../lib/analytics";
+import { pingLead } from "./TrafficBeacon";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -34,6 +35,7 @@ export default function EmailCapture() {
       if (!res.ok) throw new Error(`Question submit failed: ${res.status}`);
       // Event name + coarse form label only — never field values (PHI).
       track("generate_lead", { form: "ask-team" });
+      pingLead();
       setStatus("success");
       form.reset();
     } catch {

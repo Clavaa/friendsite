@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { track } from "../lib/analytics";
+import { pingLead } from "./TrafficBeacon";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -38,6 +39,7 @@ export default function LeadForm({
       if (!res.ok) throw new Error(`Lead submit failed: ${res.status}`);
       // Event name + coarse form label only — never field values (PHI).
       track("generate_lead", { form: `intake-${sourcePage}` });
+      pingLead();
       setStatus("success");
       form.reset();
     } catch {

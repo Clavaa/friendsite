@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Fraunces, Nunito_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import TrafficBeacon from "../components/TrafficBeacon";
 import Header from "../components/Header";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
@@ -111,6 +113,12 @@ export default function RootLayout({
         <Analytics />
         <GoogleAnalytics />
         <MetaPixel />
+        {/* First-party beacon → BigQuery. useSearchParams needs a boundary
+            or every page opts out of static rendering; it renders nothing,
+            so the fallback is null. */}
+        <Suspense fallback={null}>
+          <TrafficBeacon />
+        </Suspense>
       </body>
     </html>
   );

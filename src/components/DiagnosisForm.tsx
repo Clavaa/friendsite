@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { siteConfig } from "../../site.config";
 import { track } from "../lib/analytics";
+import { pingLead } from "./TrafficBeacon";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -104,6 +105,7 @@ export default function DiagnosisForm() {
       if (!res.ok) throw new Error(`Lead post failed: ${res.status}`);
       // Event name + coarse form label only — never field values (PHI).
       track("generate_lead", { form: "diagnosis-funnel" });
+      pingLead();
       setStatus("success");
     } catch {
       setStatus("error");

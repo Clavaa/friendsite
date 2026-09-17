@@ -146,14 +146,18 @@ export default function EmailCapture() {
             )}
           </div>
 
-          {/* Sunbird's plush mascot keeps the late-night asker company */}
-          <div className="relative hidden min-h-[30rem] overflow-hidden rounded-[2.5rem] lg:block">
+          {/* Sunbird's plush mascot keeps the late-night asker company.
+              The trio shot is landscape, so the fixed-height desktop panel
+              shows the center plush head-crest-to-feet (the portrait single
+              shot got its crest cropped off here — client flagged it).
+              On mobile the panel keeps the photo's own aspect: no crop. */}
+          <div className="relative aspect-[1400/775] overflow-hidden rounded-[2.5rem] lg:aspect-auto lg:min-h-[30rem]">
             <Image
-              src="/brand/plush-single.jpg"
-              alt="Sunbird's plush mascot — a smiling teal bird with the Sunbird logo on its belly"
+              src="/brand/plush-trio.jpg"
+              alt="Sunbird's plush mascots — smiling teal birds with sunny head crests and the Sunbird logo on their bellies"
               fill
-              sizes="32rem"
-              className="object-cover"
+              sizes="(min-width: 1024px) 32rem, calc(100vw - 3.5rem)"
+              className="object-cover object-center"
             />
           </div>
         </div>

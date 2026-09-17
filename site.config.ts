@@ -23,11 +23,13 @@ export const siteConfig = {
   phoneHref: "tel:+13034837833",
 
   /**
-   * Toll-free line — rendered as THE call pill in the utility top bar
-   * (desktop + mobile), per the client. The local (303) number stays
-   * everywhere else it appears (hero call pill, sticky call bar, CTA
-   * bands, footer, JSON-LD). Set both to null to fall back to the
-   * local number in the top bar.
+   * Toll-free line — the ONLY number shown at the top of the site, per the
+   * client: it renders as the call pill in the dark utility top bar
+   * (desktop + mobile) AND as the header-nav phone pill / phone-icon
+   * button (including the mobile menu's call link). The local (303)
+   * number stays everywhere else it appears (hero call pill, sticky call
+   * bar, CTA bands, footer, JSON-LD). Set both to null to fall back to
+   * the local number in those top-of-site spots.
    *
    * ==========================================================================
    * IMPORTANT — GOOGLE ADS CALL-CONVERSION TRACKING (read before touching
@@ -35,10 +37,11 @@ export const siteConfig = {
    * website-call conversion with `phone_conversion_number` = the number
    * DISPLAYED on the page (currently siteConfig.phone, the 303 line). That
    * existing call-conversion action still covers every placement that shows
-   * the 303 number. The top bar now DISPLAYS this toll-free number instead,
-   * so the ads team MUST create a SECOND call-conversion action for
-   * (888) 248-3433 — until it exists, top-bar calls are NOT tracked by
-   * Google's number-swap. Never silently repoint the existing 303 action.
+   * the 303 number. The top bar AND the header nav now DISPLAY this
+   * toll-free number instead, so the ads team MUST create a SECOND
+   * call-conversion action for (888) 248-3433 — until it exists, top-bar
+   * and header calls are NOT tracked by Google's number-swap. Never
+   * silently repoint the existing 303 action.
    * ==========================================================================
    */
   tollFreePhone: "(888) 248-3433" as string | null,

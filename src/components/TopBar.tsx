@@ -10,10 +10,13 @@ import { siteConfig } from "../../site.config";
  * truncates first). Right: the call pill.
  *
  * The call pill shows the TOLL-FREE number when site.config.ts carries one
- * (client request); the local 303 number stays everywhere else. NOTE for
- * the ads team: Google's call-conversion number-swap is configured for the
- * displayed 303 number (see the loud comment in site.config.ts) — a second
- * call-conversion action is required for the toll-free line shown here.
+ * (client request: only the toll-free number appears at the top of the
+ * site — here and in the header nav's phone pill). The local 303 number
+ * stays everywhere below the header (hero call pill, sticky call bar, CTA
+ * bands, footer, JSON-LD). NOTE for the ads team: Google's call-conversion
+ * number-swap is configured for the displayed 303 number (see the loud
+ * comment in site.config.ts) — a second call-conversion action is required
+ * for the toll-free line shown here and in the header.
  */
 export default function TopBar() {
   const ratings = siteConfig.ratings.filter((r) => r.score);

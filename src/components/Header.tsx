@@ -19,6 +19,12 @@ import { siteConfig } from "../../site.config";
  * - The phone number renders as text only at xl (1280px+); from lg to xl
  *   it collapses to a round phone-icon button so the CTA never gets
  *   squeezed at 1024px.
+ * - The header shows the TOLL-FREE number (client: only the toll-free
+ *   number appears at the top of the site — here and in the dark top bar).
+ *   The local 303 number stays everywhere else (hero call pill, sticky
+ *   call bar, CTA bands, footer, JSON-LD) because Google Ads
+ *   call-conversion tracking matches the displayed 303 there — see the
+ *   loud comment above tollFreePhone in site.config.ts.
  */
 
 const primaryNav = [
@@ -119,6 +125,11 @@ export default function Header() {
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [locationsOpen, resourcesOpen]);
+
+  // Toll-free everywhere in the header (top of the site); falls back to
+  // the local line only if site.config.ts ever nulls the toll-free number.
+  const callPhone = siteConfig.tollFreePhone ?? siteConfig.phone;
+  const callHref = siteConfig.tollFreePhoneHref ?? siteConfig.phoneHref;
 
   const navLinkClass =
     "whitespace-nowrap rounded-lg px-2.5 py-2 text-[16px] font-bold text-ink transition-colors hover:bg-sun-wash xl:px-3.5";
@@ -276,15 +287,15 @@ export default function Header() {
         <div className="flex shrink-0 items-center gap-2">
           {/* Phone: full number at xl+, icon-only from lg to xl so nothing squeezes at 1024. */}
           <a
-            href={siteConfig.phoneHref}
+            href={callHref}
             className="hidden whitespace-nowrap rounded-full border border-line px-4 py-2 text-[15px] font-bold text-brand-teal transition-colors hover:border-brand-teal xl:inline-block"
           >
-            {siteConfig.phone}
+            {callPhone}
           </a>
           <a
-            href={siteConfig.phoneHref}
-            aria-label={`Call ${siteConfig.phone}`}
-            title={`Call ${siteConfig.phone}`}
+            href={callHref}
+            aria-label={`Call ${callPhone}`}
+            title={`Call ${callPhone}`}
             className="hidden h-10 w-10 place-items-center rounded-full border border-line text-brand-teal transition-colors hover:border-brand-teal lg:grid xl:hidden"
           >
             <PhoneIcon />
@@ -395,10 +406,10 @@ export default function Header() {
               Get started
             </Link>
             <a
-              href={siteConfig.phoneHref}
+              href={callHref}
               className="block rounded-full border border-line px-4 py-3 text-center text-base font-bold text-brand-teal"
             >
-              Call {siteConfig.phone}
+              Call {callPhone}
             </a>
           </div>
         </nav>

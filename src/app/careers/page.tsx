@@ -12,10 +12,13 @@ export const metadata: Metadata = {
 };
 
 // ============================================================================
-// TODO — CAREERS HERO PHOTO SWAP: the client is sending a real team photo
-// (people in Sunbird sweatshirts). When the file arrives, drop it into
+// TODO — CAREERS HERO PHOTO SWAP: the client is STILL sending a real team
+// photo (people in Sunbird sweatshirts). When the file arrives, drop it into
 // /public/images/ and change ONLY the two lines below (path + honest alt).
 // Nothing else on this page references the hero image.
+// Until then the hero shows the bubbles photo — the 9/17 long-sleeved
+// reshoot (client imagery rule: adults in photos wear modest, long-sleeved
+// clothing; see the note above tourPhotos in src/app/page.tsx).
 // ============================================================================
 const CAREERS_HERO_IMAGE = "/images/playground-bubbles.jpg";
 const CAREERS_HERO_ALT =

@@ -70,12 +70,14 @@ export default function Footer() {
           {/* Plush mascot spot + sticker chip */}
           <div className="relative hidden lg:block" aria-hidden="true">
             <div className="relative mt-4 w-fit">
+              {/* object-[50%_20%] keeps the plush's face + head crest in the
+                  circle (a centered crop of the portrait shot cuts the crest). */}
               <Image
                 src="/brand/plush-single.jpg"
                 alt=""
                 width={384}
                 height={384}
-                className="relative h-48 w-48 rounded-full object-cover shadow-card"
+                className="relative h-48 w-48 rounded-full object-cover object-[50%_20%] shadow-card"
               />
               <Sparkles className="absolute -right-10 -top-8 w-16" />
             </div>

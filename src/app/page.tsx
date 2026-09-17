@@ -74,7 +74,7 @@ const serviceCards: {
     href: "/services/in-home-aba",
     title: "In-home ABA",
     blurb: "Therapy where real life happens — mealtimes, mornings, siblings and all.",
-    img: { src: "/images/magnetic-tiles-living-room.jpg", alt: "A woman and a toddler building with colorful magnetic tiles on a rug" },
+    img: { src: "/images/magnetic-tiles-living-room.jpg", alt: "A woman and a young boy building with colorful magnetic tiles on a rug" },
   },
   {
     href: "/services/daycare-based",
@@ -268,6 +268,10 @@ const featuredGuides = (
     : [];
 });
 
+/* NOTE — imagery rule (client): adults in photos wear modest, LONG-SLEEVED
+   clothing. The bubbles + magnetic-tiles shots were reshot long-sleeved on
+   9/17; any future photo added anywhere on this site must follow the same
+   rule. */
 const tourPhotos = [
   {
     src: "/images/family-puzzle-kitchen.jpg",
@@ -291,7 +295,7 @@ const tourPhotos = [
   },
   {
     src: "/images/magnetic-tiles-living-room.jpg",
-    alt: "A woman and a toddler girl building a house from magnetic tiles on a living room rug",
+    alt: "A woman and a young boy building a house from magnetic tiles on a living room rug",
     caption: "Session in progress",
   },
 ] as const;
@@ -504,14 +508,16 @@ export default function HomePage() {
                  overlaps the LEFT side on desktop and the mobile crop is
                  biased right (object-[68%_50%]) — the client flagged that
                  the old right-side panel + centered crop hid the child.
-                 Keep her fully visible if the photo ever changes. ————— */}
+                 Keep the child fully visible if the photo ever changes
+                 (and keep it long-sleeved — see the imagery note above
+                 tourPhotos). ————— */}
       <section className="bg-cream">
         <div className="mx-auto max-w-[87rem] px-3 pt-10 sm:px-6">
           <div className="relative lg:py-16">
             <div className="relative min-h-[24rem] overflow-hidden rounded-3xl sm:min-h-[30rem] lg:min-h-[44rem]">
               <Image
                 src="/images/magnetic-tiles-living-room.jpg"
-                alt="A woman and a toddler girl building a house out of colorful magnetic tiles together on a living room rug"
+                alt="A woman and a young boy building a house out of colorful magnetic tiles together on a living room rug"
                 fill
                 sizes="(min-width: 1024px) 87rem, 100vw"
                 className="object-cover object-[68%_50%] lg:object-center"
@@ -964,13 +970,16 @@ export default function HomePage() {
             </h2>
             <div className="sticker mt-12 rounded-3xl bg-sun-wash p-8">
               <div className="flex items-start gap-5">
+                {/* object-[50%_20%] keeps the plush's face + head crest in
+                    the circle (a centered crop of the portrait shot cuts
+                    the crest off — client flagged it). */}
                 <Image
                   src="/brand/plush-single.jpg"
                   alt=""
                   aria-hidden="true"
                   width={112}
                   height={112}
-                  className="mt-1.5 h-14 w-14 shrink-0 rounded-full object-cover"
+                  className="mt-1.5 h-14 w-14 shrink-0 rounded-full object-cover object-[50%_20%]"
                 />
                 <div>
                   <h3 className="font-display text-[1.35rem] leading-snug">

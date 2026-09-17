@@ -78,8 +78,10 @@ export const services: Service[] = [
       },
     ],
     photo: {
+      // Long-sleeved version (client imagery rule: adults wear modest,
+      // long-sleeved clothing — see the note above tourPhotos in page.tsx).
       src: "/images/magnetic-tiles-living-room.jpg",
-      alt: "A woman and a toddler girl building a house out of colorful magnetic tiles together on a living room rug",
+      alt: "A woman and a young boy building a house out of colorful magnetic tiles together on a living room rug",
     },
   },
   {

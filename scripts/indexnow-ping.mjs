@@ -61,6 +61,7 @@ const staticPaths = [
   "/insurance",
   "/getting-started",
   "/questions",
+  "/resources",
   "/about",
   "/careers",
 ];
@@ -90,16 +91,33 @@ for (const [state, list] of Object.entries(counties)) {
   }
 }
 
+// Towns from src/data/towns.json — nested under their county
+const towns = JSON.parse(readFileSync(join(ROOT, "src/data/towns.json"), "utf8"));
+for (const [state, data] of Object.entries(towns)) {
+  for (const t of data.towns) {
+    statePaths.push(`/${state}/${t.county}/${t.slug}`);
+  }
+}
+
 const servicePaths = extractSlugs("src/data/services.ts").map(
   (s) => `/services/${s}`
 );
 const questionPaths = extractSlugs("src/data/questions.ts").map(
   (s) => `/questions/${s}`
 );
+const guidePaths = extractSlugs("src/data/guides.ts").map(
+  (s) => `/resources/${s}`
+);
 
 const urlList = [
   ...new Set(
-    [...staticPaths, ...statePaths, ...servicePaths, ...questionPaths].map(
+    [
+      ...staticPaths,
+      ...statePaths,
+      ...servicePaths,
+      ...questionPaths,
+      ...guidePaths,
+    ].map(
       (p) => `${base}${p}`
     )
   ),

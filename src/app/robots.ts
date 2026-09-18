@@ -8,6 +8,10 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: `${siteConfig.domain}/sitemap.xml`,
+    sitemap: [
+      `${siteConfig.domain}/sitemap/core.xml`,
+      `${siteConfig.domain}/sitemap/kansas.xml`,
+      `${siteConfig.domain}/sitemap/colorado.xml`,
+    ],
   };
 }

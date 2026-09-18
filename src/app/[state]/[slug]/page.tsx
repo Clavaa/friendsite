@@ -12,6 +12,9 @@ import CountyView from "./CountyView";
  *   counties. County slugs are the kebab-case name minus " County"; the two
  *   collisions with city slugs (Wichita County KS, Denver County CO) carry
  *   a "-county" suffix (see src/data/counties.ts).
+ *
+ * Town pages nest one level deeper at /[state]/[slug]/[town] (county
+ * slugs only — see ./[town]/page.tsx and src/data/towns.ts).
  */
 
 interface Params {

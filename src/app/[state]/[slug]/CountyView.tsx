@@ -11,6 +11,12 @@ import {
   getCounty,
   type CountyEntry,
 } from "../../../data/counties";
+import { coverageCard } from "../../../data/coverage";
+import {
+  cityPagesInCounty,
+  tinyPlacesInCounty,
+  townsInCounty,
+} from "../../../data/towns";
 import { breadcrumbJsonLd } from "../../../lib/seo";
 
 /**
@@ -19,32 +25,6 @@ import { breadcrumbJsonLd } from "../../../lib/seo";
  * service framing, the nearest served city, county FAQs with schema,
  * and neighbor-county links so no county page is a dead end.
  */
-
-/**
- * Condensed coverage card — deliberately vague per the client's rule:
- * no program specifics, no waiver detail. Everything routes to the free
- * benefit check.
- */
-const coverageCard: Record<StateSlug, { heading: string; facts: string[] }> = {
-  kansas: {
-    heading: "Paying for ABA — the short version",
-    facts: [
-      "Coverage varies by plan, so we check yours instead of guessing — the benefit check is free.",
-      "Most Kansas families pay little or nothing once benefits are confirmed, Medicaid or private.",
-      "Send one photo of your insurance card; we verify your ABA benefits directly with your plan.",
-      "You get a plain-English answer — what's covered, what you'd owe, what happens next — usually within a business day.",
-    ],
-  },
-  colorado: {
-    heading: "Paying for ABA — the short version",
-    facts: [
-      "Coverage varies by plan, so we check yours instead of guessing — the benefit check is free.",
-      "Most Colorado families pay little or nothing once benefits are confirmed, Medicaid or private.",
-      "Send one photo of your insurance card; we verify your ABA benefits directly with your plan.",
-      "You get a plain-English answer — what's covered, what you'd owe, what happens next — usually within a business day.",
-    ],
-  },
-};
 
 function regionNote(county: CountyEntry, stateName: string): string {
   const city = county.nearestCity;
@@ -117,6 +97,21 @@ export default function CountyView({
   const neighbors = county.neighbors
     .map((slug) => getCounty(stateSlug, slug))
     .filter((c): c is CountyEntry => Boolean(c));
+
+  // Communities in this county: city-page places first (chips link to the
+  // existing city pages), then every town with its own page (already
+  // population-sorted), then the sub-100-person places as a plain-text
+  // line — honest coverage without minting junk pages.
+  const cityChips = cityPagesInCounty(stateSlug, county.slug).map((r) => ({
+    name: stateCfg.cities.find((c) => c.slug === r.city)?.name ?? r.city,
+    href: `/${stateSlug}/${r.city}`,
+  }));
+  const townChips = townsInCounty(stateSlug, county.slug).map((t) => ({
+    name: t.name,
+    href: `/${stateSlug}/${county.slug}/${t.slug}`,
+  }));
+  const tinyPlaces = tinyPlacesInCounty(stateSlug, county.slug);
+  const communityChips = [...cityChips, ...townChips];
 
   const serviceJsonLd = {
     "@context": "https://schema.org",
@@ -324,6 +319,45 @@ export default function CountyView({
           />
         </div>
       </section>
+
+      {/* ————— Towns in this county ————— */}
+      {(communityChips.length > 0 || tinyPlaces.length > 0) && (
+        <section className="bg-white">
+          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+            <h2 className="font-display text-2xl">Towns in {county.full}</h2>
+            {communityChips.length > 0 && (
+              <>
+                <p className="mt-2 max-w-2xl text-[15px] text-ink-soft">
+                  Every community here is inside our {county.full} service
+                  area — pick yours for the local details.
+                </p>
+                <ul className="mt-4 flex flex-wrap gap-2.5">
+                  {communityChips.map((t) => (
+                    <li key={t.href}>
+                      <Link
+                        href={t.href}
+                        className="rounded-full border border-line bg-cream px-4 py-2 text-[15px] font-semibold transition-colors hover:border-brand-teal hover:text-brand-teal"
+                      >
+                        {t.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+            {tinyPlaces.length > 0 && (
+              <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-ink-soft">
+                <span className="font-bold text-ink">
+                  Every community in {county.full}:
+                </span>{" "}
+                we also serve families in{" "}
+                {tinyPlaces.map((t) => t.name).join(", ")} — no town is too
+                small for in-home visits and telehealth.
+              </p>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* ————— Neighboring counties ————— */}
       <section className="bg-cream">

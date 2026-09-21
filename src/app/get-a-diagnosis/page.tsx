@@ -172,7 +172,15 @@ export default function GetADiagnosisPage() {
               nothing at all for your child. It doesn&rsquo;t diagnose
               anything; it just tells you whether a full evaluation is worth
               doing. Your child&rsquo;s doctor can run it at any visit — ask
-              us about it and we&rsquo;ll explain how.
+              us about it and we&rsquo;ll explain how. Want the fuller
+              picture first?{" "}
+              <Link
+                href="/resources/the-m-chat-screening"
+                className="font-bold text-brand-teal hover:underline"
+              >
+                The M-CHAT, explained in plain words
+              </Link>
+              .
             </p>
           </div>
         </div>
@@ -194,7 +202,7 @@ export default function GetADiagnosisPage() {
               },
               {
                 t: "A diagnosis opens doors",
-                b: "Both Kansas and Colorado require insurance to cover ABA therapy for children diagnosed with autism, and both state Medicaid programs cover it too. The evaluation report is the document that unlocks all of it.",
+                b: "A formal autism diagnosis is the key that health plans — Medicaid and private alike — look for before covering ABA therapy. The evaluation report is the document that unlocks all of it.",
               },
               {
                 t: "You get a guide, not a pamphlet",
@@ -216,6 +224,27 @@ export default function GetADiagnosisPage() {
               className="font-bold text-brand-teal hover:underline"
             >
               Here&rsquo;s what happens next
+            </Link>
+            . Still at the wondering stage? Read the signs of autism{" "}
+            <Link
+              href="/resources/signs-of-autism-at-18-months"
+              className="font-bold text-brand-teal hover:underline"
+            >
+              at 18 months
+            </Link>
+            ,{" "}
+            <Link
+              href="/resources/signs-of-autism-at-age-2"
+              className="font-bold text-brand-teal hover:underline"
+            >
+              at age 2
+            </Link>
+            , or{" "}
+            <Link
+              href="/resources/signs-of-autism-at-age-3"
+              className="font-bold text-brand-teal hover:underline"
+            >
+              at age 3
             </Link>
             .
           </p>

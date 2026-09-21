@@ -54,7 +54,7 @@ export const stateContent: Record<StateSlug, StateContent> = {
     heroHeadline: "ABA therapy in Kansas, explained like a neighbor would.",
     heroSub:
       "From Wichita to Overland Park, we walk Kansas families through coverage, paperwork, and first sessions — in plain English, with a real person on the phone.",
-    coverageHeading: "Will insurance cover it? Let's find out — free.",
+    coverageHeading: "Will insurance cover ABA therapy? Let's find out — free.",
     coverageBody: [
       "Coverage varies by plan, and no website — ours included — can tell you what your specific plan will do. What we can tell you: most Kansas families end up paying little or nothing for ABA once their benefits are confirmed, whether their child is covered through Medicaid or a private plan.",
       "So instead of asking you to decode plan documents, we run a free benefit check. Send us a photo of your insurance card, and our team verifies your ABA benefits directly with your plan — then calls you back with a plain-English answer: what's covered, what you'd owe, and what happens next.",
@@ -77,7 +77,7 @@ export const stateContent: Record<StateSlug, StateContent> = {
         body: "Usually within a business day, a real person calls you back and tells you exactly where you stand — no jargon, no guessing, and no obligation.",
       },
     ],
-    startHeading: "Getting started in Kansas, step by step",
+    startHeading: "Getting started with ABA therapy in Kansas, step by step",
     startIntro:
       "Every Kansas family goes through the same short sequence — and we carry most of it.",
     startSteps: [
@@ -105,7 +105,7 @@ export const stateContent: Record<StateSlug, StateContent> = {
     ],
     expectHeading: "What Kansas families can expect",
     expectBody: [
-      "A phone that a person answers. An honest start timeline for your part of Kansas before you commit to anything. A licensed, board-certified analyst designing and supervising every plan — and parent coaching built into all of it.",
+      "A phone that a person answers. An honest start timeline for your part of Kansas before you commit to anything. Warm, well-trained ABA therapists in your home, a licensed BCBA designing and supervising every plan — and parent coaching built into all of it.",
       "If something about your coverage changes mid-year, we call you before it costs you. And if another provider could genuinely serve your child sooner, we'll tell you that too.",
     ],
     faqs: [
@@ -146,7 +146,7 @@ export const stateContent: Record<StateSlug, StateContent> = {
     heroHeadline: "ABA therapy in Colorado, from a team that lives here.",
     heroSub:
       "From Denver to Colorado Springs, we help Colorado families turn a diagnosis into a plan — coverage checked, paperwork filed, sessions on the calendar.",
-    coverageHeading: "Will insurance cover it? Let's find out — free.",
+    coverageHeading: "Will insurance cover ABA therapy? Let's find out — free.",
     coverageBody: [
       "Coverage varies by plan, and no website — ours included — can tell you what your specific plan will do. What we can tell you: most Colorado families end up paying little or nothing for ABA once their benefits are confirmed, whether their child is covered through Medicaid or a private plan.",
       "So instead of asking you to decode plan documents, we run a free benefit check. Send us a photo of your insurance card, and our team verifies your ABA benefits directly with your plan — then calls you back with a plain-English answer: what's covered, what you'd owe, and what happens next.",
@@ -169,7 +169,7 @@ export const stateContent: Record<StateSlug, StateContent> = {
         body: "Usually within a business day, a real person calls you back and tells you exactly where you stand — no jargon, no guessing, and no obligation.",
       },
     ],
-    startHeading: "Getting started in Colorado, step by step",
+    startHeading: "Getting started with ABA therapy in Colorado, step by step",
     startIntro:
       "Every Colorado family goes through the same short sequence — and we carry most of it.",
     startSteps: [
@@ -197,7 +197,7 @@ export const stateContent: Record<StateSlug, StateContent> = {
     ],
     expectHeading: "What Colorado families can expect",
     expectBody: [
-      "A phone that a person answers. An honest start timeline for your part of Colorado before you commit to anything. A licensed, board-certified analyst designing and supervising every plan — and parent coaching built into all of it.",
+      "A phone that a person answers. An honest start timeline for your part of Colorado before you commit to anything. Warm, well-trained ABA therapists in your home, a licensed BCBA designing and supervising every plan — and parent coaching built into all of it.",
       "If something about your coverage changes mid-year, we call you before it costs you. And if another provider could genuinely serve your child sooner, we'll tell you that too.",
     ],
     faqs: [

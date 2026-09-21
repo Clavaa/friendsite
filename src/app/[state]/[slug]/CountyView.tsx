@@ -183,13 +183,14 @@ export default function CountyView({
         <div className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-2">
           <div className="rounded-3xl bg-mint-wash p-6 sm:p-8">
             <h2 className="font-display text-2xl">
-              How care reaches {county.full}
+              In-home ABA therapy across {county.full}
             </h2>
             <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
               In-home ABA is our starting point everywhere in{" "}
-              {stateCfg.name}: a trained behavior technician comes to your
-              home with a plan your BCBA wrote for your child, and parent
-              coaching happens where you&rsquo;ll actually use it.
+              {stateCfg.name}: your child&rsquo;s ABA therapist — a trained
+              behavior technician — comes to your home with a plan your BCBA
+              wrote for your child, and parent coaching happens where
+              you&rsquo;ll actually use it.
             </p>
             <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
               {city ? (
@@ -279,7 +280,22 @@ export default function CountyView({
                 Many {county.full} families come to us before any evaluation.
                 We&rsquo;ll help you understand the signs, book a diagnostic
                 evaluation in {stateCfg.name}, and line up coverage so therapy
-                can start as soon as the diagnosis is in hand.
+                can start as soon as the diagnosis is in hand. Not sure what
+                you&rsquo;re seeing yet? Start with the{" "}
+                <Link
+                  href="/resources/signs-of-autism-at-18-months"
+                  className="font-bold text-brand-teal hover:underline"
+                >
+                  signs of autism at 18 months
+                </Link>{" "}
+                — or, if the report already came,{" "}
+                <Link
+                  href="/resources/what-does-level-2-autism-mean"
+                  className="font-bold text-brand-teal hover:underline"
+                >
+                  what the autism levels mean
+                </Link>
+                .
               </p>
             </div>
             <Link

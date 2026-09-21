@@ -55,7 +55,7 @@ export const services: Service[] = [
     metaDescription:
       "One-on-one ABA therapy in your own home across Kansas and Colorado — daily-living skills taught where they're actually used, with parents in the loop.",
     intro:
-      "Some skills only make sense where they're used. Getting dressed happens in a bedroom. Dinner-table patience happens at a dinner table. In-home ABA brings a trained behavior technician — and a BCBA-designed plan — to the place those skills live.",
+      "Some skills only make sense where they're used. Getting dressed happens in a bedroom. Dinner-table patience happens at a dinner table. In-home ABA brings your child's ABA therapist — a trained behavior technician, working a BCBA-designed plan — to the place those skills live.",
     bestFor: [
       "Younger children and first-time therapy families",
       "Daily-living goals: dressing, meals, toileting, sleep routines",
@@ -66,14 +66,21 @@ export const services: Service[] = [
       {
         heading: "What a home session looks like",
         paragraphs: [
-          "Your technician arrives with a plan built around your child's goals and your home's real rhythm. Sessions blend structured practice with play your child already loves — and because you're nearby, parent coaching happens naturally rather than in a conference room.",
-          "The technician records progress at every session, and your BCBA visits regularly to watch, adjust the plan, and answer your questions face to face.",
+          "Your child's ABA therapist arrives with a plan built around your child's goals and your home's real rhythm. Sessions blend structured practice with play your child already loves — and because you're nearby, parent coaching happens naturally rather than in a conference room.",
+          "The therapist records progress at every session, and your BCBA visits regularly to watch, adjust the plan, and answer your questions face to face.",
         ],
       },
       {
         heading: "Your home stays your home",
         paragraphs: [
           "We work around naps, siblings, and schedules — not the other way. No furniture rearranging, no clinic-in-your-living-room takeover. If a session needs materials, we bring them and we take them back.",
+        ],
+      },
+      {
+        heading: "What in-home ABA therapy costs",
+        paragraphs: [
+          "The honest answer: it depends on your plan, not on a price list — which is why the free benefit check comes before anything else. Most families pay little or nothing for in-home ABA once their benefits are confirmed, Medicaid or private.",
+          "Send us a photo of your insurance card and we'll come back — usually within a business day — with a plain-English summary of what your plan covers and what you'd owe. Free, whether or not you ever work with us.",
         ],
       },
     ],
@@ -120,6 +127,12 @@ export const services: Service[] = [
           "For working families, daycare-based support means your child gets their hours without you leaving work early or adding a third drop-off. Sessions happen inside the day your child already has, and you get the same session notes and progress reviews as every Sunbird family.",
         ],
       },
+      {
+        heading: "Does insurance cover daycare-based ABA?",
+        paragraphs: [
+          "Daycare-based sessions are ABA therapy — the setting changes, the coverage question doesn't. And because coverage depends on your specific plan, we check yours instead of guessing: send one photo of your insurance card and you get a plain-English answer, usually within a business day, free.",
+        ],
+      },
     ],
     photo: {
       src: "/images/picture-cards-classroom.jpg",
@@ -159,7 +172,13 @@ export const services: Service[] = [
       {
         heading: "Built into every plan — and available on its own",
         paragraphs: [
-          "Every Sunbird treatment plan includes parent training, because skills that only work with the therapist were never the goal. And if what your family needs most right now is coaching for you, ask us — we'll tell you honestly what your insurance covers and what we'd recommend.",
+          "Every Sunbird treatment plan includes parent training, because skills that only work with the therapist were never the goal. And if what your family needs most right now is coaching for you, ask us — we'll tell you honestly what we'd recommend.",
+        ],
+      },
+      {
+        heading: "Is parent training covered by insurance?",
+        paragraphs: [
+          "Parent training is a standard part of almost every ABA treatment plan, so it usually rides along in the same coverage conversation as the rest of your child's care. What your plan covers is specific to your plan — which is why the free benefit check comes first: one photo of your insurance card, one plain-English answer, usually within a business day.",
         ],
       },
     ],
@@ -241,6 +260,12 @@ export const services: Service[] = [
         heading: "Simple to join",
         paragraphs: [
           "If you can join a video call, you can do telehealth — a phone, tablet, or laptop is all it takes. Sessions run on a secure, healthcare-grade video platform, and our team helps you get set up before the first appointment.",
+        ],
+      },
+      {
+        heading: "Does insurance cover telehealth ABA?",
+        paragraphs: [
+          "Telehealth coverage is set plan by plan, like everything else in insurance. Rather than guess at yours, we check it free: send a photo of your insurance card and we'll tell you exactly where your family stands, usually within a business day.",
         ],
       },
     ],

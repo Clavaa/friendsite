@@ -10,7 +10,7 @@ export const coverageCard: Record<
   { heading: string; facts: string[] }
 > = {
   kansas: {
-    heading: "Paying for ABA — the short version",
+    heading: "Paying for ABA therapy — the short version",
     facts: [
       "Coverage varies by plan, so we check yours instead of guessing — the benefit check is free.",
       "Most Kansas families pay little or nothing once benefits are confirmed, Medicaid or private.",
@@ -19,7 +19,7 @@ export const coverageCard: Record<
     ],
   },
   colorado: {
-    heading: "Paying for ABA — the short version",
+    heading: "Paying for ABA therapy — the short version",
     facts: [
       "Coverage varies by plan, so we check yours instead of guessing — the benefit check is free.",
       "Most Colorado families pay little or nothing once benefits are confirmed, Medicaid or private.",

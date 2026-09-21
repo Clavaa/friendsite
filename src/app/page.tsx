@@ -19,7 +19,7 @@ import { getGuide } from "../data/guides";
 export const metadata: Metadata = {
   title: `ABA therapy for children in Kansas & Colorado | ${siteConfig.brandName}`,
   description:
-    "BCBA-led ABA therapy for children with autism in Kansas and Colorado — in-home, daycare-based and telehealth, from a family-run practice. Free benefit check, fast answers. Talk to an intake advocate today.",
+    "BCBA-led ABA therapy for children with autism in Kansas and Colorado — ABA therapists who come to your home or daycare, plus telehealth, from a family-run practice. Free benefit check. Talk to an intake advocate today.",
   alternates: { canonical: "/" },
 };
 
@@ -260,7 +260,11 @@ const startStages = [
 /* The three guides featured on the homepage shelf — pulled from the
    guides data so titles/blurbs never drift from the hub. */
 const featuredGuides = (
-  ["paying-for-aba", "preparing-for-your-first-session", "aba-glossary"] as const
+  [
+    "signs-of-autism-at-age-2",
+    "paying-for-aba",
+    "preparing-for-your-first-session",
+  ] as const
 ).flatMap((slug) => {
   const g = getGuide(slug);
   return g
@@ -353,9 +357,9 @@ export default function HomePage() {
                 <span className="italic text-brand-teal">{siteConfig.taglineFeel}</span>
               </p>
               <p className="mx-auto mt-5 max-w-[36rem] text-[17px] leading-relaxed text-ink-soft lg:mx-0">
-                Compassionate, BCBA-led therapy for your child — and an intake
-                team that answers the phone, does the insurance legwork, and
-                never leaves you guessing what happens next.
+                Warm, BCBA-led ABA therapists who come to your child — and an
+                intake team that answers the phone, does the insurance
+                legwork, and never leaves you guessing what happens next.
               </p>
               {/* Quick call to action — one tap on mobile */}
               <div className="mt-8 flex flex-col items-center gap-3 lg:items-start">
@@ -559,9 +563,9 @@ export default function HomePage() {
       <section className="bg-cream">
         <div className="mx-auto max-w-[87rem] px-4 pt-24 sm:px-6">
           <div className="mx-auto max-w-2xl text-center">
-            <p className={eyebrowTeal}>What is ABA therapy?</p>
+            <p className={eyebrowTeal}>The plain-words answer</p>
             <h2 className="font-display display-xl mt-6 text-4xl sm:text-5xl lg:text-[3.4rem]">
-              Play on the outside. A plan underneath.
+              What is ABA therapy? Play on the outside, a plan underneath.
             </h2>
             <p className="mt-6 text-[17px] leading-relaxed text-ink-soft">
               ABA is one-on-one teaching built around what motivates your
@@ -604,9 +608,9 @@ export default function HomePage() {
       {/* ————— 6 · Services carousel with working arrows ————— */}
       <section className="bg-cream">
         <div className="mx-auto max-w-[87rem] px-4 pb-12 pt-28 sm:px-6">
-          <p className="text-center text-[17px] font-extrabold uppercase tracking-[0.14em] text-ink">
-            Our services
-          </p>
+          <h2 className="text-center text-[17px] font-extrabold uppercase tracking-[0.14em] text-ink">
+            Our ABA therapy services
+          </h2>
           <Carousel
             ariaLabel="Our services"
             step={552}
@@ -827,7 +831,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          <p className="mt-24 text-center text-[16px]">
+          <h3 className="font-display mt-24 text-center text-2xl sm:text-[1.8rem]">
+            Find an ABA therapist near you
+          </h3>
+          <p className="mt-3 text-center text-[16px]">
             <strong>Two states, one local team.</strong> Your town not listed?{" "}
             <a href={siteConfig.phoneHref} className="link-grow font-bold text-brand-teal">
               Ask us anyway
@@ -966,7 +973,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-[87rem] gap-12 px-4 py-24 sm:px-6 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:gap-20 lg:py-[10rem]">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <h2 className="font-display display-xl text-4xl sm:text-5xl lg:text-[3.75rem]">
-              Questions about ABA
+              ABA therapy questions, answered
             </h2>
             <div className="sticker mt-12 rounded-3xl bg-sun-wash p-8">
               <div className="flex items-start gap-5">

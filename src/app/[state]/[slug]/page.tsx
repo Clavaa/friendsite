@@ -51,8 +51,15 @@ export async function generateMetadata({
 
   if (resolved.kind === "city") {
     const { city } = resolved;
-    const title = `ABA Therapy in ${city.name}, ${stateCfg.abbr} | ${siteConfig.brandName}`;
-    const description = `BCBA-led ABA therapy for children in ${city.name}, ${stateCfg.abbr} — in-home, daycare-based, and telehealth. Benefits verified free, no phone trees.`;
+    // "& Therapists" carries the highest-volume keyword family ("{city}
+    // aba therapist"); brandShort keeps it ≤60 chars. Long city names
+    // fall back to the plain pattern with the full brand.
+    const withTherapists = `ABA Therapy & Therapists in ${city.name}, ${stateCfg.abbr} | ${siteConfig.brandShort}`;
+    const title =
+      withTherapists.length <= 60
+        ? withTherapists
+        : `ABA Therapy in ${city.name}, ${stateCfg.abbr} | ${siteConfig.brandName}`;
+    const description = `BCBA-led ABA therapy for children in ${city.name}, ${stateCfg.abbr} — ABA therapists who come to your home or daycare, plus telehealth. Benefits verified free, no phone trees.`;
     return {
       title: { absolute: title },
       description,

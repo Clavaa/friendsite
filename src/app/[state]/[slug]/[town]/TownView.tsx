@@ -215,13 +215,14 @@ export default function TownView({
         <div className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-2">
           <div className="rounded-3xl bg-mint-wash p-6 sm:p-8">
             <h2 className="font-display text-2xl">
-              How care reaches {town.name}
+              In-home ABA therapy in {town.name}
             </h2>
             <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
               In-home ABA is our starting point everywhere in{" "}
-              {stateCfg.name}: a trained behavior technician comes to your
-              home with a plan your BCBA wrote for your child, and parent
-              coaching happens where you&rsquo;ll actually use it.
+              {stateCfg.name}: your child&rsquo;s ABA therapist — a trained
+              behavior technician — comes to your home with a plan your BCBA
+              wrote for your child, and parent coaching happens where
+              you&rsquo;ll actually use it.
             </p>
             <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
               {city ? (
@@ -353,7 +354,22 @@ export default function TownView({
                 Many families come to us from {town.name} before any
                 evaluation. We&rsquo;ll help you understand the signs, book a
                 diagnostic evaluation in {stateCfg.name}, and line up coverage
-                so therapy can start as soon as the diagnosis is in hand.
+                so therapy can start as soon as the diagnosis is in hand. Not
+                sure yet? Read the{" "}
+                <Link
+                  href="/resources/signs-of-autism-at-age-2"
+                  className="font-bold text-brand-teal hover:underline"
+                >
+                  signs of autism at age 2
+                </Link>{" "}
+                or how{" "}
+                <Link
+                  href="/resources/the-m-chat-screening"
+                  className="font-bold text-brand-teal hover:underline"
+                >
+                  the free 5-minute M-CHAT screening
+                </Link>{" "}
+                works.
               </p>
             </div>
             <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col">

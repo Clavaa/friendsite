@@ -76,9 +76,10 @@ export default function CityView({
               ABA therapy in {cityLabel}
             </h1>
             <p className="mt-4 max-w-lg text-lg text-ink-soft">
-              One-on-one, BCBA-led therapy for children with autism in the{" "}
-              {city.name} area — at your home, at daycare, and over secure
-              video. Insurance handled for you, in plain English.
+              One-on-one therapy for children with autism from ABA therapists
+              who come to the {city.name} area — at your home, at daycare,
+              and over secure video, with a BCBA leading every plan.
+              Insurance handled for you, in plain English.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -132,16 +133,18 @@ export default function CityView({
             </p>
           </div>
           <div className="rounded-3xl bg-mint-wash p-6 sm:p-8">
-            <h2 className="font-display text-2xl">Where we go in {city.name}</h2>
+            <h2 className="font-display text-2xl">
+              ABA therapists who come to you in {city.name}
+            </h2>
             {/* TODO (unique content, required before launch): true service-area
                 description — actual neighborhoods/suburbs served for in-home,
                 the real center address if one exists in {city.name}, and honest
                 drive-radius notes. */}
             <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-              In-home therapy covers the greater {city.name} area, and
-              telehealth reaches every corner of {stateCfg.name}. The specific
-              neighborhoods and center details for {city.name} are published
-              once confirmed by the local team.
+              Our ABA therapists drive to homes across the greater{" "}
+              {city.name} area, and telehealth reaches every corner of{" "}
+              {stateCfg.name}. The specific neighborhoods and center details
+              for {city.name} are published once confirmed by the local team.
             </p>
             <p className="mt-3 rounded-xl bg-white/70 px-3 py-2 text-[13px] font-semibold text-ink-soft">
               Production note: neighborhood list + center details pending — see
@@ -155,7 +158,7 @@ export default function CityView({
       <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <h2 className="font-display max-w-2xl text-3xl sm:text-4xl">
-            How {city.name} families use us
+            ABA therapy services in {city.name}
           </h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((s) => (
@@ -183,6 +186,23 @@ export default function CityView({
               </li>
             ))}
           </ul>
+          <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-ink-soft">
+            Still comparing options? Two honest reads:{" "}
+            <Link
+              href="/resources/aba-vs-speech-therapy"
+              className="font-bold text-brand-teal hover:underline"
+            >
+              ABA vs. speech therapy
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="/resources/how-many-hours-of-aba"
+              className="font-bold text-brand-teal hover:underline"
+            >
+              how many hours of ABA children need
+            </Link>
+            .
+          </p>
         </div>
       </section>
 
@@ -191,10 +211,10 @@ export default function CityView({
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <div className="prose-measure">
             <p className="text-sm font-bold tracking-wide text-brand-teal">
-              Paying for therapy in {city.name}
+              Coverage works the same across {stateCfg.name}
             </p>
             <h2 className="font-display mt-2 text-3xl sm:text-4xl">
-              Coverage works the same across {stateCfg.name}
+              Paying for ABA therapy in {city.name}
             </h2>
             <p className="mt-4 text-ink-soft">
               Coverage varies by plan — not by city — so we check yours

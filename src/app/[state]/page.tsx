@@ -252,7 +252,22 @@ export default async function StatePage({
                 className="font-bold text-sun hover:underline"
               >
                 Start here &rarr;
+              </Link>{" "}
+              Still at the wondering stage? Read the{" "}
+              <Link
+                href="/resources/signs-of-autism-at-age-2"
+                className="font-bold text-sun hover:underline"
+              >
+                signs of autism at age 2
+              </Link>{" "}
+              or{" "}
+              <Link
+                href="/resources/signs-of-autism-at-18-months"
+                className="font-bold text-sun hover:underline"
+              >
+                at 18 months
               </Link>
+              .
             </p>
           </div>
           <LeadForm
@@ -273,13 +288,13 @@ export default async function StatePage({
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <div className="prose-measure">
             <h2 className="font-display text-3xl sm:text-4xl">
-              Counties we serve in {content.name}
+              ABA therapists who come to you, in every {content.name} county
             </h2>
             <p className="mt-3 text-ink-soft">
-              In-home therapy and telehealth reach every county in{" "}
-              {content.name}. Find yours for local coverage details, the
-              nearest team, and honest answers about getting started where
-              you live.
+              Our ABA therapists drive to families&rsquo; homes, and
+              telehealth reaches the corners the car doesn&rsquo;t. Find your
+              county for local coverage details, the nearest team, and honest
+              answers about getting started where you live.
             </p>
           </div>
           {/* Collapsed chip wall (client feedback): ~12 biggest counties

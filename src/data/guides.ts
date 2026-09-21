@@ -15,6 +15,10 @@
  * - No invented statistics, reviews, or outcomes claims.
  */
 
+import type { FaqItem } from "./states";
+import { understandingLibrary } from "./guides-understanding";
+import { decisionLibrary } from "./guides-decisions";
+
 export interface GuideSection {
   heading: string;
   paragraphs: string[];
@@ -26,23 +30,45 @@ export interface GlossaryTerm {
   def: string;
 }
 
+/** Optional custom closing CTA (defaults to the "ask a person" card). */
+export interface GuideCta {
+  heading: string;
+  body: string;
+  primaryLabel: string;
+  primaryHref: string;
+}
+
 export interface Guide {
   slug: string;
   /** Guides with startHere form the numbered "new here" path, in order. */
   startHere?: boolean;
+  /** "understanding" guides render on the hub's autism-questions shelf. */
+  shelf?: "understanding";
   cardTitle: string;
   cardBlurb: string;
   metaTitle: string;
   metaDescription: string;
   h1: string;
+  /**
+   * Intro doubles as the featured-snippet answer: aim for a crisp,
+   * 40–55-word direct answer to the title question, then the page can
+   * breathe. Paragraphs, intros, and list items support inline links
+   * written as [text](/path) — rendered by the guide template.
+   */
   intro: string;
   minutes: number;
   sections: GuideSection[];
   /** Glossary guide only. */
   terms?: GlossaryTerm[];
+  /** Rendered as an on-page FAQ with matching FAQPage JSON-LD. */
+  faqs?: FaqItem[];
+  /** Overrides the default closing aside (e.g. the diagnosis funnel). */
+  cta?: GuideCta;
+  /** Slugs for the "More guides" shelf; defaults to the first four others. */
+  related?: string[];
 }
 
-export const guides: Guide[] = [
+const coreGuides: Guide[] = [
   // ————————————————————————— Start-here path —————————————————————————
   {
     slug: "what-is-aba",
@@ -50,9 +76,9 @@ export const guides: Guide[] = [
     cardTitle: "What is ABA therapy?",
     cardBlurb:
       "The plain-words version: what ABA is, what a session looks like, and what it should feel like for your child.",
-    metaTitle: "What is ABA therapy? A plain-words guide for parents",
+    metaTitle: "What is ABA therapy? Applied behavior analysis in plain words",
     metaDescription:
-      "ABA therapy explained in plain words for parents in Kansas and Colorado: what it is, what a session really looks like, who's on the team, and what good ABA should feel like.",
+      "ABA — applied behavior analysis — explained in plain words for parents in Kansas and Colorado: what it is, what a session really looks like, who's on the team, and what good ABA should feel like.",
     h1: "What is ABA therapy? The plain-words version.",
     intro:
       "ABA stands for Applied Behavior Analysis. That's a mouthful, so here's the short version: ABA is one-on-one teaching, built around your child, that helps them learn the skills that make daily life easier — talking, playing, dressing, waiting, asking for help. This guide walks through what it is and what it looks like, without the jargon.",
@@ -103,6 +129,7 @@ export const guides: Guide[] = [
         heading: "Is ABA right for my child?",
         paragraphs: [
           "ABA is designed for children with an autism diagnosis, and most families start between ages 2 and 6 — though older children benefit too. If you're not sure where your child stands, you don't have to figure it out alone: call us, tell us what you're seeing, and we'll help you find the right next step, whether that's ABA or something else first.",
+          "Two honest companion reads when you're ready: [how many hours of ABA children actually need](/resources/how-many-hours-of-aba), and — if you've seen worrying things about ABA online — [our honest answer to 'is ABA harmful?'](/resources/is-aba-therapy-harmful).",
         ],
       },
     ],
@@ -124,7 +151,7 @@ export const guides: Guide[] = [
       {
         heading: "First: nothing about your child changed",
         paragraphs: [
-          "Your child is the same kid today they were before the appointment. The diagnosis didn't change them — it gave you information, and information opens doors: therapy coverage, school supports, and a clearer picture of how your child experiences the world.",
+          "Your child is the same kid today they were before the appointment. The diagnosis didn't change them — it gave you information, and information opens doors: therapy coverage, school supports, and a clearer picture of how your child experiences the world. If the report mentions a level and the wording rattled you, [what Level 2 autism means](/resources/what-does-level-2-autism-mean) translates it into plain words.",
           "It's okay to grieve the plan you had and love the child you have at the same time. Both are normal. Neither makes you a bad parent.",
         ],
       },
@@ -174,10 +201,10 @@ export const guides: Guide[] = [
     startHere: true,
     cardTitle: "Paying for ABA: insurance basics",
     cardBlurb:
-      "Commercial plans, KanCare, Health First Colorado — how coverage usually works, and the one shortcut that skips the confusion.",
+      "Commercial plans and Medicaid — how coverage usually works, and the one shortcut that skips the confusion.",
     metaTitle: "Paying for ABA therapy: insurance and Medicaid basics for KS & CO",
     metaDescription:
-      "How families in Kansas and Colorado usually pay for ABA therapy: commercial insurance, KanCare, and Health First Colorado explained gently — plus the free benefit check that gives you a real answer.",
+      "How families in Kansas and Colorado usually pay for ABA therapy: commercial insurance and Medicaid explained gently — plus the free benefit check that gives you a real answer instead of a guess.",
     h1: "Paying for ABA: how coverage usually works.",
     intro:
       "Here's the good news up front: most families who start ABA with a confirmed diagnosis end up paying far less than they feared, and many pay little or nothing. The bad news is that insurance paperwork is genuinely confusing. This guide explains the shape of it in plain words — and then shows you the shortcut.",
@@ -204,7 +231,7 @@ export const guides: Guide[] = [
       {
         heading: "If your child has Medicaid",
         paragraphs: [
-          "In Kansas, Medicaid is called KanCare. In Colorado, it's Health First Colorado. Both are public programs, and children's therapy services are the kind of care these programs exist for. Some children qualify through family income; some qualify because of a disability, regardless of income — a door many families don't know exists.",
+          "Kansas and Colorado each run their own Medicaid program, and children's therapy services are the kind of care these programs exist for. Some children qualify through family income; some qualify because of a disability, regardless of income — a door many families don't know exists.",
           "Medicaid rules have their own steps and their own paperwork rhythm. The honest summary: it's navigable, families do it every day, and you shouldn't have to become an expert. Ask the provider you're talking to — checking what your child's coverage means for ABA is part of their job, not yours.",
         ],
       },
@@ -513,9 +540,25 @@ export const guides: Guide[] = [
   },
 ];
 
+/**
+ * The full library: the core start-here + everyday guides above, the
+ * understanding-autism shelf (signs by age, levels, M-CHAT), and the
+ * bigger-decision guides (hours, ABA vs. speech, the honest-answer page).
+ */
+export const guides: Guide[] = [
+  ...coreGuides,
+  ...understandingLibrary,
+  ...decisionLibrary,
+];
+
 export function getGuide(slug: string): Guide | undefined {
   return guides.find((g) => g.slug === slug);
 }
 
 export const startHereGuides = guides.filter((g) => g.startHere);
-export const everydayGuides = guides.filter((g) => !g.startHere);
+export const understandingGuides = guides.filter(
+  (g) => g.shelf === "understanding"
+);
+export const everydayGuides = guides.filter(
+  (g) => !g.startHere && g.shelf !== "understanding"
+);

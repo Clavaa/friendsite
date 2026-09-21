@@ -133,7 +133,7 @@ export default function InsurancePage() {
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <div className="prose-measure">
             <h2 className="font-display text-3xl sm:text-4xl">
-              What will it actually cost us?
+              How much does ABA therapy cost?
             </h2>
             <p className="mt-4 text-ink-soft">
               The honest answer: it depends on your plan — which is exactly

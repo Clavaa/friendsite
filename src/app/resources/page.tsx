@@ -5,7 +5,11 @@ import JsonLd from "../../components/JsonLd";
 import StickyCallBar from "../../components/StickyCallBar";
 import { breadcrumbJsonLd } from "../../lib/seo";
 import { siteConfig } from "../../../site.config";
-import { everydayGuides, startHereGuides } from "../../data/guides";
+import {
+  everydayGuides,
+  startHereGuides,
+  understandingGuides,
+} from "../../data/guides";
 import { questionPages } from "../../data/questions";
 
 export const metadata: Metadata = {
@@ -35,7 +39,11 @@ export default function ResourcesPage() {
     "@type": "ItemList",
     "@id": `${siteConfig.domain}/resources/#guides`,
     name: "Sunbird ABA parent guides",
-    itemListElement: [...startHereGuides, ...everydayGuides].map((g, i) => ({
+    itemListElement: [
+      ...startHereGuides,
+      ...understandingGuides,
+      ...everydayGuides,
+    ].map((g, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: g.cardTitle,
@@ -115,7 +123,46 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* ————— Shelf 2: everyday guides ————— */}
+      {/* ————— Shelf 2: understanding autism (the wondering stage) ————— */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-[87rem] px-4 pb-16 sm:px-6 lg:pb-20">
+          <div className="max-w-2xl">
+            <h2 className="font-display text-3xl sm:text-[2.5rem]">
+              Wondering about autism? Start with the signs.
+            </h2>
+            <p className="mt-4 text-[16.5px] leading-relaxed text-ink-soft">
+              For the stage before any diagnosis — what the signs look like
+              at each age, what the levels mean, and how the free screening
+              works.
+            </p>
+          </div>
+          <ul className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            {understandingGuides.map((g) => (
+              <li key={g.slug} className="h-full">
+                <Link
+                  href={`/resources/${g.slug}`}
+                  className="lift group flex h-full flex-col rounded-3xl bg-white p-7 shadow-card"
+                >
+                  <h3 className="font-display text-[1.4rem] leading-snug group-hover:text-brand-teal">
+                    {g.cardTitle}
+                  </h3>
+                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-ink-soft">
+                    {g.cardBlurb}
+                  </p>
+                  <p className="mt-5 flex items-center gap-2 text-[13.5px] font-extrabold text-brand-teal">
+                    {g.minutes}-minute read
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                      <Chevron size={13} />
+                    </span>
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ————— Shelf 3: everyday guides ————— */}
       <section className="bg-cream">
         <div className="mx-auto max-w-[87rem] px-4 pb-16 sm:px-6 lg:pb-20">
           <div className="max-w-2xl">

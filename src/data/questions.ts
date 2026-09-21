@@ -25,10 +25,10 @@ export const questionPages: QuestionPage[] = [
     metaDescription:
       "A calm, step-by-step guide for Kansas and Colorado parents who suspect autism: what to watch for, who to call, and how to get an evaluation without waiting a year.",
     intro:
-      "First, take a breath. Noticing something early is a good thing — it means your child can get help sooner. Here is a simple path forward, one step at a time.",
+      "If you think your child might have autism, do two free things this week: tell your child's doctor exactly what you're seeing and ask for an autism screening, and get your child's name on an evaluation waitlist. Noticing early is a good thing — it means help can start sooner. Here's the path, one step at a time.",
     sections: [
       {
-        heading: "Trust what you're seeing",
+        heading: "The early signs parents notice first",
         paragraphs: [
           "Parents are usually the first to notice. Maybe your child isn't using words yet, doesn't point at things they want, doesn't respond to their name, or lines up toys the same way every time. Maybe eye contact feels rare, or changes in routine cause big meltdowns.",
           "None of these signs means your child definitely has autism. But together, they are a reason to ask a professional — not a reason to wait and see.",
@@ -73,7 +73,7 @@ export const questionPages: QuestionPage[] = [
     metaDescription:
       "Your child was just diagnosed with autism. Here's what to do in the first 30 days in Kansas or Colorado: insurance, therapy options, school, and support.",
     intro:
-      "A diagnosis day is heavy, even when you expected it. Here's the honest truth: the diagnosis changed the paperwork, not your child. Your kid is the same kid they were yesterday — and now doors open.",
+      "Here's what happens now, in order: get the written report, confirm your child's therapy benefits, start ABA intake, and connect with early intervention or your school district. That's the whole first month — and the diagnosis changed the paperwork, not your child. Your kid is the same kid they were yesterday, and now doors open.",
     sections: [
       {
         heading: "Give yourself a minute",
@@ -129,7 +129,7 @@ export const questionPages: QuestionPage[] = [
         ],
       },
       {
-        heading: "What a session looks like",
+        heading: "What does an ABA therapy session look like?",
         paragraphs: [
           "To a visitor, a good session mostly looks like playing. The technician follows your child's interests — cars, bubbles, a favorite song — and works learning into it. Practice a word, get the bubbles. Try a puzzle piece, get a high five and a silly cheer.",
           "Between the play, there's structure: each goal gets short, focused practice, and the technician records how it went. That data is how the BCBA knows what's working and what to change.",
@@ -178,7 +178,7 @@ export const questionPages: QuestionPage[] = [
         ],
       },
       {
-        heading: "What you might pay",
+        heading: "What will ABA therapy cost your family?",
         paragraphs: [
           "Your share depends on your plan's deductible, copays, and out-of-pocket maximum — not on ABA specifically. Many families hit their out-of-pocket max early in the year and pay nothing after that. Medicaid families typically pay nothing at all.",
           "Before your child starts, we give you a plain-English summary of your specific benefits: what's covered, what you'd owe, and when. No surprises is a rule here, not a slogan.",

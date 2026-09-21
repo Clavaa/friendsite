@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.brandName}`,
   },
   description:
-    "BCBA-led ABA therapy for children with autism across Kansas and Colorado — in-home, daycare-based and telehealth, from a family-run practice. Free benefit check. Talk to an intake advocate today.",
+    "BCBA-led ABA therapy for children with autism across Kansas and Colorado — ABA therapists who come to your home or daycare, plus telehealth, from a family-run practice. Free benefit check. Talk to an intake advocate today.",
   openGraph: {
     siteName: siteConfig.brandName,
     type: "website",
@@ -90,6 +90,16 @@ const organizationJsonLd = {
     { "@type": "State", name: "Colorado" },
   ],
   medicalSpecialty: "Psychiatric",
+  // Ruth is the only named person on the site (client rule) — she also
+  // appears as `reviewedBy` on every guide/question article. LBA is her
+  // state behavior-analyst license.
+  founder: {
+    "@type": "Person",
+    name: siteConfig.clinicalReviewer.name,
+    jobTitle: "MSEd, BCBA, LBA",
+  },
+  // Social profiles land here as the client sends them (site.config).
+  ...(siteConfig.instagramUrl ? { sameAs: [siteConfig.instagramUrl] } : {}),
 };
 
 export default function RootLayout({

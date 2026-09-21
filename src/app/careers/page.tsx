@@ -6,8 +6,8 @@ import StickyCallBar from "../../components/StickyCallBar";
 import { siteConfig } from "../../../site.config";
 
 export const metadata: Metadata = {
-  title: "Careers — BCBA & RBT roles in Kansas & Colorado",
-  description: `Join a family-run ABA practice: BCBA and behavior technician careers with ${siteConfig.brandName} across Kansas and Colorado. Sane caseloads, real mentorship.`,
+  title: "Careers — RBT & BCBA jobs in Kansas & Colorado",
+  description: `Registered behavior technician (RBT) and BCBA jobs with ${siteConfig.brandName}, a family-run ABA practice across Kansas and Colorado. Sane caseloads, real mentorship, and a paid BCBA-track program.`,
   alternates: { canonical: "/careers" },
 };
 

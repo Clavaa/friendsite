@@ -105,9 +105,13 @@ const servicePaths = extractSlugs("src/data/services.ts").map(
 const questionPaths = extractSlugs("src/data/questions.ts").map(
   (s) => `/questions/${s}`
 );
-const guidePaths = extractSlugs("src/data/guides.ts").map(
-  (s) => `/resources/${s}`
-);
+// The guide library spans three data files (core + understanding +
+// decisions) — keep this list in sync with the imports in guides.ts.
+const guidePaths = [
+  "src/data/guides.ts",
+  "src/data/guides-understanding.ts",
+  "src/data/guides-decisions.ts",
+].flatMap((f) => extractSlugs(f).map((s) => `/resources/${s}`));
 
 const urlList = [
   ...new Set(

@@ -18,6 +18,13 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
+      // www → apex: one canonical host for Google (308, path preserved).
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.sunbirdaba.com" }],
+        destination: "https://sunbirdaba.com/:path*",
+        permanent: true,
+      },
       ...cityRedirects,
       // The sitemap is sharded per state (see src/app/sitemap.ts); keep
       // the old single-sitemap URL working for anything that stored it.

@@ -10,6 +10,7 @@ import { siteConfig } from "../../../../site.config";
 import { getService, services } from "../../../data/services";
 import JsonLd from "../../../components/JsonLd";
 import { breadcrumbJsonLd } from "../../../lib/seo";
+import ServiceAreas from "../../../components/local/ServiceAreas";
 
 interface Params {
   slug: string;
@@ -151,6 +152,8 @@ export default async function ServicePage({
           </aside>
         </div>
       </section>
+
+      <ServiceAreas service={s} />
 
       <section className="bg-ink">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center">

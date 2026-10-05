@@ -26,6 +26,12 @@ const nextConfig: NextConfig = {
         destination: "/sitemap/core.xml",
         permanent: false,
       },
+      // The town layer first shipped Central City, CO as "Central".
+      {
+        source: "/colorado/gilpin/central",
+        destination: "/colorado/gilpin/central-city",
+        permanent: true,
+      },
       // Early intervention was folded into in-home ABA (client request).
       {
         source: "/services/early-intervention",

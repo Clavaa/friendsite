@@ -11,7 +11,15 @@ import ProofChip from "../../components/ProofChip";
 import StickyCallBar from "../../components/StickyCallBar";
 import { siteConfig, isStateSlug, stateSlugs } from "../../../site.config";
 import { stateContent } from "../../data/states";
-import { countiesByState } from "../../data/counties";
+import { countiesByState, getCounty } from "../../data/counties";
+import { townsByState } from "../../data/towns";
+import {
+  autismEstimate,
+  cityLocal,
+  fmt,
+  placeLocal,
+  stateTotals,
+} from "../../lib/local";
 import { breadcrumbJsonLd } from "../../lib/seo";
 
 /** Hero photo per state — honest, descriptive alt text; no client/staff claims. */
@@ -60,6 +68,35 @@ export default async function StatePage({
   const content = stateContent[state];
   const config = siteConfig.states[state];
   const firstCity = config.cities[0].name;
+
+  // Local-data layer: statewide totals, each team's counties, biggest towns.
+  const totals = stateTotals(state);
+  const townCount = townsByState[state].towns.length + config.cities.length;
+  const regions = config.cities.map((c) => {
+    const cl = cityLocal(state, c.slug);
+    return {
+      slug: c.slug,
+      name: c.name,
+      kids: cl?.stats?.under18 ?? 0,
+      counties: (cl?.countiesServed ?? [])
+        .map((s) => getCounty(state, s))
+        .filter((x): x is NonNullable<typeof x> => Boolean(x)),
+    };
+  });
+  const largest = [
+    ...config.cities.map((c) => ({
+      name: c.name,
+      href: `/${state}/${c.slug}`,
+      pop: cityLocal(state, c.slug)?.stats?.pop ?? 0,
+    })),
+    ...townsByState[state].towns.map((t) => ({
+      name: t.name,
+      href: `/${state}/${t.county}/${t.slug}`,
+      pop: placeLocal(state, t.county, t.slug)?.stats?.pop ?? t.pop,
+    })),
+  ]
+    .sort((a, b) => b.pop - a.pop)
+    .slice(0, 30);
 
   const clinicJsonLd = {
     "@context": "https://schema.org",
@@ -282,6 +319,79 @@ export default async function StatePage({
         items={[...content.faqs]}
         heading={`${content.name} questions, answered plainly`}
       />
+
+      {/* ————— Statewide numbers + team regions (local-data layer) ————— */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <h2 className="font-display text-3xl sm:text-4xl">
+            {content.name} by the numbers — and the team near you
+          </h2>
+          <p className="mt-3 max-w-3xl text-ink-soft">
+            About {fmt(totals.under18)} children live in {content.name}, including{" "}
+            {fmt(totals.under5)} under age 5. At the CDC&rsquo;s estimate of 1 in 31,
+            that is roughly {fmt(autismEstimate(totals.under18))} kids who may be on
+            the autism spectrum — in big cities and in towns of a few hundred people.
+            Every county has its own page with local numbers, schools and ZIP codes.
+          </p>
+          <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[
+              ["Children under 18", fmt(totals.under18)],
+              ["Children under 5", fmt(totals.under5)],
+              ["Counties we serve", String(countiesByState[state].length)],
+              ["Communities with a page", fmt(townCount)],
+            ].map(([label, value]) => (
+              <div key={label} className="rounded-2xl bg-white p-4">
+                <dt className="text-[13px] font-semibold text-ink-soft">{label}</dt>
+                <dd className="font-display mt-1 text-2xl">{value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-3 text-[12.5px] text-ink-soft">
+            Census ACS 2023 5-year estimates; CDC 1-in-31 prevalence applied as a planning figure.
+          </p>
+
+          <h3 className="font-display mt-12 text-2xl">
+            Our {config.cities.length} {content.name} teams and the counties they cover
+          </h3>
+          <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {regions.map((r) => (
+              <div key={r.slug} className="rounded-3xl bg-white p-6 shadow-card">
+                <Link href={`/${state}/${r.slug}`} className="font-display text-xl text-brand-teal hover:underline">
+                  {r.name} team →
+                </Link>
+                {r.kids > 0 && (
+                  <p className="mt-1 text-[13px] font-semibold text-ink-soft">
+                    {fmt(r.kids)} kids in the city itself
+                  </p>
+                )}
+                <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1.5 text-[14.5px]">
+                  {r.counties.map((c) => (
+                    <li key={c.slug}>
+                      <Link href={`/${state}/${c.slug}`} className="font-semibold hover:text-brand-teal hover:underline">
+                        {c.full}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="font-display mt-12 text-2xl">Largest {content.name} communities we serve</h3>
+          <ul className="mt-4 flex flex-wrap gap-2.5">
+            {largest.map((t) => (
+              <li key={t.href}>
+                <Link
+                  href={t.href}
+                  className="rounded-full border border-line bg-white px-4 py-2 text-[15px] font-semibold transition-colors hover:border-brand-teal hover:text-brand-teal"
+                >
+                  {t.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* ————— Counties we serve ————— */}
       <section className="bg-white">

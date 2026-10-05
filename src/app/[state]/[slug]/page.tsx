@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { siteConfig, isStateSlug, stateSlugs } from "../../../../site.config";
 import { countiesByState, formatPop, getCounty } from "../../../data/counties";
-import CityView from "./CityView";
-import CountyView from "./CountyView";
+import CityView, { cityCtx } from "./CityView";
+import CountyView, { countyCtx } from "./CountyView";
+import { localDescription } from "../../../lib/localCopy";
 
 /**
  * One dynamic segment under /[state]/ resolves BOTH kinds of pages:
@@ -59,7 +60,10 @@ export async function generateMetadata({
       withTherapists.length <= 60
         ? withTherapists
         : `ABA Therapy in ${city.name}, ${stateCfg.abbr} | ${siteConfig.brandName}`;
-    const description = `BCBA-led ABA therapy for children in ${city.name}, ${stateCfg.abbr} — ABA therapists who come to your home or daycare, plus telehealth. Benefits verified free, no phone trees.`;
+    const ctx = cityCtx(stateSlug, city);
+    const description = ctx
+      ? localDescription(ctx)
+      : `BCBA-led ABA therapy for children in ${city.name}, ${stateCfg.abbr} — ABA therapists who come to your home or daycare, plus telehealth. Benefits verified free, no phone trees.`;
     return {
       title: { absolute: title },
       description,
@@ -69,7 +73,10 @@ export async function generateMetadata({
 
   const { county } = resolved;
   const title = `ABA Therapy in ${county.full}, ${stateCfg.abbr} | ${siteConfig.brandName}`;
-  const description = `In-home ABA therapy for families across ${county.full}, ${stateCfg.abbr} (pop. ${formatPop(county.pop)}). Benefits verified free, no phone trees.`;
+  const ctx = countyCtx(stateSlug, county);
+  const description = ctx
+    ? localDescription(ctx)
+    : `In-home ABA therapy for families across ${county.full}, ${stateCfg.abbr} (pop. ${formatPop(county.pop)}). Benefits verified free, no phone trees.`;
   return {
     title: { absolute: title },
     description,

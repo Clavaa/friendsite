@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { siteConfig, isStateSlug, stateSlugs } from "../../../../../site.config";
+import { siteConfig, isStateSlug, stateSlugs, type StateSlug } from "../../../../../site.config";
 import { getCounty } from "../../../../data/counties";
 import { getTown, townsByState } from "../../../../data/towns";
-import TownView from "./TownView";
+import TownView, { townCtx } from "./TownView";
+import { localDescription } from "../../../../lib/localCopy";
 
 /**
- * Town pages — /{state}/{county}/{town} — one per Census place with
- * population >= 100 (see src/data/towns.ts). The ten places that already
+ * Town pages — /{state}/{county}/{town} — one per Census incorporated
+ * place plus census-designated places of 250+ people (src/data/towns.ts). The ten places that already
  * have first-class city pages at /{state}/{city} are excluded here and
- * 301-redirected in next.config.ts instead. Places under 100 people get
- * no page; the county page names them in its "every community" line.
+ * 301-redirected in next.config.ts instead. CDPs under 250 people get no
+ * page; the county page names them in its "every community" line.
  */
 
 interface Params {
@@ -63,6 +64,10 @@ function townDescription(
   return templates[seed % templates.length];
 }
 
+function isDuplicateName(state: StateSlug, name: string): boolean {
+  return townsByState[state].towns.filter((t) => t.name === name).length > 1;
+}
+
 function hashSeed(s: string): number {
   let h = 0;
   for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
@@ -79,17 +84,27 @@ export async function generateMetadata({
   const { stateSlug, county, town } = resolved;
   const stateCfg = siteConfig.states[stateSlug];
 
-  // Keep the title <= 60 chars: drop the brand suffix for long town names.
-  const withBrand = `ABA Therapy in ${town.name}, ${stateCfg.abbr} | ${siteConfig.brandName}`;
-  const title = withBrand.length <= 60 ? withBrand : `ABA Therapy in ${town.name}, ${stateCfg.abbr}`;
+  // Same-name towns in one state (Twin Lakes, Coal Creek, CO) carry the
+  // county so titles stay unique. Keep titles <= 60 chars: the brand
+  // suffix drops for long names.
+  const label = isDuplicateName(stateSlug, town.name)
+    ? `${town.name} (${county.full})`
+    : town.name;
+  const withBrand = `ABA Therapy in ${label}, ${stateCfg.abbr} | ${siteConfig.brandName}`;
+  const title = withBrand.length <= 60 ? withBrand : `ABA Therapy in ${label}, ${stateCfg.abbr}`;
 
-  const description = townDescription(
-    town.name,
-    stateCfg.abbr,
-    county.full,
-    town.pop.toLocaleString("en-US"),
-    hashSeed(`${stateSlug}/${county.slug}/${town.slug}`)
-  );
+  // Data-rich description (kids, nearest team, distance) — unique per town.
+  // Falls back to the rotating templates if a town has no local record.
+  const ctx = townCtx(stateSlug, county, town);
+  const description = ctx
+    ? localDescription(ctx)
+    : townDescription(
+        town.name,
+        stateCfg.abbr,
+        county.full,
+        town.pop.toLocaleString("en-US"),
+        hashSeed(`${stateSlug}/${county.slug}/${town.slug}`)
+      );
 
   return {
     title: { absolute: title },

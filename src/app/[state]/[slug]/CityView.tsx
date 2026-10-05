@@ -7,13 +7,54 @@ import ProofChip from "../../../components/ProofChip";
 import StickyCallBar from "../../../components/StickyCallBar";
 import { siteConfig, type StateSlug } from "../../../../site.config";
 import { services } from "../../../data/services";
-import { countiesByState } from "../../../data/counties";
+import { getCounty } from "../../../data/counties";
+import Faq, { faqJsonLd } from "../../../components/Faq";
+import {
+  LinkChips,
+  LocalSections,
+  LocalSnapshot,
+  ZipList,
+  guideShelf,
+} from "../../../components/local/LocalBlocks";
+import { cityLocal, countyLocal, hashSeed, nearbyHref } from "../../../lib/local";
+import {
+  buildLocalFaqs,
+  buildLocalSections,
+  type PlaceCtx,
+} from "../../../lib/localCopy";
 import { breadcrumbJsonLd } from "../../../lib/seo";
 
 export interface CityEntry {
   name: string;
   slug: string;
   displaySuffix?: string;
+}
+
+export function cityCtx(stateSlug: StateSlug, city: CityEntry): PlaceCtx | null {
+  const stateCfg = siteConfig.states[stateSlug];
+  const loc = cityLocal(stateSlug, city.slug);
+  if (!loc) return null;
+  const county = getCounty(stateSlug, loc.county);
+  return {
+    stateSlug,
+    stateName: stateCfg.name,
+    abbr: stateCfg.abbr,
+    kind: "city",
+    name: city.name,
+    countyFull: county?.full,
+    countyHref: county ? `/${stateSlug}/${county.slug}` : undefined,
+    landSqMi: loc.landSqMi,
+    stats: loc.stats,
+    zips: loc.zips,
+    districts: loc.districts,
+    hub: { slug: city.slug, name: city.name, miles: 0 },
+    nearby: loc.nearby,
+    path: city.slug,
+    countiesServed: loc.countiesServed
+      .map((s) => getCounty(stateSlug, s))
+      .filter((c): c is NonNullable<typeof c> => Boolean(c))
+      .map((c) => ({ name: c.full, href: `/${stateSlug}/${c.slug}` })),
+  };
 }
 
 export default function CityView({
@@ -26,12 +67,30 @@ export default function CityView({
   const stateCfg = siteConfig.states[stateSlug];
   const cityLabel = `${city.name}, ${stateCfg.abbr}`;
 
-  // Counties whose nearest served city is this one — internal links that
-  // make the city page a hub for its region.
-  const nearbyCounties = countiesByState[stateSlug]
-    .filter((c) => c.nearestCity?.slug === city.slug)
-    .sort((a, b) => b.pop - a.pop)
-    .slice(0, 10);
+  const loc = cityLocal(stateSlug, city.slug)!;
+  const ctx = cityCtx(stateSlug, city)!;
+  const homeCounty = getCounty(stateSlug, loc.county);
+  const sections = buildLocalSections(ctx, countyLocal(stateSlug, loc.county)?.districts);
+  const faqs = buildLocalFaqs(ctx);
+  const seed = hashSeed(`${stateSlug}/${city.slug}`);
+
+  // Every town within 30 miles + every county this team is nearest to —
+  // the city page is the hub of its region's link graph.
+  const within30 = loc.within30.map((n) => ({
+    name: n.name,
+    href: nearbyHref(stateSlug, n),
+    note: `${n.miles} mi`,
+  }));
+  const countiesServed = loc.countiesServed
+    .map((s) => getCounty(stateSlug, s))
+    .filter((c): c is NonNullable<typeof c> => Boolean(c))
+    .map((c) => ({ name: c.full, href: `/${stateSlug}/${c.slug}` }));
+  const extras = [
+    ...(homeCounty ? [{ label: "County", value: homeCounty.full }] : []),
+    { label: "ZIP codes in the city", value: String(loc.zips.length) },
+    { label: "Towns within 30 miles", value: String(loc.within30.length) },
+    { label: "Counties this team serves", value: String(loc.countiesServed.length) },
+  ];
 
   const localBusinessJsonLd = {
     "@context": "https://schema.org",
@@ -43,6 +102,7 @@ export default function CityView({
     areaServed: {
       "@type": "City",
       name: city.name,
+      ...(loc.zips.length ? { postalCode: loc.zips } : {}),
       containedInPlace: { "@type": "State", name: stateCfg.name },
     },
     parentOrganization: { "@id": `${siteConfig.domain}/#organization` },
@@ -51,6 +111,7 @@ export default function CityView({
   return (
     <>
       <JsonLd data={localBusinessJsonLd} />
+      <JsonLd data={faqJsonLd(faqs)} />
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "" },
@@ -111,48 +172,13 @@ export default function CityView({
         </div>
       </section>
 
-      {/* ————— Local team note + service area (unique-content slots) ————— */}
-      <section className="bg-white">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-2">
-          <div className="rounded-3xl bg-sun-wash p-6 sm:p-8">
-            <h2 className="font-display text-2xl">Your {city.name} team</h2>
-            {/* TODO (unique content, required before launch): 2–3 sentences
-                from the actual local clinical lead — name, credential, how
-                long they've served {city.name}, and one specific local detail.
-                Google's helpful-content standards require real local substance
-                here, never a swapped-city template. */}
-            <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-              A note from our {city.name} clinical lead belongs here — who
-              they are, how long they&rsquo;ve worked with {city.name}{" "}
-              families, and how the local team runs. We publish it once
-              it&rsquo;s real, not before.
-            </p>
-            <p className="mt-3 rounded-xl bg-white/70 px-3 py-2 text-[13px] font-semibold text-ink-soft">
-              Production note: unique local content pending — see TODO in this
-              template.
-            </p>
-          </div>
-          <div className="rounded-3xl bg-mint-wash p-6 sm:p-8">
-            <h2 className="font-display text-2xl">
-              ABA therapists who come to you in {city.name}
-            </h2>
-            {/* TODO (unique content, required before launch): true service-area
-                description — actual neighborhoods/suburbs served for in-home,
-                the real center address if one exists in {city.name}, and honest
-                drive-radius notes. */}
-            <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-              Our ABA therapists drive to homes across the greater{" "}
-              {city.name} area, and telehealth reaches every corner of{" "}
-              {stateCfg.name}. The specific neighborhoods and center details
-              for {city.name} are published once confirmed by the local team.
-            </p>
-            <p className="mt-3 rounded-xl bg-white/70 px-3 py-2 text-[13px] font-semibold text-ink-soft">
-              Production note: neighborhood list + center details pending — see
-              TODO in this template.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* TODO (client, when ready): a 2–3 sentence note from the real local
+          clinical lead belongs above the snapshot — only once it's real. The
+          visible "production note" placeholders were removed: everything
+          below is true, data-driven local content (src/lib/localCopy.ts). */}
+      <LocalSnapshot name={city.name} stats={ctx.stats} extras={extras} />
+
+      <LocalSections sections={sections} />
 
       {/* ————— Services available here ————— */}
       <section className="bg-cream">
@@ -206,35 +232,9 @@ export default function CityView({
         </div>
       </section>
 
-      {/* ————— Inherited state insurance data ————— */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <div className="prose-measure">
-            <p className="text-sm font-bold tracking-wide text-brand-teal">
-              Coverage works the same across {stateCfg.name}
-            </p>
-            <h2 className="font-display mt-2 text-3xl sm:text-4xl">
-              Paying for ABA therapy in {city.name}
-            </h2>
-            <p className="mt-4 text-ink-soft">
-              Coverage varies by plan — not by city — so we check yours
-              instead of guessing. Most families pay little or nothing once
-              benefits are confirmed, whether their child has Medicaid or
-              private insurance, and we run a free benefit check that tells
-              you exactly where you stand.
-            </p>
-            <p className="mt-4 text-ink-soft">
-              Send one photo of your insurance card and a real person calls
-              you back with a plain-English answer, usually within a business
-              day. How the whole process works lives on our{" "}
-              <Link href={`/${stateSlug}`} className="font-bold text-brand-teal hover:underline">
-                {stateCfg.name} guide
-              </Link>
-              .
-            </p>
-          </div>
-        </div>
-      </section>
+      <ZipList name={city.name} zips={loc.zips} />
+
+      <Faq items={faqs} heading={`${city.name} questions, answered plainly`} />
 
       {/* ————— Intake ————— */}
       <section id="intake" className="bg-ink scroll-mt-20">
@@ -257,32 +257,20 @@ export default function CityView({
         </div>
       </section>
 
-      {/* ————— Counties this city team serves ————— */}
-      {nearbyCounties.length > 0 && (
-        <section className="bg-white">
-          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-            <h2 className="font-display text-2xl">
-              Counties the {city.name} team serves
-            </h2>
-            <p className="mt-2 max-w-2xl text-[15px] text-ink-soft">
-              In-home therapy travels well beyond city limits. These are some
-              of the {stateCfg.name} counties families reach us from.
-            </p>
-            <ul className="mt-4 flex flex-wrap gap-2.5">
-              {nearbyCounties.map((c) => (
-                <li key={c.slug}>
-                  <Link
-                    href={`/${stateSlug}/${c.slug}`}
-                    className="rounded-full border border-line bg-cream px-4 py-2 text-[15px] font-semibold transition-colors hover:border-brand-teal hover:text-brand-teal"
-                  >
-                    {c.full}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
+      <LinkChips
+        id="nearby"
+        heading={`Towns within 30 miles of ${city.name}`}
+        intro={`Our ${city.name} team drives to homes across the area. Straight-line distance from ${city.name}:`}
+        items={within30}
+        tint="bg-white"
+      />
+
+      <LinkChips
+        heading={`Counties the ${city.name} team serves`}
+        intro={`These ${stateCfg.name} counties are closer to ${city.name} than to any other Sunbird team, nearest first.`}
+        items={countiesServed}
+        tint="bg-cream"
+      />
 
       {/* ————— Other cities ————— */}
       <section className="bg-cream">
@@ -314,6 +302,8 @@ export default function CityView({
           </ul>
         </div>
       </section>
+
+      <LinkChips heading="Guides parents read next" items={guideShelf(seed)} tint="bg-white" />
 
       <CtaBand />
       <StickyCallBar callLabel={`Call the ${city.name} team`} />

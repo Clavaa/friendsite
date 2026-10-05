@@ -4,83 +4,92 @@ import Faq, { faqJsonLd } from "../../../components/Faq";
 import JsonLd from "../../../components/JsonLd";
 import LeadForm from "../../../components/LeadForm";
 import StickyCallBar from "../../../components/StickyCallBar";
-import { siteConfig, type StateSlug } from "../../../../site.config";
-import { type FaqItem } from "../../../data/states";
 import {
-  formatPop,
-  getCounty,
-  type CountyEntry,
-} from "../../../data/counties";
-import { coverageCard } from "../../../data/coverage";
+  LinkChips,
+  LocalSections,
+  LocalSnapshot,
+  ZipList,
+  guideShelf,
+} from "../../../components/local/LocalBlocks";
+import { siteConfig, type StateSlug } from "../../../../site.config";
+import { formatPop, getCounty, type CountyEntry } from "../../../data/counties";
 import {
   cityPagesInCounty,
   tinyPlacesInCounty,
   townsInCounty,
 } from "../../../data/towns";
+import {
+  cityLocal,
+  countyLocal,
+  fmt,
+  hashSeed,
+  placeLocal,
+} from "../../../lib/local";
+import {
+  buildLocalFaqs,
+  buildLocalSections,
+  type PlaceCtx,
+} from "../../../lib/localCopy";
 import { breadcrumbJsonLd } from "../../../lib/seo";
 
 /**
- * County page: real substance per county — population, the inherited
- * state Medicaid facts (condensed, not a state-page copy), in-home
- * service framing, the nearest served city, county FAQs with schema,
- * and neighbor-county links so no county page is a dead end.
+ * County page — the hub for every community in the county. The body is
+ * generated from the county's own public data (src/lib/local.ts →
+ * src/lib/localCopy.ts) and carries a full community table (population,
+ * kids, distance to our nearest team) linking every town page, the
+ * county's school districts and ZIP codes, and neighbor counties with
+ * distances — so no county page is thin and none is a dead end.
  */
 
-function regionNote(county: CountyEntry, stateName: string): string {
-  const city = county.nearestCity;
-  if (!city) {
-    return `Our ${stateName} team serves families statewide, with in-home visits and telehealth closing the distance.`;
-  }
-  if (city.hops <= 1) {
-    return `${city.name} is right nearby, so most ${county.full} families are matched with our ${city.name}-area team — and sessions still happen at your home, not ours.`;
-  }
-  if (city.hops <= 3) {
-    return `Our closest hub is ${city.name}. In-home therapy travels from there, and telehealth keeps BCBA time easy to schedule between visits.`;
-  }
-  return `${county.full} sits a real drive from our ${city.name} hub, so we lean on in-home visits and telehealth to close the distance — and we're always honest about start timelines in your part of ${stateName}.`;
-}
-
-function countyFaqs(county: CountyEntry, stateSlug: StateSlug): FaqItem[] {
-  const stateName = siteConfig.states[stateSlug].name;
-  const city = county.nearestCity;
-  const faqs: FaqItem[] = [];
-
-  faqs.push({
-    q: `Does insurance cover ABA therapy in ${county.full}?`,
-    a: `Coverage depends on your plan, not your county — and rather than guess at yours, we check it for free. Most ${stateName} families pay little or nothing once benefits are confirmed, Medicaid or private. Send us a photo of your insurance card and we'll tell you exactly where you stand, usually within a business day.`,
-  });
-
-  faqs.push({
-    q: `Do you offer in-home ABA in ${county.full}?`,
-    a: city
-      ? `In-home therapy is the heart of how we serve ${county.full} — our team comes to your home rather than asking you to drive to us. ${
-          city.hops <= 1
-            ? `Our nearby ${city.name} team anchors care in this area,`
-            : `Our nearest hub is ${city.name},`
-        } and telehealth keeps BCBA support easy to schedule between visits.`
-      : `In-home therapy is the heart of how we serve ${county.full} — our team comes to your home rather than asking you to drive to us, and telehealth keeps BCBA support easy to schedule between visits.`,
-  });
-
-  faqs.push({
-    q: `My child doesn't have a diagnosis yet. Can we still start from ${county.full}?`,
-    a: `Yes — that's exactly where many ${stateName} families begin. We help you book a diagnostic evaluation first, then move straight into coverage and therapy once the diagnosis is in hand. Start with our get-a-diagnosis guide or call us and we'll map the path together.`,
-  });
-
-  if (county.pop >= 100000) {
-    faqs.push({
-      q: `How fast can we start in ${county.full}?`,
-      a: `It depends on your child's plan and our current ${
-        city ? `${city.name}-area` : stateName
-      } capacity, so we won't quote a number we can't keep. Tell us your zip code and schedule, and an intake advocate gives you an honest start timeline — usually on the first call.`,
-    });
-  } else {
-    faqs.push({
-      q: `We live in a rural part of ${county.full}. Does that change anything?`,
-      a: `It changes logistics, not whether we can help. With about ${formatPop(county.pop)} residents, ${county.full} is exactly the kind of community our in-home and telehealth model was built for — sessions come to you, and your BCBA stays close by video between visits. We'll be upfront about travel and timelines for your address.`,
-    });
-  }
-
-  return faqs;
+export function countyCtx(stateSlug: StateSlug, county: CountyEntry): PlaceCtx | null {
+  const stateCfg = siteConfig.states[stateSlug];
+  const loc = countyLocal(stateSlug, county.slug);
+  if (!loc) return null;
+  const top = [
+    ...cityPagesInCounty(stateSlug, county.slug).map((r) => {
+      const cl = cityLocal(stateSlug, r.city);
+      return {
+        name: stateCfg.cities.find((c) => c.slug === r.city)?.name ?? r.city,
+        href: `/${stateSlug}/${r.city}`,
+        pop: cl?.stats?.pop ?? 0,
+        kids: cl?.stats?.under18 ?? null,
+      };
+    }),
+    ...townsInCounty(stateSlug, county.slug).map((t) => {
+      const pl = placeLocal(stateSlug, county.slug, t.slug);
+      return {
+        name: t.name,
+        href: `/${stateSlug}/${county.slug}/${t.slug}`,
+        pop: pl?.stats?.pop ?? t.pop,
+        kids: pl?.stats?.under18 ?? null,
+      };
+    }),
+  ].sort((a, b) => b.pop - a.pop);
+  const neighborCounties = loc.neighborMiles
+    .map((n) => ({ c: getCounty(stateSlug, n.slug), miles: n.miles }))
+    .filter((x): x is { c: CountyEntry; miles: number } => Boolean(x.c))
+    .map((x) => ({ name: x.c.full, href: `/${stateSlug}/${x.c.slug}`, miles: x.miles }));
+  const nearby = townsInCounty(stateSlug, county.slug)
+    .slice(0, 6)
+    .map((t) => ({ path: `${county.slug}/${t.slug}`, name: t.name, miles: loc.townMiles[t.slug] ?? 0, kind: "town" as const }));
+  return {
+    stateSlug,
+    stateName: stateCfg.name,
+    abbr: stateCfg.abbr,
+    kind: "county",
+    name: county.full,
+    seat: loc.seat,
+    landSqMi: loc.landSqMi,
+    stats: loc.stats,
+    zips: loc.zips,
+    districts: loc.districts,
+    districtCount: loc.districtCount,
+    hub: loc.hub,
+    nearby,
+    path: county.slug,
+    topCommunities: top,
+    neighborCounties,
+  };
 }
 
 export default function CountyView({
@@ -91,27 +100,53 @@ export default function CountyView({
   county: CountyEntry;
 }) {
   const stateCfg = siteConfig.states[stateSlug];
-  const facts = coverageCard[stateSlug];
-  const faqs = countyFaqs(county, stateSlug);
-  const city = county.nearestCity;
-  const neighbors = county.neighbors
-    .map((slug) => getCounty(stateSlug, slug))
-    .filter((c): c is CountyEntry => Boolean(c));
+  const loc = countyLocal(stateSlug, county.slug)!;
+  const ctx = countyCtx(stateSlug, county)!;
+  const sections = buildLocalSections(ctx);
+  const faqs = buildLocalFaqs(ctx);
+  const seed = hashSeed(`${stateSlug}/${county.slug}`);
+  const hub = loc.hub;
 
-  // Communities in this county: city-page places first (chips link to the
-  // existing city pages), then every town with its own page (already
-  // population-sorted), then the sub-100-person places as a plain-text
-  // line — honest coverage without minting junk pages.
-  const cityChips = cityPagesInCounty(stateSlug, county.slug).map((r) => ({
-    name: stateCfg.cities.find((c) => c.slug === r.city)?.name ?? r.city,
-    href: `/${stateSlug}/${r.city}`,
-  }));
-  const townChips = townsInCounty(stateSlug, county.slug).map((t) => ({
-    name: t.name,
-    href: `/${stateSlug}/${county.slug}/${t.slug}`,
-  }));
+  // Every community with a page: city pages first, then towns by population.
+  type Row = { name: string; href: string; pop: number; kids: number | null; miles: number | null; cdp: boolean };
+  const rows: Row[] = [
+    ...cityPagesInCounty(stateSlug, county.slug).map((r) => {
+      const cl = cityLocal(stateSlug, r.city);
+      return {
+        name: stateCfg.cities.find((c) => c.slug === r.city)?.name ?? r.city,
+        href: `/${stateSlug}/${r.city}`,
+        pop: cl?.stats?.pop ?? 0,
+        kids: cl?.stats?.under18 ?? null,
+        miles: 0,
+        cdp: false,
+      };
+    }),
+    ...townsInCounty(stateSlug, county.slug).map((t) => {
+      const pl = placeLocal(stateSlug, county.slug, t.slug);
+      return {
+        name: t.name,
+        href: `/${stateSlug}/${county.slug}/${t.slug}`,
+        pop: pl?.stats?.pop ?? t.pop,
+        kids: pl?.stats?.under18 ?? null,
+        miles: pl?.hub.miles ?? null,
+        cdp: t.kind === "cdp",
+      };
+    }),
+  ];
   const tinyPlaces = tinyPlacesInCounty(stateSlug, county.slug);
-  const communityChips = [...cityChips, ...townChips];
+
+  const neighbors = loc.neighborMiles
+    .map((n) => ({ c: getCounty(stateSlug, n.slug), miles: n.miles }))
+    .filter((x): x is { c: CountyEntry; miles: number } => Boolean(x.c))
+    .map((x) => ({ name: x.c.full, href: `/${stateSlug}/${x.c.slug}`, note: `${x.miles} mi` }));
+
+  const extras = [
+    ...(loc.seat ? [{ label: "County seat", value: loc.seat }] : []),
+    { label: "Land area", value: `${fmt(loc.landSqMi)} sq mi` },
+    { label: "Communities with a page", value: String(rows.length) },
+    ...(loc.districtCount ? [{ label: "Public school districts", value: String(loc.districtCount) }] : []),
+    { label: "Nearest Sunbird team", value: `${hub.name} · ${hub.miles} mi` },
+  ];
 
   const serviceJsonLd = {
     "@context": "https://schema.org",
@@ -123,6 +158,7 @@ export default function CountyView({
     areaServed: {
       "@type": "AdministrativeArea",
       name: `${county.full}, ${stateCfg.name}`,
+      ...(loc.zips.length ? { postalCode: loc.zips } : {}),
       containedInPlace: { "@type": "State", name: stateCfg.name },
     },
     parentOrganization: { "@id": `${siteConfig.domain}/#organization` },
@@ -157,9 +193,15 @@ export default function CountyView({
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink-soft">
             Our team comes to families across {county.full} — home to about{" "}
-            {formatPop(county.pop)} people — with one-on-one, BCBA-led ABA
-            therapy at your kitchen table, not a far-off clinic.{" "}
-            {regionNote(county, stateCfg.name)}
+            {formatPop(ctx.stats?.pop ?? county.pop)} people
+            {ctx.stats && ctx.stats.under18 > 0 ? ` and ${fmt(ctx.stats.under18)} children` : ""}
+            {loc.seat ? `, from ${loc.seat} to the smallest town` : ""} — with
+            one-on-one, BCBA-led ABA therapy at home or daycare. Our nearest
+            team is in{" "}
+            <Link href={`/${stateSlug}/${hub.slug}`} className="font-bold text-brand-teal hover:underline">
+              {hub.name}
+            </Link>
+            , about {hub.miles} miles from the middle of the county.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link
@@ -175,98 +217,82 @@ export default function CountyView({
               Call {siteConfig.phone}
             </a>
           </div>
+          <ul className="mt-6 flex flex-wrap gap-2 text-[14px] font-semibold">
+            {[
+              ["#communities", `All ${rows.length} communities`],
+              ["#kids-and-families", "Kids & autism here"],
+              ["#what-fits", "Home, daycare or telehealth"],
+              ["#schools", "School districts"],
+              ["#paying", "Paying for ABA"],
+              ["#getting-started", "Getting started"],
+            ].map(([href, label]) => (
+              <li key={href}>
+                <a href={href} className="rounded-full bg-white px-3.5 py-1.5 text-ink-soft hover:text-brand-teal">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* ————— How care reaches this county + condensed Medicaid card ————— */}
-      <section className="bg-white">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 lg:grid-cols-2">
-          <div className="rounded-3xl bg-mint-wash p-6 sm:p-8">
-            <h2 className="font-display text-2xl">
-              In-home ABA therapy across {county.full}
+      <LocalSnapshot name={county.full} stats={ctx.stats} extras={extras} />
+
+      {/* ————— Every community table ————— */}
+      {rows.length > 0 && (
+        <section id="communities" className="bg-cream">
+          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+            <h2 className="font-display text-2xl sm:text-3xl">
+              ABA therapy in every {county.full} community
             </h2>
-            <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-              In-home ABA is our starting point everywhere in{" "}
-              {stateCfg.name}: your child&rsquo;s ABA therapist — a trained
-              behavior technician — comes to your home with a plan your BCBA
-              wrote for your child, and parent coaching happens where
-              you&rsquo;ll actually use it.
+            <p className="mt-2 max-w-3xl text-[15px] leading-relaxed text-ink-soft">
+              Each community below has its own page with local numbers, schools,
+              ZIP codes and nearby towns. Distances are straight-line miles to
+              our nearest team.
             </p>
-            <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
-              {city ? (
-                <>
-                  For {county.full} families, care is anchored by our{" "}
-                  <Link
-                    href={`/${stateSlug}/${city.slug}`}
-                    className="font-bold text-brand-teal hover:underline"
-                  >
-                    {city.name} team
-                  </Link>
-                  , with telehealth adding BCBA time between visits — useful
-                  anywhere, essential in the farther corners of the county.
-                </>
-              ) : (
-                <>
-                  Care is coordinated by our{" "}
-                  <Link
-                    href={`/${stateSlug}`}
-                    className="font-bold text-brand-teal hover:underline"
-                  >
-                    {stateCfg.name} team
-                  </Link>
-                  , with telehealth adding BCBA time between visits.
-                </>
-              )}
-            </p>
-            <ul className="mt-4 space-y-1.5 text-[15px] font-semibold">
-              <li>
-                <Link href="/services/in-home-aba" className="text-brand-teal hover:underline">
-                  In-home ABA therapy →
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/telehealth" className="text-brand-teal hover:underline">
-                  Telehealth &amp; parent coaching →
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/daycare-based" className="text-brand-teal hover:underline">
-                  Daycare-based support →
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/parent-training" className="text-brand-teal hover:underline">
-                  Parent training →
-                </Link>
-              </li>
-            </ul>
+            <div className="mt-6 overflow-x-auto rounded-2xl bg-white shadow-card">
+              <table className="w-full min-w-[520px] text-left text-[15px]">
+                <thead className="border-b border-line text-[13px] uppercase tracking-wide text-ink-soft">
+                  <tr>
+                    <th scope="col" className="px-4 py-3">Community</th>
+                    <th scope="col" className="px-4 py-3 text-right">Residents</th>
+                    <th scope="col" className="px-4 py-3 text-right">Kids under 18</th>
+                    <th scope="col" className="px-4 py-3 text-right">To nearest team</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((r) => (
+                    <tr key={r.href} className="border-b border-line/60 last:border-0">
+                      <th scope="row" className="px-4 py-2.5 font-semibold">
+                        <Link href={r.href} className="text-brand-teal hover:underline">
+                          ABA therapy in {r.name}
+                        </Link>
+                        {r.cdp && <span className="ml-2 text-[12px] font-semibold text-ink-soft">unincorporated</span>}
+                      </th>
+                      <td className="px-4 py-2.5 text-right tabular-nums">{fmt(r.pop)}</td>
+                      <td className="px-4 py-2.5 text-right tabular-nums">{r.kids !== null ? fmt(r.kids) : "—"}</td>
+                      <td className="px-4 py-2.5 text-right tabular-nums">
+                        {r.miles === 0 ? "team city" : r.miles !== null ? `${r.miles} mi` : "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {tinyPlaces.length > 0 && (
+              <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-ink-soft">
+                <span className="font-bold text-ink">Smaller places, too:</span>{" "}
+                we also serve families in {tinyPlaces.map((t) => t.name).join(", ")} —
+                no community is too small for in-home visits and telehealth.
+              </p>
+            )}
           </div>
+        </section>
+      )}
 
-          <div className="rounded-3xl bg-sun-wash p-6 sm:p-8">
-            <h2 className="font-display text-2xl">{facts.heading}</h2>
-            <ul className="mt-4 space-y-3">
-              {facts.facts.map((fact) => (
-                <li key={fact.slice(0, 40)} className="flex gap-2.5 text-[15px] leading-relaxed text-ink-soft">
-                  <span aria-hidden="true" className="mt-1 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-meadow-wash text-meadow-deep">
-                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M2 6.5L4.5 9L10 3" />
-                    </svg>
-                  </span>
-                  {fact}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-[15px] text-ink-soft">
-              How the benefit check works — and everything else about getting
-              started — lives on our{" "}
-              <Link href={`/${stateSlug}`} className="font-bold text-brand-teal hover:underline">
-                {stateCfg.name} guide
-              </Link>
-              .
-            </p>
-          </div>
-        </div>
-      </section>
+      <LocalSections sections={sections} />
+
+      <ZipList name={county.full} zips={loc.zips} />
 
       {/* ————— Diagnosis funnel ————— */}
       <section className="bg-cream">
@@ -277,25 +303,10 @@ export default function CountyView({
                 No diagnosis yet? Start there — we&rsquo;ll help.
               </h2>
               <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
-                Many {county.full} families come to us before any evaluation.
+                Lots of families reach out before any evaluation — that is a fine place to start, wherever you are in {county.full}.
                 We&rsquo;ll help you understand the signs, book a diagnostic
                 evaluation in {stateCfg.name}, and line up coverage so therapy
-                can start as soon as the diagnosis is in hand. Not sure what
-                you&rsquo;re seeing yet? Start with the{" "}
-                <Link
-                  href="/resources/signs-of-autism-at-18-months"
-                  className="font-bold text-brand-teal hover:underline"
-                >
-                  signs of autism at 18 months
-                </Link>{" "}
-                — or, if the report already came,{" "}
-                <Link
-                  href="/resources/what-does-level-2-autism-mean"
-                  className="font-bold text-brand-teal hover:underline"
-                >
-                  what the autism levels mean
-                </Link>
-                .
+                can start as soon as the diagnosis is in hand.
               </p>
             </div>
             <Link
@@ -308,11 +319,7 @@ export default function CountyView({
         </div>
       </section>
 
-      {/* ————— County FAQs ————— */}
-      <Faq
-        items={faqs}
-        heading={`${county.full} questions, answered plainly`}
-      />
+      <Faq items={faqs} heading={`${county.full} questions, answered plainly`} />
 
       {/* ————— Intake ————— */}
       <section id="intake" className="bg-ink scroll-mt-20">
@@ -336,73 +343,21 @@ export default function CountyView({
         </div>
       </section>
 
-      {/* ————— Towns in this county ————— */}
-      {(communityChips.length > 0 || tinyPlaces.length > 0) && (
-        <section className="bg-white">
-          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-            <h2 className="font-display text-2xl">Towns in {county.full}</h2>
-            {communityChips.length > 0 && (
-              <>
-                <p className="mt-2 max-w-2xl text-[15px] text-ink-soft">
-                  Every community here is inside our {county.full} service
-                  area — pick yours for the local details.
-                </p>
-                <ul className="mt-4 flex flex-wrap gap-2.5">
-                  {communityChips.map((t) => (
-                    <li key={t.href}>
-                      <Link
-                        href={t.href}
-                        className="rounded-full border border-line bg-cream px-4 py-2 text-[15px] font-semibold transition-colors hover:border-brand-teal hover:text-brand-teal"
-                      >
-                        {t.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-            {tinyPlaces.length > 0 && (
-              <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-ink-soft">
-                <span className="font-bold text-ink">
-                  Every community in {county.full}:
-                </span>{" "}
-                we also serve families in{" "}
-                {tinyPlaces.map((t) => t.name).join(", ")} — no town is too
-                small for in-home visits and telehealth.
-              </p>
-            )}
-          </div>
-        </section>
-      )}
+      <LinkChips
+        heading="Neighboring counties we also serve"
+        intro="Straight-line distance between county centers."
+        items={[...neighbors, { name: `All of ${stateCfg.name} →`, href: `/${stateSlug}` }]}
+        tint="bg-cream"
+      />
 
-      {/* ————— Neighboring counties ————— */}
-      <section className="bg-cream">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-          <h2 className="font-display text-2xl">
-            Nearby counties we also serve
-          </h2>
-          <ul className="mt-4 flex flex-wrap gap-2.5">
-            {neighbors.map((n) => (
-              <li key={n.slug}>
-                <Link
-                  href={`/${stateSlug}/${n.slug}`}
-                  className="rounded-full border border-line bg-white px-4 py-2 text-[15px] font-semibold transition-colors hover:border-brand-teal hover:text-brand-teal"
-                >
-                  {n.full}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link
-                href={`/${stateSlug}`}
-                className="rounded-full bg-ink px-4 py-2 text-[15px] font-semibold text-white"
-              >
-                All of {stateCfg.name} →
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <LinkChips
+        heading={`Our ${hub.name} team`}
+        intro={`${county.full} families are served from ${hub.name}. See the towns and counties that team covers:`}
+        items={[{ name: `ABA therapy in ${hub.name} →`, href: `/${stateSlug}/${hub.slug}` }]}
+        tint="bg-white"
+      />
+
+      <LinkChips heading="Guides parents read next" items={guideShelf(seed)} tint="bg-cream" />
 
       <CtaBand
         tint="sky"

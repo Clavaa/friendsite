@@ -2,7 +2,7 @@ import Link from "next/link";
 import CtaBand from "../../../components/CtaBand";
 import JsonLd from "../../../components/JsonLd";
 import LeadForm from "../../../components/LeadForm";
-import PhotoPlaceholder from "../../../components/PhotoPlaceholder";
+import Image from "next/image";
 import ProofChip from "../../../components/ProofChip";
 import StickyCallBar from "../../../components/StickyCallBar";
 import { siteConfig, type StateSlug } from "../../../../site.config";
@@ -29,6 +29,14 @@ export interface CityEntry {
   slug: string;
   displaySuffix?: string;
 }
+
+const HERO_PHOTOS = [
+  { src: "/images/family-puzzle-kitchen.jpg", alt: "Two women and a young boy working on a colorful shape puzzle at a kitchen table" },
+  { src: "/images/magnetic-tiles-living-room.jpg", alt: "A woman and a young boy building with colorful magnetic tiles on a rug" },
+  { src: "/images/blocks-play-living-room.jpg", alt: "A woman and a young girl stacking colorful wooden blocks together" },
+  { src: "/images/playground-bubbles.jpg", alt: "A woman blowing bubbles with a laughing young boy on a sunny playground" },
+  { src: "/images/fruit-snack-kitchen.jpg", alt: "A parent handing a piece of fruit to a smiling young child in a bright kitchen" },
+];
 
 export function cityCtx(stateSlug: StateSlug, city: CityEntry): PlaceCtx | null {
   const stateCfg = siteConfig.states[stateSlug];
@@ -73,6 +81,8 @@ export default function CityView({
   const sections = buildLocalSections(ctx, countyLocal(stateSlug, loc.county)?.districts);
   const faqs = buildLocalFaqs(ctx);
   const seed = hashSeed(`${stateSlug}/${city.slug}`);
+  const cityIndex = siteConfig.states[stateSlug].cities.findIndex((c) => c.slug === city.slug);
+  const heroPhoto = HERO_PHOTOS[Math.max(0, cityIndex) % HERO_PHOTOS.length];
 
   // Every town within 30 miles + every county this team is nearest to —
   // the city page is the hub of its region's link graph.
@@ -161,10 +171,19 @@ export default function CityView({
             {/* Photo slot intent: recognizable {city} setting — local park or
                 neighborhood street — clinician and child walking together,
                 bright natural light. TODO: shoot locally, never stock-generic. */}
-            <PhotoPlaceholder
-              intent={`Clinician and child in a recognizable ${city.name} setting, bright natural light`}
-              className="aspect-[4/3] w-full"
-            />
+            {/* TODO: swap for a real photo shot in {city.name} when the
+                client has one. Until then, a real site photo rotates per city
+                (honest alt text — never implies the people are local staff). */}
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl">
+              <Image
+                src={heroPhoto.src}
+                alt={heroPhoto.alt}
+                fill
+                sizes="(min-width: 1024px) 560px, 100vw"
+                className="object-cover"
+                priority
+              />
+            </div>
             <ProofChip className="absolute -bottom-4 left-4">
               Serving the {city.name} area
             </ProofChip>

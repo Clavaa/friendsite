@@ -225,6 +225,10 @@ export const services: Service[] = [
         ],
       },
     ],
+    photo: {
+      src: "/images/blocks-play-living-room.jpg",
+      alt: "A woman and a young girl stacking colorful wooden blocks together",
+    },
   },
   {
     slug: "telehealth",
@@ -269,6 +273,10 @@ export const services: Service[] = [
         ],
       },
     ],
+    photo: {
+      src: "/images/magnetic-tiles-living-room.jpg",
+      alt: "A woman and a young boy building with colorful magnetic tiles on a rug",
+    },
   },
 ];
 

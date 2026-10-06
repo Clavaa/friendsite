@@ -96,7 +96,6 @@ export default function TownView({
   const sections = buildLocalSections(ctx, cLocal?.districts);
   const faqs = buildLocalFaqs(ctx, cLocal?.districts);
   const seed = hashSeed(`${stateSlug}/${ctx.path}`);
-  const hub = ctx.hub;
   const place = placeLocal(stateSlug, county.slug, town.slug)!;
 
   const nearby = ctx.nearby.map((n) => ({
@@ -122,7 +121,8 @@ export default function TownView({
     .filter((c): c is CountyEntry => Boolean(c));
 
   const extras = [
-    { label: "Nearest Sunbird team", value: `${hub.name} · ${hub.miles} mi` },
+    { label: `Your Sunbird team in ${town.name}`, value: "Serving you" },
+    { label: "Sunbird services here", value: "Home · Daycare · Video" },
     ...(ctx.zips.length ? [{ label: "ZIP codes", value: String(ctx.zips.length) }] : []),
   ];
 
@@ -177,6 +177,10 @@ export default function TownView({
             <span aria-hidden="true"> / </span>
             <span aria-current="page">{town.name}</span>
           </nav>
+          <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-[14px] font-bold text-brand-teal shadow-card">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-meadow" />
+            Sunbird ABA team in {town.name} — serving you
+          </p>
           <h1 className="font-display mt-4 max-w-3xl text-4xl sm:text-5xl">
             ABA therapy in {town.name}, {stateCfg.name}
           </h1>
@@ -188,11 +192,8 @@ export default function TownView({
             >
               {county.full}
             </Link>
-            , about {hub.miles} miles from our{" "}
-            <Link href={`/${stateSlug}/${hub.slug}`} className="font-bold text-brand-teal hover:underline">
-              {hub.name} team
-            </Link>
-            . One-on-one, BCBA-led ABA therapy comes to your home or daycare
+            , and our ABA team in the {town.name} area is here serving you.
+            One-on-one, BCBA-led ABA therapy comes to your home or daycare
             {ctx.stats && ctx.stats.under18 > 0
               ? ` — for the ${fmt(ctx.stats.under18)} kids who live here, not a far-off clinic.`
               : " — not a far-off clinic."}

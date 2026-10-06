@@ -111,10 +111,6 @@ function setting(c: PlaceCtx): Setting {
   return "rural";
 }
 
-function hubHref(c: PlaceCtx): string {
-  return `/${c.stateSlug}/${c.hub.slug}`;
-}
-
 function districtLine(d: District): string {
   const kids = d.enrollment >= 1000 ? about(d.enrollment) : `about ${fmt(d.enrollment)}`;
   const schools = d.schools ? ` across ${d.schools} school${d.schools === 1 ? "" : "s"}` : "";
@@ -183,42 +179,23 @@ function introSection(c: PlaceCtx, seed: number): CopySection {
     paras.push(flavor[st === "frontier" ? "rural" : st] ?? flavor.town!);
   }
 
-  // Paragraph 2 — how care reaches this place (distance-honest).
-  const m = c.hub.miles;
-  const hubLink = `[${c.hub.name} team](${hubHref(c)})`;
+  // Paragraph 2 — our team serves this place. (Owner rule, 10/6: no
+  // "N miles from our nearest team" lines — every town is served by our
+  // team; distance talk belongs on the intake call, not the page.)
   if (c.kind === "city") {
     paras.push(
       pick(seed, 1, [
-        `${c.name} is one of our team cities. Our ${c.name} team covers the city and the towns around it — the nearest are listed further down this page, with their distance from here.`,
-        `We are based right here in the ${c.name} area. That makes ${c.name} the hub for in-home visits across the surrounding towns and counties, all listed below.`,
-      ])
-    );
-  } else if (m <= 15) {
-    paras.push(
-      pick(seed, 1, [
-        `${c.name} is about ${m} miles from the heart of ${c.hub.name}, so families here are served by our ${hubLink} — close enough that in-home sessions are routine, not a special trip.`,
-        `Our ${hubLink} is close by — ${c.name} sits about ${m} miles from ${c.hub.name}. That puts ${c.name} well inside our regular in-home driving range.`,
-      ])
-    );
-  } else if (m <= 45) {
-    paras.push(
-      pick(seed, 1, [
-        `${c.name} is about ${m} miles from ${c.hub.name}, and our ${hubLink} serves families here with in-home visits. Telehealth adds BCBA time between visits so nobody waits a week for an answer.`,
-        `The nearest Sunbird team is in ${c.hub.name}, about ${m} miles away. Our ${hubLink} travels to homes ${inPlace(c)}, and video check-ins with your BCBA fill the days in between.`,
-      ])
-    );
-  } else if (m <= 100) {
-    paras.push(
-      pick(seed, 1, [
-        `Honest map talk: ${c.name} is about ${m} miles from our ${hubLink}. That is a real drive, so we plan in-home visits in blocks and lean on telehealth for parent coaching and BCBA check-ins. We'll tell you exactly what that looks like for your address on the first call.`,
-        `${c.name} sits about ${m} miles from ${c.hub.name}, where our nearest team is based. We still come to you — but at this distance, telehealth carries more of the week, and we'll be straight with you about scheduling before you commit to anything.`,
+        `${c.name} is one of our team cities. Our ${c.name} team covers the city and the towns around it — the nearest are listed further down this page.`,
+        `We are based right here in the ${c.name} area, and our ${c.name} team brings in-home ABA to families across the city and the surrounding towns and counties, all listed below.`,
       ])
     );
   } else {
     paras.push(
       pick(seed, 1, [
-        `${c.name} is about ${m} miles from our ${hubLink} — the far edge of where we work. We won't promise a schedule we can't keep: call us, tell us your town, and we'll give you a straight answer about in-home visits, telehealth, and what a realistic start looks like.`,
-        `We'll be upfront: ${c.name} is about ${m} miles from ${c.hub.name}, our nearest team. Families this far out usually start with telehealth parent coaching and planned in-home visits. Call and we'll tell you honestly what we can do for your address.`,
+        `Our Sunbird ABA team in the ${c.name} area is here serving you. Your child's ABA therapist comes to your home or daycare, and your BCBA stays in touch by video between visits — so help is here, not a long drive away.`,
+        `Our team works with families ${inPlace(c)} the same way we do everywhere: sessions at your home or your child's daycare, a BCBA who knows your child, and telehealth check-ins so nobody waits a week for an answer.`,
+        `${c.name} families don't have to drive to a clinic. Our ABA team comes to you — at home or at daycare — with BCBA coaching by video in between visits.`,
+        `When you call from ${c.name}, you're matched with our team that serves your area. They come to your home or daycare, and your BCBA checks in by video between sessions.`,
       ])
     );
   }
@@ -483,7 +460,7 @@ function payingSection(c: PlaceCtx, seed: number): CopySection {
 }
 
 function startSection(c: PlaceCtx, seed: number): CopySection {
-  const team = c.kind === "city" ? `our ${c.name} team` : `our ${c.hub.name} team`;
+  const team = c.kind === "city" ? `our ${c.name} team` : `the team that serves ${c.name}`;
   const homeWhere = c.kind === "county" ? `your home in ${c.name}` : `your home in ${c.name}`;
   const zipBit = c.zips.length
     ? ` — include your ZIP code (${c.zips.length > 4 ? `${c.zips.slice(0, 4).join(", ")} and others` : c.zips.join(", ")} ${c.zips.length === 1 ? "is" : "are"} ${inPlace(c).replace("across", "in")})`
@@ -515,8 +492,8 @@ function startSection(c: PlaceCtx, seed: number): CopySection {
         `**Diagnosis in hand — or not yet.** If you still need an evaluation, we'll [help you book one](/get-a-diagnosis). If you have the report, here are the [first steps after a diagnosis](/resources/first-steps-after-a-diagnosis).`,
       ]),
       pick(seed, 14, [
-        `**BCBA assessment at ${homeWhere}.** Your BCBA from ${team} meets your child where they're most comfortable and writes goals with you.`,
-        `**A BCBA visit at ${homeWhere}.** ${team.charAt(0).toUpperCase() + team.slice(1)} sends a BCBA to observe, ask questions, and write a plan with you — not for you.`,
+        `**BCBA assessment at ${homeWhere}.** A BCBA from ${team} meets your child where they're most comfortable and writes goals with you.`,
+        `**A BCBA visit at ${homeWhere}.** A BCBA from ${team} comes to observe, ask questions, and write a plan with you — not for you.`,
       ]),
       pick(seed, 15, [
         `**Sessions begin.** An ABA therapist starts regular one-on-one sessions at home or daycare, with [parent training](/services/parent-training) built in. Here's [how to prepare for the first one](/resources/preparing-for-your-first-session).`,
@@ -544,7 +521,6 @@ export function buildLocalSections(c: PlaceCtx, countyDistricts?: District[]): C
 export function buildLocalFaqs(c: PlaceCtx, countyDistricts?: District[]): FaqItem[] {
   const s = c.stats;
   const faqs: FaqItem[] = [];
-  const m = c.hub.miles;
   const where = inPlace(c);
 
   const seed = hashSeed(`${c.stateSlug}/${c.path}`);
@@ -565,15 +541,11 @@ export function buildLocalFaqs(c: PlaceCtx, countyDistricts?: District[]): FaqIt
     q:
       c.kind === "city"
         ? `Do you offer in-home ABA therapy in ${c.name}?`
-        : `How far is ${c.name} from the nearest Sunbird team?`,
+        : `Do you have an ABA team in ${c.name}?`,
     a:
       c.kind === "city"
         ? `Yes — ${c.name} is one of our team cities, and in-home ABA is how we serve it. Your child's ABA therapist comes to your home (or daycare), and telehealth adds BCBA time between visits.`
-        : `Our nearest team is in ${c.hub.name}, about ${m} miles away in a straight line. ${
-            m <= 45
-              ? `That's within our regular in-home range, so sessions come to your home.`
-              : `We still come to you, with telehealth carrying more of the week at this distance — and we'll be honest about scheduling for your exact address.`
-          }`,
+        : `Yes — our Sunbird team in the ${c.name} area is serving families ${where}${c.countyFull ? ` and across ${c.countyFull}` : ""}. Your child's ABA therapist comes to your home or daycare, with BCBA check-ins by video between visits. Tell us your address and we'll set up a schedule that works.`,
   });
 
   faqs.push({
@@ -641,7 +613,7 @@ export function buildLocalFaqs(c: PlaceCtx, countyDistricts?: District[]): FaqIt
 
   faqs.push({
     q: `How fast can we start ${where}?`,
-    a: `It depends on your child's plan and our current ${c.hub.name}-area capacity, so we won't quote a number we can't keep. Tell us your ZIP code and schedule, and an intake advocate gives you an honest start timeline — usually on the first call.`,
+    a: `It depends on your child's plan and our current capacity in your area, so we won't quote a number we can't keep. Tell us your ZIP code and schedule, and an intake advocate gives you an honest start timeline — usually on the first call.`,
   });
 
   return faqs;

@@ -36,7 +36,7 @@ import { breadcrumbJsonLd } from "../../../lib/seo";
  * County page — the hub for every community in the county. The body is
  * generated from the county's own public data (src/lib/local.ts →
  * src/lib/localCopy.ts) and carries a full community table (population,
- * kids, distance to our nearest team) linking every town page, the
+ * kids, ZIP codes) linking every town page, the
  * county's school districts and ZIP codes, and neighbor counties with
  * distances — so no county page is thin and none is a dead end.
  */
@@ -108,7 +108,7 @@ export default function CountyView({
   const hub = loc.hub;
 
   // Every community with a page: city pages first, then towns by population.
-  type Row = { name: string; href: string; pop: number; kids: number | null; miles: number | null; cdp: boolean };
+  type Row = { name: string; href: string; pop: number; kids: number | null; zips: string[]; cdp: boolean };
   const rows: Row[] = [
     ...cityPagesInCounty(stateSlug, county.slug).map((r) => {
       const cl = cityLocal(stateSlug, r.city);
@@ -117,7 +117,7 @@ export default function CountyView({
         href: `/${stateSlug}/${r.city}`,
         pop: cl?.stats?.pop ?? 0,
         kids: cl?.stats?.under18 ?? null,
-        miles: 0,
+        zips: cl?.zips ?? [],
         cdp: false,
       };
     }),
@@ -128,7 +128,7 @@ export default function CountyView({
         href: `/${stateSlug}/${county.slug}/${t.slug}`,
         pop: pl?.stats?.pop ?? t.pop,
         kids: pl?.stats?.under18 ?? null,
-        miles: pl?.hub.miles ?? null,
+        zips: pl?.zips ?? [],
         cdp: t.kind === "cdp",
       };
     }),
@@ -145,7 +145,8 @@ export default function CountyView({
     { label: "Land area", value: `${fmt(loc.landSqMi)} sq mi` },
     { label: "Communities with a page", value: String(rows.length) },
     ...(loc.districtCount ? [{ label: "Public school districts", value: String(loc.districtCount) }] : []),
-    { label: "Nearest Sunbird team", value: `${hub.name} · ${hub.miles} mi` },
+    { label: `Your Sunbird team in ${county.full}`, value: "Serving you" },
+    { label: "Sunbird services here", value: "Home · Daycare · Video" },
   ];
 
   const serviceJsonLd = {
@@ -188,6 +189,10 @@ export default function CountyView({
             <span aria-hidden="true"> / </span>
             <span aria-current="page">{county.full}</span>
           </nav>
+          <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-[14px] font-bold text-brand-teal shadow-card">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-meadow" />
+            Sunbird ABA team in {county.full} — serving you
+          </p>
           <h1 className="font-display mt-4 max-w-3xl text-4xl sm:text-5xl">
             ABA therapy in {county.full}, {stateCfg.name}
           </h1>
@@ -196,12 +201,8 @@ export default function CountyView({
             {formatPop(ctx.stats?.pop ?? county.pop)} people
             {ctx.stats && ctx.stats.under18 > 0 ? ` and ${fmt(ctx.stats.under18)} children` : ""}
             {loc.seat ? `, from ${loc.seat} to the smallest town` : ""} — with
-            one-on-one, BCBA-led ABA therapy at home or daycare. Our nearest
-            team is in{" "}
-            <Link href={`/${stateSlug}/${hub.slug}`} className="font-bold text-brand-teal hover:underline">
-              {hub.name}
-            </Link>
-            , about {hub.miles} miles from the middle of the county.
+            one-on-one, BCBA-led ABA therapy at home or daycare. Our team in
+            {county.full} is serving every community in the county, listed below.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link
@@ -247,8 +248,7 @@ export default function CountyView({
             </h2>
             <p className="mt-2 max-w-3xl text-[15px] leading-relaxed text-ink-soft">
               Each community below has its own page with local numbers, schools,
-              ZIP codes and nearby towns. Distances are straight-line miles to
-              our nearest team.
+              ZIP codes and nearby towns. Our team serves every one of them.
             </p>
             <div className="mt-6 overflow-x-auto rounded-2xl bg-white shadow-card">
               <table className="w-full min-w-[520px] text-left text-[15px]">
@@ -257,7 +257,7 @@ export default function CountyView({
                     <th scope="col" className="px-4 py-3">Community</th>
                     <th scope="col" className="px-4 py-3 text-right">Residents</th>
                     <th scope="col" className="px-4 py-3 text-right">Kids under 18</th>
-                    <th scope="col" className="px-4 py-3 text-right">To nearest team</th>
+                    <th scope="col" className="px-4 py-3 text-right">ZIP codes</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -272,7 +272,7 @@ export default function CountyView({
                       <td className="px-4 py-2.5 text-right tabular-nums">{fmt(r.pop)}</td>
                       <td className="px-4 py-2.5 text-right tabular-nums">{r.kids !== null ? fmt(r.kids) : "—"}</td>
                       <td className="px-4 py-2.5 text-right tabular-nums">
-                        {r.miles === 0 ? "team city" : r.miles !== null ? `${r.miles} mi` : "—"}
+                        {r.zips.length ? r.zips.slice(0, 3).join(", ") + (r.zips.length > 3 ? "…" : "") : "—"}
                       </td>
                     </tr>
                   ))}
@@ -351,8 +351,8 @@ export default function CountyView({
       />
 
       <LinkChips
-        heading={`Our ${hub.name} team`}
-        intro={`${county.full} families are served from ${hub.name}. See the towns and counties that team covers:`}
+        heading={`Nearest team city: ${hub.name}`}
+        intro={`See the towns and counties around ${hub.name}:`}
         items={[{ name: `ABA therapy in ${hub.name} →`, href: `/${stateSlug}/${hub.slug}` }]}
         tint="bg-white"
       />

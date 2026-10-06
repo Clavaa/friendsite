@@ -4,7 +4,7 @@ import { siteConfig, isStateSlug, stateSlugs } from "../../../../site.config";
 import { countiesByState, formatPop, getCounty } from "../../../data/counties";
 import CityView, { cityCtx } from "./CityView";
 import CountyView, { countyCtx } from "./CountyView";
-import { localDescription } from "../../../lib/localCopy";
+import { localMetaDescription, localTitle } from "../../../lib/seo";
 
 /**
  * One dynamic segment under /[state]/ resolves BOTH kinds of pages:
@@ -52,17 +52,11 @@ export async function generateMetadata({
 
   if (resolved.kind === "city") {
     const { city } = resolved;
-    // "& Therapists" carries the highest-volume keyword family ("{city}
-    // aba therapist"); brandShort keeps it ≤60 chars. Long city names
-    // fall back to the plain pattern with the full brand.
-    const withTherapists = `ABA Therapy & Therapists in ${city.name}, ${stateCfg.abbr} | ${siteConfig.brandShort}`;
-    const title =
-      withTherapists.length <= 60
-        ? withTherapists
-        : `ABA Therapy in ${city.name}, ${stateCfg.abbr} | ${siteConfig.brandName}`;
+    // "& Therapists" carries the "{city} aba therapist" keyword family.
+    const title = localTitle(city.name, stateCfg.abbr, `${stateSlug}/${city.slug}`, true);
     const ctx = cityCtx(stateSlug, city);
     const description = ctx
-      ? localDescription(ctx)
+      ? localMetaDescription(city.name, stateCfg.abbr, `${stateSlug}/${city.slug}`)
       : `BCBA-led ABA therapy for children in ${city.name}, ${stateCfg.abbr} — ABA therapists who come to your home or daycare, plus telehealth. Benefits verified free, no phone trees.`;
     return {
       title: { absolute: title },
@@ -72,10 +66,10 @@ export async function generateMetadata({
   }
 
   const { county } = resolved;
-  const title = `ABA Therapy in ${county.full}, ${stateCfg.abbr} | ${siteConfig.brandName}`;
+  const title = localTitle(county.full, stateCfg.abbr, `${stateSlug}/${county.slug}`);
   const ctx = countyCtx(stateSlug, county);
   const description = ctx
-    ? localDescription(ctx)
+    ? localMetaDescription(county.full, stateCfg.abbr, `${stateSlug}/${county.slug}`)
     : `In-home ABA therapy for families across ${county.full}, ${stateCfg.abbr} (pop. ${formatPop(county.pop)}). Benefits verified free, no phone trees.`;
   return {
     title: { absolute: title },

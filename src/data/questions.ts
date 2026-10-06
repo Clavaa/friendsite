@@ -21,9 +21,9 @@ export const questionPages: QuestionPage[] = [
     slug: "think-my-child-might-have-asd",
     cardTitle: "I think my child might have ASD — what should I do?",
     h1: "I think my child might have autism. What should I do first?",
-    metaTitle: "I think my child might have autism — first steps for parents",
+    metaTitle: "Think Your Child Might Have Autism? First Steps",
     metaDescription:
-      "A calm, step-by-step guide for Kansas and Colorado parents who suspect autism: what to watch for, who to call, and how to get an evaluation without waiting a year.",
+      "A calm, step-by-step guide for parents who suspect autism: what to watch for, who to call, and how to get an evaluation without waiting a year.",
     intro:
       "If you think your child might have autism, do two free things this week: tell your child's doctor exactly what you're seeing and ask for an autism screening, and get your child's name on an evaluation waitlist. Noticing early is a good thing — it means help can start sooner. Here's the path, one step at a time.",
     sections: [
@@ -69,9 +69,9 @@ export const questionPages: QuestionPage[] = [
     slug: "just-got-a-diagnosis",
     cardTitle: "We just got a diagnosis. What happens now?",
     h1: "We just got an autism diagnosis. What happens now?",
-    metaTitle: "After an autism diagnosis — a parent's next steps in KS & CO",
+    metaTitle: "Just Got an Autism Diagnosis? What to Do Next",
     metaDescription:
-      "Your child was just diagnosed with autism. Here's what to do in the first 30 days in Kansas or Colorado: insurance, therapy options, school, and support.",
+      "Your child was just diagnosed with autism. What to do in the first 30 days: insurance, therapy options, school, and support.",
     intro:
       "Here's what happens now, in order: get the written report, confirm your child's therapy benefits, start ABA intake, and connect with early intervention or your school district. That's the whole first month — and the diagnosis changed the paperwork, not your child. Your kid is the same kid they were yesterday, and now doors open.",
     sections: [
@@ -115,7 +115,7 @@ export const questionPages: QuestionPage[] = [
     slug: "what-is-aba-therapy",
     cardTitle: "What actually happens in ABA therapy?",
     h1: "What actually happens in ABA therapy?",
-    metaTitle: "What actually happens in ABA therapy? A plain-English guide",
+    metaTitle: "What Actually Happens in ABA Therapy?",
     metaDescription:
       "What ABA therapy really looks like day to day: who's in the room, what a session includes, how goals are chosen, and what a parent's role is.",
     intro:
@@ -157,9 +157,9 @@ export const questionPages: QuestionPage[] = [
     slug: "will-insurance-pay",
     cardTitle: "Will my insurance actually pay for this?",
     h1: "Will my insurance actually pay for ABA therapy?",
-    metaTitle: "Does insurance pay for ABA therapy in Kansas & Colorado?",
+    metaTitle: "Does Insurance Pay for ABA Therapy in KS & CO?",
     metaDescription:
-      "How ABA gets paid for in Kansas and Colorado: why coverage varies by plan, what most families actually end up paying, and how to get your plan's real answer free.",
+      "Why ABA coverage varies by plan, what most Kansas & Colorado families actually pay, and how to get your plan's real answer — free.",
     intro:
       "Here's the honest answer: coverage varies by plan, so nobody can tell you from a website — but most Kansas and Colorado families end up paying little or nothing for ABA once their benefits are confirmed. Here's how to get your plan's real answer without weeks of hold music.",
     sections: [
@@ -199,7 +199,7 @@ export const questionPages: QuestionPage[] = [
     slug: "home-or-center",
     cardTitle: "Should therapy happen at home or in a center?",
     h1: "Should my child's therapy happen at home or in a center?",
-    metaTitle: "In-home vs. center-based ABA — which is right for your child?",
+    metaTitle: "In-Home vs. Center-Based ABA: Which Is Right?",
     metaDescription:
       "An honest comparison of in-home and center-based ABA therapy: what each is best at, how families choose, and why many kids do both.",
     intro:
@@ -246,7 +246,7 @@ export const questionPages: QuestionPage[] = [
     slug: "how-fast-can-we-start",
     cardTitle: "How fast can we actually start?",
     h1: "How fast can my child actually start therapy?",
-    metaTitle: "How fast can my child start ABA therapy? The honest timeline",
+    metaTitle: "How Fast Can My Child Start ABA Therapy?",
     metaDescription:
       "The real timeline from first call to first ABA session: what each step takes, what can slow it down, and how to speed it up.",
     intro:

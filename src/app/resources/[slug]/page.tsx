@@ -6,7 +6,7 @@ import { faqJsonLd } from "../../../components/Faq";
 import JsonLd from "../../../components/JsonLd";
 import ReviewedBy, { reviewedByJsonLd } from "../../../components/ReviewedBy";
 import StickyCallBar from "../../../components/StickyCallBar";
-import { breadcrumbJsonLd } from "../../../lib/seo";
+import { breadcrumbJsonLd, brandTitle } from "../../../lib/seo";
 import { siteConfig } from "../../../../site.config";
 import {
   getGuide,
@@ -62,7 +62,7 @@ export async function generateMetadata({
   const g = getGuide(slug);
   if (!g) return {};
   return {
-    title: { absolute: `${g.metaTitle} | ${siteConfig.brandName}` },
+    title: { absolute: brandTitle(g.metaTitle) },
     description: g.metaDescription,
     alternates: { canonical: `/resources/${g.slug}` },
   };

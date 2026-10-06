@@ -37,11 +37,11 @@ const nunitoSans = Nunito_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
   title: {
-    default: `ABA therapy for children in Kansas & Colorado | ${siteConfig.brandName}`,
-    template: `%s | ${siteConfig.brandName}`,
+    default: `In-Home ABA Therapy in Kansas & Colorado – Sunbird ABA`,
+    template: `%s – Sunbird ABA`,
   },
   description:
-    "BCBA-led ABA therapy for children with autism across Kansas and Colorado — ABA therapists who come to your home or daycare, plus telehealth, from a family-run practice. Free benefit check. Talk to an intake advocate today.",
+    "BCBA-led ABA therapy for kids with autism — at home or daycare across Kansas & Colorado. Insurance checked free. Talk to a real person today.",
   openGraph: {
     siteName: siteConfig.brandName,
     type: "website",

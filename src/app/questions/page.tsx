@@ -4,9 +4,9 @@ import TriageGrid from "../../components/TriageGrid";
 import CtaBand from "../../components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Parent questions, answered plainly",
+  title: "Autism & ABA Questions Parents Ask, Answered",
   description:
-    "Straight answers to the questions Kansas and Colorado parents actually ask about autism, ABA therapy, insurance, and getting started.",
+    "Straight answers to what Kansas & Colorado parents ask about autism, ABA therapy, insurance and getting started — reviewed by a BCBA.",
   alternates: { canonical: "/questions" },
 };
 

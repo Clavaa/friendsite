@@ -646,11 +646,3 @@ export function buildLocalFaqs(c: PlaceCtx, countyDistricts?: District[]): FaqIt
 
   return faqs;
 }
-
-/** One data-rich meta description per page. */
-export function localDescription(c: PlaceCtx): string {
-  const s = c.stats;
-  const kids = s && s.under18 > 0 ? ` ${about(s.under18).replace("about", "About")} kids live here;` : "";
-  const hub = c.kind === "city" ? `our ${c.name} team` : `our ${c.hub.name} team (~${c.hub.miles} mi)`;
-  return `In-home, daycare-based & telehealth ABA therapy ${inPlace(c)}, ${c.abbr}.${kids} served by ${hub}. BCBA-led, benefits verified free.`;
-}

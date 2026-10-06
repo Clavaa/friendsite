@@ -48,9 +48,9 @@ export const stateContent: Record<StateSlug, StateContent> = {
     slug: "kansas",
     name: "Kansas",
     abbr: "KS",
-    metaTitle: "ABA therapy in Kansas — coverage checked, care at home",
+    metaTitle: "ABA Therapy in Kansas: In-Home Care, Insurance Checked",
     metaDescription:
-      "How ABA therapy works for Kansas families: a free benefit check that tells you exactly where you stand, in-home and daycare-based care, and a team that does the paperwork.",
+      "In-home and daycare ABA therapy for Kansas kids, BCBA-led. We check your insurance free and handle the paperwork. Talk to a real person today.",
     heroHeadline: "ABA therapy in Kansas, explained like a neighbor would.",
     heroSub:
       "From Wichita to Overland Park, we walk Kansas families through coverage, paperwork, and first sessions — in plain English, with a real person on the phone.",
@@ -140,9 +140,9 @@ export const stateContent: Record<StateSlug, StateContent> = {
     slug: "colorado",
     name: "Colorado",
     abbr: "CO",
-    metaTitle: "ABA therapy in Colorado — coverage checked, care at home",
+    metaTitle: "ABA Therapy in Colorado: In-Home Care, Insurance Checked",
     metaDescription:
-      "How ABA therapy works for Colorado families: a free benefit check that tells you exactly where you stand, in-home and daycare-based care, and a team that does the paperwork.",
+      "In-home and daycare ABA therapy for Colorado kids, BCBA-led. We check your insurance free and handle the paperwork. Talk to a real person today.",
     heroHeadline: "ABA therapy in Colorado, from a team that lives here.",
     heroSub:
       "From Denver to Colorado Springs, we help Colorado families turn a diagnosis into a plan — coverage checked, paperwork filed, sessions on the calendar.",

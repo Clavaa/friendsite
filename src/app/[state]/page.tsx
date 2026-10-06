@@ -20,7 +20,7 @@ import {
   placeLocal,
   stateTotals,
 } from "../../lib/local";
-import { breadcrumbJsonLd } from "../../lib/seo";
+import { brandTitle, breadcrumbJsonLd } from "../../lib/seo";
 
 /** Hero photo per state — honest, descriptive alt text; no client/staff claims. */
 const statePhotos = {
@@ -51,7 +51,7 @@ export async function generateMetadata({
   if (!isStateSlug(state)) return {};
   const content = stateContent[state];
   return {
-    title: { absolute: `${content.metaTitle} | ${siteConfig.brandName}` },
+    title: { absolute: brandTitle(content.metaTitle) },
     description: content.metaDescription,
     alternates: { canonical: `/${state}` },
   };

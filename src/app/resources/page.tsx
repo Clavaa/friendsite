@@ -13,9 +13,9 @@ import {
 import { questionPages } from "../../data/questions";
 
 export const metadata: Metadata = {
-  title: "Parent resources: plain-words ABA guides",
+  title: "Free ABA & Autism Guides for Parents",
   description:
-    "Free, plain-words guides for parents of children with autism in Kansas and Colorado — what ABA is, first steps after a diagnosis, paying for therapy, parent training, and a jargon-free glossary.",
+    "Free, plain-words guides for parents: signs of autism by age, what ABA is, first steps after a diagnosis, paying for therapy, and more.",
   alternates: { canonical: "/resources" },
 };
 

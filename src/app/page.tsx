@@ -17,9 +17,9 @@ import { siteConfig } from "../../site.config";
 import { getGuide } from "../data/guides";
 
 export const metadata: Metadata = {
-  title: `ABA therapy for children in Kansas & Colorado | ${siteConfig.brandName}`,
+  title: { absolute: `In-Home ABA Therapy in Kansas & Colorado – Sunbird ABA` },
   description:
-    "BCBA-led ABA therapy for children with autism in Kansas and Colorado — ABA therapists who come to your home or daycare, plus telehealth, from a family-run practice. Free benefit check. Talk to an intake advocate today.",
+    "BCBA-led ABA therapy for kids with autism — at home or daycare across Kansas & Colorado. Insurance checked free. Talk to a real person today.",
   alternates: { canonical: "/" },
 };
 

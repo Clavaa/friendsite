@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import CtaBand from "../../../components/CtaBand";
 import JsonLd from "../../../components/JsonLd";
 import ReviewedBy, { reviewedByJsonLd } from "../../../components/ReviewedBy";
-import { breadcrumbJsonLd } from "../../../lib/seo";
+import { breadcrumbJsonLd, brandTitle } from "../../../lib/seo";
 import LeadForm from "../../../components/LeadForm";
 import StickyCallBar from "../../../components/StickyCallBar";
 import { siteConfig } from "../../../../site.config";
@@ -27,7 +27,7 @@ export async function generateMetadata({
   const q = getQuestion(slug);
   if (!q) return {};
   return {
-    title: { absolute: `${q.metaTitle} | ${siteConfig.brandName}` },
+    title: { absolute: brandTitle(q.metaTitle) },
     description: q.metaDescription,
     alternates: { canonical: `/questions/${q.slug}` },
   };

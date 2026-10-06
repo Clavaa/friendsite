@@ -4,9 +4,9 @@ import ServiceCards from "../../components/ServiceCards";
 import StickyCallBar from "../../components/StickyCallBar";
 
 export const metadata: Metadata = {
-  title: "ABA therapy services in Kansas & Colorado",
+  title: "ABA Services for Kids in Kansas & Colorado",
   description:
-    "In-home ABA, daycare-based support, parent training, and telehealth across Kansas and Colorado — with in-center ABA coming soon. Every plan BCBA-designed and parent-approved.",
+    "In-home ABA, daycare-based support, parent training and telehealth for Kansas & Colorado kids. Every plan BCBA-led. Free insurance check.",
   alternates: { canonical: "/services" },
 };
 

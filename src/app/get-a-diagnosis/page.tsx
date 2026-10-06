@@ -11,9 +11,9 @@ import { siteConfig } from "../../../site.config";
 import type { FaqItem } from "../../data/states";
 
 export const metadata: Metadata = {
-  title: "Get an autism diagnosis in Kansas & Colorado — we help, free",
+  title: { absolute: "Need an Autism Evaluation? Free Help in KS & CO" },
   description:
-    "Think your child might have autism? We help Kansas and Colorado families find a diagnostic evaluation, get on the shortest waitlists, and plan the next steps — free.",
+    "Think your child might have autism? We help Kansas & Colorado families find an evaluation, get on the shortest waitlists, and plan next steps — free.",
   alternates: { canonical: "/get-a-diagnosis" },
 };
 

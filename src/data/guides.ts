@@ -76,9 +76,9 @@ const coreGuides: Guide[] = [
     cardTitle: "What is ABA therapy?",
     cardBlurb:
       "The plain-words version: what ABA is, what a session looks like, and what it should feel like for your child.",
-    metaTitle: "What is ABA therapy? Applied behavior analysis in plain words",
+    metaTitle: "What Is ABA Therapy? Applied Behavior Analysis, Explained",
     metaDescription:
-      "ABA — applied behavior analysis — explained in plain words for parents in Kansas and Colorado: what it is, what a session really looks like, who's on the team, and what good ABA should feel like.",
+      "ABA (applied behavior analysis) in plain words: what it is, what a session looks like, who's on the team, and what good ABA should feel like.",
     h1: "What is ABA therapy? The plain-words version.",
     intro:
       "ABA stands for Applied Behavior Analysis. That's a mouthful, so here's the short version: ABA is one-on-one teaching, built around your child, that helps them learn the skills that make daily life easier — talking, playing, dressing, waiting, asking for help. This guide walks through what it is and what it looks like, without the jargon.",
@@ -140,9 +140,9 @@ const coreGuides: Guide[] = [
     cardTitle: "First steps after a diagnosis",
     cardBlurb:
       "Just got the news? Breathe. Here's a short, do-able list for the first few weeks — and what can wait.",
-    metaTitle: "First steps after an autism diagnosis: a calm checklist for parents",
+    metaTitle: "First Steps After an Autism Diagnosis: A Checklist",
     metaDescription:
-      "A calm, practical checklist for Kansas and Colorado parents in the first weeks after an autism diagnosis: what to do now, what can wait, and how to start ABA therapy.",
+      "A calm checklist for the first weeks after an autism diagnosis: what to do now, what can wait, and how to start ABA therapy.",
     h1: "Your child was just diagnosed with autism. Here's what to do first.",
     intro:
       "The day of the diagnosis is heavy, even when you saw it coming. Here's the truth nobody says clearly enough: you don't have to do everything this week. This guide is a short list of what actually helps in the first few weeks — and permission to let the rest wait.",
@@ -202,9 +202,9 @@ const coreGuides: Guide[] = [
     cardTitle: "Paying for ABA: insurance basics",
     cardBlurb:
       "Commercial plans and Medicaid — how coverage usually works, and the one shortcut that skips the confusion.",
-    metaTitle: "Paying for ABA therapy: insurance and Medicaid basics for KS & CO",
+    metaTitle: "How to Pay for ABA Therapy: Insurance Basics",
     metaDescription:
-      "How families in Kansas and Colorado usually pay for ABA therapy: commercial insurance and Medicaid explained gently — plus the free benefit check that gives you a real answer instead of a guess.",
+      "How families usually pay for ABA therapy — private insurance and Medicaid, explained gently — plus a free benefit check that gives you a real answer.",
     h1: "Paying for ABA: how coverage usually works.",
     intro:
       "Here's the good news up front: most families who start ABA with a confirmed diagnosis end up paying far less than they feared, and many pay little or nothing. The bad news is that insurance paperwork is genuinely confusing. This guide explains the shape of it in plain words — and then shows you the shortcut.",
@@ -256,9 +256,9 @@ const coreGuides: Guide[] = [
     cardTitle: "Preparing for your first session",
     cardBlurb:
       "What happens on day one, what to have ready (almost nothing), and how to help your child feel at ease.",
-    metaTitle: "How to prepare for your child's first ABA session",
+    metaTitle: "How to Prepare for Your Child's First ABA Session",
     metaDescription:
-      "What actually happens at your child's first ABA session, what parents should have ready, and how to help your child feel comfortable — a plain guide for Kansas and Colorado families.",
+      "What happens at your child's first ABA session, what to have ready, and how to help your child feel comfortable — a plain guide for parents.",
     h1: "Your first ABA session: what to expect, how to prepare.",
     intro:
       "The first session is mostly about one thing: your child deciding this new person is safe and fun. There's no test to pass and almost nothing to prepare. Here's what day one really looks like, so nobody in your house has to be nervous about it.",
@@ -310,9 +310,9 @@ const coreGuides: Guide[] = [
     cardTitle: "Parent training, explained",
     cardBlurb:
       "It's coaching, not homework — and it's the part of ABA with the longest reach. Here's what it involves.",
-    metaTitle: "What is parent training in ABA? Coaching for parents, explained",
+    metaTitle: "What Is ABA Parent Training? Coaching, Explained",
     metaDescription:
-      "Parent training in ABA isn't a class or homework — it's practical coaching on your real routines. What it looks like, why insurance plans include it, and what parents actually learn.",
+      "ABA parent training isn't a class or homework — it's coaching on your real routines. What it looks like and what parents actually learn.",
     h1: "Parent training: the part of ABA that's for you.",
     intro:
       "The phrase 'parent training' makes it sound like you're the one being graded. You're not. It's coaching — a BCBA teaching you the same strategies that work in sessions, on the routines you live every day. It's also, quietly, the part of ABA with the longest reach: therapists come and go over the years, and you remain.",
@@ -357,9 +357,9 @@ const coreGuides: Guide[] = [
     cardTitle: "Home vs. daycare sessions",
     cardBlurb:
       "Both work — they're just good at different things. How to think about the choice, and why many families mix.",
-    metaTitle: "ABA at home vs. at daycare: how to choose the right setting",
+    metaTitle: "ABA at Home or at Daycare? How to Choose",
     metaDescription:
-      "Should ABA sessions happen at home or at your child's daycare? What each setting does best, how a mix works, and how the choice gets made — a plain guide for parents.",
+      "Should ABA happen at home or at daycare? What each setting does best, how a mix works, and how families choose — a plain guide.",
     h1: "Home or daycare? Choosing where sessions happen.",
     intro:
       "Families sometimes think there's one right answer here. There isn't — there's a right answer for your child, this season. Home and daycare sessions are each good at different things, and plenty of families use both. Here's how to think about it, minus the pressure.",
@@ -405,9 +405,9 @@ const coreGuides: Guide[] = [
     cardTitle: "BCBA, RBT... who's who?",
     cardBlurb:
       "The letters, decoded: who designs the plan, who runs the sessions, and how everyone stays in sync.",
-    metaTitle: "BCBA, RBT, behavior technician: your child's ABA team, decoded",
+    metaTitle: "BCBA vs. RBT: Who's on Your Child's ABA Team?",
     metaDescription:
-      "What a BCBA does, what an RBT or behavior technician does, how supervision works, and what parents can expect from each — the ABA team explained in plain words.",
+      "What a BCBA does, what an RBT does, how supervision works, and what to expect from each — your child's ABA team in plain words.",
     h1: "Who's who on your child's team.",
     intro:
       "ABA comes with an alphabet: BCBA, RBT, BT. Behind the letters is a simple structure — one person designs and steers the plan, another runs most of the sessions, and they stay tightly in sync. Here's who does what, and what you can expect from each.",
@@ -447,9 +447,9 @@ const coreGuides: Guide[] = [
     cardTitle: "ABA words, translated",
     cardBlurb:
       "A pocket glossary of the terms you'll hear in reports and meetings — each one in one plain sentence or two.",
-    metaTitle: "ABA glossary for parents: the terms, translated to plain words",
+    metaTitle: "ABA Glossary: Therapy Terms in Plain Words",
     metaDescription:
-      "A parent's glossary of ABA terms — BCBA, RBT, reinforcement, prompting, pairing, mand, authorization, and more — each translated into one or two plain sentences.",
+      "BCBA, RBT, reinforcement, prompting, mand, authorization and more — every ABA term a parent hears, translated into plain sentences.",
     h1: "ABA words, translated.",
     intro:
       "Therapy comes with vocabulary, and reports sometimes read like they were written for other clinicians (they sort of were). Keep this page handy. Each term below gets a plain-words translation — and if you ever hear a word that isn't here, ask your BCBA to translate. Making it make sense is part of their job.",

@@ -14,10 +14,10 @@ export const decisionLibrary: Guide[] = [
     cardTitle: "ABA vs. speech therapy",
     cardBlurb:
       "They're teammates, not rivals — what each one does, where they overlap, and whether your child needs both.",
-    metaTitle: "ABA vs. speech therapy: does my child need both?",
+    metaTitle: "ABA vs. Speech Therapy: Does My Child Need Both?",
     metaDescription:
-      "ABA therapy and speech therapy do different jobs — one builds skills across daily life, the other specializes in communication — and many children with autism do both. How they differ, how they work together, and how to decide where to start.",
-    h1: "ABA vs. speech therapy: does my child need both?",
+      "ABA and speech therapy do different jobs, and many autistic kids do both. How they differ, how they work together, and where to start.",
+    h1: "ABA vs. Speech Therapy: Does My Child Need Both?",
     intro:
       "ABA therapy and speech therapy aren't competitors — they do different jobs. Speech therapy specializes in how a child communicates. ABA teaches skills across all of daily life, communication included, and works on the behaviors that get in learning's way. Many children with autism do both, and the two work best coordinated.",
     minutes: 6,
@@ -91,9 +91,9 @@ export const decisionLibrary: Guide[] = [
     cardTitle: "Is ABA therapy harmful?",
     cardBlurb:
       "An honest answer — where the criticism comes from, how modern ABA differs, and the red flags to watch for in any provider. Ours included.",
-    metaTitle: "Is ABA therapy harmful? An honest answer for parents",
+    metaTitle: "Is ABA Therapy Harmful? An Honest Answer",
     metaDescription:
-      "Some autistic adults describe real harm from the rigid ABA of decades past — criticism worth taking seriously. How modern, assent-based ABA is different, the red flags to watch for in any provider, and a parent's right to pause. An honest answer.",
+      "Some autistic adults describe real harm from old-style ABA. How modern, assent-based ABA differs, red flags to watch for, and your right to pause.",
     h1: "Is ABA therapy harmful? An honest answer.",
     intro:
       "Honest answer: ABA done badly can be harmful, and some autistic adults carry real hurt from the rigid ABA of decades past. ABA done well today looks very different — built on the child's assent, aimed at skills instead of masking. This guide covers both truths, and the red flags to watch for in any provider.",
@@ -176,10 +176,10 @@ export const decisionLibrary: Guide[] = [
     cardTitle: "How many hours of ABA?",
     cardBlurb:
       "The honest answer: it depends on your child. How hours get decided, what the ranges mean, and why more isn't automatically better.",
-    metaTitle: "How many hours of ABA does my child need?",
+    metaTitle: "How Many Hours of ABA Does My Child Need?",
     metaDescription:
-      "There's no universal number: ABA hours are set child by child, from a BCBA's assessment. What focused vs. comprehensive plans mean, what shapes the recommendation, why more hours isn't automatically better, and how parents approve the final plan.",
-    h1: "How many hours of ABA does my child need?",
+      "There's no universal number. How a BCBA sets ABA hours, focused vs. comprehensive plans, why more isn't always better, and how you approve the plan.",
+    h1: "How Many Hours of ABA Does My Child Need?",
     intro:
       "There's no universal number, and any provider who quotes one before meeting your child is guessing. ABA hours are set child by child: a BCBA assesses your child, weighs goals and your family's real life, and recommends a number — commonly somewhere between 10 and 40 hours a week — that you approve together.",
     minutes: 6,

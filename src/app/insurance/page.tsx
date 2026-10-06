@@ -14,9 +14,9 @@ import { siteConfig } from "../../../site.config";
  */
 
 export const metadata: Metadata = {
-  title: "Insurance for ABA therapy — free benefit check",
+  title: "Does Insurance Cover ABA? Free Benefit Check",
   description:
-    "Coverage for ABA therapy varies by plan — so we check yours for free. One photo of your insurance card, one business day, one plain-English answer for Kansas and Colorado families.",
+    "Coverage depends on your plan, so we check yours free. Send one photo of your insurance card and get a plain-English answer, usually within a day.",
   alternates: { canonical: "/insurance" },
 };
 

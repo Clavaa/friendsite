@@ -9,7 +9,7 @@ import StickyCallBar from "../../../components/StickyCallBar";
 import { siteConfig } from "../../../../site.config";
 import { getService, services } from "../../../data/services";
 import JsonLd from "../../../components/JsonLd";
-import { breadcrumbJsonLd } from "../../../lib/seo";
+import { breadcrumbJsonLd, brandTitle } from "../../../lib/seo";
 import ServiceAreas from "../../../components/local/ServiceAreas";
 
 interface Params {
@@ -29,7 +29,7 @@ export async function generateMetadata({
   const s = getService(slug);
   if (!s) return {};
   return {
-    title: { absolute: `${s.metaTitle} | ${siteConfig.brandName}` },
+    title: { absolute: brandTitle(s.metaTitle) },
     description: s.metaDescription,
     alternates: { canonical: `/services/${s.slug}` },
   };

@@ -5,7 +5,7 @@ import StickyCallBar from "../../components/StickyCallBar";
 import { siteConfig } from "../../../site.config";
 
 export const metadata: Metadata = {
-  title: "About us",
+  title: { absolute: "About Sunbird ABA: Family-Run ABA in Kansas & Colorado" },
   description: `${siteConfig.brandName} is a family-founded practice bringing family-centered, individualized ABA therapy to Kansas and Colorado — at home, where progress sticks.`,
   alternates: { canonical: "/about" },
 };

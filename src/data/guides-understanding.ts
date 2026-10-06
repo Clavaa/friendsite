@@ -17,9 +17,9 @@ export const understandingLibrary: Guide[] = [
     cardTitle: "What does Level 2 autism mean?",
     cardBlurb:
       "The three levels, translated to plain words — what Level 2 looks like day to day, and what it doesn't mean.",
-    metaTitle: "What does Level 2 autism mean? A plain-words guide for parents",
+    metaTitle: "What Does Level 2 Autism Mean? A Parent Guide",
     metaDescription:
-      "Level 2 autism means a child needs substantial support, especially with communication and change. What the three autism levels mean in plain words, what Level 2 looks like day to day, and what it doesn't say about your child's future.",
+      "Level 2 autism means a child needs substantial support. What the three levels mean, what Level 2 looks like day to day, and what it doesn't predict.",
     h1: "What does Level 2 autism mean?",
     intro:
       "Level 2 autism means a child needs substantial support — more than Level 1, less than Level 3. It usually shows up as real difficulty with back-and-forth communication and with handling change, even with help in place. It describes the support your child needs today. It does not predict who they will become.",
@@ -104,9 +104,9 @@ export const understandingLibrary: Guide[] = [
     cardTitle: "Signs of autism at 18 months",
     cardBlurb:
       "What to watch for at a year and a half, what's usually nothing, and the one move that costs you nothing: asking.",
-    metaTitle: "Signs of autism in an 18-month-old: what to watch for",
+    metaTitle: "Signs of Autism at 18 Months: What to Watch For",
     metaDescription:
-      "Early signs of autism at 18 months: not pointing, not responding to their name, few words, limited eye contact. What's usually not a red flag, why the 18-month checkup matters, and what to do next — a calm guide for parents.",
+      "Not pointing, not answering to their name, few words? Early signs of autism at 18 months, what's usually not a red flag, and what to do next.",
     h1: "Signs of autism at 18 months.",
     intro:
       "At 18 months, the early signs of autism are mostly about connection: a toddler who doesn't point at things to show you, doesn't turn when you call their name, uses few or no words, and rarely brings you into their play. One sign alone proves nothing — but together, they're a reason to ask, not to wait.",
@@ -190,9 +190,9 @@ export const understandingLibrary: Guide[] = [
     cardTitle: "Signs of autism at age 2",
     cardBlurb:
       "What most 2-year-olds do, the signs that stand out at this age, and the next step that costs nothing.",
-    metaTitle: "Signs of autism in a 2-year-old: a parent's plain-words guide",
+    metaTitle: "Signs of Autism in a 2-Year-Old: What to Look For",
     metaDescription:
-      "Signs of autism at age 2: few or no words, not responding to their name, little pretend play, repeated routines, or losing skills. What's typical at two, what stands out, and how to get a free evaluation — explained calmly for parents.",
+      "Few words, not answering to their name, little pretend play? Signs of autism at age 2, what's typical, and how to get a free evaluation.",
     h1: "Signs of autism in a 2-year-old.",
     intro:
       "At age 2, the signs of autism that stand out most are few or no words, not responding to their name, little pointing or showing, not much pretend play, and strong distress at small changes. Losing words a child once had matters most of all. A pattern of these signs is a reason to get a free evaluation — not to wait.",
@@ -277,9 +277,9 @@ export const understandingLibrary: Guide[] = [
     cardTitle: "Signs of autism at age 3",
     cardBlurb:
       "Why some signs only show up around preschool, what stands out at three, and the free school-district evaluation many parents don't know about.",
-    metaTitle: "Signs of autism in a 3-year-old: what parents notice at preschool age",
+    metaTitle: "Signs of Autism in a 3-Year-Old: What Parents Notice",
     metaDescription:
-      "Signs of autism at age 3: one-sided conversations, little pretend play, trouble joining other kids, rigid routines, and big reactions to sensory stuff. Why signs often surface at preschool, plus the free evaluation your school district must provide.",
+      "One-sided talk, trouble joining other kids, rigid routines? Signs of autism at age 3, why they surface at preschool, and the free evaluation option.",
     h1: "Signs of autism in a 3-year-old.",
     intro:
       "At age 3, signs of autism often show up in conversation and play: talk that's one-sided or scripted, little pretend play, trouble joining other kids, rigid routines, and big reactions to sounds or textures. Preschool often makes these visible for the first time. From age three on, your school district must evaluate for free.",
@@ -364,9 +364,9 @@ export const understandingLibrary: Guide[] = [
     cardTitle: "The M-CHAT, explained",
     cardBlurb:
       "The free 5-minute autism screening for toddlers — what it is, what the result means, and what happens after.",
-    metaTitle: "The M-CHAT screening: the free 5-minute autism check, explained",
+    metaTitle: "M-CHAT Autism Screening: What the Score Means",
     metaDescription:
-      "The M-CHAT is a free, 5-minute autism screening questionnaire for toddlers 16–30 months, usually given at the 18- and 24-month checkups. What it asks, what the score means and doesn't, and what to do after a positive screen.",
+      "The M-CHAT is a free 5-minute autism screen for toddlers 16–30 months. What it asks, what the score means (and doesn't), and what to do next.",
     h1: "The M-CHAT: the free 5-minute screening, explained.",
     intro:
       "The M-CHAT is a free screening questionnaire that checks a toddler's risk for autism. A parent answers about 20 yes-or-no questions — five minutes, usually at the 18- or 24-month checkup. It is not a diagnosis. It simply tells you whether a full evaluation is worth doing. Here's how it works.",

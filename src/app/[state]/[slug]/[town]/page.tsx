@@ -4,7 +4,7 @@ import { siteConfig, isStateSlug, stateSlugs, type StateSlug } from "../../../..
 import { getCounty } from "../../../../data/counties";
 import { getTown, townsByState } from "../../../../data/towns";
 import TownView, { townCtx } from "./TownView";
-import { localDescription } from "../../../../lib/localCopy";
+import { localMetaDescription, localTitle } from "../../../../lib/seo";
 
 /**
  * Town pages — /{state}/{county}/{town} — one per Census incorporated
@@ -85,19 +85,18 @@ export async function generateMetadata({
   const stateCfg = siteConfig.states[stateSlug];
 
   // Same-name towns in one state (Twin Lakes, Coal Creek, CO) carry the
-  // county so titles stay unique. Keep titles <= 60 chars: the brand
-  // suffix drops for long names.
+  // county — as a comma phrase: Google rewrites bracketed titles ~78%.
   const label = isDuplicateName(stateSlug, town.name)
-    ? `${town.name} (${county.full})`
+    ? `${town.name}, ${county.full}`
     : town.name;
-  const withBrand = `ABA Therapy in ${label}, ${stateCfg.abbr} | ${siteConfig.brandName}`;
-  const title = withBrand.length <= 60 ? withBrand : `ABA Therapy in ${label}, ${stateCfg.abbr}`;
+  const key = `${stateSlug}/${county.slug}/${town.slug}`;
+  const title = localTitle(label, stateCfg.abbr, key);
 
   // Data-rich description (kids, nearest team, distance) — unique per town.
   // Falls back to the rotating templates if a town has no local record.
   const ctx = townCtx(stateSlug, county, town);
   const description = ctx
-    ? localDescription(ctx)
+    ? localMetaDescription(label, stateCfg.abbr, key)
     : townDescription(
         town.name,
         stateCfg.abbr,

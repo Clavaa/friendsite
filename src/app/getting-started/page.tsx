@@ -5,7 +5,7 @@ import StickyCallBar from "../../components/StickyCallBar";
 import { siteConfig } from "../../../site.config";
 
 export const metadata: Metadata = {
-  title: "Getting started with ABA therapy",
+  title: "How to Start ABA Therapy in 4 Steps",
   description:
     "How to start ABA therapy in Kansas or Colorado: one call, a free benefits check, a BCBA assessment, and sessions — with our team doing the paperwork.",
   alternates: { canonical: "/getting-started" },

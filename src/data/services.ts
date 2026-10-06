@@ -51,9 +51,9 @@ export const services: Service[] = [
     chipClass: "bg-brand-teal/10 text-brand-teal",
     inCarousel: true,
     h1: "In-home ABA therapy",
-    metaTitle: "In-home ABA therapy in Kansas & Colorado",
+    metaTitle: "In-Home ABA Therapy for Kids in Kansas & Colorado",
     metaDescription:
-      "One-on-one ABA therapy in your own home across Kansas and Colorado — daily-living skills taught where they're actually used, with parents in the loop.",
+      "One-on-one ABA therapy in your own home across Kansas & Colorado — skills taught where they're used, with parents in the loop. Free insurance check.",
     intro:
       "Some skills only make sense where they're used. Getting dressed happens in a bedroom. Dinner-table patience happens at a dinner table. In-home ABA brings your child's ABA therapist — a trained behavior technician, working a BCBA-designed plan — to the place those skills live.",
     bestFor: [
@@ -102,9 +102,9 @@ export const services: Service[] = [
     chipClass: "bg-meadow/15 text-meadow-deep",
     inCarousel: true,
     h1: "Daycare-based ABA support",
-    metaTitle: "Daycare-based ABA support in Kansas & Colorado",
+    metaTitle: "ABA Therapy at Daycare in Kansas & Colorado",
     metaDescription:
-      "ABA support that follows your child to daycare in Kansas and Colorado: on-site sessions, teacher collaboration, and one consistent plan across home and daycare.",
+      "ABA support that follows your child to daycare in Kansas & Colorado: on-site sessions, teacher teamwork, and one plan across home and daycare.",
     intro:
       "Skills shouldn't stay home when your child doesn't. When your daycare or preschool partners with us, your child's therapy travels there — a technician works with your child right in their classroom, and everyone who spends the day with your child works from the same playbook.",
     bestFor: [
@@ -150,9 +150,9 @@ export const services: Service[] = [
     chipClass: "bg-sun/30 text-ink",
     inCarousel: true,
     h1: "Parent training & coaching",
-    metaTitle: "ABA parent training in Kansas & Colorado",
+    metaTitle: "ABA Parent Training in Kansas & Colorado",
     metaDescription:
-      "BCBA-led parent training for Kansas and Colorado families — practical strategies for mealtimes, mornings, and meltdowns, coached in person at home or over video.",
+      "BCBA-led parent coaching for Kansas & Colorado families — real strategies for mealtimes, mornings and meltdowns, at home or by video.",
     intro:
       "You spend more waking hours with your child than any therapist ever will — which makes you the most powerful teacher on the team. Parent training turns that time into progress: practical, judgment-free strategies for your real routines, coached live by your BCBA.",
     bestFor: [
@@ -199,9 +199,9 @@ export const services: Service[] = [
     comingSoon: true,
     inCarousel: true,
     h1: "In-center ABA therapy",
-    metaTitle: "In-center ABA therapy in Kansas & Colorado — coming soon",
+    metaTitle: "In-Center ABA Therapy, Coming Soon to KS & CO",
     metaDescription:
-      "In-center ABA is coming soon to Sunbird: structured learning spaces, social practice with peers, and school-readiness routines — all BCBA-led. Join the list.",
+      "In-center ABA is coming soon: structured learning, peer social practice and school-readiness routines, all BCBA-led. Start at home today.",
     intro:
       "A center gives your child what a living room can't: other kids to practice social skills with, learning spaces designed for focus, and the kind of daily structure that makes the jump to preschool or kindergarten feel familiar instead of frightening. Our centers are coming soon — here's what they'll offer, and how to be first in line.",
     bestFor: [
@@ -241,7 +241,7 @@ export const services: Service[] = [
     chipClass: "bg-sun/30 text-ink",
     inCarousel: false,
     h1: "Telehealth ABA services",
-    metaTitle: "Telehealth ABA services in Kansas & Colorado",
+    metaTitle: "Telehealth ABA Therapy in Kansas & Colorado",
     metaDescription:
       "Video-based ABA services for Kansas and Colorado families: BCBA coaching, remote supervision, and support for families far from a metro area.",
     intro:

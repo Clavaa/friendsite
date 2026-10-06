@@ -108,13 +108,25 @@ export default function TrafficBeacon() {
     maxScroll.current = 0;
     sent.current = false;
 
+    // Ad platforms auto-tag clicks with a click ID instead of UTMs
+    // (Google Ads gclid/gbraid/wbraid, Meta fbclid, Microsoft msclkid).
+    // Map them to UTM source/medium so paid clicks never land in the
+    // "Google organic" / "Direct" buckets. Explicit UTMs always win.
+    const clickId: [string, string] | null =
+      search.get("gclid") || search.get("gbraid") || search.get("wbraid")
+        ? ["google", "cpc"]
+        : search.get("msclkid")
+          ? ["bing", "cpc"]
+          : search.get("fbclid")
+            ? ["facebook", "paid_social"]
+            : null;
     const base = {
       p: pathname,
       s: session,
       i: internal,
       t: document.title.slice(0, 200),
-      us: search.get("utm_source"),
-      um: search.get("utm_medium"),
+      us: search.get("utm_source") ?? clickId?.[0] ?? null,
+      um: search.get("utm_medium") ?? clickId?.[1] ?? null,
       uc: search.get("utm_campaign"),
     };
 

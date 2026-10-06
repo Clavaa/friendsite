@@ -53,7 +53,11 @@ export function classifySource(
 ): string {
   const m = (utmMedium ?? "").toLowerCase();
   if (m === "email" || m === "e-mail") return "Email";
-  if (m === "cpc" || m === "ppc" || m === "paid" || m === "paid_search") return "Paid search";
+  if (m === "cpc" || m === "ppc" || m === "paid" || m === "paid_search") {
+    const src = (utmSource ?? "").toLowerCase();
+    return src.includes("bing") || src.includes("microsoft") ? "Paid search (Bing)" : "Paid search (Google Ads)";
+  }
+  if (m === "paid_social" || m === "paidsocial" || m === "social_paid") return "Paid social (Meta)";
   if (utmSource && !referrerHost) return "Campaign";
   if (!referrerHost) return "Direct / app";
   const h = referrerHost.toLowerCase().replace(/^www\./, "");

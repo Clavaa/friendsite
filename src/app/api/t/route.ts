@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleAuth } from "google-auth-library";
 import { siteConfig } from "../../../../site.config";
 import {
   classifyBot,
@@ -8,6 +7,7 @@ import {
   hostOf,
   visitorId,
 } from "../../../lib/traffic";
+import { insertRow } from "../../../lib/bq";
 
 /**
  * Traffic beacon receiver (first-party — no GA, no cookies, no third party).
@@ -28,21 +28,6 @@ import {
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-const PROJECT = "sproutwell-aba-260907";
-const TABLE = `https://bigquery.googleapis.com/bigquery/v2/projects/${PROJECT}/datasets/sunbird_traffic/tables/events/insertAll`;
-
-let auth: GoogleAuth | null = null;
-function getAuth(): GoogleAuth | null {
-  if (auth) return auth;
-  const raw = process.env.GCP_TRAFFIC_SA;
-  if (!raw) return null;
-  auth = new GoogleAuth({
-    credentials: JSON.parse(raw),
-    scopes: ["https://www.googleapis.com/auth/bigquery.insertdata"],
-  });
-  return auth;
-}
 
 function str(v: unknown, max = 512): string | null {
   if (typeof v !== "string") return null;
@@ -116,26 +101,6 @@ export async function POST(req: NextRequest) {
     entry: body.e === true,
   };
 
-  try {
-    const a = getAuth();
-    if (!a) return ok;
-    const client = await a.getClient();
-    const token = (await client.getAccessToken()).token;
-    if (!token) return ok;
-    await fetch(TABLE, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        skipInvalidRows: true,
-        ignoreUnknownValues: true,
-        rows: [{ json: row }],
-      }),
-    });
-  } catch {
-    /* Analytics must never break a page view. Swallow and move on. */
-  }
+  await insertRow(row);
   return ok;
 }

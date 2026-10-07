@@ -16,7 +16,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const VERIFY: [RegExp, RegExp][] = [
-  [/^Googlebot$/, /\.(googlebot|google)\.com$/],
+  [/^(Googlebot|GoogleOther|Google Ads bot)$/, /\.(googlebot|google|googleusercontent)\.com$/],
   [/^Bingbot$/, /\.search\.msn\.com$/],
 ];
 

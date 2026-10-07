@@ -16,6 +16,8 @@ import crypto from "node:crypto";
 
 const BOTS: [RegExp, string][] = [
   [/googlebot|google-inspectiontool|storebot-google/i, "Googlebot"],
+  [/googleother/i, "GoogleOther"],
+  [/adsbot-google|mediapartners-google/i, "Google Ads bot"],
   [/bingbot|adidxbot/i, "Bingbot"],
   [/applebot/i, "Applebot"],
   [/duckduckbot/i, "DuckDuckBot"],

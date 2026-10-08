@@ -31,13 +31,26 @@ function statePaths(state: StateSlug): string[] {
   ];
 }
 
+/**
+ * Honest <lastmod> dates. Google only trusts lastmod when it matches real
+ * content changes — stamping every URL with the build time (the old
+ * `new Date()`) trains it to ignore the field (Gary Illyes: better no date
+ * than a wrong one). Bump the matching constant whenever that layer's
+ * content actually changes.
+ */
+const LASTMOD = {
+  /** Local layer: data-rich rebuild 10/5, CTR titles + team copy 10/6. */
+  local: "2026-10-06",
+  /** Services, guides, questions: CTR titles/descriptions + service FAQs 10/6. */
+  core: "2026-10-06",
+} as const;
+
 export default function sitemap({
   id,
 }: {
   id: ShardId;
 }): MetadataRoute.Sitemap {
   const base = siteConfig.domain;
-  const now = new Date();
 
   const paths: string[] =
     id === "core"
@@ -59,7 +72,7 @@ export default function sitemap({
 
   return paths.map((path) => ({
     url: `${base}${path}`,
-    lastModified: now,
+    lastModified: id === "core" ? LASTMOD.core : LASTMOD.local,
     changeFrequency: path === "" ? "weekly" : "monthly",
     priority:
       path === ""

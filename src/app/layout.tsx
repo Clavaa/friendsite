@@ -22,10 +22,22 @@ import "./globals.css";
 const fraunces = Fraunces({
   subsets: ["latin"],
   axes: ["SOFT", "opsz"],
-  // Italic loaded for the tagline's "Support you can feel." treatment.
-  style: ["normal", "italic"],
+  style: "normal",
   variable: "--font-fraunces",
   display: "swap",
+});
+
+// Italic (accent words like "Support you can feel.") is a separate,
+// NON-preloaded file: preloading it put ~120 KB more font ahead of the
+// first paint on phones (homepage mobile LCP 7.9 s, 10/7). It now loads on
+// demand; globals.css maps .font-display .italic to it.
+const frauncesItalic = Fraunces({
+  subsets: ["latin"],
+  axes: ["SOFT", "opsz"],
+  style: "italic",
+  variable: "--font-fraunces-italic",
+  display: "swap",
+  preload: false,
 });
 
 const nunitoSans = Nunito_Sans({
@@ -106,7 +118,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${nunitoSans.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${frauncesItalic.variable} ${nunitoSans.variable}`}>
       <body>
         <a
           href="#main"

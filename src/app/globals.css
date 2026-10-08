@@ -61,6 +61,10 @@ body {
 
 /* Display serif: Fraunces, soft axis high, sentence case only — enforced
    here by never pairing it with uppercase transforms anywhere in the app. */
+.font-display .italic,
+.font-display.italic {
+  font-family: var(--font-fraunces-italic), var(--font-display);
+}
 .font-display {
   font-family: var(--font-display);
   font-weight: 600;

@@ -164,7 +164,8 @@ function introSection(c: PlaceCtx, seed: number): CopySection {
     };
     paras.push((flavor[st] ?? flavor.town) + seatBit);
   } else {
-    const where = c.countyFull ? ` in [${c.countyFull}](${c.countyHref})` : "";
+    // ZIP pages are named "Denver 80205" — don't append "in Denver" again.
+    const where = c.countyFull && !c.name.startsWith(c.countyFull) ? ` in [${c.countyFull}](${c.countyHref})` : "";
     const seatBit = c.isSeat ? ` It is also the county seat.` : "";
     const cdpBit = c.isCdp
       ? ` It is an unincorporated community — there is no city hall, but neighbors know it by name, and so do we.`

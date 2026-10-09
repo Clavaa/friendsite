@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CITY_JOBS } from "../../lib/metro";
 import Image from "next/image";
 import Link from "next/link";
 import { Sparkles, SunSpot } from "../../components/Accents";
@@ -339,6 +340,24 @@ export default function CareersPage() {
             </a>
           </div>
         </div>
+      </section>
+
+      {/* City job pages (src/lib/metro.ts) — internal links for the
+          "rbt jobs {city}" / "bcba jobs {city}" searches. */}
+      <section className="mx-auto max-w-[87rem] px-4 pb-12 sm:px-6">
+        <h2 className="font-display text-2xl">Jobs by city</h2>
+        <ul className="mt-4 flex flex-wrap gap-2.5">
+          {CITY_JOBS.map((j) => (
+            <li key={j.slug}>
+              <Link
+                href={`/careers/${j.slug}`}
+                className="rounded-full border border-line bg-white px-4 py-2 text-[15px] font-semibold transition-colors hover:border-brand-teal hover:text-brand-teal"
+              >
+                {j.role.toUpperCase()} jobs in {j.city.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Job-seeker page still gets the family-facing links */}

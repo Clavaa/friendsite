@@ -13,9 +13,9 @@ import {
   LinkChips,
   LocalSections,
   LocalSnapshot,
-  ZipList,
   guideShelf,
 } from "../../../components/local/LocalBlocks";
+import { CityJobLinks, CityServiceCards, CityZipTable } from "../../../components/local/CityHub";
 import { cityLocal, countyLocal, hashSeed, nearbyHref } from "../../../lib/local";
 import {
   buildLocalFaqs,
@@ -197,6 +197,10 @@ export default function CityView({
           below is true, data-driven local content (src/lib/localCopy.ts). */}
       <LocalSnapshot name={city.name} stats={ctx.stats} extras={extras} />
 
+      <CityServiceCards state={stateSlug} city={{ name: city.name, slug: city.slug }} />
+
+      <CityZipTable state={stateSlug} city={{ name: city.name, slug: city.slug }} />
+
       <LocalSections sections={sections} />
 
       {/* ————— Services available here ————— */}
@@ -251,7 +255,7 @@ export default function CityView({
         </div>
       </section>
 
-      <ZipList name={city.name} zips={loc.zips} />
+      <CityJobLinks state={stateSlug} city={{ name: city.name, slug: city.slug }} />
 
       <Faq items={faqs} heading={`${city.name} questions, answered plainly`} />
 

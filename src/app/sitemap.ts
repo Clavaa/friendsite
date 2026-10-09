@@ -5,6 +5,7 @@ import { questionPages } from "../data/questions";
 import { services } from "../data/services";
 import { countiesByState } from "../data/counties";
 import { townsByState } from "../data/towns";
+import { CITY_JOBS, CITY_SERVICES, cityZips } from "../lib/metro";
 
 /**
  * Sharded sitemap — /sitemap/core.xml (static + services + questions +
@@ -28,6 +29,10 @@ function statePaths(state: StateSlug): string[] {
     ...siteConfig.states[state].cities.map((c) => `/${state}/${c.slug}`),
     ...countiesByState[state].map((c) => `/${state}/${c.slug}`),
     ...townsByState[state].towns.map((t) => `/${state}/${t.county}/${t.slug}`),
+    ...siteConfig.states[state].cities.flatMap((c) => [
+      ...CITY_SERVICES.map((s) => `/${state}/${c.slug}/${s.slug}`),
+      ...cityZips(state, c.slug).map(([zip]) => `/${state}/${c.slug}/${zip}`),
+    ]),
   ];
 }
 
@@ -43,7 +48,19 @@ const LASTMOD = {
   local: "2026-10-06",
   /** Services, guides, questions: CTR titles/descriptions + service FAQs 10/6. */
   core: "2026-10-06",
+  /** Big-city layer: team-city hubs, ZIP area pages, city×service pages,
+   *  city job pages (careers hub links them too). */
+  metro: "2026-10-08",
 } as const;
+
+const CITY_PREFIXES = stateSlugs.flatMap((st) =>
+  siteConfig.states[st].cities.map((c) => `/${st}/${c.slug}`)
+);
+function lastmodFor(path: string, id: string): string {
+  if (path.startsWith("/careers")) return LASTMOD.metro;
+  if (CITY_PREFIXES.some((p) => path === p || path.startsWith(`${p}/`))) return LASTMOD.metro;
+  return id === "core" ? LASTMOD.core : LASTMOD.local;
+}
 
 export default function sitemap({
   id,
@@ -67,12 +84,13 @@ export default function sitemap({
           ...services.map((s) => `/services/${s.slug}`),
           ...questionPages.map((q) => `/questions/${q.slug}`),
           ...guides.map((g) => `/resources/${g.slug}`),
+          ...CITY_JOBS.map((j) => `/careers/${j.slug}`),
         ]
       : statePaths(id);
 
   return paths.map((path) => ({
     url: `${base}${path}`,
-    lastModified: id === "core" ? LASTMOD.core : LASTMOD.local,
+    lastModified: lastmodFor(path, id),
     changeFrequency: path === "" ? "weekly" : "monthly",
     priority:
       path === ""

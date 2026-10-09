@@ -294,13 +294,33 @@ with open(os.path.join(HERE, "zcta_county.psv"), encoding="utf-8-sig") as f:
             county_zips[cf].append(z)
 
 # ---------- school districts ----------
+# NCES truncates lea_name at 60 characters ("School District No. 1 in the county
+# of Denver and State of C"). Districts known locally by another name get it
+# here; everything else loses its legal "in the county of …" tail.
+DISTRICT_NAMES = {
+    "0803360": "Denver Public Schools",
+    "0802340": "Aurora Public Schools",
+    "0802910": "Cherry Creek School District",
+    "0803060": "Colorado Springs School District 11",
+    "0801920": "Academy District 20",
+    "0806480": "Widefield School District 3",
+    "0801950": "Adams 14 School District",
+    "0804410": "Greeley-Evans School District 6",
+}
+def clean_district(name: str, leaid: str) -> str:
+    if leaid in DISTRICT_NAMES:
+        return DISTRICT_NAMES[leaid]
+    # Also catches mid-word truncation ("… No. 38 in the co").
+    name = re.sub(r"\s+(in|of)\s+(the\s+)?co(u(n(t(y|ies)?)?)?)?(\s.*)?$", "", name, flags=re.I)
+    name = re.sub(r"\s{2,}", " ", name).strip()
+    return name
 county_districts = defaultdict(list)
 for fn in ("ed_20.json", "ed_8.json"):
     for d in json.load(open(os.path.join(HERE, fn)))["results"]:
         if d.get("agency_type") != 1 or not d.get("enrollment") or d["enrollment"] <= 0:
             continue
         cf = str(d["county_code"]).zfill(5)
-        name = d["lea_name"].strip()
+        name = clean_district(d["lea_name"].strip(), str(d.get("leaid") or ""))
         sl = d.get("state_leaid") or ""
         m = re.match(r"KS-D0*(\d+)$", sl)
         if m:

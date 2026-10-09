@@ -113,6 +113,22 @@ const guidePaths = [
   "src/data/guides-decisions.ts",
 ].flatMap((f) => extractSlugs(f).map((s) => `/resources/${s}`));
 
+// Big-city layer (src/lib/metro.ts): ZIP area pages, city×service pages
+// and city job pages — keep the service/job slugs in sync with metro.ts.
+const CITY_SERVICE_SLUGS = ["in-home-aba-therapy", "autism-evaluation", "daycare-aba", "parent-training"];
+const metro = JSON.parse(readFileSync(join(ROOT, "src/data/metro.json"), "utf8"));
+const metroPaths = [];
+for (const state of ["kansas", "colorado"]) {
+  const stateBlock = siteConfigSrc.slice(siteConfigSrc.indexOf(`${state}: {`));
+  const citiesBlock = stateBlock.slice(stateBlock.indexOf("cities:"), stateBlock.indexOf("]", stateBlock.indexOf("cities:")));
+  for (const m of citiesBlock.matchAll(/slug:\s*"([^"]+)"/g)) {
+    const city = m[1];
+    for (const s of CITY_SERVICE_SLUGS) metroPaths.push(`/${state}/${city}/${s}`);
+    for (const zip of Object.keys(metro[state]?.[city] ?? {})) metroPaths.push(`/${state}/${city}/${zip}`);
+    metroPaths.push(`/careers/rbt-jobs-${city}`, `/careers/bcba-jobs-${city}`);
+  }
+}
+
 const urlList = [
   ...new Set(
     [
@@ -121,6 +137,7 @@ const urlList = [
       ...servicePaths,
       ...questionPaths,
       ...guidePaths,
+      ...metroPaths,
     ].map(
       (p) => `${base}${p}`
     )

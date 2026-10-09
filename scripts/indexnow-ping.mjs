@@ -66,8 +66,11 @@ const staticPaths = [
   "/careers",
 ];
 
-// States + their cities from site.config.ts
-const siteConfigSrc = readFileSync(join(ROOT, "site.config.ts"), "utf8");
+// States + their cities from site.config.ts. Search inside the `states:`
+// block only — `coverage:` also has "colorado: {" earlier in the file, which
+// made Colorado read Kansas's city list (Colorado cities were never pinged).
+const siteConfigFull = readFileSync(join(ROOT, "site.config.ts"), "utf8");
+const siteConfigSrc = siteConfigFull.slice(siteConfigFull.indexOf("states: {"));
 const statePaths = [];
 for (const state of ["kansas", "colorado"]) {
   statePaths.push(`/${state}`);

@@ -55,6 +55,9 @@ export function classifySource(
 ): string {
   const m = (utmMedium ?? "").toLowerCase();
   if (m === "email" || m === "e-mail") return "Email";
+  // Google Business Profile website links carry utm_medium=gbp
+  // (seo/GBP-AND-CITATIONS.md) — map-pack clicks, not regular search.
+  if (m === "gbp") return "Google Business Profile";
   if (m === "cpc" || m === "ppc" || m === "paid" || m === "paid_search") {
     const src = (utmSource ?? "").toLowerCase();
     return src.includes("bing") || src.includes("microsoft") ? "Paid search (Bing)" : "Paid search (Google Ads)";

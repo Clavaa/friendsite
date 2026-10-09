@@ -39,6 +39,57 @@ function kidsLine(c: Ctx): string {
   return `${c.city.name} is home to about ${fmt(s.under18)} children, ${about(s.under5)} of them under 5. At the CDC's 1-in-${CDC_RATE} estimate, roughly ${fmt(autismEstimate(s.under18))} ${c.city.name} kids may be on the autism spectrum.`;
 }
 
+/**
+ * Where families in each team city get autism evaluations — named because
+ * the pages that rank for "autism testing {city}" name them. Verified 10/8
+ * from each organization's own site or a county resource list; no phone
+ * numbers (they go stale). We are not affiliated with any of them.
+ */
+const KC_EVAL = [
+  { name: "The University of Kansas Health System", url: "https://www.kansashealthsystem.com/", note: "in Kansas City, Kan. — the state's primary autism diagnostic center, with screening and full diagnostic evaluations" },
+  { name: "Children's Mercy Kansas City", url: "https://www.childrensmercy.org/Autism", note: "developmental and behavioral health evaluations, just across the state line" },
+];
+const DENVER_EVAL = [
+  { name: "Children's Hospital Colorado — Developmental Pediatrics", url: "https://www.childrenscolorado.org/doctors-and-departments/departments/neuroscience-institute/programs/developmental-pediatrics/", note: "on the Anschutz campus in Aurora, with diagnostic assessments run with JFK Partners at CU Anschutz" },
+  { name: "JFK Partners (CU Anschutz)", url: "https://medschool.cuanschutz.edu/jfk-partners/clinical-services/assessment-and-treatment-services", note: "interdisciplinary autism and developmental assessments" },
+];
+const EVAL_RESOURCES: Record<string, { name: string; url: string; note: string }[]> = {
+  "kansas-city": KC_EVAL,
+  "overland-park": KC_EVAL,
+  olathe: KC_EVAL,
+  wichita: [
+    { name: "Wichita State University's Autism Interdisciplinary Diagnostic Team", url: "https://wichita.edu/academics/health_professions/slhclinic/outreach.php", note: "through WSU's speech-language-hearing clinic" },
+    ...KC_EVAL.slice(0, 1),
+  ],
+  topeka: [
+    { name: "Family Service & Guidance Center", url: "https://www.fsgctopeka.com/autism-assessments-in-topeka/", note: "autism assessments in Topeka for children and teens up to 18" },
+    ...KC_EVAL.slice(0, 1),
+  ],
+  denver: DENVER_EVAL,
+  aurora: DENVER_EVAL,
+  lakewood: DENVER_EVAL,
+  "colorado-springs": DENVER_EVAL.slice(0, 1),
+  "fort-collins": DENVER_EVAL.slice(0, 1),
+};
+
+function evalResources(c: Ctx): CopySection | null {
+  const list = EVAL_RESOURCES[c.city.slug];
+  if (!list) return null;
+  return {
+    id: "where-evaluated",
+    heading: `Where ${c.city.name} families get autism evaluations`,
+    paragraphs: [
+      `Options ${c.city.name} families commonly use — ask your pediatrician which fits your child, and get on more than one list if waits are long:`,
+    ],
+    bullets: [
+      ...list.map((r) => `[${r.name}](${r.url}) — ${r.note}.`),
+      `**Developmental-behavioral pediatricians and licensed psychologists** in private practice — your pediatrician or insurance plan can point you to in-network diagnosticians.`,
+      `**Your school district** (${c.loc.districts[0]?.name ?? "your local district"} in ${c.city.name}) — evaluates children 3 and older for special-education services.`,
+      `We're not affiliated with these organizations, and details change — confirm hours, ages and insurance with them directly.`,
+    ],
+  };
+}
+
 function sectionsFor(svc: CityService, c: Ctx): CopySection[] {
   const s = c.loc.stats;
   const city = c.city.name;
@@ -107,6 +158,7 @@ function sectionsFor(svc: CityService, c: Ctx): CopySection[] {
           `**Call us while you wait.** We help ${city} families find an evaluation, check insurance benefits in the meantime, and line up ABA so therapy can start as soon as the diagnosis is in hand. [Start with our diagnosis guide →](/get-a-diagnosis)`,
         ],
       },
+      ...(evalResources(c) ? [evalResources(c)!] : []),
       {
         id: "after",
         heading: "After the evaluation",

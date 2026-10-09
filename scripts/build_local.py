@@ -313,7 +313,7 @@ def clean_district(name: str, leaid: str) -> str:
     # Also catches mid-word truncation ("… No. 38 in the co").
     name = re.sub(r"\s+(in|of)\s+(the\s+)?co(u(n(t(y|ies)?)?)?)?(\s.*)?$", "", name, flags=re.I)
     name = re.sub(r"\s{2,}", " ", name).strip()
-    return name
+    return re.sub(r"\bPub(lic)? Sch(ools)?\b", "Public Schools", name)
 county_districts = defaultdict(list)
 for fn in ("ed_20.json", "ed_8.json"):
     for d in json.load(open(os.path.join(HERE, fn)))["results"]:

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import FindNearYou from "../../../components/local/FindNearYou";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CtaBand from "../../../components/CtaBand";
@@ -321,6 +322,7 @@ export default async function GuidePage({
         </div>
       </article>
 
+      <FindNearYou seed={g.slug.length} />
       <CtaBand tint="sky" />
       <StickyCallBar callLabel="Call the team" />
     </>

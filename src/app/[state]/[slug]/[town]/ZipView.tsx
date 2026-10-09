@@ -15,6 +15,7 @@ import { siteConfig, type StateSlug } from "../../../../../site.config";
 import { cityLocal, fmt, hashSeed, pick } from "../../../../lib/local";
 import { buildLocalFaqs, buildLocalSections, type PlaceCtx } from "../../../../lib/localCopy";
 import { CITY_SERVICES, cityZips, zipLabel, type ZipRecord } from "../../../../lib/metro";
+import { schoolsForPage } from "../../../../lib/schools";
 import { breadcrumbJsonLd } from "../../../../lib/seo";
 
 /**
@@ -123,6 +124,7 @@ export default function ZipView({
   const faqs = buildLocalFaqs(ctx);
   const label = zipLabel(rec);
   const place = `${city.name} ${zip}`;
+  const schools = schoolsForPage(`/${stateSlug}/${city.slug}/${zip}`);
 
   const nearby = rec.nearbyZips.map((n) => {
     const r = cityZips(stateSlug, city.slug).find(([z]) => z === n.zip)?.[1];
@@ -209,6 +211,34 @@ export default function ZipView({
       />
 
       <LocalSections sections={sections} />
+
+      {schools.length > 0 && (
+        <section id="schools-in-zip" className="bg-cream">
+          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+            <h2 className="font-display text-2xl sm:text-3xl">Schools in {zip}</h2>
+            <p className="mt-2 max-w-3xl text-[15px] text-ink-soft">
+              Public and charter schools located in this ZIP code (NCES 2022). If your child has an IEP at
+              one of them, share it with your BCBA so home goals and school goals line up.
+            </p>
+            <ul className="mt-5 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+              {schools.map((sc) => (
+                <li key={sc.name} className="rounded-xl bg-white px-4 py-3 text-[15px] shadow-card">
+                  <span className="font-semibold">{sc.name}</span>
+                  <span className="block text-[13px] text-ink-soft">
+                    {sc.grades ? `Grades ${sc.grades}` : ""}
+                    {sc.district && sc.districtName ? (
+                      <>
+                        {sc.grades ? " · " : ""}
+                        <Link href={sc.district} className="text-brand-teal hover:underline">{sc.districtName}</Link>
+                      </>
+                    ) : null}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <LinkChips
         heading={`ABA services in ${city.name}`}

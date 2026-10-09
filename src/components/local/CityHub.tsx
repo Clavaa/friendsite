@@ -108,3 +108,40 @@ export function CityJobLinks({ state, city }: { state: StateSlug; city: { name: 
     </section>
   );
 }
+
+/** School-district chips for any local page (city, county or town). */
+export function DistrictChips({
+  state,
+  heading,
+  districts,
+}: {
+  state: StateSlug;
+  heading: string;
+  districts: [string, { name: string; schools: { length: number } }][];
+}) {
+  if (!districts.length) return null;
+  return (
+    <section className="bg-white">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+        <h2 className="font-display text-2xl">{heading}</h2>
+        <p className="mt-2 max-w-3xl text-[15px] text-ink-soft">
+          Every school in the district, the neighborhoods it serves, and how home ABA works with your
+          child&rsquo;s IEP.
+        </p>
+        <ul className="mt-4 flex flex-wrap gap-2.5">
+          {districts.map(([slug, d]) => (
+            <li key={slug}>
+              <Link
+                href={`/${state}/schools/${slug}`}
+                className="inline-flex items-baseline gap-1.5 rounded-full border border-line bg-cream px-4 py-2 text-[15px] font-semibold transition-colors hover:border-brand-teal hover:text-brand-teal"
+              >
+                {d.name}
+                <span className="text-[12.5px] text-ink-soft">{d.schools.length} schools</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}

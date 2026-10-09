@@ -6,6 +6,7 @@ import { services } from "../data/services";
 import { countiesByState } from "../data/counties";
 import { townsByState } from "../data/towns";
 import { CITY_JOBS, CITY_SERVICES, cityZips } from "../lib/metro";
+import { districtsIn } from "../lib/schools";
 
 /**
  * Sharded sitemap — /sitemap/core.xml (static + services + questions +
@@ -33,6 +34,8 @@ function statePaths(state: StateSlug): string[] {
       ...CITY_SERVICES.map((s) => `/${state}/${c.slug}/${s.slug}`),
       ...cityZips(state, c.slug).map(([zip]) => `/${state}/${c.slug}/${zip}`),
     ]),
+    `/${state}/schools`,
+    ...districtsIn(state).map(([slug]) => `/${state}/schools/${slug}`),
   ];
 }
 
@@ -57,7 +60,7 @@ const CITY_PREFIXES = stateSlugs.flatMap((st) =>
   siteConfig.states[st].cities.map((c) => `/${st}/${c.slug}`)
 );
 function lastmodFor(path: string, id: string): string {
-  if (path.startsWith("/careers")) return LASTMOD.metro;
+  if (path.startsWith("/careers") || path.includes("/schools")) return LASTMOD.metro;
   if (CITY_PREFIXES.some((p) => path === p || path.startsWith(`${p}/`))) return LASTMOD.metro;
   return id === "core" ? LASTMOD.core : LASTMOD.local;
 }

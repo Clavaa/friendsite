@@ -31,6 +31,8 @@ import {
   type PlaceCtx,
 } from "../../../lib/localCopy";
 import { breadcrumbJsonLd } from "../../../lib/seo";
+import { DistrictChips } from "../../../components/local/CityHub";
+import { districtsIn } from "../../../lib/schools";
 
 /**
  * County page — the hub for every community in the county. The body is
@@ -355,6 +357,12 @@ export default function CountyView({
         intro={`See the towns and counties around ${hub.name}:`}
         items={[{ name: `ABA therapy in ${hub.name} →`, href: `/${stateSlug}/${hub.slug}` }]}
         tint="bg-white"
+      />
+
+      <DistrictChips
+        state={stateSlug}
+        heading={`School districts in ${county.full}`}
+        districts={districtsIn(stateSlug).filter(([, d]) => d.county === county.slug)}
       />
 
       <LinkChips heading="Guides parents read next" items={guideShelf(seed)} tint="bg-cream" />

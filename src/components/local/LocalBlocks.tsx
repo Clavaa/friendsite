@@ -18,7 +18,9 @@ import {
 /** Renders [text](/path) links and **bold** inside a copy string. */
 export function RichText({ text }: { text: string }) {
   const out: ReactNode[] = [];
-  const re = /\[([^\]]+)\]\((\/[^)\s]*)\)|\*\*([^*]+)\*\*/g;
+  // Internal links "(/path)" and external "(https://…)" — external ones open
+  // in a new tab with noopener (third-party resources we don't control).
+  const re = /\[([^\]]+)\]\(((?:\/|https:\/\/)[^)\s]*)\)|\*\*([^*]+)\*\*/g;
   let last = 0;
   let m: RegExpExecArray | null;
   let i = 0;
@@ -26,9 +28,15 @@ export function RichText({ text }: { text: string }) {
     if (m.index > last) out.push(text.slice(last, m.index));
     if (m[1]) {
       out.push(
-        <Link key={i++} href={m[2]} className="font-bold text-brand-teal hover:underline">
-          {m[1]}
-        </Link>
+        m[2].startsWith("https://") ? (
+          <a key={i++} href={m[2]} target="_blank" rel="noopener" className="font-bold text-brand-teal hover:underline">
+            {m[1]}
+          </a>
+        ) : (
+          <Link key={i++} href={m[2]} className="font-bold text-brand-teal hover:underline">
+            {m[1]}
+          </Link>
+        )
       );
     } else {
       out.push(

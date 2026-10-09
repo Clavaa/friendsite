@@ -27,6 +27,8 @@ import {
   type PlaceCtx,
 } from "../../../../lib/localCopy";
 import { breadcrumbJsonLd } from "../../../../lib/seo";
+import { DistrictChips } from "../../../../components/local/CityHub";
+import { districtsLinkingTo } from "../../../../lib/schools";
 
 /**
  * Town page — one per Census place (every incorporated city and town, plus
@@ -338,6 +340,12 @@ export default function TownView({
           { name: `All of ${stateCfg.name}`, href: `/${stateSlug}` },
         ]}
         tint="bg-cream"
+      />
+
+      <DistrictChips
+        state={stateSlug}
+        heading={`School districts serving ${town.name}`}
+        districts={districtsLinkingTo(stateSlug, `/${stateSlug}/${county.slug}/${town.slug}`)}
       />
 
       <LinkChips

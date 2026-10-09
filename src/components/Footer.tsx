@@ -50,6 +50,7 @@ export default function Footer() {
       links: [
         { href: "/kansas", label: "ABA in Kansas" },
         ...kansas.cities.map((c) => ({ href: `/kansas/${c.slug}`, label: c.name })),
+        { href: "/kansas/schools", label: "School districts" },
       ],
     },
     {
@@ -57,6 +58,7 @@ export default function Footer() {
       links: [
         { href: "/colorado", label: "ABA in Colorado" },
         ...colorado.cities.map((c) => ({ href: `/colorado/${c.slug}`, label: c.name })),
+        { href: "/colorado/schools", label: "School districts" },
       ],
     },
   ];

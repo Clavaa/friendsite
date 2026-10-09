@@ -15,7 +15,8 @@ import {
   LocalSnapshot,
   guideShelf,
 } from "../../../components/local/LocalBlocks";
-import { CityJobLinks, CityServiceCards, CityZipTable } from "../../../components/local/CityHub";
+import { CityJobLinks, CityServiceCards, CityZipTable, DistrictChips } from "../../../components/local/CityHub";
+import { districtsLinkingTo } from "../../../lib/schools";
 import { cityLocal, countyLocal, hashSeed, nearbyHref } from "../../../lib/local";
 import {
   buildLocalFaqs,
@@ -254,6 +255,12 @@ export default function CityView({
           </p>
         </div>
       </section>
+
+      <DistrictChips
+        state={stateSlug}
+        heading={`School districts serving ${city.name}`}
+        districts={districtsLinkingTo(stateSlug, `/${stateSlug}/${city.slug}`)}
+      />
 
       <CityJobLinks state={stateSlug} city={{ name: city.name, slug: city.slug }} />
 

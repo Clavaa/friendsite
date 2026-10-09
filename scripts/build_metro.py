@@ -153,6 +153,25 @@ for city, els in osm.items():
                     hoods[z].append((rank, name))
                 break
 
+# Wikidata neighborhoods fill gaps where OSM is thin (Wichita): labels like
+# "Delano" or "Orchard Park, Wichita, Kansas"; coords are "Point(lon lat)".
+wd_path = os.path.join(RAW, "wd_neighborhoods.json")
+if os.path.exists(wd_path):
+    for city, items in json.load(open(wd_path)).items():
+        for label, wkt in items:
+            name = re.sub(r",\s*[^,]+,\s*(Kansas|Colorado)$", "", label).strip()
+            if BAD.search(name) or "warehouse" in name.lower():
+                continue
+            m = re.match(r"Point\(([-\d.]+) ([-\d.]+)\)", wkt)
+            if not m:
+                continue
+            p = Point(float(m.group(1)), float(m.group(2)))
+            for z, poly in polys.items():
+                if poly.contains(p):
+                    if name not in [n for _, n in hoods[z]]:
+                        hoods[z].append((2, name))
+                    break
+
 # Town pages (to link the other communities a ZIP reaches into).
 towns = json.load(open(os.path.join(DATA, "towns.json")))
 town_by_geoid = {}

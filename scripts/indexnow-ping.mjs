@@ -132,6 +132,12 @@ for (const state of ["kansas", "colorado"]) {
   }
 }
 
+// School-district pages (src/data/schools.json).
+const schoolsData = JSON.parse(readFileSync(join(ROOT, "src/data/schools.json"), "utf8"));
+for (const [state, ds] of Object.entries(schoolsData.districts)) {
+  metroPaths.push(`/${state}/schools`, ...Object.keys(ds).map((s) => `/${state}/schools/${s}`));
+}
+
 const urlList = [
   ...new Set(
     [

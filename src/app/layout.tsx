@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Fraunces, Nunito_Sans } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import TrafficBeacon from "../components/TrafficBeacon";
 import Header from "../components/Header";
@@ -15,29 +16,33 @@ import "./globals.css";
 
 /**
  * Sunbird ABA type system:
- * Fraunces 600 display serif with the SOFT + optical-size axes loaded
- * (sentence case only — enforced in CSS/components, never uppercase),
- * Nunito Sans variable for body at 17/1.65.
+ * Fraunces display serif (sentence case only — enforced in CSS/components,
+ * never uppercase), Nunito Sans variable for body at 17/1.65.
+ *
+ * Fraunces is self-hosted from src/fonts as two pinned instances: the site
+ * only ever sets it at weight 600 with SOFT 100, so the Google variable
+ * files (wght + SOFT + opsz: 121 KB roman, 149 KB italic) were instanced to
+ * wght=600, SOFT=100 with the optical-size axis kept (33 KB + 42 KB,
+ * identical rendering). Rebuild with fontTools:
+ *   instancer.instantiateVariableFont(font, {"wght": 600, "SOFT": 100})
+ * The declared weight range is 100–900 so the browser never fakes a bold.
+ * Both are small enough to preload now (the italic carries the accent
+ * words in the homepage H1).
  */
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  axes: ["SOFT", "opsz"],
+const fraunces = localFont({
+  src: "../fonts/fraunces-roman-600.woff2",
+  weight: "100 900",
   style: "normal",
   variable: "--font-fraunces",
   display: "swap",
 });
 
-// Italic (accent words like "Support you can feel.") is a separate,
-// NON-preloaded file: preloading it put ~120 KB more font ahead of the
-// first paint on phones (homepage mobile LCP 7.9 s, 10/7). It now loads on
-// demand; globals.css maps .font-display .italic to it.
-const frauncesItalic = Fraunces({
-  subsets: ["latin"],
-  axes: ["SOFT", "opsz"],
+const frauncesItalic = localFont({
+  src: "../fonts/fraunces-italic-600.woff2",
+  weight: "100 900",
   style: "italic",
   variable: "--font-fraunces-italic",
   display: "swap",
-  preload: false,
 });
 
 const nunitoSans = Nunito_Sans({

@@ -58,7 +58,11 @@ export default function Carousel({
         role="region"
         aria-label={ariaLabel}
         tabIndex={0}
-        className={`no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth ${trackClassName}`}
+        // No `scroll-smooth`, and scroll-padding must match the track's side
+        // padding (scroll-px-* in trackClassName): otherwise the browser
+        // snap-scrolls the track a padding-width at load, Chrome counts that
+        // as a scroll and stops measuring LCP for the whole page (NO_LCP).
+        className={`no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto ${trackClassName}`}
       >
         {children}
       </div>

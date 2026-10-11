@@ -615,7 +615,7 @@ export default function HomePage() {
             ariaLabel="Our services"
             step={552}
             className="mt-12"
-            trackClassName="-mx-4 px-4 pb-2 sm:-mx-6 sm:px-6"
+            trackClassName="-mx-4 scroll-px-4 px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6"
           >
             {serviceCards.map((c) => (
               <Link

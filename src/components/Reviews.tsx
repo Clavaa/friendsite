@@ -45,7 +45,7 @@ export default function Reviews() {
           ariaLabel="Parent reviews"
           step={424}
           className="mt-14"
-          trackClassName="-mx-4 px-4 pb-2 sm:-mx-6 sm:px-6"
+          trackClassName="-mx-4 scroll-px-4 px-4 pb-2 sm:-mx-6 sm:scroll-px-6 sm:px-6"
         >
           {real.length > 0
             ? real.map((r) => (

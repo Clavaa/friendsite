@@ -10,6 +10,7 @@ import {
   track,
 } from "../lib/analytics";
 import { siteConfig } from "../../site.config";
+import { useTrackerGate } from "../lib/trackerGate";
 
 /**
  * Google tag loader (GA4 + Google Ads) — renders nothing unless at least
@@ -64,6 +65,9 @@ function PhoneClickTracker() {
 
 export default function GoogleAnalytics() {
   const loaderId = GA_MEASUREMENT_ID || GOOGLE_ADS_ID;
+  // Ad-click visitors load the tag at once; everyone else on first
+  // interaction or 5 s after load (see lib/trackerGate).
+  const ready = useTrackerGate();
   if (!loaderId) return null;
 
   const configs: string[] = [];
@@ -90,18 +94,24 @@ export default function GoogleAnalytics() {
 
   return (
     <>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${loaderId}`}
-        strategy="lazyOnload"
-      />
-      <Script id="gtag-init" strategy="lazyOnload">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          ${configs.join("\n          ")}
-        `}
-      </Script>
+      {ready && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${loaderId}`}
+            strategy="lazyOnload"
+          />
+          {/* window.gtag (not a local function) so the queueing shim in
+              lib/analytics and this init share one dataLayer. */}
+          <Script id="gtag-init" strategy="lazyOnload">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              window.gtag = window.gtag || function(){dataLayer.push(arguments);};
+              gtag('js', new Date());
+              ${configs.join("\n              ")}
+            `}
+          </Script>
+        </>
+      )}
       {/* useSearchParams requires a Suspense boundary in the App Router. */}
       <Suspense fallback={null}>
         <PageViewTracker />

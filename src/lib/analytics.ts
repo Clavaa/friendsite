@@ -13,6 +13,7 @@ declare global {
     gtag?: (...args: unknown[]) => void;
     dataLayer?: unknown[];
     fbq?: (...args: unknown[]) => void;
+    __fbqPending?: unknown[][];
   }
 }
 
@@ -54,8 +55,13 @@ export function track(
   }
 
   // Meta Pixel standard events (event name only, never field values).
-  if (META_PIXEL_ID && typeof window.fbq === "function") {
-    if (event === "generate_lead") window.fbq("track", "Lead");
-    else if (event === "phone_click") window.fbq("track", "Contact");
+  // If the pixel has not loaded yet (lib/trackerGate), the event waits in
+  // __fbqPending and MetaPixel flushes it right after `init`.
+  if (META_PIXEL_ID) {
+    const name = event === "generate_lead" ? "Lead" : event === "phone_click" ? "Contact" : null;
+    if (name) {
+      if (typeof window.fbq === "function") window.fbq("track", name);
+      else (window.__fbqPending = window.__fbqPending || []).push(["track", name]);
+    }
   }
 }

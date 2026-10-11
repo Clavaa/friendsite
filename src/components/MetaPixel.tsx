@@ -4,6 +4,7 @@ import Script from "next/script";
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { META_PIXEL_ID } from "../lib/analytics";
+import { useTrackerGate } from "../lib/trackerGate";
 
 /**
  * Meta Pixel loader — renders nothing unless NEXT_PUBLIC_META_PIXEL_ID
@@ -24,6 +25,8 @@ function RouteChangeTracker() {
       isFirst.current = false;
       return;
     }
+    // Before the pixel is up there is nothing to send: its bootstrap fires
+    // the PageView for whatever page the visitor is on when it loads.
     if (typeof window.fbq === "function") window.fbq("track", "PageView");
   }, [pathname]);
 
@@ -31,10 +34,13 @@ function RouteChangeTracker() {
 }
 
 export default function MetaPixel() {
+  // Same gate as the Google tag (see lib/trackerGate).
+  const ready = useTrackerGate();
   if (!META_PIXEL_ID) return null;
 
   return (
     <>
+      {ready && (
       <Script id="meta-pixel" strategy="lazyOnload">
         {`
           !function(f,b,e,v,n,t,s)
@@ -47,8 +53,11 @@ export default function MetaPixel() {
           'https://connect.facebook.net/en_US/fbevents.js');
           fbq('init', '${META_PIXEL_ID}');
           fbq('track', 'PageView');
+          (window.__fbqPending || []).forEach(function(a){ fbq.apply(null, a); });
+          window.__fbqPending = [];
         `}
       </Script>
+      )}
       <RouteChangeTracker />
     </>
   );

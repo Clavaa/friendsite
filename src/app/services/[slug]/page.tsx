@@ -80,6 +80,7 @@ export default async function ServicePage({
                 alt={s.photo.alt}
                 fill
                 sizes="(min-width: 1024px) 36rem, 100vw"
+                priority
                 className="object-cover"
               />
             </div>

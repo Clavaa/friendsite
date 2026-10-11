@@ -16,6 +16,9 @@ const cityRedirects = Object.entries(townsJson).flatMap(([state, data]) =>
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // AVIF first (about a quarter smaller than WebP for these photos), WebP
+  // fallback. Derivatives are cached at the CDN after the first request.
+  images: { formats: ["image/avif", "image/webp"] },
   async redirects() {
     return [
       // www → apex: one canonical host for Google (308, path preserved).

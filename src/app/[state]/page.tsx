@@ -154,6 +154,7 @@ export default async function StatePage({
                 alt={statePhotos[state].alt}
                 fill
                 sizes="(min-width: 1024px) 40rem, 100vw"
+                priority
                 className="object-cover"
               />
             </div>

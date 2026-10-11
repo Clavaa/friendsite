@@ -35,6 +35,8 @@ const fraunces = localFont({
   style: "normal",
   variable: "--font-fraunces",
   display: "swap",
+  // Serif fallback metrics, so the swap from the system font shifts less.
+  adjustFontFallback: "Times New Roman",
 });
 
 const frauncesItalic = localFont({
@@ -43,6 +45,7 @@ const frauncesItalic = localFont({
   style: "italic",
   variable: "--font-fraunces-italic",
   display: "swap",
+  adjustFontFallback: "Times New Roman",
 });
 
 const nunitoSans = Nunito_Sans({

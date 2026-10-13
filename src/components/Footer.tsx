@@ -211,6 +211,8 @@ export default function Footer() {
             <Link className="link-grow hover:text-brand-teal" href="/get-a-diagnosis">Get a diagnosis</Link>
             <Link className="link-grow hover:text-brand-teal" href="/careers">Careers</Link>
             <Link className="link-grow hover:text-brand-teal" href="/about">About</Link>
+            <Link className="link-grow hover:text-brand-teal" href="/privacy">Privacy Policy</Link>
+            <Link className="link-grow hover:text-brand-teal" href="/terms">Terms &amp; SMS Terms</Link>
           </div>
         </div>
         <p className="pb-8 text-[13px] leading-relaxed text-ink-soft/80">

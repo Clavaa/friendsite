@@ -84,6 +84,8 @@ export default function sitemap({
           "/resources",
           "/about",
           "/careers",
+          "/privacy",
+          "/terms",
           ...services.map((s) => `/services/${s.slug}`),
           ...questionPages.map((q) => `/questions/${q.slug}`),
           ...guides.map((g) => `/resources/${g.slug}`),

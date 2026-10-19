@@ -21,7 +21,7 @@ export function CityServiceCards({ state, city }: { state: StateSlug; city: { na
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <h2 className="font-display text-2xl sm:text-3xl">ABA services in {city.name}</h2>
+        <h2 className="font-display text-2xl sm:text-3xl">Autism therapy services in {city.name}</h2>
         <ul className="mt-6 grid gap-4 sm:grid-cols-2">
           {CITY_SERVICES.map((s) => (
             <li key={s.slug}>

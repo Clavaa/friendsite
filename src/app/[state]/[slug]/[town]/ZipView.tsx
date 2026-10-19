@@ -179,7 +179,7 @@ export default function ZipView({
           </p>
           <h1 className="font-display mt-4 max-w-3xl text-4xl sm:text-5xl">
             ABA therapy in {city.name} {zip}
-            {label && <span className="block text-2xl text-ink-soft sm:text-3xl">{label}</span>}
+            {label && <span className="block text-2xl text-ink-soft sm:text-3xl"><span className="sr-only">: </span>{label}</span>}
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink-soft">
             One-on-one, BCBA-led ABA therapy at your home or your child&rsquo;s daycare
@@ -269,7 +269,7 @@ export default function ZipView({
         id="nearby"
         heading={`ZIP codes near ${zip}`}
         intro={`Other ${city.name} ZIP codes our team serves, by distance:`}
-        items={[...nearby, { name: `All of ${city.name} →`, href: `/${stateSlug}/${city.slug}` }]}
+        items={[...nearby, { name: `ABA therapy across ${city.name} →`, href: `/${stateSlug}/${city.slug}` }]}
         tint="bg-cream"
       />
 

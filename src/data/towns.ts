@@ -95,3 +95,9 @@ export function cityPagesInCounty(
     (r) => r.county === countySlug
   );
 }
+
+/** Same-name towns in one state (Twin Lakes, Coal Creek, CO) — titles and
+ *  H1s add the county so no two pages share a heading. */
+export function isDuplicateName(state: StateSlug, name: string): boolean {
+  return townsByState[state].towns.filter((t) => t.name === name).length > 1;
+}

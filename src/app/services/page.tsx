@@ -16,7 +16,7 @@ export default function ServicesPage() {
       <header className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
           <h1 className="font-display max-w-3xl text-4xl sm:text-5xl">
-            One plan for your child. Many ways to deliver it.
+            ABA therapy services: one plan for your child, many ways to deliver it.
           </h1>
           <p className="prose-measure mt-4 text-lg text-ink-soft">
             Every child gets an individual, BCBA-designed treatment plan. The

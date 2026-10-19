@@ -104,7 +104,7 @@ export default function CareersPage() {
                 Careers at Sunbird
               </p>
               <h1 className="font-display display-xl mt-6 max-w-xl text-4xl sm:text-5xl lg:text-[3.9rem]">
-                Do the version of this job{" "}
+                RBT and BCBA jobs where you do the work{" "}
                 <span className="italic text-brand-teal">you got certified for.</span>
               </h1>
               <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-ink-soft">

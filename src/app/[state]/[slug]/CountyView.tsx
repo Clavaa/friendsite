@@ -9,8 +9,7 @@ import {
   LocalSections,
   LocalSnapshot,
   ZipList,
-  guideShelf,
-} from "../../../components/local/LocalBlocks";
+  guideShelf, hubLinks } from "../../../components/local/LocalBlocks";
 import { siteConfig, type StateSlug } from "../../../../site.config";
 import { formatPop, getCounty, type CountyEntry } from "../../../data/counties";
 import {
@@ -348,14 +347,14 @@ export default function CountyView({
       <LinkChips
         heading="Neighboring counties we also serve"
         intro="Straight-line distance between county centers."
-        items={[...neighbors, { name: `All of ${stateCfg.name} →`, href: `/${stateSlug}` }]}
+        items={[...neighbors, { name: `ABA therapy in ${stateCfg.name} →`, href: `/${stateSlug}` }]}
         tint="bg-cream"
       />
 
       <LinkChips
-        heading={`Nearest team city: ${hub.name}`}
-        intro={`See the towns and counties around ${hub.name}:`}
-        items={[{ name: `ABA therapy in ${hub.name} →`, href: `/${stateSlug}/${hub.slug}` }]}
+        heading={`ABA therapy around ${hub.name}`}
+        intro={`${county.full} is part of the area our ${hub.name} team covers. More on what that team offers:`}
+        items={hubLinks(stateSlug, hub)}
         tint="bg-white"
       />
 

@@ -5,7 +5,7 @@ import StickyCallBar from "../../components/StickyCallBar";
 import { siteConfig } from "../../../site.config";
 
 export const metadata: Metadata = {
-  title: "How to Start ABA Therapy in 4 Steps",
+  title: "How to Start ABA Therapy in 5 Steps",
   description:
     "How to start ABA therapy in Kansas or Colorado: one call, a free benefits check, a BCBA assessment, and sessions — with our team doing the paperwork.",
   alternates: { canonical: "/getting-started" },
@@ -35,7 +35,7 @@ const steps = [
   {
     title: "First session",
     time: "The moment approval lands",
-    body: "Sessions start at home, in a center, or both — and renewal paperwork is calendared from day one so therapy never lapses.",
+    body: "Sessions start at home, at daycare, by video, or a mix — and renewal paperwork is calendared from day one so therapy never lapses.",
   },
 ];
 
@@ -46,7 +46,7 @@ export default function GettingStartedPage() {
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-14 pt-12 sm:px-6 lg:grid-cols-2 lg:items-start lg:pb-16 lg:pt-16">
           <div>
             <h1 className="font-display max-w-xl text-4xl sm:text-5xl">
-              Five steps. We carry four of them.
+              How to start ABA therapy: five steps, and we carry four of them.
             </h1>
             <p className="prose-measure mt-4 text-lg text-ink-soft">
               Your step is the first one: reaching out. From there, our intake
@@ -96,7 +96,7 @@ export default function GettingStartedPage() {
         primaryLabel="Match me with an advocate"
         primaryHref="#main"
       />
-      <StickyCallBar callLabel="Call the Wichita team" />
+      <StickyCallBar callLabel="Call our intake team" />
     </>
   );
 }

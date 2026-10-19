@@ -56,7 +56,7 @@ export interface CityService {
 
 export const CITY_SERVICES: CityService[] = [
   { slug: "in-home-aba-therapy", serviceSlug: "in-home-aba", label: "In-home ABA therapy", h1: "In-home ABA therapy in {city}", title: "In-Home ABA Therapy in {city}" },
-  { slug: "autism-evaluation", serviceSlug: null, label: "Autism evaluation help", h1: "Autism testing in {city}: how to get an evaluation", title: "Autism Testing in {city}: Get an Evaluation" },
+  { slug: "autism-evaluation", serviceSlug: null, label: "Autism testing", h1: "Autism testing in {city}: how to get an evaluation", title: "Autism Testing in {city}: Get an Evaluation" },
   { slug: "daycare-aba", serviceSlug: "daycare-based", label: "ABA at daycare", h1: "ABA therapy at daycare in {city}", title: "ABA Therapy at Daycare in {city}" },
   { slug: "parent-training", serviceSlug: "parent-training", label: "ABA parent training", h1: "ABA parent training in {city}", title: "ABA Parent Training in {city}" },
 ];

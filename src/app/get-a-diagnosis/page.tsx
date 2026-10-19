@@ -60,7 +60,7 @@ export default function GetADiagnosisPage() {
             <h1 className="font-display display-xl mt-6 text-4xl sm:text-6xl lg:text-[4.25rem]">
               Think your child might have autism?{" "}
               <span className="italic text-brand-teal">
-                We&rsquo;ll help you find out.
+                We&rsquo;ll help you get an autism evaluation.
               </span>
             </h1>
             <p className="mt-4 max-w-lg text-lg text-ink-soft">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { siteConfig, isStateSlug, stateSlugs, type StateSlug } from "../../../../../site.config";
 import { getCounty } from "../../../../data/counties";
-import { getTown, townsByState } from "../../../../data/towns";
+import { getTown, isDuplicateName, townsByState } from "../../../../data/towns";
 import TownView, { townCtx } from "./TownView";
 import ZipView from "./ZipView";
 import CityServiceView from "./CityServiceView";
@@ -86,10 +86,6 @@ function townDescription(
     `One-on-one ABA therapy in ${name}, ${abbr} — about ${pop} people strong in ${countyFull}. In-home visits, telehealth, and honest start timelines.`,
   ];
   return templates[seed % templates.length];
-}
-
-function isDuplicateName(state: StateSlug, name: string): boolean {
-  return townsByState[state].towns.filter((t) => t.name === name).length > 1;
 }
 
 function hashSeed(s: string): number {

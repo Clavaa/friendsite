@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { CopySection } from "../../lib/localCopy";
+import { CITY_SERVICES } from "../../lib/metro";
+import type { StateSlug } from "../../../site.config";
 import {
   about,
   autismEstimate,
@@ -253,6 +255,14 @@ const GUIDE_POOL: LinkItem[] = [
   { name: "Home vs. daycare sessions", href: "/resources/home-vs-daycare-sessions" },
   { name: "Who's on your child's team", href: "/resources/who-is-on-the-team" },
   { name: "ABA glossary", href: "/resources/aba-glossary" },
+  { name: "ABA therapy for toddlers", href: "/resources/aba-therapy-for-toddlers" },
+  { name: "How to get ABA therapy", href: "/resources/how-to-get-aba-therapy" },
+  { name: "How fast can we start ABA?", href: "/questions/how-fast-can-we-start" },
+  { name: "What is ABA therapy, really?", href: "/questions/what-is-aba-therapy" },
+  { name: "Therapy at home or in a center?", href: "/questions/home-or-center" },
+  { name: "Just got an autism diagnosis?", href: "/questions/just-got-a-diagnosis" },
+  { name: "Will insurance pay for ABA?", href: "/questions/will-insurance-pay" },
+  { name: "Think your child might have autism?", href: "/questions/think-my-child-might-have-asd" },
 ];
 
 export function guideShelf(seed: number, n = 6): LinkItem[] {
@@ -260,4 +270,16 @@ export function guideShelf(seed: number, n = 6): LinkItem[] {
   return Array.from({ length: n }, (_, i) => GUIDE_POOL[(start + i * 3) % GUIDE_POOL.length]).filter(
     (g, i, a) => a.findIndex((x) => x.href === g.href) === i
   );
+}
+
+/** Keyword-anchored links from a town or county to its nearest team city:
+ *  the city page, plus the city's service pages when the place is close
+ *  enough (75 straight-line miles) for those pages to be the useful next
+ *  click. Never states the distance (client rule). */
+export function hubLinks(state: StateSlug, hub: { slug: string; name: string; miles: number }): LinkItem[] {
+  const items: LinkItem[] = [{ name: `ABA therapy in ${hub.name} →`, href: `/${state}/${hub.slug}` }];
+  if (hub.miles <= 75) {
+    for (const s of CITY_SERVICES) items.push({ name: `${s.label} in ${hub.name}`, href: `/${state}/${hub.slug}/${s.slug}` });
+  }
+  return items;
 }

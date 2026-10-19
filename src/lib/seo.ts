@@ -49,7 +49,7 @@ function seedOf(s: string): number {
  * title would pass 60 characters.
  */
 export function localTitle(place: string, abbr: string, key: string, therapists = false): string {
-  const core = therapists ? `ABA Therapy & Therapists in ${place}, ${abbr}` : `ABA Therapy in ${place}, ${abbr}`;
+  const core = therapists ? `ABA & Autism Therapy in ${place}, ${abbr}` : `ABA Therapy in ${place}, ${abbr}`;
   if (therapists) return brandTitle(core);
   const hooks = [": In-Home & Daycare", ": At-Home Care for Kids", ": BCBA-Led, At Home", ": Insurance Checked Free", ": In-Home Care"];
   const start = seedOf(key) % hooks.length;

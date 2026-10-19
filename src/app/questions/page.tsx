@@ -16,7 +16,7 @@ export default function QuestionsIndexPage() {
       <header className="bg-sun-wash">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
           <h1 className="font-display max-w-3xl text-4xl sm:text-5xl">
-            Parent questions, answered plainly
+            Autism and ABA questions parents ask, answered plainly
           </h1>
           <p className="prose-measure mt-4 text-lg text-ink-soft">
             No jargon, no scare tactics, no sales page dressed up as advice.

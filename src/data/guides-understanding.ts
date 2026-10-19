@@ -198,6 +198,7 @@ export const understandingLibrary: Guide[] = [
       "At age 2, the signs of autism that stand out most are few or no words, not responding to their name, little pointing or showing, not much pretend play, and strong distress at small changes. Losing words a child once had matters most of all. A pattern of these signs is a reason to get a free evaluation — not to wait.",
     minutes: 7,
     related: [
+      "aba-therapy-for-toddlers",
       "signs-of-autism-at-18-months",
       "signs-of-autism-at-age-3",
       "the-m-chat-screening",

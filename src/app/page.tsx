@@ -805,7 +805,7 @@ export default function HomePage() {
             <div className="reveal">
               <p className={eyebrowClass}>Where sessions happen</p>
               <h2 className="font-display display-hero mt-7 text-[3.4rem] text-brand-teal sm:text-7xl lg:text-[6.25rem]">
-                Care <span className="italic">near you.</span>
+                ABA therapy <span className="italic">near you.</span>
               </h2>
               <p className="mt-9 max-w-lg text-[17px] font-bold leading-relaxed">
                 The setting serves the plan — never the other way around. Many
@@ -879,7 +879,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[87rem] px-4 py-[8rem] sm:px-6">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-display display-xl text-4xl sm:text-6xl lg:text-[4.25rem]">
-              Wherever you are, start there.
+              Wherever you are on this road, start there.
             </h2>
             <p className="mx-auto mt-7 max-w-xl text-[17px] leading-relaxed text-ink-soft">
               Families find us at every stop on this road. Pick the sentence
@@ -930,7 +930,7 @@ export default function HomePage() {
               <div className="max-w-xl">
                 <p className={eyebrowTeal}>Parent guides</p>
                 <h2 className="font-display display-xl mt-5 text-3xl sm:text-[2.6rem]">
-                  Read up while dinner cooks.
+                  Autism &amp; ABA guides to read while dinner cooks.
                 </h2>
                 <p className="mt-4 text-[16.5px] leading-relaxed text-ink-soft">
                   Short, plain-words guides — no dates, no jargon, no

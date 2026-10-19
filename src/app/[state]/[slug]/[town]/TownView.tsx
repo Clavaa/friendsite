@@ -13,7 +13,8 @@ import {
 } from "../../../../components/local/LocalBlocks";
 import { siteConfig, type StateSlug } from "../../../../../site.config";
 import { formatPop, getCounty, type CountyEntry } from "../../../../data/counties";
-import { cityPagesInCounty, townsInCounty, type TownEntry } from "../../../../data/towns";
+import { cityPagesInCounty, isDuplicateName, townsInCounty, type TownEntry } from "../../../../data/towns";
+import { hubLinks } from "../../../../components/local/LocalBlocks";
 import {
   countyLocal,
   fmt,
@@ -184,7 +185,7 @@ export default function TownView({
             Sunbird ABA team in {town.name} — serving you
           </p>
           <h1 className="font-display mt-4 max-w-3xl text-4xl sm:text-5xl">
-            ABA therapy in {town.name}, {stateCfg.name}
+            ABA therapy in {town.name}, {isDuplicateName(stateSlug, town.name) ? `${county.full}, ` : ""}{stateCfg.name}
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink-soft">
             {town.name} is {sizePhrase(pop, stateCfg.name)} in{" "}
@@ -244,6 +245,14 @@ export default function TownView({
       <LocalSections sections={sections} />
 
       <ZipList name={town.name} zips={ctx.zips} />
+
+      <LinkChips
+        id="team-city"
+        heading={`ABA therapy around ${ctx.hub.name}`}
+        intro={`${town.name} is part of the area our ${ctx.hub.name} team covers. More on what that team offers:`}
+        items={hubLinks(stateSlug, ctx.hub)}
+        tint="bg-white"
+      />
 
       {/* ————— Diagnosis funnel ————— */}
       <section className="bg-cream">
@@ -337,7 +346,7 @@ export default function TownView({
         items={[
           { name: `${county.full} guide →`, href: `/${stateSlug}/${county.slug}` },
           ...countyTowns,
-          { name: `All of ${stateCfg.name}`, href: `/${stateSlug}` },
+          { name: `ABA therapy in ${stateCfg.name}`, href: `/${stateSlug}` },
         ]}
         tint="bg-cream"
       />

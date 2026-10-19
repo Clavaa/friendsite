@@ -51,7 +51,7 @@ export default function InsurancePage() {
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-14 pt-12 sm:px-6 lg:grid-cols-2 lg:items-center lg:pb-16 lg:pt-16">
           <div>
             <h1 className="font-display max-w-xl text-4xl sm:text-5xl">
-              Insurance shouldn&rsquo;t be the hard part.
+              Does insurance cover ABA therapy? We&rsquo;ll check yours free.
             </h1>
             <p className="prose-measure mt-4 text-lg text-ink-soft">
               Coverage varies by plan — and no website can tell you what yours

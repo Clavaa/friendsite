@@ -253,4 +253,161 @@ export const decisionLibrary: Guide[] = [
       primaryHref: "/getting-started",
     },
   },
+{
+    slug: "aba-therapy-for-toddlers",
+    cardTitle: "ABA therapy for toddlers",
+    cardBlurb:
+      "What ABA looks like for a 2-year-old: play-based sessions, short attention spans, and parents at the center of the plan.",
+    metaTitle: "ABA Therapy for Toddlers: What It Looks Like at 2",
+    metaDescription:
+      "What ABA therapy for a 2- or 3-year-old actually looks like: play-based sessions at home or daycare, the skills toddlers work on, and your role as a parent.",
+    h1: "ABA Therapy for Toddlers: What It Looks Like for a 2-Year-Old",
+    intro:
+      "ABA therapy for a toddler looks a lot like play. Sessions happen at home or at daycare, on the floor with your child's favorite toys, and they build early skills — asking for things, taking turns, following simple directions, handling transitions — in short, playful bursts. Parents are coached alongside, so the practice carries into the whole day.",
+    minutes: 6,
+    related: [
+      "signs-of-autism-at-age-2",
+      "how-many-hours-of-aba",
+      "parent-training-explained",
+      "how-to-get-aba-therapy",
+    ],
+    sections: [
+      {
+        heading: "Can a 2-year-old do ABA therapy?",
+        paragraphs: [
+          "Yes. Many children start ABA as toddlers, often soon after an autism diagnosis or while one is being completed. Toddlerhood is a season of fast learning, which is why so many families and doctors want support to start early rather than wait to see if things change on their own.",
+          "What changes at this age isn't whether ABA works but how it's delivered. A good toddler program is built around play, short attention spans and nap schedules — not a desk, not drills, and not long stretches of sitting still.",
+        ],
+      },
+      {
+        heading: "What does an ABA session look like for a toddler?",
+        paragraphs: [
+          "Picture your child's therapist on the living-room rug with bubbles, blocks and a snack. Your child wants the bubbles; the therapist helps them ask — with a word, a sign, a sound or a picture — and the bubbles come. That moment is ABA: noticing what motivates your child and using it to build a skill they can use everywhere.",
+          "Sessions move at a toddler's pace. Activities change often, breaks are built in, and the session follows your child's interests. If it ever looks like a fight, the plan needs adjusting — toddler ABA should look and feel like play.",
+        ],
+      },
+      {
+        heading: "Which skills do toddlers work on in ABA?",
+        paragraphs: ["Every plan is individual, but early goals usually come from a short list of foundations:"],
+        list: [
+          "Communication — asking for things, pointing, first words, signs or pictures",
+          "Play — playing with toys, taking turns, playing near and then with other kids",
+          "Attention — looking at people, responding to their name, following a simple direction",
+          "Daily routines — mealtimes, getting dressed, bedtime and bath, toilet readiness when the time comes",
+          "Transitions — leaving the park, stopping a favorite activity, handling the word 'no' with fewer meltdowns",
+        ],
+      },
+      {
+        heading: "Home or daycare for a toddler?",
+        paragraphs: [
+          "Both work, and many families mix them. At home, sessions fit around naps and meals and practice the routines that matter most to your family. At daycare, a therapist helps your child with the real moments of their day — circle time, snack, playing with other kids — and shares strategies with the teachers. We compare the two in [home vs. daycare sessions](/resources/home-vs-daycare-sessions).",
+        ],
+      },
+      {
+        heading: "Your part: parents are the most important people in the plan",
+        paragraphs: [
+          "With toddlers, parent coaching isn't an extra. You're with your child far more hours than any therapist, so the BCBA spends time showing you what's working and how to use it at breakfast, in the car and at bedtime. That's [parent training](/resources/parent-training-explained), and it's built into every Sunbird plan.",
+          "You also approve the plan. Before anything starts you'll see every goal, hear why it was chosen, and say yes — and hours are set from your child's assessment, not a standard number. More on that in [how many hours of ABA](/resources/how-many-hours-of-aba).",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Does my toddler need an autism diagnosis to start ABA?",
+        a: "Most insurance plans ask for a diagnosis before they cover ABA therapy. If your child doesn't have one yet, call anyway — we help families find an evaluation and get coverage lined up so therapy can start once the diagnosis is in hand. See [how to get ABA therapy](/resources/how-to-get-aba-therapy).",
+      },
+      {
+        q: "How long are ABA sessions for a 2-year-old?",
+        a: "It depends on your child and the plan the BCBA recommends. Sessions for toddlers are paced for their age — with play, breaks and snack built in — and scheduled around naps and family routines.",
+      },
+      {
+        q: "Is ABA therapy at age 2 too early?",
+        a: "Many children start at two or even younger. Starting early gives a child support during a season of fast learning, and a toddler program is designed for that age: play-based, short bursts, and parents coached alongside.",
+      },
+    ],
+    cta: {
+      heading: "Wondering if your toddler is ready?",
+      body: "One 15-minute call gets you answers — with or without a diagnosis yet. We serve families across [Kansas](/kansas) and [Colorado](/colorado) at home, at daycare and by video, and we check your benefits free.",
+      primaryLabel: "Start with the 15-minute call",
+      primaryHref: "/getting-started",
+    },
+  },
+  {
+    slug: "how-to-get-aba-therapy",
+    cardTitle: "How to get ABA therapy",
+    cardBlurb:
+      "The path from 'I think my child needs help' to a first session: diagnosis, referral, insurance and the assessment.",
+    metaTitle: "How to Get ABA Therapy for Your Child, Step by Step",
+    metaDescription:
+      "How to get ABA therapy for your child: the diagnosis and referral most plans ask for, a free coverage check, the BCBA assessment, and sessions at home.",
+    h1: "How to Get ABA Therapy for Your Child",
+    intro:
+      "To get ABA therapy, most families need three things: an autism diagnosis, a referral or prescription for ABA from a doctor, and confirmed insurance coverage. Then a BCBA assesses your child and writes a plan, the plan is approved by your insurance, and sessions begin — at home, at daycare or by video.",
+    minutes: 6,
+    related: [
+      "first-steps-after-a-diagnosis",
+      "paying-for-aba",
+      "preparing-for-your-first-session",
+      "aba-therapy-for-toddlers",
+    ],
+    sections: [
+      {
+        heading: "Step 1: Get an autism diagnosis (or start the process)",
+        paragraphs: [
+          "Most insurance plans cover ABA therapy only after a child has an autism diagnosis. Diagnoses usually come from a developmental pediatrician, a child psychologist, a child psychiatrist or a pediatric neurologist, after an evaluation that includes watching your child and talking with you.",
+          "If you're not there yet, start with your pediatrician: share what you're seeing and ask about a screening such as the [M-CHAT](/resources/the-m-chat-screening). You don't have to wait for the evaluation to call us — our [diagnosis help](/get-a-diagnosis) is for exactly this stage.",
+        ],
+      },
+      {
+        heading: "Can you get ABA therapy without an autism diagnosis?",
+        paragraphs: [
+          "Sometimes, but it's harder. ABA is used for other needs too, yet insurance coverage for it is usually tied to an autism diagnosis, and paying privately is expensive. For most families the faster route is to get the evaluation moving while everything else is prepared in parallel — so therapy can start soon after the diagnosis arrives.",
+        ],
+      },
+      {
+        heading: "Step 2: Get a referral for ABA",
+        paragraphs: [
+          "Many plans also want a doctor's referral or prescription for ABA therapy. Often the clinician who diagnoses your child includes an ABA recommendation in the report; if not, your pediatrician can usually write the referral. Keep a copy with the diagnostic report — you'll be asked for both.",
+        ],
+      },
+      {
+        heading: "Step 3: Check your insurance coverage for ABA",
+        paragraphs: [
+          "Coverage depends on your specific plan, whether it's through work or Medicaid. The quickest way to know is a benefit check: we contact your plan directly and give you a plain-English answer about coverage and cost, usually within a business day. It's free — send a photo of your insurance card on our [insurance page](/insurance). More background in [paying for ABA](/resources/paying-for-aba).",
+        ],
+      },
+      {
+        heading: "Step 4: The BCBA assessment and treatment plan",
+        paragraphs: [
+          "A Board Certified Behavior Analyst meets your child, talks with you about what matters most to your family, and writes a treatment plan with specific goals and recommended hours. You review and approve the plan before anything is submitted. The plan then goes to your insurance for authorization — we handle that paperwork and follow up until it's approved.",
+        ],
+      },
+      {
+        heading: "Step 5: Start sessions at home, at daycare or by video",
+        paragraphs: [
+          "Once the plan is approved, sessions begin where your child's life happens: [in your home](/services/in-home-aba), [at daycare](/services/daycare-based), or with [telehealth](/services/telehealth) coaching. Here's [what to expect at the first session](/resources/preparing-for-your-first-session).",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "How do I get ABA therapy for my child at home?",
+        a: "Follow the same steps — diagnosis, referral, coverage check, BCBA assessment — and ask for in-home sessions. Sunbird provides in-home ABA across Kansas and Colorado, so your child's therapist comes to you.",
+      },
+      {
+        q: "How do I get ABA therapy covered by insurance?",
+        a: "Most plans ask for an autism diagnosis, a referral for ABA, and an approved treatment plan. We check your specific benefits free and handle the authorization paperwork, so you know what's covered before therapy starts.",
+      },
+      {
+        q: "What documents do I need to start ABA?",
+        a: "The diagnostic report, a doctor's referral or prescription for ABA, and your insurance card. Missing one? Start anyway — we'll help you get it.",
+      },
+    ],
+    cta: {
+      heading: "Want someone to walk you through it?",
+      body: "That's what our intake advocates do all day. One 15-minute call, a free benefit check, and a clear next step for your family in [Kansas](/kansas) or [Colorado](/colorado).",
+      primaryLabel: "Start with the 15-minute call",
+      primaryHref: "/getting-started",
+    },
+  },
 ];

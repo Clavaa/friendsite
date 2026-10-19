@@ -205,7 +205,7 @@ const coreGuides: Guide[] = [
     metaTitle: "How to Pay for ABA Therapy: Insurance Basics",
     metaDescription:
       "How families usually pay for ABA therapy — private insurance and Medicaid, explained gently — plus a free benefit check that gives you a real answer.",
-    h1: "Paying for ABA: how coverage usually works.",
+    h1: "Paying for ABA therapy: how insurance coverage usually works.",
     intro:
       "Here's the good news up front: most families who start ABA with a confirmed diagnosis end up paying far less than they feared, and many pay little or nothing. The bad news is that insurance paperwork is genuinely confusing. This guide explains the shape of it in plain words — and then shows you the shortcut.",
     minutes: 5,
@@ -313,7 +313,7 @@ const coreGuides: Guide[] = [
     metaTitle: "What Is ABA Parent Training? Coaching, Explained",
     metaDescription:
       "ABA parent training isn't a class or homework — it's coaching on your real routines. What it looks like and what parents actually learn.",
-    h1: "Parent training: the part of ABA that's for you.",
+    h1: "ABA parent training: the part of ABA that's for you.",
     intro:
       "The phrase 'parent training' makes it sound like you're the one being graded. You're not. It's coaching — a BCBA teaching you the same strategies that work in sessions, on the routines you live every day. It's also, quietly, the part of ABA with the longest reach: therapists come and go over the years, and you remain.",
     minutes: 5,
@@ -360,7 +360,7 @@ const coreGuides: Guide[] = [
     metaTitle: "ABA at Home or at Daycare? How to Choose",
     metaDescription:
       "Should ABA happen at home or at daycare? What each setting does best, how a mix works, and how families choose — a plain guide.",
-    h1: "Home or daycare? Choosing where sessions happen.",
+    h1: "ABA at home or at daycare? Choosing where sessions happen.",
     intro:
       "Families sometimes think there's one right answer here. There isn't — there's a right answer for your child, this season. Home and daycare sessions are each good at different things, and plenty of families use both. Here's how to think about it, minus the pressure.",
     minutes: 5,
@@ -408,7 +408,7 @@ const coreGuides: Guide[] = [
     metaTitle: "BCBA vs. RBT: Who's on Your Child's ABA Team?",
     metaDescription:
       "What a BCBA does, what an RBT does, how supervision works, and what to expect from each — your child's ABA team in plain words.",
-    h1: "Who's who on your child's team.",
+    h1: "BCBA, RBT and more: who's who on your child's ABA team.",
     intro:
       "ABA comes with an alphabet: BCBA, RBT, BT. Behind the letters is a simple structure — one person designs and steers the plan, another runs most of the sessions, and they stay tightly in sync. Here's who does what, and what you can expect from each.",
     minutes: 4,
@@ -450,7 +450,7 @@ const coreGuides: Guide[] = [
     metaTitle: "ABA Glossary: Therapy Terms in Plain Words",
     metaDescription:
       "BCBA, RBT, reinforcement, prompting, mand, authorization and more — every ABA term a parent hears, translated into plain sentences.",
-    h1: "ABA words, translated.",
+    h1: "ABA glossary: therapy words, translated.",
     intro:
       "Therapy comes with vocabulary, and reports sometimes read like they were written for other clinicians (they sort of were). Keep this page handy. Each term below gets a plain-words translation — and if you ever hear a word that isn't here, ask your BCBA to translate. Making it make sense is part of their job.",
     minutes: 6,

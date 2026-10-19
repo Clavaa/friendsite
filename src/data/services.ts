@@ -149,7 +149,7 @@ export const services: Service[] = [
     tintClass: "bg-mint-wash",
     chipClass: "bg-sun/30 text-ink",
     inCarousel: true,
-    h1: "Parent training & coaching",
+    h1: "ABA parent training & coaching",
     metaTitle: "ABA Parent Training in Kansas & Colorado",
     metaDescription:
       "BCBA-led parent coaching for Kansas & Colorado families — real strategies for mealtimes, mornings and meltdowns, at home or by video.",

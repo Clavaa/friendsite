@@ -9,6 +9,7 @@ import ReviewedBy, { reviewedByJsonLd } from "../../../components/ReviewedBy";
 import StickyCallBar from "../../../components/StickyCallBar";
 import { breadcrumbJsonLd, brandTitle } from "../../../lib/seo";
 import { siteConfig } from "../../../../site.config";
+import { GUIDE_FOR_QUESTION, getQuestion } from "../../../data/questions";
 import {
   getGuide,
   guides,
@@ -307,6 +308,15 @@ export default async function GuidePage({
           <nav aria-label="More parent guides" className="mt-14 border-t border-line pt-8">
             <h2 className="font-display text-2xl">More guides</h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:max-w-3xl">
+              {Object.entries(GUIDE_FOR_QUESTION)
+                .filter(([, v]) => v.slug === g.slug)
+                .map(([qs]) => (
+                  <li key={qs}>
+                    <Link href={`/questions/${qs}`} className="block h-full rounded-2xl border border-line bg-white p-4 text-[15px] font-bold transition-colors hover:border-brand-teal/50 hover:text-brand-teal">
+                      Short answer: {getQuestion(qs)?.cardTitle} →
+                    </Link>
+                  </li>
+                ))}
               {related.map((other) => (
                 <li key={other.slug}>
                   <Link

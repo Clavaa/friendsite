@@ -291,3 +291,17 @@ export const questionPages: QuestionPage[] = [
 export function getQuestion(slug: string): QuestionPage | undefined {
   return questionPages.find((q) => q.slug === slug);
 }
+
+/**
+ * Question page ↔ longer guide on the same topic. Each pair links both
+ * ways so the two pages read as a set (short answer → full guide) instead
+ * of two pages competing for one search.
+ */
+export const GUIDE_FOR_QUESTION: Record<string, { slug: string; label: string }> = {
+  "what-is-aba-therapy": { slug: "what-is-aba", label: "What is ABA therapy? The full guide" },
+  "will-insurance-pay": { slug: "paying-for-aba", label: "Paying for ABA therapy: how insurance coverage works" },
+  "home-or-center": { slug: "home-vs-daycare-sessions", label: "ABA at home or at daycare: how to choose" },
+  "just-got-a-diagnosis": { slug: "first-steps-after-a-diagnosis", label: "First steps after an autism diagnosis: the checklist" },
+  "how-fast-can-we-start": { slug: "how-to-get-aba-therapy", label: "How to get ABA therapy, step by step" },
+  "think-my-child-might-have-asd": { slug: "signs-of-autism-at-age-2", label: "Signs of autism in a 2-year-old" },
+};

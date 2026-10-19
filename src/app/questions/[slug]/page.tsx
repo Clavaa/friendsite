@@ -9,7 +9,7 @@ import { breadcrumbJsonLd, brandTitle } from "../../../lib/seo";
 import LeadForm from "../../../components/LeadForm";
 import StickyCallBar from "../../../components/StickyCallBar";
 import { siteConfig } from "../../../../site.config";
-import { getQuestion, questionPages } from "../../../data/questions";
+import { GUIDE_FOR_QUESTION, getQuestion, questionPages } from "../../../data/questions";
 
 interface Params {
   slug: string;
@@ -172,6 +172,13 @@ export default async function QuestionPage({
           <nav aria-label="More parent questions" className="mt-14 border-t border-line pt-8">
             <h2 className="font-display text-2xl">Keep reading</h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:max-w-3xl">
+              {GUIDE_FOR_QUESTION[q.slug] && (
+                <li>
+                  <Link href={`/resources/${GUIDE_FOR_QUESTION[q.slug].slug}`} className="block rounded-2xl border border-line bg-white p-4 text-[15px] font-bold transition-colors hover:border-brand-teal/50 hover:text-brand-teal">
+                    {GUIDE_FOR_QUESTION[q.slug].label} →
+                  </Link>
+                </li>
+              )}
               {questionPages
                 .filter((other) => other.slug !== q.slug)
                 .slice(0, 4)
@@ -192,7 +199,7 @@ export default async function QuestionPage({
 
       <FindNearYou seed={q.slug.length} />
       <CtaBand tint="sky" />
-      <StickyCallBar callLabel="Call the Wichita team" />
+      <StickyCallBar callLabel="Call our intake team" />
     </>
   );
 }

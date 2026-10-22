@@ -12,9 +12,10 @@ import { insertRow } from "../../../lib/bq";
 /**
  * Traffic beacon receiver (first-party — no GA, no cookies, no third party).
  *
- * Three event kinds arrive here: a "view" when a page loads, a "leave" when
+ * Four event kinds arrive here: a "view" when a page loads, a "leave" when
  * the tab is hidden or unloaded (carrying how long the page was actually
- * visible), and a "lead" fired on form-submit success. Dwell time is the one
+ * visible), a "click" on a link or button (its label and href, in title), and
+ * a "lead" fired on form-submit success. Dwell time is the one
  * number a server log physically cannot give you, which is why this is a
  * beacon and not middleware.
  *
@@ -58,7 +59,8 @@ export async function POST(req: NextRequest) {
   const path = str(body.p, 300);
   if (!path || !path.startsWith("/")) return ok;
 
-  const kind = body.k === "leave" ? "leave" : body.k === "lead" ? "lead" : "view";
+  const kind =
+    body.k === "leave" || body.k === "lead" || body.k === "click" ? body.k : "view";
   const referrer = str(body.r, 500);
   const referrerHost = hostOf(referrer);
   const selfHost = hostOf(siteConfig.domain) ?? "sunbirdaba.com";

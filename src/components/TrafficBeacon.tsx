@@ -14,6 +14,10 @@ import { usePathname, useSearchParams } from "next/navigation";
  * ping on success via pingLead() — the ping carries the path only, never
  * anything typed into the form (PHI rule).
  *
+ * Clicks on links and buttons send a "click" carrying the element's own visible
+ * label and href (site copy, never anything a visitor typed), so a report can
+ * say who tapped Call, which CTA, which link.
+ *
  * Opting yourself out: visit any page with ?internal=1 once. The flag is kept
  * in this browser's own storage and marks your events so the reports can
  * exclude them.
@@ -85,6 +89,34 @@ export function pingLead() {
 export default function TrafficBeacon() {
   const pathname = usePathname();
   const search = useSearchParams();
+
+  useEffect(() => {
+    const onClick = (ev: MouseEvent) => {
+      try {
+        const el = (ev.target as Element | null)?.closest?.("a, button, summary");
+        if (!el) return;
+        const label = (el.getAttribute("aria-label") || el.textContent || "")
+          .replace(/\s+/g, " ")
+          .trim()
+          .slice(0, 80);
+        const href = el.getAttribute("href");
+        send(
+          {
+            p: window.location.pathname,
+            s: sessionId(),
+            i: isInternal(),
+            k: "click",
+            t: href ? `${label} → ${href}`.slice(0, 200) : label,
+          },
+          true
+        );
+      } catch {
+        /* never let analytics throw into a page */
+      }
+    };
+    document.addEventListener("click", onClick, { capture: true });
+    return () => document.removeEventListener("click", onClick, { capture: true });
+  }, []);
 
   /* Visible-time accounting, kept in refs so a re-render never disturbs it. */
   const visibleMs = useRef(0);

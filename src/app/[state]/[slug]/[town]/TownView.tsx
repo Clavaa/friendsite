@@ -186,6 +186,7 @@ export default function TownView({
           </p>
           <h1 className="font-display mt-4 max-w-3xl text-4xl sm:text-5xl">
             ABA therapy in {town.name}, {isDuplicateName(stateSlug, town.name) ? `${county.full}, ` : ""}{stateCfg.name}
+            <span className="mt-2 block text-2xl text-ink-soft sm:text-3xl"><span className="sr-only">: </span>autism therapy for kids, at home or daycare</span>
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink-soft">
             {town.name} is {sizePhrase(pop, stateCfg.name)} in{" "}
@@ -287,14 +288,14 @@ export default function TownView({
         </div>
       </section>
 
-      <Faq items={faqs} heading={`${town.name} questions, answered plainly`} />
+      <Faq items={faqs} heading={`ABA therapy in ${town.name}: questions parents ask`} />
 
       {/* ————— Intake ————— */}
       <section id="intake" className="bg-ink scroll-mt-20">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center">
           <div className="text-white">
             <h2 className="font-display text-3xl sm:text-4xl">
-              Start in {town.name} with one short call
+              Find an ABA therapist in {town.name}: one short call
             </h2>
             <p className="mt-4 text-white/75">
               Tell us where you are and what you&rsquo;re seeing. An intake
@@ -312,14 +313,14 @@ export default function TownView({
 
       <LinkChips
         id="nearby"
-        heading={`Communities near ${town.name}`}
+        heading={`ABA therapy in towns near ${town.name}`}
         intro={`The closest towns we also serve, by straight-line distance from ${town.name}.`}
         items={nearby}
         tint="bg-white"
       />
 
       <LinkChips
-        heading={`More of ${county.full}`}
+        heading={`ABA therapy across ${county.full}`}
         intro={
           <>
             {town.name} is part of{" "}

@@ -51,7 +51,9 @@ function seedOf(s: string): number {
 export function localTitle(place: string, abbr: string, key: string, therapists = false): string {
   const core = therapists ? `ABA & Autism Therapy in ${place}, ${abbr}` : `ABA Therapy in ${place}, ${abbr}`;
   if (therapists) return brandTitle(core);
-  const hooks = [": In-Home & Daycare", ": At-Home Care for Kids", ": BCBA-Led, At Home", ": Insurance Checked Free", ": In-Home Care"];
+  // Hooks carry the words small-town searchers actually type (GSC 10/23:
+  // "kids therapy", "children therapy", "aba therapist", "autism services").
+  const hooks = [": Autism Therapy for Kids", ": In-Home Autism Therapy", ": Kids' Autism Therapy", ": ABA Therapists at Home", ": Autism Services for Kids"];
   const start = seedOf(key) % hooks.length;
   const rotated = hooks.map((_, i) => hooks[(start + i) % hooks.length]);
   // Prefer hook + brand, then hook alone (a reason to click beats an

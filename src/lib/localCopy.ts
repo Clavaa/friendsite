@@ -261,8 +261,8 @@ function kidsSection(c: PlaceCtx, seed: number): CopySection | null {
     id: "kids-and-families",
     heading:
       c.kind === "county"
-        ? `Kids and families in ${c.name}`
-        : `Autism and young children in ${c.name}`,
+        ? `Autism therapy for kids and families in ${c.name}`
+        : `Autism therapy for young children in ${c.name}`,
     paragraphs: paras,
   };
 }
@@ -314,7 +314,7 @@ function fitSection(c: PlaceCtx, seed: number): CopySection | null {
   if (!paras.length) return null;
   return {
     id: "what-fits",
-    heading: `Home, daycare or telehealth: what fits ${c.name} families`,
+    heading: `In-home, daycare or telehealth ABA in ${c.name}`,
     paragraphs: paras,
   };
 }
@@ -355,10 +355,7 @@ function schoolSection(c: PlaceCtx, seed: number, countyDistricts?: District[]):
 
   return {
     id: "schools",
-    heading:
-      c.kind === "county"
-        ? `School districts in ${c.name}`
-        : `Schools and IEPs in ${c.name}`,
+    heading: `ABA therapy, schools and IEPs in ${c.name}`,
     paragraphs: paras,
   };
 }
@@ -428,7 +425,7 @@ function areaSection(c: PlaceCtx, seed: number): CopySection | null {
         ? `Communities across ${c.name}`
         : c.kind === "city"
           ? `The ${c.name} service area`
-          : `${c.name} and its neighbors`,
+          : `ABA therapy in ${c.name} and nearby towns`,
     paragraphs: paras,
   };
 }
@@ -468,7 +465,7 @@ function startSection(c: PlaceCtx, seed: number): CopySection {
     : "";
   return {
     id: "getting-started",
-    heading: `Getting started from ${c.name}, step by step`,
+    heading: `How to start ABA therapy in ${c.name}, step by step`,
     paragraphs: [
       pick(seed, 10, [
         `No phone trees and no mystery. Here is exactly what happens after you reach out — the full version lives on our [getting-started page](/getting-started).`,

@@ -146,6 +146,7 @@ export default function CityView({
             </nav>
             <h1 className="font-display mt-4 text-4xl sm:text-5xl">
               ABA therapy in {cityLabel}
+              <span className="mt-2 block text-2xl text-ink-soft sm:text-3xl"><span className="sr-only">: </span>in-home autism therapy for kids</span>
             </h1>
             <p className="mt-4 max-w-lg text-lg text-ink-soft">
               One-on-one therapy for children with autism from ABA therapists
@@ -264,7 +265,7 @@ export default function CityView({
 
       <CityJobLinks state={stateSlug} city={{ name: city.name, slug: city.slug }} />
 
-      <Faq items={faqs} heading={`${city.name} questions, answered plainly`} />
+      <Faq items={faqs} heading={`ABA therapy in ${city.name}: questions parents ask`} />
 
       {/* ————— Intake ————— */}
       <section id="intake" className="bg-ink scroll-mt-20">

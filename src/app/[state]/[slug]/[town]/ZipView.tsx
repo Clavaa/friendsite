@@ -247,12 +247,12 @@ export default function ZipView({
         tint="bg-white"
       />
 
-      <Faq items={faqs} heading={`${place} questions, answered plainly`} />
+      <Faq items={faqs} heading={`ABA therapy in ${place}: questions parents ask`} />
 
       <section id="intake" className="bg-ink scroll-mt-20">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center">
           <div className="text-white">
-            <h2 className="font-display text-3xl sm:text-4xl">Start in {place} with one short call</h2>
+            <h2 className="font-display text-3xl sm:text-4xl">Find an ABA therapist in {place}: one short call</h2>
             <p className="mt-4 text-white/75">
               <RichText text={`Tell us your address and what you're seeing. An intake advocate calls back — usually the same business day — with your coverage answer and an honest start timeline.`} />
             </p>

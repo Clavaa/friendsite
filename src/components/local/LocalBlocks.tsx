@@ -104,7 +104,7 @@ export function LocalSnapshot({
     <section className="bg-white" aria-labelledby="snapshot-h">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <h2 id="snapshot-h" className="font-display text-2xl sm:text-3xl">
-          {name} at a glance — for families
+          Autism services in {name} at a glance
         </h2>
         <p className="mt-2 max-w-2xl text-[15px] text-ink-soft">
           The numbers that shape how ABA therapy works here, from public data.
@@ -220,7 +220,7 @@ export function ZipList({ name, zips }: { name: string; zips: string[] }) {
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-        <h2 className="font-display text-2xl">ZIP codes we serve in {name}</h2>
+        <h2 className="font-display text-2xl">ABA therapy by ZIP code in {name}</h2>
         <p className="mt-2 max-w-3xl text-[15px] leading-relaxed text-ink-soft">
           In-home ABA therapy, daycare-based support and telehealth are available
           to families in every one of these ZIP codes:

@@ -196,6 +196,7 @@ export default function CountyView({
           </p>
           <h1 className="font-display mt-4 max-w-3xl text-4xl sm:text-5xl">
             ABA therapy in {county.full}, {stateCfg.name}
+            <span className="mt-2 block text-2xl text-ink-soft sm:text-3xl"><span className="sr-only">: </span>autism therapy for kids, at home or daycare</span>
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink-soft">
             Our team comes to families across {county.full} — home to about{" "}
@@ -320,14 +321,14 @@ export default function CountyView({
         </div>
       </section>
 
-      <Faq items={faqs} heading={`${county.full} questions, answered plainly`} />
+      <Faq items={faqs} heading={`ABA therapy in ${county.full}: questions parents ask`} />
 
       {/* ————— Intake ————— */}
       <section id="intake" className="bg-ink scroll-mt-20">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center">
           <div className="text-white">
             <h2 className="font-display text-3xl sm:text-4xl">
-              Start in {county.full} with one short call
+              Find an ABA therapist in {county.full}: one short call
             </h2>
             <p className="mt-4 text-white/75">
               Tell us where you are and what you&rsquo;re seeing. An intake
@@ -345,7 +346,7 @@ export default function CountyView({
       </section>
 
       <LinkChips
-        heading="Neighboring counties we also serve"
+        heading="ABA therapy in neighboring counties"
         intro="Straight-line distance between county centers."
         items={[...neighbors, { name: `ABA therapy in ${stateCfg.name} →`, href: `/${stateSlug}` }]}
         tint="bg-cream"

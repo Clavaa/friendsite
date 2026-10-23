@@ -127,7 +127,11 @@ def main():
                 dwell[e["path"]] += (e["dwell_ms"] or 0) // 1000
                 scroll[e["path"]] = max(scroll[e["path"]], e["scroll_pct"] or 0)
         seen = set()
+        prev = None
         for e in ev:
+            if e["kind"] == "click" and (e["title"], e["path"]) == prev:
+                continue  # an FAQ toggle can report twice
+            prev = (e["title"], e["path"]) if e["kind"] == "click" else None
             if e["kind"] in ("view", "leave") and e["path"] not in seen:
                 seen.add(e["path"])
                 d = dwell.get(e["path"])

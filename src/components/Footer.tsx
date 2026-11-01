@@ -22,6 +22,7 @@ export default function Footer() {
         { href: "/get-a-diagnosis", label: "Does my child have autism?" },
         { href: "/insurance", label: "Free benefit check" },
         { href: "/resources", label: "Parent guides" },
+        { href: "/blog", label: "Blog" },
         { href: "/questions", label: "Parent questions" },
       ],
     },

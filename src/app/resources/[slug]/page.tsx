@@ -8,6 +8,7 @@ import JsonLd from "../../../components/JsonLd";
 import ReviewedBy, { reviewedByJsonLd } from "../../../components/ReviewedBy";
 import StickyCallBar from "../../../components/StickyCallBar";
 import { breadcrumbJsonLd, brandTitle } from "../../../lib/seo";
+import { posts } from "../../../lib/blog";
 import { siteConfig } from "../../../../site.config";
 import { GUIDE_FOR_QUESTION, getQuestion } from "../../../data/questions";
 import {
@@ -317,6 +318,13 @@ export default async function GuidePage({
                     </Link>
                   </li>
                 ))}
+              {posts.slice(0, 2).map((post) => (
+                <li key={post.slug}>
+                  <Link href={`/blog/${post.slug}`} className="block h-full rounded-2xl border border-line bg-white p-4 text-[15px] font-bold transition-colors hover:border-brand-teal/50 hover:text-brand-teal">
+                    From the blog: {post.title}
+                  </Link>
+                </li>
+              ))}
               {related.map((other) => (
                 <li key={other.slug}>
                   <Link

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CtaBand from "../../components/CtaBand";
+import { posts } from "../../lib/blog";
 import JsonLd from "../../components/JsonLd";
 import StickyCallBar from "../../components/StickyCallBar";
 import { breadcrumbJsonLd } from "../../lib/seo";
@@ -199,6 +200,28 @@ export default function ResourcesPage() {
           </ul>
         </div>
       </section>
+
+      {/* ————— From the blog: dated, signed articles ————— */}
+      {posts.length > 0 && (
+        <section className="bg-cream">
+          <div className="mx-auto max-w-[87rem] px-4 pb-14 sm:px-6">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <h2 className="font-display text-3xl sm:text-[2.4rem]">From the Sunbird blog</h2>
+              <Link href="/blog" className="font-extrabold text-brand-teal hover:underline">All articles →</Link>
+            </div>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {posts.slice(0, 6).map((p) => (
+                <li key={p.slug}>
+                  <Link href={`/blog/${p.slug}`} className="block h-full rounded-2xl bg-white p-5 shadow-card transition-colors hover:text-brand-teal">
+                    <span className="font-display text-lg">{p.title}</span>
+                    <span className="mt-2 block text-[14px] text-ink-soft">{p.minutes}-minute read</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* ————— Cross-shelf: the conversational Q&A pages ————— */}
       <section className="bg-cream">

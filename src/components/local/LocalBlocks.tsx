@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { CopySection } from "../../lib/localCopy";
+import { posts } from "../../lib/blog";
 import { CITY_SERVICES } from "../../lib/metro";
 import type { StateSlug } from "../../../site.config";
 import {
@@ -239,6 +240,7 @@ export function ZipList({ name, zips }: { name: string; zips: string[] }) {
 
 /** Guide shelf — rotates which guides a page links so link equity spreads. */
 const GUIDE_POOL: LinkItem[] = [
+  ...posts.slice(0, 4).map((p) => ({ name: p.title, href: `/blog/${p.slug}` })),
   { name: "What is ABA therapy?", href: "/resources/what-is-aba" },
   { name: "Signs of autism at 18 months", href: "/resources/signs-of-autism-at-18-months" },
   { name: "Signs of autism at age 2", href: "/resources/signs-of-autism-at-age-2" },

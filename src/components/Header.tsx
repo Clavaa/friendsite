@@ -47,6 +47,11 @@ const resourcesNav = [
     blurb: "Plain-words guides, from “what is ABA” to your first session",
   },
   {
+    href: "/blog",
+    label: "Blog",
+    blurb: "Articles from our clinical team on everyday autism and ABA questions",
+  },
+  {
     href: "/questions",
     label: "Parent questions",
     blurb: "Straight answers to the questions families call us with",

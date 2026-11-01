@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig, stateSlugs, type StateSlug } from "../../site.config";
 import { guides } from "../data/guides";
+import { posts } from "../lib/blog";
 import { questionPages } from "../data/questions";
 import { services } from "../data/services";
 import { countiesByState } from "../data/counties";
@@ -60,6 +61,11 @@ const CITY_PREFIXES = stateSlugs.flatMap((st) =>
   siteConfig.states[st].cities.map((c) => `/${st}/${c.slug}`)
 );
 function lastmodFor(path: string, id: string): string {
+  if (path.startsWith("/blog/")) {
+    const p = posts.find((x) => path === `/blog/${x.slug}`);
+    if (p) return p.updated ?? p.date;
+  }
+  if (path === "/blog" && posts.length) return posts[0].updated ?? posts[0].date;
   if (path.startsWith("/careers") || path.includes("/schools")) return LASTMOD.metro;
   if (CITY_PREFIXES.some((p) => path === p || path.startsWith(`${p}/`))) return LASTMOD.metro;
   return id === "core" ? LASTMOD.core : LASTMOD.local;
@@ -90,6 +96,7 @@ export default function sitemap({
           ...questionPages.map((q) => `/questions/${q.slug}`),
           ...guides.map((g) => `/resources/${g.slug}`),
           ...CITY_JOBS.map((j) => `/careers/${j.slug}`),
+          ...(posts.length ? ["/blog", ...posts.map((p) => `/blog/${p.slug}`)] : []),
         ]
       : statePaths(id);
 

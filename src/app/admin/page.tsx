@@ -119,6 +119,36 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
         {tile("Ad clicks", ads)}
       </section>
 
+      <section className="mt-6 rounded-xl border border-line bg-white p-4">
+        <h2 className="font-extrabold">
+          Form submissions <span className="font-semibold text-ink-soft">· {r.submissions.length}</span>
+        </h2>
+        {r.submissions.length === 0 ? (
+          <p className="mt-2 text-ink-soft">None in this range. (Saved since Nov 1, 2026; earlier ones only went by email.)</p>
+        ) : (
+          <ul className="mt-3 divide-y divide-line">
+            {r.submissions.map((s, i) => (
+              <li key={i} className="py-2.5 text-[13.5px]">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span className="font-bold">{s.t}</span>
+                  <span className="font-extrabold">{s.parent_name}</span>
+                  {s.phone && <a href={`tel:${s.phone}`} className="text-brand-teal hover:underline">{s.phone}</a>}
+                  {s.email && <a href={`mailto:${s.email}`} className="text-brand-teal hover:underline">{s.email}</a>}
+                  <span className="text-ink-soft">
+                    {[s.type, s.zip, s.state, s.child_age && `age ${s.child_age}`, s.insurance, s.concerns].filter(Boolean).join(" · ")}
+                  </span>
+                  <span className="text-ink-soft">from {s.source_page}</span>
+                  <span className={`rounded px-1.5 text-[12px] font-bold ${s.email_status === "sent" ? "bg-meadow-wash text-meadow-deep" : "bg-[#b4441f] text-white"}`}>
+                    email {s.email_status}
+                  </span>
+                </div>
+                {s.question && <p className="mt-1 text-ink-soft">“{s.question}”</p>}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
       <div className="mt-6 grid gap-4 lg:grid-cols-3">
         <section className="min-w-0 rounded-xl border border-line bg-white p-4">
           <h2 className="font-extrabold">Sources</h2>

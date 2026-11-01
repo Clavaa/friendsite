@@ -47,6 +47,8 @@ export type Report = {
   byDay: { day: string; counts: Record<Bucket, number> }[];
   landings: [string, number][];
   crawl: { day: string; google: number; bing: number }[];
+  /** Form submissions (sunbird_traffic.leads), newest first, with email status. */
+  submissions: Row[];
 };
 
 function bucketOf(r: Row): Bucket {
@@ -85,7 +87,7 @@ const tally = <K extends string>(keys: readonly K[]) =>
 
 export async function buildReport(days: number, includeAll: boolean): Promise<Report> {
   const since = `TIMESTAMP(DATE_SUB(CURRENT_DATE('${TZ}'), INTERVAL ${days - 1} DAY), '${TZ}')`;
-  const [rows, crawlRows] = await Promise.all([
+  const [rows, crawlRows, submissions] = await Promise.all([
     query(`
       SELECT FORMAT_TIMESTAMP('%Y-%m-%d', ts, '${TZ}') d, FORMAT_TIMESTAMP('%a %b %e, %l:%M %p', ts, '${TZ}') t,
              visitor, kind, path, title, referrer_host, source_group, utm_source,
@@ -100,6 +102,12 @@ export async function buildReport(days: number, includeAll: boolean): Promise<Re
       FROM ${T}
       WHERE ts >= ${since} AND kind = 'crawl'
       GROUP BY d ORDER BY d DESC`),
+    query(`
+      SELECT FORMAT_TIMESTAMP('%a %b %e, %l:%M %p', ts, '${TZ}') t, type, parent_name, phone, email, zip, state,
+             child_age, insurance, concerns, question, source_page, email_status
+      FROM \`sproutwell-aba-260907.sunbird_traffic.leads\`
+      WHERE ts >= ${since}
+      ORDER BY ts DESC`).catch(() => [] as Row[]),
   ]);
 
   const people = new Map<string, Row[]>();
@@ -193,6 +201,7 @@ export async function buildReport(days: number, includeAll: boolean): Promise<Re
     bySource: sortDesc(sources),
     byDay: [...dayMap.entries()].sort((a, b) => b[0].localeCompare(a[0])).map(([day, counts]) => ({ day, counts })),
     landings: sortDesc(landings).slice(0, 12),
+    submissions,
     crawl: crawlRows.map((r) => ({ day: r.d ?? "", google: Number(r.google), bing: Number(r.bing) })),
   };
 }

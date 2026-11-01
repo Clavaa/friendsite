@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { siteConfig } from "../../../../site.config";
+import { insertInto } from "../../../lib/bq";
 
 /**
  * Lead intake endpoint.
@@ -17,6 +18,11 @@ import { siteConfig } from "../../../../site.config";
  * Honeypot: the form renders a visually-hidden "website" field. Bots fill
  * it; people can't see it. A filled honeypot returns 200 (so the bot
  * learns nothing) and sends nothing.
+ *
+ * Every lead is written to BigQuery (sunbird_traffic.leads) BEFORE the
+ * email is attempted, and shows on /admin. If the row is stored, the visitor
+ * always sees success — an email outage (e.g. SendGrid out of credits,
+ * Nov 2026) can no longer lose a family's request.
  *
  * Email delivery uses SendGrid via the standard SENDGRID_API_KEY env var.
  * When the key is unset (local dev, preview deploys), the route degrades
@@ -132,12 +138,36 @@ export async function POST(request: Request) {
     );
   }
 
+  const row = {
+    ts: new Date().toISOString(),
+    type: lead.type || "intake",
+    parent_name: lead.parentName,
+    phone: lead.phone || null,
+    email: lead.email || null,
+    zip: lead.zip || null,
+    state: lead.state || null,
+    child_age: lead.childAge || null,
+    insurance: lead.insurance || null,
+    concerns: lead.concerns.join(", ") || null,
+    question: lead.question || null,
+    source_page: lead.sourcePage,
+  };
+  /** Email failed: fine if the lead is stored (it's on /admin), an error if not. */
+  const emailFailed = async (why: string) => {
+    const stored = await insertInto("leads", { ...row, email_status: `failed: ${why}`.slice(0, 200) });
+    console.error(`[lead] email failed (${why.slice(0, 300)}); stored=${stored}`);
+    return stored
+      ? NextResponse.json({ ok: true })
+      : NextResponse.json({ ok: false, error: "Delivery failed" }, { status: 502 });
+  };
+
   const apiKey = process.env.SENDGRID_API_KEY;
   if (!apiKey) {
     console.warn(
       "[lead] SENDGRID_API_KEY is not set — lead notification NOT sent.",
       { sourcePage: lead.sourcePage, zip: lead.zip }
     );
+    await insertInto("leads", { ...row, email_status: "no email key" });
     return NextResponse.json({ ok: true });
   }
 
@@ -193,19 +223,12 @@ export async function POST(request: Request) {
 
     if (!res.ok) {
       const detail = await res.text().catch(() => "");
-      console.error(`[lead] SendGrid error ${res.status}: ${detail.slice(0, 500)}`);
-      return NextResponse.json(
-        { ok: false, error: "Delivery failed" },
-        { status: 502 }
-      );
+      return emailFailed(`SendGrid ${res.status} ${detail.slice(0, 120)}`);
     }
   } catch (err) {
-    console.error("[lead] SendGrid request threw:", err);
-    return NextResponse.json(
-      { ok: false, error: "Delivery failed" },
-      { status: 502 }
-    );
+    return emailFailed(String(err));
   }
 
+  await insertInto("leads", { ...row, email_status: "sent" });
   return NextResponse.json({ ok: true });
 }

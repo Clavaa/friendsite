@@ -7,7 +7,8 @@ import { GoogleAuth } from "google-auth-library";
  */
 
 const PROJECT = "sproutwell-aba-260907";
-const TABLE = `https://bigquery.googleapis.com/bigquery/v2/projects/${PROJECT}/datasets/sunbird_traffic/tables/events/insertAll`;
+const tableUrl = (table: string) =>
+  `https://bigquery.googleapis.com/bigquery/v2/projects/${PROJECT}/datasets/sunbird_traffic/tables/${table}/insertAll`;
 
 let auth: GoogleAuth | null = null;
 function getAuth(): GoogleAuth | null {
@@ -22,13 +23,21 @@ function getAuth(): GoogleAuth | null {
 }
 
 export async function insertRow(row: Record<string, unknown>): Promise<void> {
+  await insertInto("events", row);
+}
+
+/**
+ * Insert into any sunbird_traffic table. Returns true only when BigQuery
+ * accepted the row — the lead route relies on that to know a lead is safe.
+ */
+export async function insertInto(table: string, row: Record<string, unknown>): Promise<boolean> {
   try {
     const a = getAuth();
-    if (!a) return;
+    if (!a) return false;
     const client = await a.getClient();
     const token = (await client.getAccessToken()).token;
-    if (!token) return;
-    await fetch(TABLE, {
+    if (!token) return false;
+    const res = await fetch(tableUrl(table), {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -40,7 +49,11 @@ export async function insertRow(row: Record<string, unknown>): Promise<void> {
         rows: [{ json: row }],
       }),
     });
+    if (!res.ok) return false;
+    const out = (await res.json().catch(() => ({}))) as { insertErrors?: unknown[] };
+    return !out.insertErrors?.length;
   } catch {
     /* Swallow — logging is best-effort. */
+    return false;
   }
 }

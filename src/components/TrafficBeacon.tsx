@@ -90,7 +90,10 @@ export default function TrafficBeacon() {
   const pathname = usePathname();
   const search = useSearchParams();
 
+  const isAdmin = pathname.startsWith("/admin");
+
   useEffect(() => {
+    if (isAdmin) return;
     const onClick = (ev: MouseEvent) => {
       try {
         const el = (ev.target as Element | null)?.closest?.("a, button, summary");
@@ -116,7 +119,7 @@ export default function TrafficBeacon() {
     };
     document.addEventListener("click", onClick, { capture: true });
     return () => document.removeEventListener("click", onClick, { capture: true });
-  }, []);
+  }, [isAdmin]);
 
   /* Visible-time accounting, kept in refs so a re-render never disturbs it. */
   const visibleMs = useRef(0);
@@ -125,6 +128,8 @@ export default function TrafficBeacon() {
   const sent = useRef(false);
 
   useEffect(() => {
+    // The admin report must never count itself as a visitor.
+    if (isAdmin) return;
     if (search.get("internal") === "1") {
       try {
         localStorage.setItem(KEY_INTERNAL, "1");
@@ -216,7 +221,7 @@ export default function TrafficBeacon() {
       // A client-side route change unmounts this effect: close the old page out.
       finish();
     };
-  }, [pathname, search]);
+  }, [pathname, search, isAdmin]);
 
   return null;
 }

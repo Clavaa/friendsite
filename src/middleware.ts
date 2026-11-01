@@ -11,7 +11,27 @@ import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server
 const CRAWLER =
   /googlebot|google-inspectiontool|storebot-google|adsbot-google|mediapartners-google|google-extended|googleother|bingbot|adidxbot|applebot|duckduckbot|yandex|baiduspider|gptbot|oai-searchbot|chatgpt-user|claudebot|perplexitybot|ccbot|meta-externalagent|ahrefsbot|semrushbot/i;
 
+/** /admin is gated by HTTP Basic auth against ADMIN_PASSWORD (any user name). */
+function adminAllowed(req: NextRequest): boolean {
+  const pass = process.env.ADMIN_PASSWORD;
+  if (!pass) return false;
+  const h = req.headers.get("authorization") ?? "";
+  if (!h.startsWith("Basic ")) return false;
+  try {
+    const raw = atob(h.slice(6));
+    return raw.slice(raw.indexOf(":") + 1) === pass;
+  } catch {
+    return false;
+  }
+}
+
 export function middleware(req: NextRequest, event: NextFetchEvent) {
+  if (req.nextUrl.pathname.startsWith("/admin") && !adminAllowed(req)) {
+    return new NextResponse("Authentication required", {
+      status: 401,
+      headers: { "WWW-Authenticate": 'Basic realm="Sunbird admin", charset="UTF-8"', "X-Robots-Tag": "noindex" },
+    });
+  }
   const ua = req.headers.get("user-agent") ?? "";
   const key = process.env.TRAFFIC_SALT;
   if (key && CRAWLER.test(ua)) {

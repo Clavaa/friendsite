@@ -11,7 +11,7 @@ import { NextResponse, type NextFetchEvent, type NextRequest } from "next/server
 const CRAWLER =
   /googlebot|google-inspectiontool|storebot-google|adsbot-google|mediapartners-google|google-extended|googleother|bingbot|adidxbot|applebot|duckduckbot|yandex|baiduspider|gptbot|oai-searchbot|chatgpt-user|claudebot|perplexitybot|ccbot|meta-externalagent|ahrefsbot|semrushbot/i;
 
-/** /admin is gated by HTTP Basic auth against ADMIN_PASSWORD (any user name). */
+/** /admin is gated by HTTP Basic auth: user "admin", password ADMIN_PASSWORD. */
 function adminAllowed(req: NextRequest): boolean {
   const pass = process.env.ADMIN_PASSWORD;
   if (!pass) return false;
@@ -19,7 +19,8 @@ function adminAllowed(req: NextRequest): boolean {
   if (!h.startsWith("Basic ")) return false;
   try {
     const raw = atob(h.slice(6));
-    return raw.slice(raw.indexOf(":") + 1) === pass;
+    const at = raw.indexOf(":");
+    return raw.slice(0, at) === "admin" && raw.slice(at + 1) === pass;
   } catch {
     return false;
   }

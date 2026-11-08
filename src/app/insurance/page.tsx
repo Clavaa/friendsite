@@ -39,7 +39,7 @@ const benefitFaqs = [
   },
   {
     q: "Do you take my specific insurance plan?",
-    a: "We publish named in-network plans here as each payer's credentialing is confirmed — never before. In the meantime, the benefit check answers the question that actually matters: what your plan would cover for your child, and what you'd owe.",
+    a: "We work with Medicaid and commercial insurance plans in Kansas and Colorado. Send us a photo of your card and the free benefit check confirms your specific plan — what it covers for your child and what you'd owe.",
   },
 ];
 
@@ -160,18 +160,23 @@ export default function InsurancePage() {
             </p>
           </div>
 
-          {/* Commercial payer list — config-gated, never fabricated */}
-          <div className="mt-10 rounded-3xl border-2 border-dashed border-line bg-white/70 p-6 sm:p-8 lg:max-w-3xl">
+          {/* Payer note. Client rule: Medicaid + commercial, generically —
+              no individual payer names on the page. */}
+          <div className="mt-10 rounded-3xl bg-white p-6 shadow-card sm:p-8 lg:max-w-3xl">
             <h3 className="font-display text-xl">Plans we work with</h3>
-            {/* TODO (required before launch): publish the real credentialed
-                payer list per state once credentialing is confirmed. Never
-                publish a payer name before credentialing is confirmed. */}
-            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
-              The named list of in-network plans for Kansas and Colorado is
-              published here once credentialing is confirmed for each payer.
-              Until then, one honest promise: send us your card and
-              we&rsquo;ll tell you exactly where you stand — free, within
-              about a business day.
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {["Medicaid", "Commercial insurance plans"].map((t) => (
+                <li key={t} className="flex items-center gap-2.5 rounded-2xl border border-line bg-cream/60 px-4 py-3 text-[15px] font-bold">
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-meadow" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 7.5l3 3 6-7" /></svg>
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
+              We work with Medicaid and commercial insurance plans across Kansas
+              and Colorado. Not sure about yours? Send us your card and
+              we&rsquo;ll confirm exactly where you stand — free, within about a
+              business day.
             </p>
           </div>
         </div>

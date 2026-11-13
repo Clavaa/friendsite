@@ -4,6 +4,7 @@ import { Nunito_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import TrafficBeacon from "../components/TrafficBeacon";
+import ChatWidget from "../components/ChatWidget";
 import Header from "../components/Header";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
@@ -140,6 +141,7 @@ export default function RootLayout({
         <main id="main">{children}</main>
         <Footer />
         <ScrollBird />
+        <ChatWidget />
         <Analytics />
         <GoogleAnalytics />
         <MetaPixel />

@@ -33,7 +33,7 @@ const MAX_FIELD_LENGTH = 200;
 const MAX_QUESTION_LENGTH = 1000;
 
 /** Fixed vocabularies for the diagnosis-help funnel — anything else is dropped. */
-const ALLOWED_TYPES = new Set(["diagnosis-help", "newsletter", "question"]);
+const ALLOWED_TYPES = new Set(["diagnosis-help", "newsletter", "question", "chat"]);
 const ALLOWED_STATES = new Set(["kansas", "colorado"]);
 const ALLOWED_INSURANCE = new Set(["private-insurance", "medicaid", "not-sure"]);
 const ALLOWED_CONCERNS = new Set([
@@ -178,6 +178,8 @@ export async function POST(request: Request) {
       ? "New question for the clinical team"
       : isDiagnosisHelp
         ? "New diagnosis-help lead"
+        : lead.type === "chat"
+          ? "New chat lead"
         : "New intake lead";
   const text = [
     kind,
